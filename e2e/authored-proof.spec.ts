@@ -1,0 +1,195 @@
+import AxeBuilder from '@axe-core/playwright';
+import { expect, test, type Page } from '@playwright/test';
+import { fitMotif } from '../src/engine/design';
+import { projectBrief, projectQuote } from '../src/engine/projects';
+import { RULES } from '../src/engine/rules';
+import { replay } from '../src/engine/sim';
+import type { Command } from '../src/engine/types';
+import { commissionQuote } from '../src/ui/game/commissionFacts';
+import { goPlace } from './workspace-helpers';
+
+const config = { scenarioId: 'main-street', seed: 'first-season' };
+const opening: Command[] = [{ type: 'accept', requestId: 'd0-r0', maker: 'h1' }, { type: 'runDay' }, { type: 'runDay' }];
+const before = replay(config, opening).state;
+const brief = projectBrief(before, 'clem-ten', 'new-band');
+const headline = 'The room is still ours';
+const saved = (page: Page): Promise<Command[]> => page.evaluate(() => JSON.parse(localStorage.getItem('lantern.runs.v1')!)[0].commands);
+
+async function load(page: Page, commands: Command[] = opening) {
+  expect(replay(config, commands).errors).toEqual([]);
+  await page.goto('/');
+  await page.evaluate(save => {
+    localStorage.clear();
+    localStorage.setItem('lantern.guide.v1', 'seen');
+    localStorage.setItem('lantern.stamps.v1', JSON.stringify(['first-season']));
+    localStorage.setItem('lantern.runs.v1', JSON.stringify([save]));
+  }, { v: 1, rules: RULES.version, id: 'authored', label: 'Authored proof', savedAt: new Date().toISOString(), config, commands });
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue Authored proof', exact: true }).click();
+}
+
+function editedDesign() {
+  const design = structuredClone(brief.defaultDesign);
+  const piece = design.pieces[0]!;
+  piece.layout = 'headline';
+  piece.motifs = piece.motifs.map(motif => fitMotif(piece.layout, motif));
+  piece.motifs.push({ id: 'star', x: 48, y: 58, scale: 1, rotation: 90 });
+  piece.palette = 'river';
+  piece.typeface = 'letterpress';
+  piece.headline = headline;
+  piece.treatment = 'third-ink';
+  return design;
+}
+
+async function edit(page: Page) {
+  await page.locator('.project-notice').click();
+  await page.getByRole('button', { name: /Give the new band the wall/ }).click();
+  const desk = page.getByRole('region', { name: 'Creative proof desk' });
+  await desk.getByRole('button', { name: 'Big headline', exact: true }).click();
+  await desk.getByRole('button', { name: 'River green', exact: true }).click();
+  await desk.getByRole('button', { name: 'Workshop type', exact: true }).click();
+  await desk.getByRole('textbox').fill(headline);
+  await desk.getByRole('tab', { name: 'Illustrations', exact: true }).click();
+  await desk.getByRole('button', { name: 'Add star', exact: true }).click();
+  await desk.getByRole('combobox', { name: 'Size', exact: true }).selectOption('1');
+  await desk.getByRole('button', { name: 'Move illustration left', exact: true }).focus();
+  await page.keyboard.press('ArrowLeft');
+  await desk.getByRole('button', { name: 'Turn 90°', exact: true }).click();
+  await desk.getByRole('tab', { name: 'Finish', exact: true }).click();
+  await desk.getByLabel('Production treatment').selectOption('third-ink');
+  return desk;
+}
+
+for (const width of [320, 390, 1280]) test(`an edited commission remains exact through review, Undo and reload at ${width}px`, async ({ page }, info) => {
+  await page.setViewportSize({ width, height: 844 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await load(page);
+  await page.evaluate(() => document.documentElement.style.fontSize = '200%');
+  const desk = await edit(page);
+  const print = desk.locator('.designed-artwork__print');
+  await expect(print).toHaveAttribute('data-layout', 'headline');
+  await expect(print).toHaveAttribute('data-palette', 'river');
+  await expect(print).toHaveAttribute('data-typeface', 'letterpress');
+  await expect(print).toHaveAttribute('data-treatment', 'third-ink');
+  await expect(print.locator('.designed-artwork__illustrations > g')).toHaveCount(2);
+  await expect(print.locator('.designed-artwork__illustrations > g').nth(1)).toHaveAttribute('transform', 'translate(48 58) rotate(90)');
+  await expect(print).toHaveAttribute('aria-label', new RegExp(headline));
+  await expect(desk.locator('.proof-desk__cost')).toContainText('+40 cr materials · +15 finishing minutes');
+  const required = desk.getByRole('checkbox').first();
+  await required.focus();
+  await page.keyboard.press('Space');
+  await expect(desk.getByRole('button', { name: 'Review this proof', exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Approve proof & book', exact: true })).toHaveCount(0);
+  await expect(desk.locator('.proof-desk__review')).toContainText('promise needs attention');
+  expect(await saved(page)).toEqual(opening);
+  await page.keyboard.press('Space');
+  await desk.getByRole('button', { name: 'Review this proof', exact: true }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Approve the proof and the promise', exact: true })).toBeFocused();
+  const design = editedDesign();
+  design.pieces[0]!.copy = [...design.pieces[0]!.copy.slice(1), design.pieces[0]!.copy[0]!];
+  const standard = projectQuote(before, 'clem-ten', 'new-band', brief.defaultDesign)!;
+  const quote = projectQuote(before, 'clem-ten', 'new-band', design)!;
+  expect(quote.project.materials).toBe(standard.project.materials + 40);
+  const native = commissionQuote(before, 'clem-ten', 'new-band', undefined, design);
+  const baseline = commissionQuote(before, 'clem-ten', 'new-band', undefined, brief.defaultDesign);
+  expect(native.work!.total).toBe(baseline.work!.total! + 15);
+  await expect(page.locator('.project-payment')).toContainText('190 cr materials paid now');
+  await expect(page.getByRole('radio', { name: 'Studio plan', exact: true })).toHaveAccessibleDescription(new RegExp(`Human work: ${native.work!.total} min in total`));
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect((await new AxeBuilder({ page }).include('.project-board').analyze()).violations).toEqual([]);
+  if (info.project.name === 'desktop' && width !== 390) await desk.locator('.designed-artwork').screenshot({ path: info.outputPath(`authored-editor-${width}-large.png`) });
+  const approve = page.getByRole('button', { name: 'Approve proof & book', exact: true });
+  await approve.focus();
+  await page.keyboard.press('Enter');
+  const command: Command = { type: 'acceptProject', projectId: 'clem-ten', approach: 'new-band', design };
+  await expect(page.locator('.project-receipt')).toBeFocused();
+  expect(await saved(page)).toEqual([...opening, command]);
+  const approved = page.locator('.project-approved-pieces .designed-artwork__print');
+  await expect(approved).toHaveAttribute('data-palette', 'river');
+  await expect(approved).toHaveAttribute('aria-label', new RegExp(headline));
+  const state = replay(config, await saved(page));
+  expect(state.errors).toEqual([]);
+  expect(state.state.contracts.at(-1)!.project!.proof!.design).toEqual(design);
+  expect(state.state.contracts.at(-1)!.project!.proof!.pieces[0]!.copy).toEqual(brief.pieces[0]!.copy);
+  await page.getByRole('button', { name: 'Undo commission', exact: true }).click();
+  expect(await saved(page)).toEqual(opening);
+  await expect(page.locator('#project-quote-h')).toBeFocused();
+  await desk.getByRole('tab', { name: 'Page', exact: true }).click();
+  await expect(desk.getByRole('textbox')).toHaveValue(headline);
+  await page.getByRole('button', { name: 'Approve proof & book', exact: true }).click();
+  expect(await saved(page)).toEqual([...opening, command]);
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue Authored proof', exact: true }).click();
+  await page.locator('.project-notice').click();
+  await expect(page.locator('.project-receipt')).toBeFocused();
+  await expect(page.locator('.project-approved-pieces .designed-artwork__print')).toHaveAttribute('data-palette', 'river');
+  await expect(page.locator('.project-approved-pieces .designed-artwork__print')).toHaveAttribute('aria-label', new RegExp(headline));
+  expect(await saved(page)).toEqual([...opening, command]);
+});
+
+test('the approved design is printed on the live production surface and delivered portfolio', async ({ page }, info) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await load(page);
+  const desk = await edit(page);
+  await desk.getByRole('button', { name: 'Review this proof', exact: true }).click();
+  await page.getByRole('button', { name: 'Approve proof & book', exact: true }).click();
+  const booked = replay(config, await saved(page));
+  expect(booked.errors).toEqual([]);
+  const contract = booked.state.contracts.at(-1)!;
+  await page.getByRole('button', { name: /^Open .*Day 3/ }).click();
+  await page.getByRole('button', { name: 'Open as normal', exact: true }).click();
+  await goPlace(page, 'Work');
+  await expect(page.locator('.miniature-world')).toBeVisible();
+  await expect(page.locator('.miniature-world')).not.toHaveAttribute('data-renderer-choice', 'checking');
+  const tryMiniature = page.getByRole('button', { name: 'Try miniature room', exact: true });
+  if (await tryMiniature.isVisible()) await tryMiniature.click();
+  await expect(page.locator('.miniature-world')).toHaveAttribute('data-rendered', 'true', { timeout: 15_000 });
+  await expect(page.locator('.miniature-art-sources[data-art-ready=true]')).toHaveCount(1);
+  await page.clock.install({ time: new Date('2026-10-27T10:00:00Z') });
+  await page.clock.pauseAt(new Date('2026-10-27T10:00:01Z'));
+  await page.getByRole('button', { name: /^Open .*Day 3/ }).click();
+  await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  const inspect = page.locator(`button[data-inspect-job="${contract.jobIds[0]}"]`);
+  await expect(inspect).toBeVisible();
+  await inspect.click();
+  const production = page.locator(`[data-work-job="${contract.jobIds[0]}"] .designed-artwork__print`).first();
+  await expect(production).toBeVisible();
+  await expect(production).toHaveAttribute('data-layout', 'headline');
+  await expect(production).toHaveAttribute('data-palette', 'river');
+  expect(await production.locator('.designed-artwork__title').evaluate(node => [...node.children].map(line => line.textContent).join(' '))).toContain(headline);
+  await page.clock.runFor(50);
+  await page.locator('.world-wrap').screenshot({ path: info.outputPath('authored-production.png') });
+  for (let day = 2; day < 5; day++) {
+    await page.getByRole('button', { name: 'Skip to evening', exact: true }).click();
+    const call = page.getByRole('alertdialog', { name: /^A call at/ });
+    if (await call.count()) await call.getByRole('button', { name: 'Leave it', exact: true }).click();
+    await expect(page.locator('.evening')).toBeVisible();
+    await page.clock.runFor(500);
+    const state = replay(config, await saved(page));
+    expect(state.errors).toEqual([]);
+    if (state.state.jobs.find(job => job.contractId === contract.id)!.status === 'delivered') break;
+    await page.getByRole('button', { name: "Review tomorrow's window", exact: true }).click();
+    const open = page.getByRole('button', { name: /^Open .*Day / });
+    await open.click();
+    const pending = page.locator('.news:not(.news-done) .news-option').first();
+    if (await pending.count()) { await pending.click(); await open.click(); }
+  }
+  await goPlace(page, 'Work');
+  const choice = page.locator(`[data-portfolio-job="${contract.jobIds[0]}"]`);
+  await expect(choice).toBeVisible();
+  await choice.click();
+  const delivered = page.locator('.portfolio-selected .designed-artwork__print');
+  await expect(delivered).toBeVisible();
+  await expect(delivered).toHaveAttribute('data-layout', 'headline');
+  await expect(delivered).toHaveAttribute('data-palette', 'river');
+  await expect(delivered).toHaveAttribute('data-typeface', 'letterpress');
+  await expect(delivered).toHaveAttribute('data-treatment', 'third-ink');
+  await expect(delivered).toHaveAttribute('aria-label', new RegExp(headline));
+  for (const copy of brief.pieces[0]!.copy) expect(await delivered.getAttribute('aria-label')).toContain(copy.text);
+  const final = replay(config, await saved(page));
+  expect(final.errors).toEqual([]);
+  expect(final.state.contracts.find(item => item.id === contract.id)!.project!.proof!.design).toEqual(editedDesign());
+  await page.locator('.portfolio-selected').screenshot({ path: info.outputPath('authored-delivered.png') });
+});

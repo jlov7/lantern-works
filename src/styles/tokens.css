@@ -1,0 +1,55 @@
+/* Lantern Works design tokens. One theme: a lit studio on a street at dusk. */
+:root {
+  --dusk-950: #161b2e;
+  --dusk-900: #1f2640;
+  --dusk-800: #283152;
+  --dusk-700: #313c63;
+  --dusk-600: #44507c;
+  --dusk-400: #9aa4cc;
+  --dusk-200: #c3c9e2;
+  --lamp: #f4b942;
+  --lamp-soft: #f8d58a;
+  --lamp-glow: rgba(244, 185, 66, 0.35);
+  --paper: #f3ebdd;
+  --paper-shade: #e4d8c3;
+  --ink: #2a2233;
+  --ink-soft: #5a4f63;
+  --moss: #4f8a66;
+  --moss-soft: #a9d3b5;
+  --brick: #b9483a;
+  --brick-soft: #f0b2a4;
+  --sky-equip: #8fb3d9;
+  --lilac-soft: #c58af0;
+  --timber: #a7744a;
+  --timber-dark: #7a5233;
+  /* Text that means a loss, on paper. */
+  --neg-on-paper: #7a2a1f;
+  /* Motion: everything that moves uses these, and reduced motion turns them all off. */
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-stamp: 240ms;
+  --dur-slow: 420ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Layout */
+  --bar-h: 64px;
+  --decide-w: clamp(360px, 36vw, 500px);
+  --font-sign: 'Young Serif', Georgia, serif;
+  --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+}
+
+/* Interface materials are independent of the miniature's dusk palette. */
+:root {
+  --ui-stage: #192c27;
+  --ui-ground: #14231f;
+  --ui-deep: #20382f;
+  --ui-surface: #2b463a;
+  --ui-edge: #526d59;
+  --ui-muted: #b9c7b7;
+  --ui-text: #e0e6d9;
+  --ui-paper: #f4efdf;
+  --ui-paper-shade: #e5dcc5;
+  --ui-ink: #263b30;
+  --ui-ink-soft: #53604f;
+  --ui-action: #cbd9b5;
+}

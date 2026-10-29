@@ -1,0 +1,72 @@
+.neighbourhood { --ink:#242c23; --paper:#efe2c8; color:var(--ink); background:var(--paper); font-family:Georgia,serif; border:1px solid #5d5945; }
+.neighbourhood * { box-sizing:border-box; }
+.neighbourhood h2,.neighbourhood h3,.neighbourhood p { min-width:0; overflow-wrap:anywhere; hyphens:auto; }
+.neighbourhood h2,.neighbourhood h3 { color:var(--ink); }
+.neighbourhood-heading { display:flex; align-items:end; justify-content:space-between; gap:1.5rem; padding:1.35rem 1.6rem 1rem; }
+.neighbourhood-detail-label { color:#6d5c46; font:700 .69rem/1.3 sans-serif; letter-spacing:.14em; text-transform:uppercase; }
+.neighbourhood-heading h2 { margin:.25rem 0 0; font-size:clamp(1.8rem,3.5vw,2.9rem); line-height:1.05; font-weight:normal; }
+.neighbourhood-heading p { margin:0 0 .2rem; font-size:.95rem; max-width:19rem; line-height:1.4; }
+.neighbourhood-scene { position:relative; isolation:isolate; height:clamp(320px,43vw,480px); overflow:hidden; background-size:cover; background-position:center; transition:background-position .7s ease; }
+.neighbourhood-scrim { position:absolute; inset:0; opacity:.82; background:linear-gradient(90deg,#20291ed6,#18261f26 58%,#1a211b50),linear-gradient(0deg,#191b13ba,transparent 35%); }
+.neighbourhood-print { position:absolute; left:50%; top:50%; width:clamp(170px,30%,280px); aspect-ratio:1; padding:7px; background:#efdfbf; box-shadow:2px 5px 2px #17160c80, 5px 9px 17px #17160cb0; transform:translate(-50%,-43%) perspective(800px) rotateY(3deg) rotate(-1deg); }
+.neighbourhood-print > * { margin:0; display:block; width:100%; height:100%; object-fit:contain; }
+.neighbourhood-scene-label { position:absolute; right:1.4rem; top:1.1rem; bottom:auto; min-width:0; max-width:50%; overflow-wrap:anywhere; color:#fff3d8; text-shadow:0 2px 5px #151510; text-align:right; display:grid; gap:.2rem; background:#1d2b21df; padding:.5rem .65rem; }
+.neighbourhood-scene-label span { font:700 .65rem/1.3 sans-serif; text-transform:uppercase; letter-spacing:.12em; }
+.neighbourhood-scene-label strong { font-size:1.3rem; }
+.neighbourhood-trail { position:absolute; bottom:8%; left:45%; right:12%; display:flex; justify-content:space-between; border-bottom:2px dashed #f2d99a; color:#f2d99a; transform:rotate(-7deg); opacity:.8; }
+.neighbourhood[data-mode="unfinished"] .neighbourhood-scene { filter:saturate(.75); }
+.neighbourhood-empty { position:absolute; left:1.5rem; bottom:1.5rem; max-width:25rem; color:#fff6df; background:#263a30ed; padding:1rem; line-height:1.4; }
+.neighbourhood-details { display:flex; align-items:start; justify-content:space-between; gap:1rem; padding:1.1rem 1.6rem 1.2rem; }
+.neighbourhood-details h3 { font-size:1.45rem; font-weight:normal; margin:.2rem 0; }
+.neighbourhood-details p { margin:.3rem 0 0; line-height:1.45; }
+.neighbourhood-nav { padding:0 1.6rem 1rem; min-width:0; }
+.neighbourhood-nav > p { margin:0 0 .5rem; font:.85rem/1.4 var(--font-body,sans-serif); }
+.neighbourhood-nav > div { display:flex; gap:.5rem; overflow-x:auto; padding:4px 4px 10px; scrollbar-width:thin; scrollbar-color:#6c7866 #e5d7bb; }
+.neighbourhood-nav button { display:flex; justify-content:space-between; gap:1rem; align-items:center; min-height:44px; padding:.65rem .85rem; background:transparent; color:#263d30; border:1px solid #6c7866; font:600 .9rem/1.25 Georgia,serif; cursor:pointer; }
+.neighbourhood-nav button[aria-pressed="true"] { background:#263d30; color:#fff3dc; border-color:#263d30; }
+.neighbourhood-nav button small { display:block; margin-top:.25rem; font:400 .8rem/1.3 var(--font-body, sans-serif); }
+.neighbourhood-nav button > span:first-child { min-width:0; text-align:left; overflow-wrap:anywhere; }
+.neighbourhood-nav button { flex:0 0 13rem; max-width:90%; }
+.neighbourhood-nav button:hover { box-shadow:inset 0 0 0 1px currentColor; }
+.neighbourhood-nav button:focus-visible { outline:3px solid #ad623f; outline-offset:3px; }
+.neighbourhood[data-reduced-motion] .neighbourhood-scene { transition:none; }
+@media (prefers-reduced-motion:reduce) { .neighbourhood-scene { transition:none; } }
+@media(max-width:600px) { .neighbourhood-heading { display:block; padding:1rem; } .neighbourhood-heading p { margin:.55rem 0 0; } .neighbourhood-scene { height:320px; } .neighbourhood-print { width:54%; max-width:210px; } .neighbourhood-scene-label { right:.6rem; top:.65rem; bottom:auto; max-width:47%; } .neighbourhood-scene-label strong { font-size:1rem; } .neighbourhood-details { display:block; padding:1rem; } .neighbourhood-credits { margin-top:1rem; max-width:none; } .neighbourhood-nav { padding:0 .75rem .75rem; } }
+.neighbourhood-credits { flex:0 1 auto; min-width:0; max-width:44%; }
+.neighbourhood-credits ul { display:flex; flex-wrap:wrap; gap:.75rem 1.2rem; padding:0; margin:.5rem 0 0; list-style:none; }
+.neighbourhood-credits li { display:flex; align-items:center; gap:.55rem; font:600 .95rem/1.3 var(--font-body,sans-serif); }
+.neighbourhood-credit-portrait { display:block; width:48px; height:48px; overflow:hidden; border-radius:50%; background:#d8ccb3; border:1px solid #b8a98e; }
+.neighbourhood-credit-portrait .atelier-portrait-image { display:block; width:100%; height:100%; object-fit:cover; object-position:center 12%; }
+@media(max-width:600px) { .neighbourhood-credits { max-width:none; } }
+
+/* Placement is presentation only; the recorded delivery remains visible. */
+@keyframes scene-place { from { opacity:.75; translate:0 18px; } to { opacity:1; translate:0 0; } }
+@keyframes scene-light { from { opacity:1; } to { opacity:.82; } }
+@keyframes scene-response { from { opacity:.7; translate:0 5px; } to { opacity:1; translate:0 0; } }
+.neighbourhood-scene[data-scene-motion] .neighbourhood-print,
+.commission-payoff[data-scene-motion] .payoff-milestone-art,
+.commission-payoff[data-scene-motion] .payoff-printed-piece { animation:scene-place 1s ease-out both; }
+.neighbourhood-scene[data-scene-motion] .neighbourhood-scrim { animation:scene-light 1s ease-out both; }
+.commission-payoff[data-scene-motion] .payoff-customer { animation:scene-response .7s .45s ease-out both; }
+.scene-skip { display:block; min-height:44px; margin:.25rem 1rem; padding:.45rem .7rem; color:#263d30; background:transparent; border:1px solid #6c7866; font:600 .85rem/1.2 sans-serif; cursor:pointer; }
+.scene-skip:focus-visible { outline:3px solid #ad623f; outline-offset:3px; }
+@media (prefers-reduced-motion:reduce) {
+  :root:not([data-motion="full"]) .neighbourhood-print,
+  :root:not([data-motion="full"]) .neighbourhood-scrim,
+  :root:not([data-motion="full"]) .commission-payoff .payoff-milestone-art,
+  :root:not([data-motion="full"]) .commission-payoff .payoff-printed-piece,
+  :root:not([data-motion="full"]) .commission-payoff .payoff-customer { animation:none; }
+}
+
+.neighbourhood-hosts { position:absolute; z-index:1; left:3%; bottom:0; width:31%; max-width:275px; pointer-events:none; }
+.neighbourhood-hosts > div { display:flex; align-items:end; justify-content:center; }
+.neighbourhood-hosts figure { position:relative; flex:1 1 0; min-width:0; margin:0 -5% 0 0; filter:drop-shadow(1px 4px 4px #131810a0); }
+.neighbourhood-hosts img { display:block; width:100%; max-height:235px; object-fit:contain; object-position:bottom; }
+.neighbourhood-hosts figcaption { position:relative; margin:-.2rem auto .65rem; width:max-content; max-width:100%; padding:.3rem .45rem; color:#fff3d8; background:#203a30ed; font:600 .8rem/1.2 var(--font-body,sans-serif); overflow-wrap:anywhere; }
+.neighbourhood-hosts figcaption span { font-weight:400; }
+.neighbourhood-scene[data-scene-motion] .neighbourhood-hosts figure { animation:scene-response 1s ease-out both; }
+@media (prefers-reduced-motion:reduce) { :root:not([data-motion="full"]) .neighbourhood-hosts figure { animation:none; } }
+@media(max-width:600px) { .neighbourhood-hosts { left:1%; width:43%; } .neighbourhood-hosts img { max-height:155px; } .neighbourhood-hosts figcaption { font-size:.7rem; } .neighbourhood-hosts figcaption span { display:block; } }
+
+.neighbourhood-scene:has(.neighbourhood-hosts) .neighbourhood-print { left:60%; z-index:2; }
+@media(max-width:600px) { .neighbourhood-scene:has(.neighbourhood-hosts) .neighbourhood-print { left:64%; width:48%; } }

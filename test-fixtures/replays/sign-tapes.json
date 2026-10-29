@@ -1,0 +1,164 @@
+{
+  "main": {
+    "v": 1,
+    "rules": "lantern-4.6.2",
+    "id": "run-35516565072091828014",
+    "label": "Challenge: Main Street",
+    "savedAt": "2026-10-23T15:43:06.765Z",
+    "config": {
+      "scenarioId": "main-street",
+      "seed": "e2e-1"
+    },
+    "commands": [
+      {
+        "type": "accept",
+        "requestId": "d0-r0"
+      },
+      {
+        "type": "accept",
+        "requestId": "d0-r1",
+        "maker": "h1"
+      },
+      {
+        "type": "accept",
+        "requestId": "d0-r3",
+        "maker": "h2"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      },
+      {
+        "type": "accept",
+        "requestId": "d1-r0"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      },
+      {
+        "type": "choose",
+        "newsId": "n2",
+        "option": 0
+      },
+      {
+        "type": "accept",
+        "requestId": "d2-r6"
+      },
+      {
+        "type": "accept",
+        "requestId": "d2-r7"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      },
+      {
+        "type": "choose",
+        "newsId": "n3",
+        "option": 1
+      },
+      {
+        "type": "accept",
+        "requestId": "d3-r4"
+      },
+      {
+        "type": "pace",
+        "pace": "careful"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      }
+    ]
+  },
+  "prototype": {
+    "v": 1,
+    "rules": "lantern-4.6.3-sign",
+    "id": "run-35283195401012666435",
+    "label": "Challenge: Main Street",
+    "savedAt": "2026-10-23T15:43:07.296Z",
+    "config": {
+      "scenarioId": "main-street",
+      "seed": "e2e-1"
+    },
+    "commands": [
+      {
+        "type": "postMenu",
+        "day": 0
+      },
+      {
+        "type": "accept",
+        "requestId": "d0-r0"
+      },
+      {
+        "type": "accept",
+        "requestId": "d0-r1",
+        "maker": "h2"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      },
+      {
+        "type": "pace",
+        "pace": "careful"
+      },
+      {
+        "type": "postMenu",
+        "day": 1
+      },
+      {
+        "type": "accept",
+        "requestId": "d1-r0"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      },
+      {
+        "type": "choose",
+        "newsId": "n2",
+        "option": 0
+      },
+      {
+        "type": "postMenu",
+        "day": 2
+      },
+      {
+        "type": "accept",
+        "requestId": "d2-r7",
+        "maker": "h1"
+      },
+      {
+        "type": "accept",
+        "requestId": "d2-r6"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      },
+      {
+        "type": "choose",
+        "newsId": "n3",
+        "option": 3
+      },
+      {
+        "type": "pace",
+        "pace": "careful"
+      },
+      {
+        "type": "postMenu",
+        "day": 3
+      },
+      {
+        "type": "accept",
+        "requestId": "d3-r4"
+      },
+      {
+        "type": "runDay",
+        "calls": true
+      }
+    ]
+  }
+}

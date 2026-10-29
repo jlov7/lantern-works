@@ -1,0 +1,376 @@
+{
+  "v": 1,
+  "rules": "lantern-4.7.1",
+  "config": {
+    "scenarioId": "main-street",
+    "seed": "cold-studio-1"
+  },
+  "commands": [
+    {
+      "type": "accept",
+      "requestId": "d0-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r0",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r4"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r6",
+      "maker": "h2"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n2",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r0"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n3",
+      "option": 3
+    },
+    {
+      "type": "setStaff",
+      "staffing": {
+        "aiTier": "solo",
+        "routing": "simple"
+      }
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r4"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r7"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r8"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n4",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r0",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r8"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n5",
+      "option": 1
+    },
+    {
+      "type": "setMenu",
+      "offers": [
+        {
+          "name": "Bespoke Launch",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 3,
+          "scope": "any",
+          "style": "custom",
+          "price": 900
+        },
+        {
+          "name": "Launchlet",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 1,
+          "scope": "simple",
+          "style": "templated",
+          "price": 340
+        }
+      ]
+    },
+    {
+      "type": "hire"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r12"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-n",
+      "maker": "h2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r10"
+    },
+    {
+      "type": "decline",
+      "requestId": "d5-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d5-r8"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "choose",
+      "newsId": "n6",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-n"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ring"
+    },
+    {
+      "type": "choose",
+      "newsId": "n7",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-n"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r0",
+      "maker": "h2"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n8",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r1",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r9"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r3",
+      "counter": true
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n9",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r4",
+      "maker": "h2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n10",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r0",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r7",
+      "counter": true
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n11",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r7",
+      "counter": true
+    },
+    {
+      "type": "pace",
+      "pace": "careful"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r3"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    }
+  ],
+  "name": "The studio grew"
+}

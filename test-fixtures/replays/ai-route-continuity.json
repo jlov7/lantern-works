@@ -1,0 +1,496 @@
+{
+  "v": 1,
+  "rules": "lantern-4.7.1",
+  "id": "run-32160789481720828328",
+  "label": "Challenge: Main Street",
+  "savedAt": "2026-10-24T11:45:52.879Z",
+  "config": {
+    "scenarioId": "main-street",
+    "seed": "ai-route-continuity"
+  },
+  "commands": [
+    {
+      "type": "accept",
+      "requestId": "d0-r1",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r3"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "setMenu",
+      "offers": [
+        {
+          "name": "Bespoke Launch",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 3,
+          "scope": "any",
+          "style": "custom",
+          "price": 900
+        },
+        {
+          "name": "Launchlet",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 1,
+          "scope": "simple",
+          "style": "templated",
+          "price": 340
+        }
+      ]
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r3",
+      "maker": "h2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n2",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r0",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r5"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n3",
+      "option": 3
+    },
+    {
+      "type": "setStaff",
+      "staffing": {
+        "aiTier": "solo",
+        "routing": "simple"
+      }
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r9"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r1",
+      "maker": "h2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r8"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n4",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r4"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r8"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r9"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-n"
+    },
+    {
+      "type": "hire"
+    },
+    {
+      "type": "decline",
+      "requestId": "d4-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d4-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n5",
+      "option": 1
+    },
+    {
+      "type": "buy",
+      "item": "checklist"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r9"
+    },
+    {
+      "type": "pace",
+      "pace": "careful"
+    },
+    {
+      "type": "pace",
+      "pace": "steady"
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "decline",
+      "requestId": "d5-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n6",
+      "option": 1
+    },
+    {
+      "type": "buy",
+      "item": "library"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r0",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r7"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r8"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r9"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r10"
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-n"
+    },
+    {
+      "type": "buy",
+      "item": "styleGuide"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n7",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r8",
+      "maker": "h2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r4"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r12"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r9"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ring"
+    },
+    {
+      "type": "choose",
+      "newsId": "n8",
+      "option": 1
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r9"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r11"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n9",
+      "option": 0
+    },
+    {
+      "type": "pace",
+      "pace": "push"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r10"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r0",
+      "maker": "h1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r7"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ring"
+    },
+    {
+      "type": "choose",
+      "newsId": "n10",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r7"
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r6"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n11",
+      "option": 0
+    },
+    {
+      "type": "pace",
+      "pace": "careful"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r6"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    }
+  ]
+}

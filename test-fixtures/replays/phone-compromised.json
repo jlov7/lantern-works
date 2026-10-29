@@ -1,0 +1,508 @@
+{
+  "v": 1,
+  "rules": "lantern-6.1.0",
+  "id": "run-22672580112703098135",
+  "label": "First season: Main Street",
+  "savedAt": "2026-10-28T20:04:50.989Z",
+  "config": {
+    "scenarioId": "main-street",
+    "seed": "first-season"
+  },
+  "commands": [
+    {
+      "type": "accept",
+      "requestId": "d0-r0",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "gallery",
+            "palette": "midnight",
+            "typeface": "serif",
+            "copy": [
+              "title",
+              "detail",
+              "customer"
+            ],
+            "motifs": [
+              {
+                "id": "trumpet",
+                "x": 50,
+                "y": 50,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      },
+      "intention": "clem-room"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r3"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n2",
+      "option": 0
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "clem-ten",
+      "approach": "first-night",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "photograph",
+            "layout": "gallery",
+            "palette": "linen",
+            "typeface": "serif",
+            "copy": [
+              "venue",
+              "anniversary"
+            ],
+            "motifs": [
+              {
+                "id": "first-photo",
+                "x": 50,
+                "y": 50,
+                "scale": 3,
+                "rotation": 0
+              },
+              {
+                "id": "star",
+                "x": 50,
+                "y": 51,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      }
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r2"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n3",
+      "option": 3
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n4",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r5"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n5",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r3"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n6",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d6-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "late"
+    },
+    {
+      "type": "choose",
+      "newsId": "n7",
+      "option": 0
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "lantern-night",
+      "approach": "courtyard",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "invitation",
+            "layout": "gallery",
+            "palette": "midnight",
+            "typeface": "serif",
+            "copy": [
+              "event",
+              "date",
+              "place",
+              "contributors"
+            ],
+            "headline": "Come as you are.",
+            "motifs": [
+              {
+                "id": "lantern",
+                "x": 50,
+                "y": 50,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      }
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r7"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r9"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r10"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n8",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r7"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r9"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r10"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r11"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n9",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r7"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r9"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r10"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r11"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r12"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n10",
+      "option": 0
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d10-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "late"
+    },
+    {
+      "type": "choose",
+      "newsId": "n11",
+      "option": 0
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r7"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r9"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r10"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r11"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "cut"
+    }
+  ]
+}

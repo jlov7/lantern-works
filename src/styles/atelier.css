@@ -1,0 +1,63 @@
+.atelier-window {
+  --atelier-cream: #f4e6c9;
+  position: relative;
+  isolation: isolate;
+  container-type: inline-size;
+  height: clamp(300px, 29vw, 380px);
+  overflow: hidden;
+  background: #283d32 center 55% / cover no-repeat;
+  box-shadow: inset 0 0 0 1px #302b20, inset 0 -28px 40px #241b14a6;
+  color: var(--atelier-cream);
+}
+.window-scene:has(.atelier-window) { display: block; margin-bottom: .75rem; }
+.atelier-window-light {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #171d18a8, transparent 37%, transparent 75%, #171d1880), linear-gradient(0deg, #20180fa8, transparent 38%);
+  pointer-events: none;
+}
+.atelier-customer {
+  position: absolute;
+  z-index: 1;
+  height: 88%;
+  width: min(43%, 330px);
+  left: 48%;
+  bottom: 4%;
+  filter: drop-shadow(0 8px 9px #17171090);
+  animation: atelier-arrival 280ms cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes atelier-arrival { from { opacity:.3; transform:translateX(10px); } to { opacity:1; transform:none; } }
+.atelier-window[data-reduced-motion] .atelier-customer { animation:none; }
+@media (prefers-reduced-motion:reduce) { .atelier-customer { animation:none; } }
+.atelier-portrait-image { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block; }
+.atelier-artwork {
+  position: absolute;
+  z-index: 2;
+  left: 16%;
+  bottom: 22%;
+  width: clamp(95px, 17%, 190px);
+  height: 46%;
+  padding: 5px;
+  background: #e8d6b4;
+  box-shadow: 1px 5px 14px #1b120dc9;
+  transform: rotate(-5deg);
+}
+.atelier-artwork > * { display: block; width: 100%; height: 100%; object-fit: contain; }
+.atelier-caption { position: absolute; z-index: 3; left: 20px; bottom: 17px; display: grid; gap: 2px; text-shadow: 0 2px 6px #1c150f; font-family: Georgia, serif; }
+.atelier-caption strong { font-size: 1.35rem; line-height: 1.1; }
+.atelier-caption span { font-size: .88rem; }
+.atelier-inspect { position: absolute; z-index: 4; right: 16px; bottom: 15px; min-height: 44px; padding: 8px 14px; border: 1px solid #f3e3c1; border-radius: 3px; background: #173d31ed; color: #fff5dc; font: inherit; cursor: pointer; }
+.atelier-inspect:focus-visible { outline: 3px solid #fff3c5; outline-offset: 3px; }
+@media (max-width: 600px) {
+  .atelier-window { height: 245px; background-position: center; }
+  .atelier-customer { left: 38%; width: 56%; height: 88%; bottom: 4%; }
+  .atelier-artwork { left: 8%; width: 25%; height: 39%; bottom: 25%; }
+  .atelier-caption { left: 12px; bottom: 12px; max-width: 45%; }
+  .atelier-caption strong { font-size: 1.15rem; }
+  .atelier-caption span { font-size: .75rem; }
+  .atelier-inspect { right: 10px; bottom: 10px; }
+}
+@container (max-width: 18rem) {
+  .atelier-caption span { display: none; }
+  .atelier-caption strong { font-size: 1rem; }
+}

@@ -1,0 +1,228 @@
+{
+  "rules": "lantern-5.0.0",
+  "provenance": "Minimal native-command routes proving the Festival bakery set can contribute before Day 6. No painted state. Low prices deliberately isolate chronology, not full-season balance.",
+  "routes": [
+    {
+      "config": {
+        "scenarioId": "festival-week",
+        "seed": "first-season"
+      },
+      "commands": [
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Festival cards",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 1,
+              "scope": "simple",
+              "style": "templated",
+              "price": 200
+            },
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 2,
+              "scope": "any",
+              "style": "custom",
+              "price": 200
+            }
+          ]
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 0
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r0"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "mara-regular",
+          "approach": "weekly-rhythm"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 0
+        },
+        {
+          "type": "runDay"
+        }
+      ]
+    },
+    {
+      "config": {
+        "scenarioId": "festival-week",
+        "seed": "8000"
+      },
+      "commands": [
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Festival cards",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 1,
+              "scope": "simple",
+              "style": "templated",
+              "price": 200
+            },
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 2,
+              "scope": "any",
+              "style": "custom",
+              "price": 200
+            }
+          ]
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r2"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 0
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "mara-regular",
+          "approach": "weekly-rhythm"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 0
+        },
+        {
+          "type": "runDay"
+        }
+      ]
+    },
+    {
+      "config": {
+        "scenarioId": "festival-week",
+        "seed": "daily-2026-10-26"
+      },
+      "commands": [
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Festival cards",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 1,
+              "scope": "simple",
+              "style": "templated",
+              "price": 200
+            },
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 2,
+              "scope": "any",
+              "style": "custom",
+              "price": 200
+            }
+          ]
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r5"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 0
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "mara-regular",
+          "approach": "weekly-rhythm"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 0
+        },
+        {
+          "type": "runDay"
+        }
+      ]
+    }
+  ]
+}

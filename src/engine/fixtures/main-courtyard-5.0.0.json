@@ -1,0 +1,326 @@
+{
+  "rules": "lantern-5.0.0",
+  "config": {
+    "scenarioId": "main-street",
+    "seed": "first-season"
+  },
+  "commands": [
+    {
+      "type": "accept",
+      "requestId": "d0-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d0-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r2",
+      "maker": "h1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "setMenu",
+      "offers": [
+        {
+          "name": "Bespoke Launch",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 3,
+          "scope": "any",
+          "style": "custom",
+          "price": 900
+        },
+        {
+          "name": "Street card",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 2,
+          "scope": "simple",
+          "style": "templated",
+          "price": 330
+        }
+      ]
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n2",
+      "option": 0
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "clem-ten",
+      "approach": "first-night"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r0",
+      "maker": "h2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r5",
+      "maker": "h2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r3"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n3",
+      "option": 3
+    },
+    {
+      "type": "reserve",
+      "requestId": "d3-r6",
+      "startsInDays": 2
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n4",
+      "option": 0
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r5",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r4"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r7"
+    },
+    {
+      "type": "decline",
+      "requestId": "d4-r2"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n5",
+      "option": 1
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "hugo-handover",
+      "approach": "quiet-sendoff"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d5-r1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n6",
+      "option": 1
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r8"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n7",
+      "option": 0
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r8",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n8",
+      "option": 0
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "lantern-night",
+      "approach": "courtyard"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r11",
+      "maker": "h2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n9",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r2"
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r5",
+      "maker": "h2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d9-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n10",
+      "option": 0
+    },
+    {
+      "type": "temp"
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r0"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n11",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d11-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d11-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    }
+  ],
+  "provenance": "Main Street played from a fresh guided start through native browser controls on 2026-10-26. No injected state."
+}

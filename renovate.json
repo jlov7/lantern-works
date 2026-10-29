@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "schedule:weekly", ":pinAllExceptPeerDependencies"],
+  "lockFileMaintenance": { "enabled": true },
+  "packageRules": [
+    { "matchUpdateTypes": ["minor", "patch"], "groupName": "minor and patch updates" },
+    { "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"], "groupName": "react" },
+    { "matchPackageNames": ["vite", "vitest", "@vitest/**", "@vitejs/**"], "groupName": "vite and vitest" },
+    { "matchPackageNames": ["@playwright/test", "@axe-core/playwright"], "groupName": "playwright" },
+    { "matchManagers": ["github-actions"], "groupName": "github actions" }
+  ]
+}

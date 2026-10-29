@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "file": "src/ui/atelier/assets/window.webp",
+      "title": "Studio service window",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Original paper-and-ink scene, with space for a customer and approved print.",
+      "bytes": 429494,
+      "sha256": "ebe112975bff95ecae7962169acfe290b8b1f60b5b866b1a05c27dfbef90eb2a"
+    },
+    {
+      "file": "src/ui/atelier/assets/clem.webp",
+      "title": "Clem portrait",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Fictional jazz-bar owner in the studio visual style.",
+      "bytes": 122062,
+      "sha256": "90bbab9ca0f7cad14b1e9256344f130cb839cad0e7723974776009f6fa3e6f9a"
+    },
+    {
+      "file": "src/ui/atelier/assets/mara.webp",
+      "title": "Mara portrait",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Fictional bakery owner in the studio visual style.",
+      "bytes": 159786,
+      "sha256": "38e3b9bdb83af4c7d51f6c1089cd77b383cea1b8f00543bf8baa6a94ff7dc125"
+    },
+    {
+      "file": "src/ui/atelier/assets/hugo.webp",
+      "title": "Hugo portrait",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Fictional watch repairer in the studio visual style.",
+      "bytes": 126988,
+      "sha256": "856e50e988790c66c57a3a36d2781c3e938677be411239ff3ca16f9481a19bc1"
+    },
+    {
+      "file": "src/ui/atelier/assets/ivo.webp",
+      "title": "Ivo portrait",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Fictional apprentice, using the existing Clem and Hugo portraits as style references.",
+      "bytes": 121374,
+      "sha256": "f8a458564cff6c39131791d949b144743040583c28850c127351cc6e7fe23b50"
+    },
+    {
+      "file": "src/ui/neighbourhood/assets/jazz.webp",
+      "title": "Jazz-bar exterior",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Evening street scene using the studio window as a style reference.",
+      "bytes": 211616,
+      "sha256": "382822684dd7e9851d8f82f7991d50ee033a31a1678fd1e1b931c23c32d8e39e"
+    },
+    {
+      "file": "src/ui/neighbourhood/assets/bakery.webp",
+      "title": "Bakery exterior",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Evening street scene using the studio window as a style reference.",
+      "bytes": 212542,
+      "sha256": "cb633e22a102a72ceae68734b32c13564a0952bb188ac1f66922f4a2dd4c7177"
+    },
+    {
+      "file": "src/ui/neighbourhood/assets/watch.webp",
+      "title": "Watch workshop exterior",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "Evening street scene using the studio window as a style reference.",
+      "bytes": 236882,
+      "sha256": "2461c26a1373496e631c1a0296d66f0432e291e34b13f9ba82cfc016ab1740cb"
+    },
+    {
+      "file": "src/ui/neighbourhood/assets/courtyard.webp",
+      "title": "Courtyard gathering",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "An outdoor print gathering setting with space for separate player work.",
+      "bytes": 239458,
+      "sha256": "b6f0ed0b3b8fe3e3872416fdfc0046ae5513b15bcfafbc84f79bed6b85489cfc"
+    },
+    {
+      "file": "src/ui/neighbourhood/assets/open-studios.webp",
+      "title": "Open-studio gathering",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "A workshop gallery setting with space for separate player work.",
+      "bytes": 171750,
+      "sha256": "87122e4556a711e73f91ae775fc26484fc3c6ab77142f5a4af138385b9a418c1"
+    },
+    {
+      "file": "src/ui/creative/assets/first-night-room.jpg",
+      "title": "First-night room",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "A fictional archival-style jazz-bar photograph; not a historical photograph.",
+      "bytes": 136105,
+      "sha256": "d826ea5fec0e838bfc51e3554733e7fb6f6ba3f9431155d3ed3cb55955cbfbff"
+    },
+    {
+      "file": "src/ui/creative/assets/hugo-at-bench.webp",
+      "title": "Hugo at the bench",
+      "generatedOn": "2026-10-26",
+      "tool": "OpenAI built-in image generation",
+      "intent": "A keepsake illustration using the existing Hugo portrait as its character reference.",
+      "bytes": 129106,
+      "sha256": "60776d7c8578050fa8136ab60b86d12375decd2722e0957e67754ea42d2c884e"
+    }
+  ]
+}

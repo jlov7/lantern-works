@@ -1,0 +1,16 @@
+.replay-backup { max-width: 60ch; overflow-wrap: anywhere; }
+.replay-backup-season { font: 1.15rem/1.4 var(--font-sign); color: var(--ui-paper); }
+.replay-backup textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 8rem;
+  padding: .65rem .8rem;
+  resize: vertical;
+  border: 1px solid var(--ui-edge);
+  border-radius: 8px;
+  background: var(--ui-deep);
+  color: var(--ui-paper);
+  font: .9rem/1.5 var(--font-body);
+}
+.replay-backup textarea:focus-visible { border-color: var(--lamp); }
+.replay-backup [role='status'] { margin-top: 1rem; }

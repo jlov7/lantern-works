@@ -1,0 +1,3435 @@
+{
+  "source": "47099f1",
+  "rules": "lantern-6.0.0",
+  "tapes": [
+    {
+      "id": "main-courtyard",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "first-season"
+      },
+      "commands": [
+        {
+          "type": "accept",
+          "requestId": "d0-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r2",
+          "maker": "h1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Street card",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 2,
+              "scope": "simple",
+              "style": "templated",
+              "price": 330
+            }
+          ]
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "first-night",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "photograph",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "venue",
+                  "anniversary"
+                ],
+                "motifs": [
+                  {
+                    "id": "first-photo",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r0",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r5",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 3
+        },
+        {
+          "type": "reserve",
+          "requestId": "d3-r6",
+          "startsInDays": 2
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r5",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r4"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "hugo-handover",
+          "approach": "quiet-sendoff",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "portrait",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "hugo",
+                  "dedication"
+                ],
+                "motifs": [
+                  {
+                    "id": "bench",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r5"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r8"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r8",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r7"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "courtyard",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "invitation",
+                "layout": "gallery",
+                "palette": "linen",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r11",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 0
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r2"
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r5",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 0
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "accept",
+          "requestId": "d10-r0"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "accept",
+          "requestId": "d11-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d11-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        }
+      ],
+      "states": [
+        "a0d1d9c599302dfada449544d9c120966185f7b4f4be2f3f650d682b5ba201d2",
+        "806480de574140a0fa144686d68914b82ddc5a09e97b068342b8e6c968557bb9",
+        "802f0bd8705031d368bb285377392d50b55c8ca95ff125e29a920a87ed401067",
+        "85f12bbba2f7f54c7a2fab9ad44f54ed0e7bc51673713a6f729e8903f6ad035b",
+        "c9270e859cec906d797bc4b1d67926d9934d6a70da18c22429ed8c8d644c22f4",
+        "8185ee15c3b376f3c2272b222fb115f1f8708ec394a69333700f173b4f5cd336",
+        "23a2d0470df51d261e44a3b2357cb3f305aff795efd4726ef10a78293c4088db",
+        "401b0f5be316b4fa693512f3fb1711af807948b99f9eceadc724703b5ac2c78d",
+        "abf4d2e15806cbdb8d2165eb94b6ead17b7ac1ef7c9574f4736bdb9fb0f907af",
+        "8af4fd9899ac75de971ad2fe6cced0b65d155305b593a4bb709cc6328fd26dec",
+        "31a77ffee7786fd811cc9d8cd8eb21d18f0c6a20613ada0de92e4a5a74b1a651",
+        "8bc5fb295d10da2a07159d63c7e4ab336bde9af0e918502f16014fa819666112",
+        "f8344334ad7af4a713240602779f7ae407927a1e3618010f235f576f0e3c26b1",
+        "a6f65ce5327a214da8f675472533d497dea39a5b3618f9b16d6d55b8b2fe7671",
+        "ec5d82d79210dd58923da663e24277ea7ea62f4a929564fa44141694bb80d253",
+        "63818f48ab0a9077f34984abe6404da26f14ef2b7801660356f62272c5b7ec7a",
+        "73c30b9d06c9bcd93202b94f0ee2917863bf3e519af2b5746b8ffd6adcbafe8c",
+        "3fbaa1db2d7d2ebf08903358131966156fa08a9262bbd8e36a772742bc3c54e2",
+        "56b95c01519073c36854e2016b387ae7becb92961eb85f4a6c8bb8d27f1922fd",
+        "fe8e597629861ec7159186af37b82465af81323e30feca0c7b59e469ec60d4f8",
+        "baef418ec835edd41962bf189191788825017c3d0f589692340a6afc816bf2ca",
+        "3d0d3f29ad614ba5abb229d22d26e2778ae49ed483000575bd00e431bef95cf9",
+        "d13b21036851ab35d65385bdad3d27ed3ad9fc1651d8ea301ad28d58353165d7",
+        "b0d59e6ca84ac8c3ecc0d39d5bbe5380f2f6901c8b08bacd2f3939b185f79d6a",
+        "aa5004cc83846de29c6e14be9a710f5fada486c15b43b533b1250759c2ef7a8e",
+        "9e73c931aa12eb9e075d836be5b245a130bed540eaf691d87861161cbb6072f9",
+        "7411ca5cadccf92fc4bc9a2d9758b6adac869a97f991073d6328af322f6ca01b",
+        "ca2931f21041d28fc82f44f817d5d12ad57cfb3b5a12dd3fbd820a284b0f90e4",
+        "0b7dc691b7e8e9eb55dd349c0f541decca71de04766f736c3f03f95bf1826d2e",
+        "167aabe9e1c3f049e270ca39ad30db59e6cc6bab97b221d3e23a35ce7d5199ed",
+        "65c910d3ebb68e66e899804359d94079c77a343bc6391e60981922ad9100a2b5",
+        "294d7dae56f222343b48aa2116875ff888801e734a01f4fed9f6ff6758ea4f87",
+        "ddea30a36c417a0b5b98179564171d12525ddf438a96b2154960d1897cd85400",
+        "7c8965569e67a96de4e67f14624a00e6951523861d352fe6ab2f2b33a55bc5ea",
+        "f89db62a0b808dcb31ba5de425e1be543dd55da3622acec451f861c40fa21431",
+        "33f4ef6465859cd19413ea2f7e0b31b2c35533b1ef0c3ff7e1290dcfde48ee79",
+        "8a32af540c39f0481be76d3646d1d3cca75edbe43040ead07edfe8a27c148dbb",
+        "6bb3b13e27cc6fc37533baad56fc4398207f50ae04c9d269c9d3a4bde400bf69",
+        "1a775d33381eba5323f9db73479393f0f1d9e81c36ba3758350a4db6aa69cbac",
+        "7894a51254e514d25c382ad4ad400a979b39b58ff27e5260db03ddaaa880c42a",
+        "407dc6ad103dd4ecbef89ca813d0a416074ddb1a4423e1b00bc3d8e39588da2b",
+        "70296d6ffc55f09faaade40fef3edd57384a6c5a0fca63616b37d1d566b6f80c",
+        "9865c872f68ffd398bfaeb246c5504d670590dd529a151331395e118ea411c9e",
+        "5c1e84d5f07814323e1fa9d13cf53513f20c7a2a572661b5248300332cf00a51",
+        "e97027b2b981ba8c9262322b220cabad71100421911f5003edc7a9f997169ab6",
+        "343d39bb0d0ac69de1a800dc991e58d5e5cca39234205be1350274631b939931",
+        "a8fb9fdae77f7b6edcb589cfca7787592397876ada3eab5110579596967e9a4b",
+        "277e5aa50937b9a69ab7f2e4de3eaa8788b9efc49b35446f9f62f7d068940377",
+        "85327683c57cd6ce9dc5eb9af982008e30768cbdeb0425a99223a2c301858fd5",
+        "3b88834c27f8965ba42e5a794ef170ea7a17646ebcfeaab1742dd83f125f9115",
+        "a5f898fb6ade0db60f5a294a0cf536dcb4fa5de47448a89a1cdc135a40b63365",
+        "b9bc5888c26204def5773df42afe5a59d85b8ec54ef8f6fc5d3de07d0cecd4cd",
+        "b5f6349b6f9c8425f15a01abe0ffbc372e62a816295a6e65c50f8346908fe6a9",
+        "2126c216e067c0dddd0ce9c4be31e65b9b38d1af82035703b67c97f539f4b510",
+        "0baa766d0ac3d31e1f78f086d79a2f91ddcb83d336bf65d6bef72510e1e1e8ae",
+        "9d4ac09e148f53ace91907efc3745d52ec2877d9b36c7e6982ff1f0689ea67f5",
+        "335f571c139936df3f912ae5a5d455dd653f450ee456afb5fd67b727a31eff6f",
+        "a73dbcf3777d75cfb5c9ef0804561b9f8b5de2e7223831826a4c7eabb60b204d",
+        "3049e7e65380d5940374434429344c0c683131b904a57ed1af562b17070a6fbd",
+        "867d5b986c85d090058eb4c83d29146a7b84fa4089e69ab434f7d4fcd9f545a5",
+        "a63c3d7f780ab6e84847d3c2147856d8d7db049cd18c9fd198bba630b6d84871",
+        "e1cd6978b8898bfd13ff61668dcd0c0dbde0c54496ebdffcb12033886fec3893",
+        "3d6169fc3394706f0f3545684df70c3bf4de7ac20fb4a33d5ced979a972f6e51",
+        "574a17e26d4adf51d773f15f2b666304a6e79a4bdd1020fbf891074c5c94724b",
+        "a93b04d223510f93ce2c9dc93341af5f84c40184c3e6a2c4557a2d0cf88032a1",
+        "1371f1664fd1d4e4b2708965e45ac92f7de85958f265a4ab646f79e31fbdc0b4",
+        "5506643cf4a2cabde4702711895d85d85e97f43f72c5653c0f108aed119a0fe7",
+        "8aa2eecd9e8fa5947cb211073df7651ab883470f0ecaf64dbc11195cc926c37c",
+        "aed43d27b06e71853ea7dccf6b6567a5441ddd5cb10f6eb4daaf690b9df6098a",
+        "cc36d1a0f5b68b7fc62bff85a10c05eb02af97428f3b67650554a9e5857eee8a",
+        "8392a5199720c1a4f420e2dc01061438a376c5805e345d33861b1935b0a5d441"
+      ]
+    },
+    {
+      "id": "main-trail",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "first-season"
+      },
+      "commands": [
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Street card",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 2,
+              "scope": "simple",
+              "style": "templated",
+              "price": 330
+            }
+          ]
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r2",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r3",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r0",
+          "counter": true
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r3"
+        },
+        {
+          "type": "mentor",
+          "resourceId": "j1",
+          "specialization": "templates"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "new-band",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "band",
+                  "anniversary",
+                  "venue"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r4",
+          "maker": "h2"
+        },
+        {
+          "type": "buy",
+          "item": "checklist"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 2
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r0",
+          "counter": true
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r5",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r6",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "mara-regular",
+          "approach": "weekly-rhythm",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "card",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "card-1",
+                  "bakery"
+                ],
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "card",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "card-2",
+                  "bakery"
+                ],
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "card",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "card-3",
+                  "bakery"
+                ],
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "reserve",
+          "requestId": "d4-r1",
+          "startsInDays": 2
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r7"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r5",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r10"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r10"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 0
+        },
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Street card",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 1,
+              "scope": "simple",
+              "style": "templated",
+              "price": 330
+            }
+          ]
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r5",
+          "maker": "h1"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d7-r7",
+          "startsInDays": 1
+        },
+        {
+          "type": "reserve",
+          "requestId": "d7-r11",
+          "startsInDays": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 1
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d8-r2",
+          "startsInDays": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r12",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 0
+        },
+        {
+          "type": "pace",
+          "pace": "push"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "trail",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "programme",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "map",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "sign",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r0"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d9-r2",
+          "startsInDays": 1
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r5"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d10-r4",
+          "startsInDays": 1
+        },
+        {
+          "type": "reserve",
+          "requestId": "d10-r1",
+          "startsInDays": 1
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "accept",
+          "requestId": "d11-r6"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "cut"
+        }
+      ],
+      "states": [
+        "a0d1d9c599302dfada449544d9c120966185f7b4f4be2f3f650d682b5ba201d2",
+        "39fc272cd91d4491e1cfc2160052e57a42e89b8740cde409c79a33a94d107c3c",
+        "8b343c2e0e871ada72d113ecc4ef083ebf75e8b06f4f521cd5a9b6819b8ab432",
+        "7ea7ed48b579ed27b48a0b0d3ccd223fc43f371142197237b5ba04fa182895be",
+        "8ea78cf40878b3d5f23097ea9154adb99f9607fa1bf399a5c6dd4a1879dafba8",
+        "d710e4dee2c28a4a17dd148804d631dc83e342e0a5e4f6a33063d19e0befa260",
+        "d2890825d19ccdbe206571bdbdd22b0c115ed3d7ef2cb5b344b7c21e6601a104",
+        "63e07e33cdd56dd9ad1d9b426c5856910ba6ee779587d791303a7e5bf15164ce",
+        "6c0f641d4b562a11b17ea990b8945ad8da3f7e2236769e7bd368324b748e9d83",
+        "a32105a2128de573ec3bec49a114a720f1e679b5d51d46376fb3309531f852c0",
+        "2c14b3ccdcf37b2106aaef233b7a3da3d2b7d89e20c06922e519e563ef460e1a",
+        "d70bc90b124ba6cce52f9706b0e769f2097cbf4f3ec7689b7d66dd73e610bbb4",
+        "98200d5129bc68fb27b2722682a2c61e479613823a8335152b0934d7f144e2b7",
+        "34549ecabf03745394de9d0ea3f6920250184942e421d6072b14ad85ee41df59",
+        "7beaf0b7903adc6b3879a55902df50183589e4efff6cb11c1c8d0ed883f123aa",
+        "0c85e74d804ce4bc14b20e44ddeed610925df8581886bd06a9828e74822e5d0f",
+        "d0815916989b182f5babf57203e44d2acd4b44e93cbbd896ebe9dc69868dc7e6",
+        "32c76f5434b5a34909629e4233bed085be2fbded839b4a53fbf6d600979a954e",
+        "d84254395c93eeb338ce8cd47da898524b5e3f848f64f36eaf41ab993b827d8b",
+        "0042b3c12cae043536e0b64aa88b5fea651d80bf828ef6cf6326a65c630cc78f",
+        "14d38aff67b3ac922d06087afa9c5590d2d40c67f6dec9b9af88f2bd7cb23144",
+        "399badcdd8f3c806780ab4eebbc07a123ab701edbf08bdc0933c3bd9be91be77",
+        "45281cba4a10c88552fa1cae9b03305be156679c70c7ad887a93cac55f7ab376",
+        "91ab410d7118ac0afa40d497f3f0db345fc895f462731dd1a43c74abf529dd77",
+        "57fbd72c0e2c2b3f95759781326d42936241c5c846eefe4c91414a03df0aae91",
+        "7fef49a7559261740bfcaa05068d0fca765517d657651a1de66ab53ccab5a192",
+        "01a0761f9d78eafa22cd604588d1236919c67f7f1b8dda1562f6ee3cc759081a",
+        "ad86b1d68cd7617c5e6c9f5791507f342d640a1a4a7f0e5e2361e53d72fd3114",
+        "6f93187780e47528a885f2779bd0960bf056cb6bed394142d8f5cfceaf36ec2f",
+        "2681e5a12ae7ce3e1186e88e78c48158ce2ca282f1fb12ed6a37127113763142",
+        "86cb85d9f1e4b86c6da2813ed3d7f423088db1894901f45802912abfa24781d1",
+        "4b614531586f6fdf7a240118f296951dd525cc9ae3c01e920a536c955235655b",
+        "e84b6fa79445601125a5391c447f42048eeccdc42036c19e21d60f551df38503",
+        "d60f12d64a16f24909db650bef54b31221b621b9e1212aa566dc90bdd8e50641",
+        "eca2f8b74e56a946ce9d573407343da78b4d4ff49ea62e2e3230d0a70feed480",
+        "20197611b3af24163ea10dc8ada8595020687301f889b938919c66ef17425e74",
+        "36646421d43673fda3c41a26e18924654020305ceecc0d023cf06fbf018f5518",
+        "61a6bfc98ce1b405be19eda40a6868577d1c7fd7f77f410d1602701a00c68c54",
+        "a874932ad883c6e3ccfaa9f9e86beb3d8cf41ed1e8dbbfccef6a3c8dde30f713",
+        "4b3a2ce456ad2d0548bad4261f2ec0ea2d9441a11c7344aab7cdebaf48965c44",
+        "d4ae8a911232608beaa10abd152e51859fc4007cab2d7e4e5b79aec104e8e80a",
+        "3c608908621da120f638fa7c22d525e40869e8251d324f06a6915abb0795a801",
+        "3581f51d883cafb37bbd0a9a322263b64133a033bd6b031ed4ce72c0b58dd8a9",
+        "f9bcb6e05e2d6c6ab870c1cc3bc1a9b26585e5e2331b2f288914d13386358fa0",
+        "9917638bc0551f716b9ce4a1b0276c3673e67d201c9750bf4f80cd8cfaebadb0",
+        "30961a636f88dac801642debfe737d3d47ee0bf84b213816af12dfdbe38a7590",
+        "ee59d2b3e2a6282475801252ad03a8a4b13e80f63204d4c5d5e692ff45f4ae97",
+        "da2140af4089c006bcb9f13849b1c7f6c1d2fa28847ca9efb85df98713106185",
+        "6db75a4d31e3a115d1cfa9d10c194dea1fa4b8a1982e40e8079375c3f6625798",
+        "79ff7485af75d9db0d01a146434a1bd85f18b4715dd7914302e084cf8e434a93",
+        "6ce4d90d97165801c4929a554dec14575f75cdbcd1040aeacfbbe146557e4861",
+        "3de006fb2cf72888869d3f465a07571ce8498f4f8575c5694b1c069708abe4de",
+        "dcd3a2f62844fa730cb50030001a3099ed4e9d6e2ba22abee08d0f42e593efff",
+        "eff3b79ecee5ce255438f4e6889b8d1dd7bd23f319117bd80e7ab7ddd49507d0",
+        "adc771acccf451b3f5c171f8505277ec57bac1082818bcd9d944cae73fd14f2a",
+        "506e381ee5939e939916daa05b5781a557e63390101a225bd4f87fe02c4c52b3",
+        "c9362314b5706f9ae3fb6e0975038d7082067054e42620458318d1c79335bcd6",
+        "cecf6f63a68411ee8f56e19c214c63f4e68be8d581ad267dae6a74cb90e3a1da",
+        "446ea2f917dafb47cba42d71fafd63426ea0c8cdade6d5a2852be947adab3043",
+        "9cd175d28022a87dc354db2802e7cb19f3a4a28180626d7836abb54c0cdbdabc",
+        "deaf206f555c7a662be0addc7faea9145e8529752d2150ac4e420a7ae32d3665",
+        "55384898b5092b72f86cbd915fb0ebb6cefe374b6f18fea8d67186be3aa45338",
+        "9712d89942178b6f7ccbd18da146f064802db0e3e94700e9de2c91f26b089b19",
+        "ae6e6ab87fbf1f1d2bb34389f8fa559a54d9dca1df0862d4c91717cf550d93e9",
+        "adbe96dcc1cd9d30c47d6437a386ee38b6ba3a2a3c5ab19357f998f8673a3f7b",
+        "ed9e1e366a0c912fece383e922b2c6b8a5f0ace7cea2c1c608678e1ec5b0d25b",
+        "30e23c2a980af7473f45425d94f3aa3e97af4080e4c2d92b5da6d5bf5637c3d5",
+        "4434dca7562224d9506495bfe47b60036175bcc16587a0775838b0e3f9fa22da",
+        "b47039e89da777e62ff6c4f561aa47884bff827b1fed74132b273fd902f63244",
+        "7a2f05c983f1cf44d65366d11306cdd23febfec460b72b2faa4d918c4f84a42b",
+        "23c8654498d9817fd0af9734b206865760c9286aa43897a4c4ee8a709df0a44c",
+        "846e0300cfe30ec306bc0b371c9a022d25e60cdb0e9c012c7c5d3d7c4da21067",
+        "92aa1829c9279e583f067513a524df28f9cdb2a3e2de6e542bc609d22bdb2548",
+        "705686e150b424f0d4350a4bd05e6116040d1c6f812e4fc6516bd0c9058f3efc",
+        "e87deaf6758b254261ec9b05884c083c58c18b4dcfbcce537ebc1d64f6993086",
+        "8a1a2ed4862733e5341c2a7db07ff8650c42f8fe2c0e07ac730fad6e92fd52ed",
+        "2cb638ac3337627ea584f7dc962915b8db100b6c4a84231e4c40bf77da5ca641",
+        "808fd4e2397aa052eee6b99cd393b519f8025e87fe2d2e850cf9a752717cd7dc",
+        "5594916aeb5081dc662822f1afc6880fc8fabef226aefa05808677a494998ec7",
+        "b14120216f990522438cf0ff2444284f2b593b6c6966c092a5190f260a949f03",
+        "51c2cf3061c088866690babcb30c30ba6e2400fe222850d1bf7718dd2f7b2eb9",
+        "d4fd37af6fe4a7d08673439db9ed836bb4a12e0cd471753c9b05c331a498a05f",
+        "39992eda5157946309fb7147ab29e577cc7532ac1758e08fb82dc9b019999e04",
+        "0782c4fc835f26fccc531ce8fc5b3b52670446d101de37d560b077073a0b72bc",
+        "0e2785a25b5be43ab8358a2576fb14b974a73267a67c0fbfccebc63aecc0b27d",
+        "abb61b95c7ea313e4b8715d93abd7e585e9e751ad9d25ce92209622cdbcbc1a2",
+        "d727b09761ae775980dc3ef6520fc4dff2fd5896178f8db8964de5f8a0fab2da"
+      ]
+    },
+    {
+      "id": "careful",
+      "config": {
+        "scenarioId": "bespoke-rush",
+        "seed": "93307"
+      },
+      "commands": [
+        {
+          "type": "accept",
+          "requestId": "d0-r0",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r0",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r3",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 1
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "hugo-handover",
+          "approach": "open-bench",
+          "maker": "h1",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "sign",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "apprentice",
+                  "workshop",
+                  "invitation"
+                ],
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 3
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "new-band",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "linen",
+                "typeface": "serif",
+                "copy": [
+                  "band",
+                  "anniversary",
+                  "venue"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r0",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r1",
+          "maker": "h2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 1
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "mentor",
+          "resourceId": "j1",
+          "specialization": "proofing"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-n"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r1",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r2",
+          "maker": "h2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "buy",
+          "item": "checklist"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r7",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r0"
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r0"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 0
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "pace",
+          "pace": "steady"
+        },
+        {
+          "type": "pace",
+          "pace": "push"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "trail",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "invitation",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "catalogue",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 0
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r0",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 1
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-n"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        }
+      ],
+      "states": [
+        "fdbb89b315e5476efec4517472447f5091589d68627613416b1a83ce1e94d072",
+        "c1c4b8085bbbfbb1980d405807cee00a63d4575ccdc25cf2f06aece8a26ef8bb",
+        "f449eb5e44b6f7e2dda12be84a943079ad48f19355aee34e666739103f54c1e2",
+        "7ce6dbfbe2ec881f24db4f9303827db39d268a5c9a5df9c1dba73759f2d0de81",
+        "53df425ea3b9ecf943b971829df1786fe3c94ef886bc077ee43b58994c78bfc6",
+        "c7e349625978bc581b25e5fdf2a373eebbdd5b84f36753522c975f193ebac658",
+        "375cf217cc2a37ed39ad4533559eba509d4a52041641097aa65c2eca896d6046",
+        "b586ca5ae4b7eedb8919a32418ca0c2676d1a3498aa4c11e13de268734e4944d",
+        "3a3abd13fb3da2f3342ceb9a7003f710687968e92a17b8855582219c950c08d7",
+        "b356db4d6a439e7ccd114c56e00f6ac6397047dc038472d9210a3c46d9149dd0",
+        "9462c9f6f43077a9d3bd5fdd3382d18bc31292e639177c685d79a83172af8265",
+        "d43dd88a04033cbd2745b1f9ccb22b4fc3a25ce301fc952f5438b7a834b85477",
+        "a4ae397f81091f7ec43fb1c0696fd853a4bf66ba54c1fa702fbb97e4db19c221",
+        "f74ef2ac9a59928891964e107a114f0d3c9bf2f916e06a13471bb848c635303f",
+        "ca5de1301ab91ababffe304137921c1f7b9334daf2fd280b09898cb4ca3deaea",
+        "339203bf5d942ce3856a2f8c022515d98034e5b2d2be5f32d9e6a2a21797e24c",
+        "ed386e79e706c5c13e4fe04f8b0e039f04a6c0f426ebb8032e35d834424afd6c",
+        "b69b1befbe5ca8704a8abdc40161b3fa1514d2bc10767719fdef13e5248e2fa7",
+        "dab93e2021c7a5609095c8c63988f70edc08c16a7d010f343c4b632e70fe70a5",
+        "3c8ba65f5f6571bc8c58a7bf2913bc246c0a0212c22b1d6bfd9b8d8050d0cc61",
+        "2f065e9f7af914e68ead487c05455df6a1a6eab4999be10d85d22621f0f2795e",
+        "f8ebee306c2eaa36dde945c4006477fcacda72b0ee51bfb9fe85bfc242d5f749",
+        "af90ae21b01490f0b1f201f3c8c2e9357d4a79281f1153d8d1a8681e2174a190",
+        "8478b509c9e8569639c858361a8f56bdc6d28e1caa70218f5be1050cfe7c2558",
+        "4c73d05938cafbfaebec41931f6c795d73fa0f5e184144200a6b65240c87df91",
+        "85557a8d7f18ce17cdd1e9b65d9139a89ba8a42abc23ffc4887e2651f9871b89",
+        "f7db42091697d58e49782efd051b4b6ed70f0a5ea27233ce3a1214874843c15e",
+        "2c4ecc966f8825686d4985e60fd9b652869d1ca0137dcdd3d67ad017c681fd99",
+        "5cdb82c18d977a08e5bd33c85caa34f9a416ab6a05659185a639d3f16c42cc6b",
+        "ac74e1c411c810c4b135378ad4030de8c2f2bf3988f137214fc8560e8e376025",
+        "e96f565cffab2422d453e375603b3ab964a962bef4285463fec64eac7ed6a8a4",
+        "b63a566cb37a9b037cce1d3bba0d3822fe8f073fd50a0a35177d27c973e9dd38",
+        "749de9e63cd25d20be233aa3d3e8016c69fe160b77590cca8ee3d06a6dfc3192",
+        "8d0ccee50dab9437bdb2b094ef2dc4af7e8b1b38f9864d7127d8309b85266a49",
+        "759192771137505f099e25fdcf4cabcbc51c8b9083b090d373ada4f2c4ca2738",
+        "aea9676f5075ccbc2d6e228b910903d1e92961f400ab52a944d4d173b9da3042",
+        "e291050d0d0dac94d941605068c8a107ec90ec91eb29ab2c9f1586a25815c46b",
+        "9f9179c9128ff78cc96ed35f50fe226770c1b0ef2249a49b13328455c7de23f2",
+        "96cbd10ebb8c2d8dcd3dbf74df96214eb82fa6a52d32cd4eda74959bc92ea307",
+        "33728b25f17c363626b3eec8d6e56d710c04bfbb3061b58831d71758f34070cc",
+        "ed1392b5bd330ae879ff00ab9d1b8dec354fc661f211f8480d4b90d43e33c4db",
+        "98e5bfb6a34f040ab168f924b4ef6d32896d8c28d7e4b7fbcb504c8be21cb853",
+        "41a0118f469750340b834c10df2b4f4b464d39ae894b53199352031852c38b61",
+        "dd808174c828eb66b203c79b03ff9f027cc8d2f6ba978f736459a3b8c5e2aef6",
+        "811e9ed4892ff9f6e027e6be830350a87313e640f7abeb067f11c4c19ccc636e",
+        "bb03c7be34b8e621d4e993a23b97239d19360197bb97e35f3a08b1063e7bea1e",
+        "1d1b0733603dbf75d8460cb29a8a4ec27824cc23977027bc718529337a5456dc",
+        "3eb80c6262645404cd86d46af130131cedd6ab66c9f52d77b7914e4dda9b0d51",
+        "8866bf90779e1e7c56b0335bf2ce9f3d0035656e791721fe03a3b60081e881e6",
+        "bb1a5241aa4aa9da70e7330974b0344627f60736ebf4d2092ccae051a6cd2d77",
+        "f3be808463820e8eefdacb50a878a6fb8937cea13fe15501f3a3a6de8c1b7478",
+        "f0d8a3886c4f7e8d17b554f3231f727535a208571c4ca7245ced3b1e7e97e93b",
+        "80b347d28e62401e2d76e5ac6152e7074050b0aa14ff3be7d041a0ef0668d5da",
+        "638ac1b705e22ffbd5f1dae08715dd164d8741680fb0a7ae9063323b4c6408d4",
+        "a7ba3605ae60254e2d1ba220d7499357290e8094e0bc2782e9f1153df8d7739c",
+        "89c6ef75a1b2f4b51d9e34188567e04dca611c414bfd23d61dd0cd74a3fc9994",
+        "2b9b08498f31f90c09311bf0ec6691f0c16a12d3cf6741c936999a3ae2fcb9ea",
+        "4bc5a750e4ad15ade5287e761a1fb1f695d3ba825a782953bcc9d452b1e31f05",
+        "71180f5d3916ce1f78da465bc833966f120ac7a87cbd07712f1f62d708c761d6",
+        "93116d8985f927e3a6fc7828e1444edb5e21d58fef59b96fb8437baa9b23372c",
+        "7fdd772173f4cd46169bd446fb85216f5086f73d7af3146e03c594b5cf70147d",
+        "e4a09ec6e9dcf58eff2f5e55d5eb5c2f6d410c195a0ea60f8b6d5d22f2a504f4",
+        "14b355a0c228a972032edb27c65ad68fff12e687b7e12f2df5681a7abd331a42",
+        "4948569842c9fa4d51445177f5d2343f09f1e21cf3d01a178684678b9ab9da3d",
+        "2c6a620b2265837ebe1e01080bf872732e546c30373202d4456d80b9902502d2",
+        "9ab6f00ff21c62292c044bf9dc4c59896dff7089884f2c10d74eee3933dd05ab",
+        "3202f1cf2b8cca87f16d6a7a47191a6dd07bc8d91a85bf638111e15fd4efde66",
+        "29032f343edca272038a9c19c5354ba905974cac064444941d9b12cc8bd984d1",
+        "dad5a4df344b90f3caa58eff4395851bc1715a3e3d20f850476cbec6326a7201",
+        "99e3782ca5e411ef2af9d6b170266f5503021b2a22326679aef8eca6e3e73633",
+        "e191ce4c8d87a6736e6566c737836701d149f1a63b2974b5d56d1899e6966fa1",
+        "b868aa745be90763d6dbd67bbaedf06425b824e4a197abc88edbfeb4ed6c2ed7",
+        "c37eed2b5fd7825e16cc1b1f20e98a095aa82c3034af0961babc8d84847e942a",
+        "683273962061bd8cdc868658d1b1327582971180abc1046326536ee2bd400d74",
+        "d388fc949211888ab124204d749c68be98ba27f71063df440f56b3772c16f828"
+      ]
+    },
+    {
+      "id": "festival-balanced",
+      "config": {
+        "scenarioId": "festival-week",
+        "seed": "8000"
+      },
+      "commands": [
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Launchlet",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 1,
+              "scope": "simple",
+              "style": "templated",
+              "price": 340
+            }
+          ]
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r7"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 1
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "new-band",
+          "maker": "h1",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "band",
+                  "anniversary",
+                  "venue"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "hugo-handover",
+          "approach": "open-bench",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "sign",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "apprentice",
+                  "workshop",
+                  "invitation"
+                ],
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "buy",
+          "item": "checklist"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r5"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r6"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r7"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 2
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r11"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 1
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "trail",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "programme",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "map",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "sign",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "mentor",
+          "resourceId": "j1",
+          "specialization": "templates"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-n"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r13"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r13"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r7"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r15"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r13"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r14"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r6"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r7"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r13"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r4"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r6"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-n"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 1
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "accept",
+          "requestId": "d11-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d11-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        }
+      ],
+      "states": [
+        "cfc986fa5a18392f49bb2f2ad99e7cd260baf2e14d9d70dd89b92ca5e469de94",
+        "f5fcda402fc5c47c5bbb5b099cf8da3403f7d018e465cfc38e9287ce9fed4efa",
+        "e1b271e2188aeae4c54f70eda05173ac62c49035e29221259c4ef7fce48b72ce",
+        "4265e8e8ed53cfb62f562573338145fe2c337ad679997b7b0eb875ec5dbd32ee",
+        "0b8546408780e444a013380e67ee4da12afebbdcc6a93fc1906fca8ad644c6ed",
+        "4f87218efc746e8a89baaf5dc2439de85cb65c087f6fcf1a714a71004c8f3c33",
+        "f1e4bd6ff72ac950202234783f2e19af684b9363921c108d305d05c03ef96cc5",
+        "49f87e1bf5721a31ba7d6675a75e29340e3254ac4f9cd4358c47b57266b3adad",
+        "a5994ba8b8afef331262cb0e10af0341c9448501e20c62c94ee089323fe968cc",
+        "69b6a3f60ff955edb29ee47b26348fed1395e5072b17f2d921ffb555d7367ada",
+        "ad5d116ad531f81fdbfabf271afad6f43d50c876021604b8e1d535cdbb80c503",
+        "e832bd9029f9bb6a4a76a0bed47d1f7c073dfa932637423b8c5b9d57bba67b39",
+        "ec023afe0dad467b4e34117dd86ae7705e96af1d3851b652e06fede763566618",
+        "d78a35cfb3771d11424472405303fdf315fcf6149230ec7700355b044150ef8d",
+        "24c84fc645d4a30716bb737db8ec2f9a76d68d3392a2f0d47b3dad325db4125c",
+        "6f79558630501a9c727f9637e6a2a3a1c912c271d142395a12cd20fc7d3f74e6",
+        "ab7709b0b8bb0ec29081d62951c5a305821cc9c815c537430a0738810e660e0d",
+        "302e42d758cce83e2ab63157f24c3cf180fd96531c6a3c181ca42540fbe899b6",
+        "be4ffc8d39928bb427e7e2fc7e7aed3169d1f66e9ac8476164510e645276620e",
+        "6b8d69a2d5750cd73334abf483b64d526604a535e89ca7c5a1f77fc51e65dc66",
+        "891ef55b9edf86030bf3b2a72d04bb9a43ca6bcdd077f3a5635825a42fc932ac",
+        "a98ae506742e1948e97dda2446834e163979d06f2f81d95baf624ff702b3bbe7",
+        "61764eb898024a41fb073dfa3dc5d797fb3a6bf64096b5ff2000b13adfc3970d",
+        "14aea6bb1b84c21886c6aa5593900d79eb95d81797e0993945d5e0e2298f4b40",
+        "cd5372e87b065a3ba899d77a79acb6c2e2ecbd83808032db95bec6c672614acb",
+        "1883dd5b9d0b210003da7f88a98beca611cd213ed8d6d1fa797376409fd316c2",
+        "42c931f0b62c7543642ad052ea71bbc87817a3072b9455896b672664c8710f39",
+        "6ca6a47511236add245099b73ed53af21109de0c848f4bd8804d50eb23b2b1f2",
+        "70fb7229fde4d454fd3596dc810ccdb6a1bb1fe1b3c416e6ba705379c750cc56",
+        "c706c922e781c4f3ed210dec3b2293f673fa67cc0bd3dd2ae9ac32f96e19baa3",
+        "772d42241ce96a63a4d5c5b6050427c8d10de46a94271ffebf5bfdeec36d2a4c",
+        "100395a2ce6ec0a4e388a60f3dd8999458cc81e910937b2e27a39b15dccca9ac",
+        "e60c74b6b959ca03c15c0afb1dd7c9356f1f51fd00082b181eaa958e7b9eb850",
+        "9c0400e52a16fb826b313827b4a0bbace8ed2fc3b31ff36631a79d9afb0e23fe",
+        "618ceb3d8aa9a67951a38b99d3e0822295caa1acd0bfcf283d31582ed4ebf63e",
+        "43979102f6f2a86e31f64105581489579221049e2b047973d29b7dbf80c5ca4c",
+        "c7d19994c0edf6cc7efba6b02577de60b2ca9dd29bff5c66acf7aba471f11725",
+        "c5cbb09c4906df5ae4785a7779001e5f7b81842583553a0fa0217daf81f0b31f",
+        "37d8469468ee86a6c7b28b0d8a289911ca3100167b38c29b7b62660d6abde1bc",
+        "3208a6f52aed381ad85a8987c2d25b0b20c85ffd84053191d4a2c99cb346d3e6",
+        "3de5e19e278af407eaaa4d72286d6fab41fc4ee69791f5b497578220c131f864",
+        "a860537ca7fc4540fa810a76018306da8de607867bbd5ba78d30baf9c5fdea1a",
+        "9f74542134aef880e93f42a382e83e6eb2a102c483c9cf03e8d6f424f570da9f",
+        "0bcb4ee7da2aa717c70b8f07d3b8715c475f53ddba01d28b460d10de54717046",
+        "e1018788d00c2f22b484474fccbb0678458be2efac8768e6008de72e2b1334a7",
+        "c75dfea930758ce6603366d6190704b72fe1a58e478357ec94f08a884679d0dd",
+        "e218559db73140c5490ddcb3465feaab65e5abd1090c874f874922935965dd2a",
+        "db0526bf72bd1d6e769fc33f479cc156df309254663e01eeeebb43cf11c885a6",
+        "96730093732501f5458747745ac5c0d8a11571ed989225702eb5252e23331acd",
+        "cea030a604c2f804679cc6a849bcdd0264da831de2f4095ba0cf482d310640ef",
+        "264fb8def987d7d515d0cb22e6b3aa642da408869589eeff3d5a6e6a485006a5",
+        "4cf9e82eb1e881e4cb916843ff5103b918df8f22f691440838baaab412cb3d88",
+        "964fc3b920e5c7b10eb75b6d054ab0599d566c5b936164e829b4fed0afa0f7ff",
+        "302dbde084d91e4a8bed52c235885d50867cb0214d1d398f7f8f8e63f44ed3ca",
+        "22f80e86a1618428a819b4a308c0c9fd50e10aa729e5b0c5ebb2bf0f03a7b177",
+        "8eefee61059724fbbc19172bb3f17ba2b5c9f1b3c7347c27fffb019be2f8628f",
+        "cc2d26b801cf3cc7d60b88bbae7ba9fc5eb7a85c0c4a4ac14da57216864d32bd",
+        "2980d7f969a23e1601cdc0376f565393af6bd6aeccf57fb81f9c32526cdc6e69",
+        "7bb9e23565cd072c4bb0a02068f4845b0257fa65b11f7ec6d9ac7f007135398c",
+        "d796e9069b576aae613c5879a027552fed376f826831294b2256a546152e98e9",
+        "438da33b070469b9bb5effa68238ceac6765eef57bf8ef5d86b1bbe690630c7c",
+        "8542ea1c254ba166548ab72ae2745f34010166608fcacb7c64c944693a86649c",
+        "4c363564a4070ff47479c5be80669c7fc5e4fb4530b5fb8206bef1c825715ba3",
+        "71e28d06a4971ec2ae5163b657c5884c14394cc917b51eba218e9b91b9421c5d",
+        "a2fca624e146bfed664322059873f26343336acb73eee109eb06274f87df4689",
+        "7b5f0ee419d8168a55863452bf67af0c8da094b175a200ede04705810f000e91",
+        "63e0341ccacced0de8a9be9c32dedaaead751aa4d74bd84a7f3a8f3ff1c019f8",
+        "065baeb66bff893ea862de7f21fb43bded4a10a637d7eb7d6be7ea35adf03b3c",
+        "51c69e0ca83e54be84d5eb62a136f9d32fcc94d34af0b360f0db9d22ded0dbf1",
+        "253070b64267da69515b984fb131aeb245121ab5edf5ac59ab48660ff167fe63",
+        "ddf2de052a7354203a287417e8833af880400fab481a1c26794e06e3c07018ab",
+        "bdf1f7090b052c3c613617ccc8eb695de67a625a68e957b93233161bd11c2d97",
+        "4b3afae6ed70bb9b77bcd7be462e3be4eea8f093ac0169037cd1982ce1c8d508",
+        "6f112035f05e857e9379e4d6fdbb996f7b2eb55eb97d651d40a1d5b9e2e9ec85",
+        "6a470d3c5d66203f709e712f43700242b401de847f2b25c2945def5e882de483",
+        "e56f566cd709f0c6355630ac5d3cbd0aacfa408a33f595f9dc46c1213cba7b3e",
+        "d7ddf5a0104ec75ca5b9f450ddfba9670aa8b8f4715a22121e952d8401fbd126",
+        "94af851c3468b0ba04ac90e1dea0fcc308b699b398139bee709573e49ef34b0b",
+        "2d4e7d9bc6278483817ca83de868fa9cba8d2741a69b4d500ca85c02c8abc2a6",
+        "0ec08d6002b36ff98c97f76ca9237f766cbe7395c4bebf39ae3918c23808a9fa",
+        "77b949dac3f52c7f4f82c7169d8463aa977700e164302b12e96e4f2a946e0967",
+        "48c1aca64995d60b2b33c14bdacb519a0a1de90c922cd4d551f2a352f24df54d",
+        "68e89b98e6303916424f72b0ff7db882c80a08491b50ec208d7f5dce145c4b31",
+        "b04273a68289a70e8ba161cbfed007ebef5611c6941eeee1f646b25a2f0b9a6c",
+        "b22010142b022c57b49feee193452964948c0453eb63156182ce22542ec3e521",
+        "63b4f21fc8b30341da2d70577117a4a0b7f98f1eb3c6eafc87444d2c02c82e10",
+        "e6ea8fb9254544deaea20e761e6b340ccd0be5556cf656845c18ac426999322e",
+        "9692977e3664315fc4fc3ee64b6b22667477657ca3da97960617933dd0648fc9",
+        "cf43636b1b429696331b5ca7d533f027eb9ce68760e6877e66ed8ce3086a0024",
+        "c7f1200aa344ab610943c1f3df2e4a32a08782da13a4dccc73be957e0085f021",
+        "f6e711b862e667bb1ba99120dfe5dee5471dac46f94ee163d9cc148ec3895d65",
+        "e1f8c99fd6ef6574a611aa48a255838a892271939cfa3c9e1d8496ba6cf91260",
+        "ea15118d5b71a091991388f0a6e8ab3c4b2094b41ba3821ab03840985872b201",
+        "02da0f64aaafdc2f7a01398683ee2f968d9964c1055bf6d06652c4baf97607a3",
+        "02c3468a67876515b69a0c3edeaa9362b061d1ed9c2bd199341e950512caafbb",
+        "9407aae9721936a1d93710000eb659767b45545410099d680d585651955da74d",
+        "ffbfbfae56b5ea9fcb5a70a7c892e9f90d715b63fe8d5f97e5b5b8101e34fc9c",
+        "9bf9aa3ec90e2d93bfdb0666db4fb404ace8e074b59d17579ffa0bb43c13d588",
+        "07cd91b41346465e6e666c45981ae9df1bbc1ef660f07cc906db587a846e6996",
+        "13d99e1a4765ee5fadabfbc919770b16db7b6007c47e4e30e9ccc9bd32f16819",
+        "bc34c952831d0ebf74d43e08937500fc4c082efed0978971174d823fe31df4e7",
+        "ce6b7701dceb930e6503568f0a30ca44aebd0f69859324d904ff11d8a1f01e84",
+        "8274bcc6731ce4a0bde70f94d0eaa7fbdb2ad15c01bded9f9da77b486bff9d27",
+        "1bf41c8750d4b4a1f3a3b7622ed347ec5f7f62de35106214dd42467192a9f768",
+        "7a40e93dc46a7f94baebae62a4117de21f9cf11d19d9c745b783c8fb88109c9d",
+        "e75afda50b51f2ae6f7c12858f5e92e0537278bae6d58fad4495ca76c6afd7b1",
+        "89988b157d761cdad4c99c4b9221485c5ec794e7cae752bdd438fbdc17629c8f",
+        "df0151c236d7dad3163d52409fa917e2de6239c04214a061fb5808c13599c0c2",
+        "bc5ad93891a6d955f6a68e6b831b6e88cc0fb589958769417b075b062834fc70",
+        "f4b0b04224cdfc1f0d7f6c1dddf2541be7bc5c40fd1a204ad334688db977ea4e",
+        "c631ac77efef0f1bb6b43c58b66734b33e1e8f7373957958355392429c935038",
+        "986fd9b214ec5802e5e9732eb312e1504ee1462d1b26ce9085dae4ab16681279",
+        "fbccc138ca373b1e6af092696fd47599a5eaded92024dddd432c59e83d646090",
+        "84aad662f3691315fb1e800a33a212559591860d5e4c9aa8987606f2b79eb2b8",
+        "fe7e5cc31280b8d3889dfdb891eec37e3e0d5f789779a258810773e66ed93b1a",
+        "24e1ac5312af51ec731793fc7bbe7e693810adbcdc2adda1e52f56c237fc2fed",
+        "8069f76d8f16a04a76a82bfe9b3fd1e6a3ddf2d5e5f43f43d8dae4a87cf36041",
+        "523028f6a4e41979f6e398cb174e72267372f09cfc578a8925559953f2b16286",
+        "50039a88783ca95ab55859b33df7445fbe9cba8fd9300ef83814ff6f2c929b33",
+        "3d32626af4d1058ad1cd282811a269c920c8a9de9d011223698e3a2448abf562",
+        "b29ab08db61a402430cdd1ab3ad95670fd192828596f9aa8b514e6fd92db3841",
+        "b16e160cb5e4084bc940e2d0b91251c94c60ae66029c00d1a3ee8ed2ef376719",
+        "82ddc977128ac5bba9125c8508c7630cfc0430df9257b8513dca5b913110c38f",
+        "67391297a0dbdf42e208f81dbfbe36738dcd2c0fb000efe36ae238d842d3dce8",
+        "6ffbdd13c7abb6dfb00ad02dd4bf8bc931b50b80da63cc163d102ca86f544c33",
+        "6da3635b57d0f7039b6333dc4ecb47f5de16f1a2ead12d68e7088e50881413d5",
+        "384367dadc4e5aa5cce34d06d5a080e7b83d4b559c303fd8843575b9b4d1389e",
+        "eb0b8619060ac34ad73edec89d125ccb4947a339ebff5488843eb267daa16fb1",
+        "cabf9227a6ebe2ef462738e74d25caa1ab38f8bff465df60c2dfa22338dfb8ad",
+        "b74f37b1cc6782bae0b3d22a9295f4fa7ebc8a0a299dc964aaf021d2e8f8d648",
+        "8549a0d0334f09f2fb2667e4f2ef426a5baad2a3c94c83451d510fc6c38cbfef",
+        "c380464a79030fdcd9d954473bebc584201c8b192609e5242f0216f8fd5bb4a4",
+        "ebacbd139ffb0e48cb880c218f9e4c09bec47b2c3bf4e999e221b2df239f1889",
+        "f0603c0ae46cbb4fbeede7a9de15b1510e95579b825f4a1de91a25b063ff1801",
+        "4f9de198253c57d17c76897c95952a724d1271dcb8cebcff63074a84f6c09a7f",
+        "a62cab1841548a919f63d1bb8a8980809038f30aed96145afa67dc6cec722037",
+        "345b8c9c12a4d6eab308d01554aca1e646bd23386f0db3e112619c79cbd7a344",
+        "e97dd2e4a65cc55bf56d45dbab06d49124a885318e1b9f5240073f64a6e09104",
+        "6f27fa2166956d951b342657b5bddf927b8a5004b89ef423872a92727c79b237",
+        "0168196f9fa110d597e63a5462e955a93d589dffe0036b0fce7533c3e6544169",
+        "9ba7c0258ddb21d89d40d03632dccd79f7d3b564a431673bb065ad6816a1d086",
+        "2fcd5da5087cae819970ad7dd70b2e80bae412dd1eb97bd2cacf6e0b0846c49f",
+        "264e646bf1294afd389990c4b0562d25cf658378fb80300328e234e9c75ce175",
+        "23f532fa187546e20e66dc305bb9ea8d72d340e98f04b6d4c3f328e3c6588b14",
+        "2b5db698b72ebb91f103429fa579d7a5416cab2836547f2862fbd1bda607e877",
+        "00275d0490d704e0755ce08fa7739b548c818e620a6f7403b9c7eee2928a9801",
+        "af49b367ce65a950f3892bc23a74fe8f7209b82852d8c10abcf65d9307a8973e",
+        "f1080e806ed8714751784afc059886fc13cd096926834ee46ea9afdb2ef346aa"
+      ]
+    },
+    {
+      "id": "continuing-pattern-studio",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "legacy-pattern-studio",
+        "continuation": {
+          "version": 1,
+          "season": 2,
+          "pieces": [
+            {
+              "id": "carried-1",
+              "sourceJobId": "c5-l1",
+              "sourceSeason": 1,
+              "castId": "clem",
+              "projectId": "clem-ten",
+              "approach": "first-night",
+              "design": {
+                "kind": "photograph",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "venue",
+                  "anniversary"
+                ],
+                "motifs": [
+                  {
+                    "id": "first-photo",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              "title": "Anniversary photograph",
+              "copy": [
+                {
+                  "id": "venue",
+                  "text": "CLEM JAZZ BAR",
+                  "role": "title"
+                },
+                {
+                  "id": "anniversary",
+                  "text": "Ten years. One room. All those nights.",
+                  "role": "footer"
+                }
+              ]
+            }
+          ],
+          "relationships": [
+            {
+              "castId": "mara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "ines",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "kofi",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "bea",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "eli",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "odile",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "sam",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "ravi",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "nell",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hugo",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "quiet-sendoff",
+                "outcome": "delivered"
+              }
+            },
+            {
+              "castId": "priya",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "wren",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "juno",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "theo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "lu",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ash",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "dev",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "rosa",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "mina",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "oscar",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "florence",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "idris",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "pip",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "yusuf",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "tilly",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "gus",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "amara",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "bo",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "clem",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 3,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "first-night",
+                "outcome": "delivered"
+              }
+            },
+            {
+              "castId": "yara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "finn",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "lorna",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "agnes",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "tobias",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "saoirse",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "malik",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "rory",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hana",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ollie",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "zainab",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ivo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "committee",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "association",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "courtyard",
+                "outcome": "delivered"
+              }
+            }
+          ],
+          "patterns": [],
+          "cash": 7530,
+          "rep": {
+            "small": 0,
+            "moment": 4,
+            "careful": -9,
+            "rush": 0
+          },
+          "upgrades": [],
+          "staffing": {
+            "aiTier": "none",
+            "routing": "human"
+          },
+          "kit": {
+            "status": "ready",
+            "remaining": 0
+          },
+          "rentExtra": 180
+        }
+      },
+      "commands": [
+        {
+          "type": "preparePattern",
+          "sourceId": "carried-1"
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "teachPattern",
+          "patternId": "pattern-1",
+          "resourceId": "j1"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        }
+      ],
+      "states": [
+        "02f0220719028cda2ff79d78cd88050e22b69de3e5c5424c9d97a99bc9b9e809",
+        "ac7c09829d3eb724da8e95bb146fe586ee573bd47ad0515aea5b2ec848afa9a6",
+        "98574c1443c5c10786c6ce4140da78e7fdbe1d45e3a2ddac3e6be0ef5782bd81",
+        "e0df55ce693e4729450a83e59b70700c9e047ebaa4dea2065e972aa0e8faab32",
+        "b3a87b0629171fa5d398dfca8c69accf0c3273405c8507e3b5b5e2a2e7135b9e",
+        "4d605d9dc8074b5a1c8308e8ec8d4dff99212d766aa39471c9884b0d4dc11154",
+        "182785b5c55cf01bfb7b7e7b300166b0ff5490f065f4e8b8cd5a2cd7c3bfdb92",
+        "4cbd7cb4aca1565f67b5389f8da982623143b7d31dab1f2b666df369686dbb01",
+        "d5c4402b933c070c9d9f71413fb4108e0e6df486a9d0087bf0c420d780086c68",
+        "036d46627c821bc56d134d30b60dd5d8d0dcea4ae6ca5f1c7b12b7bf52bab0da",
+        "1af5a5234597c4b1e4ba8319229c844b549bc91135fbbc2514a6f86c91ab17b6",
+        "ac09406376d6de78f42ddd4358ff3920c0c66a17a34824cab77ca5256d402f79",
+        "838046e369b860f5f4e79e6120ff32d4cf32b68574aff27334524ce4c67a54e8",
+        "1c4500a9e99e9a0a5d1589798c410b8d0f9a341011dd237b4f46b0d2ae577945",
+        "296de01edd484fc0ecee389c1df94aba7af870c6c344122f99ce9379570ef5e0",
+        "29cb45d633ae4dfea5eb3133bfdac90057abbf29f2d643fa2ddeee4bef4fbca1"
+      ]
+    },
+    {
+      "id": "inherited-trained-pattern",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "legacy-trained-pattern",
+        "continuation": {
+          "version": 1,
+          "season": 3,
+          "pieces": [
+            {
+              "id": "carried-1",
+              "sourceJobId": "c5-l1",
+              "sourceSeason": 1,
+              "castId": "clem",
+              "projectId": "clem-ten",
+              "approach": "first-night",
+              "design": {
+                "kind": "photograph",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "venue",
+                  "anniversary"
+                ],
+                "motifs": [
+                  {
+                    "id": "first-photo",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              "title": "Anniversary photograph",
+              "copy": [
+                {
+                  "id": "venue",
+                  "text": "CLEM JAZZ BAR",
+                  "role": "title"
+                },
+                {
+                  "id": "anniversary",
+                  "text": "Ten years. One room. All those nights.",
+                  "role": "footer"
+                }
+              ]
+            }
+          ],
+          "relationships": [
+            {
+              "castId": "mara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "ines",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "kofi",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "bea",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "eli",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "odile",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "sam",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "ravi",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "nell",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hugo",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "quiet-sendoff",
+                "outcome": "delivered"
+              }
+            },
+            {
+              "castId": "priya",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "wren",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "juno",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "theo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "lu",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ash",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "dev",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "rosa",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "mina",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "oscar",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "florence",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "idris",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "pip",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "yusuf",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "tilly",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "gus",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "amara",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "bo",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "clem",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 3,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "first-night",
+                "outcome": "delivered"
+              }
+            },
+            {
+              "castId": "yara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "finn",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "lorna",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "agnes",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "tobias",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "saoirse",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "malik",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "rory",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hana",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ollie",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "zainab",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ivo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "committee",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "association",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "courtyard",
+                "outcome": "delivered"
+              }
+            }
+          ],
+          "patterns": [
+            {
+              "id": "carried-pattern-1",
+              "sourceId": "carried-1",
+              "status": "ready",
+              "remaining": 0,
+              "noorKnows": true
+            }
+          ],
+          "cash": -7990,
+          "rep": {
+            "small": 0,
+            "moment": -20,
+            "careful": -25,
+            "rush": 0
+          },
+          "upgrades": [],
+          "staffing": {
+            "aiTier": "none",
+            "routing": "human"
+          },
+          "kit": {
+            "status": "ready",
+            "remaining": 0
+          },
+          "rentExtra": 360,
+          "noor": {
+            "id": "j1"
+          }
+        }
+      },
+      "commands": [
+        {
+          "type": "runDay"
+        }
+      ],
+      "states": [
+        "eb83279d8a422fe37b0bd76400204d9527df481d46c4067a8a2c367d84f49358",
+        "60e344e8c3afce0560ea36f66cbfa84ee37213417a601942f830277c4bbeb842"
+      ]
+    }
+  ],
+  "continuations": [
+    {
+      "tapeId": "main-courtyard",
+      "selected": [
+        "c5-l1"
+      ],
+      "seed": "legacy-pattern-studio",
+      "hash": "3cf07ea4ca28531a8ddf284e1ae56b2c6519bea59338cb5ddccb450c1af7fb88"
+    },
+    {
+      "tapeId": "continuing-pattern-studio",
+      "selected": [
+        "carried-1"
+      ],
+      "seed": "legacy-trained-pattern",
+      "hash": "09a0703483cc829b5c72da53decd3f9cbb4f39311154ff65e9b7c708e36716df"
+    }
+  ]
+}

@@ -1,0 +1,4283 @@
+{
+  "source": "8d77c3288e4a7076c54e595070d700a9d29e937b",
+  "rules": "lantern-6.1.0",
+  "tapes": [
+    {
+      "id": "careful/native-save.json",
+      "config": {
+        "scenarioId": "bespoke-rush",
+        "seed": "93307"
+      },
+      "commands": [
+        {
+          "type": "accept",
+          "requestId": "d0-r0",
+          "maker": "h1",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "The hours in these hands",
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "hugo-craft"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r0",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "clem-room"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r3",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 1
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "hugo-handover",
+          "approach": "open-bench",
+          "maker": "h1",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "sign",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "apprentice",
+                  "workshop",
+                  "invitation"
+                ],
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 3
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "new-band",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "linen",
+                "typeface": "serif",
+                "copy": [
+                  "band",
+                  "anniversary",
+                  "venue"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r0",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r1",
+          "maker": "h2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 1
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "mentor",
+          "resourceId": "j1",
+          "specialization": "proofing"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-n"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r1",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r2",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "The hours in these hands",
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "hugo-craft"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "buy",
+          "item": "checklist"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r7",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "The hours in these hands",
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "hugo-craft"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r0"
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r0"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 0
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "pace",
+          "pace": "steady"
+        },
+        {
+          "type": "pace",
+          "pace": "push"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "trail",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "invitation",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "catalogue",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 0
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r0",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 1
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-n"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "pace",
+          "pace": "careful"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        }
+      ],
+      "states": [
+        "3c8b8c21a1f6d327613594fccb628e69f9a5faf7137ce219d4656ef8b4320b90",
+        "ae2093f7c05791798a657e7195e18befec2152918fabaae56a7cddb195b5ab3d",
+        "6a6cfdbd402dd2943adc6d46deb596e6b7fc02ce285b49bbf38d9bb565ce45cf",
+        "25c22b7b22a0c35636884a9eeeb9ba6c26d5f194fc9cb6baf777080738a2f559",
+        "fe4897ef33769925fe0ac602c80d2f91203ff0d0d0d39c565e1fa0be6eda6ab9",
+        "ab9878f33fa0c9120b9f586cc7710ed01b11fe6e4026c5f94115b0b0e351c8ce",
+        "7c576e8d9c946276a8299e751679e9f263a2c1ea256266f1a4fa973006d2348a",
+        "a137504fedc5542edb3c3e90abcb854af67463e605b85f7b021077dc43f50a27",
+        "6cc4a739d6eed5df2235b24d8527ec886e548f0b8ee402c389381fe1cc07d302",
+        "1fd0287b83d3a82f3a2c0b94c27ad81a397fcbe16d5fe5193cfd16ccb36c92b4",
+        "a8c9e65eb9d81ee377ecc20b9a0142036e20caa506e02f85a0f0ea5ecb9b7ee3",
+        "8a8642331b1bde636123d8cee9e72b788c582540369e99a32be6e8f4076ce8b1",
+        "d2b8e2dd3ba5eb3eeb776dba2224164e7703649b51450ff759628ce1e03c0f29",
+        "71ece86c0dde10f7cd5490bf69d6ceb3b8de9bfd1564ba15546bd14bab45dd9b",
+        "c2bc2ae382f2caff7cd4bdc225dfc1ba93d3adb50e27956be4370988e0227495",
+        "b79ce9d37959070222c0f72b5ba8cf03d0a1255725f24d475c7ae258b2da3d28",
+        "cfaa57bc99c0fce097178e7e45aac8eadafe05923e4362780a632168503f934a",
+        "e9529ad1b624da86abb76df00f4f9121377d0b9c1a578625f9a2a7694b496ae2",
+        "3d8d36a153685134ad63134eb899dadf584e82b6b8d2c1336adcc96f2a92de57",
+        "1219748adc7395944bb551fc762788c1773206772e84730ebbd12ef2f47de60e",
+        "c1dd59264b251113887a3135a1665b03dad338d8f1a669605bbb95eed57eebe6",
+        "07a305cd7dd9d55dcd89de167bffcbd5ee6e32fb64ffc8e0f3f985e07c332b08",
+        "7424e24702a2c0a01f1566fd74823c8a980bb64b87e737bc191036b32e3fbfe2",
+        "2f28f0790885151159005e973af359feee74b78b659affa3c83a05c8af48912d",
+        "d0f6ca4bbc526b425b6d734dfcee3e3f55a72c2f03de9acc2822b91f77ab2ffa",
+        "e1c6e5af0318d663c0816a8f58bfc6d1d4a3627a6be9f6d9fa3d17897044bcbc",
+        "6e6bbd44c977a8b9f7b9c70aef324d4cf301111af5b8452e5e9fc9038651e126",
+        "d3d36ff90c7512552c324213f7b0d4246cd6d8cf12bd6132783be3c8502cdc2a",
+        "6754d731a178ad7024a2c04ded8abf27ce25abc44a0c952a19cd35530ebaf430",
+        "9a335562b87f7c63a91340e5c946434cd9886105e08d79feae1cc2d2a0d51a25",
+        "ce9336883069629d2992289f51e758ed7e881129ce764688076587e20a4542c2",
+        "9af6967017842df3010ac0ab6e857572d4fafd2cd1e84d38df83a8e9f6d47bef",
+        "cfe670ec866e9582b16c730f01cdfe9f1aa713f0dcf203961b6d074fdd37abcf",
+        "92290f16ebf628aaa9151c0c2ad041cb596871620b45c6d4532a7e8408548053",
+        "6595754068ef8da19b01faeb27631eb7782cb4fe1b8e05da8d94ca3a560a4ccf",
+        "54b11f847717112003b9d3463b95a88f96977e36d44f577aba5de6dc5fd12be6",
+        "399552451ab3c215fab69022a18b595b29404010c8317562436290178f8a6207",
+        "b75a514a0bdc9735662439f54bd1af82ce31a088c207d553702b8ce3a44f2423",
+        "bf068fd6a4092cb55605acf2f155e72a7b12cc7fd0c21dab295eaad26b7c35ad",
+        "d4b84edf7329c257b76771c1ad1f84474de31c8b633643259612f30dccf9a499",
+        "8e144085dc045909d4592b457bff27768b2c8bbc63bb9bfc78bd8616d7f13203",
+        "11f3559680b887f0dfb99df12bcbe4408f9e1f9ca11efb6bdd9488f5a3df25a5",
+        "4b067079d6e6dd014d43da5020f688a110229f9560d250ad738bc48f1e3749c8",
+        "9385e5f4c0ad8e72bbd0e37dae44f4d547e9848012de4f44e5f8eef032575d08",
+        "9169a6fab89a1a4afb23fb16f9be2a57fe459f6050373567b5c9d626486be09b",
+        "df458dffe1b83102e3ff9104b0ec1b24e5a4865b683be4eb1af8c17b10efe8f3",
+        "0e04a57d74e5253be1bb0a77b2511f066d67192f82428e40be40ee24384321d7",
+        "7195428bfb001b9113a4b0aa6847af36552d13e38a0c1a56e0386abd4aeec6a5",
+        "1a21290d3bdd1b34d4e5c4cb3c12dca2886714d1fe61b7f7b7c35854d0139772",
+        "60f56c61876151b5786a9e8692b9bb20ead49602e758507233a187bb43fbff25",
+        "37ba00dd1a4a0bb7253a647256b02f21b5319145700d3a3f4284cb8c82373cb1",
+        "72cdfda812a549857bd7c67bfbf9117d3137ef64cf24cade56002bf663cc96e3",
+        "a916ed778610a87da8f452ced4577b54f5324ce0ead97a2bc4c383c3780a7586",
+        "a049a6efe6a4a98b9e46f01752d2aaf4af2f093197186dbc1872335816bacd47",
+        "f86e12472f424cd563009595bee65bab6033174a23fe4aa4b443e16f5eb0c64a",
+        "e8099cfa36aa46ed2c3795541fed8bf65c27b3f3b4f14a9d9c6268d1a096ba38",
+        "712005665dcdfbf811a0680a30f02dd7fdbbd511e1c47f11c5ca47566d7b9ec6",
+        "cff8f6fd7b2a0cd527d2913ac386aa9848fcd3ba353e31787e388c43c970f033",
+        "be31e6abaf25a65bb7f5bd70e6a10db65b68a8cd4104fd42ce7e07671635a564",
+        "6ccdea76044c04a666c155c9829ecab426ac1f875045bd15283d093ec30747aa",
+        "9d51efcc1e77a1ff6838f34fb17697405dfed3712751c36ad1f958f8df8ed704",
+        "b706520e2910b5ed6fe42e68426ff649db4c3c58ab752acc8aecd7941a73e9f2",
+        "f8048713e41bd06731b5ad3a953730b4fd6701f8ac96e5d3766732dbf66298c1",
+        "3c3de3735677212b3f7a482967824fbc453e0ce6e9e6b986add8adcbabc9ed7d",
+        "22ba77d578d6b6991af05987401081329bcf899383da5502cab246e4b006e93c",
+        "7341410e4001518ad99d5d00ee16be4152fd3203b006733d85136d49ab2a890c",
+        "6c01ab492843fc6737d55b92b5266b9b74a55d2c71a93cda5eb2aae9948c4a10",
+        "38f85ad6f2ad1e396245db41fc07eae7eb28b1ca4ee5fa80460b5be53af37822",
+        "6627fcd8e716807344292fcd1cbc71ce8350b667cfc8e6be19951f1e8c46ed82",
+        "a7d926c50c00c94e2cc991271a82b7d24c7792b2cd252393cdd1b4a32545bd64",
+        "6cc98b4e22dde4a1a6dd8f37836d1c9d0580c6a45630f4b2bdc54ffa8a520aa5",
+        "9a74daff488bf11a38790790e19b4c1e8d2e46ff46c671d88991dc01abffa32b",
+        "f75dcc57ed1016cfa31abe754a2aa834b3f812a891cb8aca7a1eaf065a46e7fe",
+        "e18106112bc4e5fa3ae65689688c58009a4523a7808180d9d6d9e4ea94cc4033",
+        "5ed5c8e462e29b3582d04033c41e718a3138f8dacc1b01eb6ee9ef1a5675b38d"
+      ]
+    },
+    {
+      "id": "festival-balanced/native-save.json",
+      "config": {
+        "scenarioId": "festival-week",
+        "seed": "8000"
+      },
+      "commands": [
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Launchlet",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 1,
+              "scope": "simple",
+              "style": "templated",
+              "price": 340
+            }
+          ]
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r0",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "clem-band"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r0",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "The hours in these hands",
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "hugo-next-hands"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r7"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 1
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "new-band",
+          "maker": "h1",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "band",
+                  "anniversary",
+                  "venue"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "hugo-handover",
+          "approach": "open-bench",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "sign",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "apprentice",
+                  "workshop",
+                  "invitation"
+                ],
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "buy",
+          "item": "checklist"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r5"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r6"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r7"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 2
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r11"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 1
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "trail",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "programme",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "map",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "sign",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "mentor",
+          "resourceId": "j1",
+          "specialization": "templates"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-n"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r13"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r13"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r7"
+        },
+        {
+          "type": "accept",
+          "requestId": "d6-r15"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r13"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r14"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r6"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r7"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r10"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r12"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r13"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r4"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r6"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-n"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 1
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "late"
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "accept",
+          "requestId": "d11-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d11-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        }
+      ],
+      "states": [
+        "dc538224bf4c548530e3d21d3a2d488e08aa4981875d27e91f6087d79d91f2e8",
+        "cb25645ac99ec755533e7250a366ca616a218c21cfedde22270fb1c110ee7c60",
+        "277f8f91328728d3fc0e159cc901e90ca41eba3f2214de065b1552cebeeec86f",
+        "2638367d6ecbfb8bff64759fa110fdc6ff82f21c5093ac225b58dd9eeea1655e",
+        "764d718eae51124825af6eea6e941b3291d9dd02d34d6d99e327799f7cb4ab77",
+        "c0ced229e42fbe0cc3537f75561b3f540e56fa59ac7b3284d96a611f7f797b91",
+        "b09c8cf71fe55fdb1b1814c0eaa0070f6d25c1a40e00dfdd4af547ca42a9732f",
+        "d237622502dd7d0c60dafed37079749c787f63c5970d12ccf079c39f29ddc167",
+        "7292cfc8e28d6f5b74dc72fe53a38b6c95b98597bd0fb8ac7a61cdea601d663a",
+        "8f06f1627a10aabb043c0dfa1c6ca0735893aa905892440f63956e69d53d3e1f",
+        "449b7d8548f78cd0116fca0c6c7a40a78b9e9ff7bea2ba4f98c909c971ce29b3",
+        "19f0222b7f33fe2e06cedf5a47f8e8e3214d13485e0ba08f5b3f16dfde9d36bb",
+        "8472876a83eb9650f355d59c5a2f2a32107c1d4591d2879de2765da4a4887ce3",
+        "bf6ce33f6ce9f12f761d626f71b558bb8277a822eda834957e5507b3403e6215",
+        "3b5f6fa2149abab52d0ab04bd4f32ec0f0d5d7ca0fc7e95dc93ec204c22e5222",
+        "6e8b8a6182d8420a14b5e75cc422ede49a8ae6641063a11a984d54abad6bad48",
+        "141ebf26b6b75cbe9f144f3543385fd7fceebc50408a750f80c12430fc435e02",
+        "680e4dfb829b47a33d4cf9896b2979dc1236e84ccd73f0a2d3022fb98547bfb2",
+        "d3eae30c7e582b64beeb0e6be1e9248a810c16dfea70ab87141a9a775f321bd7",
+        "48ad8cc06bd1389493f25744151c97697878e372f32732344d4839c61c1fd4a0",
+        "b1f627ff33e2ad30b939815d4edede022bfdd4d5b694cfb2a35097343b66be7b",
+        "fb419c46be265c138bc90ee1bbaf05f5f103695d377eaa559bd4b38428b040af",
+        "42a29b2ccafc39a8e797686f897dabd76c30acce2c10a1e159eb84b6329db2fd",
+        "3a8ca03af2930dcec4c2f9a3426014c9bf898bb9e445e3dbea48ced8b93d2c62",
+        "b6c487be33b19c7177ce8de77e326fcda45e7a1fe0a1cc080e0c373ca993f877",
+        "cdc170bbd0ac33a309a334fa183658f8c349ffb7f0b902a22ea92ada43042a75",
+        "339f69186e80c2318885b03deed6dd7e6345bdef988f500324593618970feb7b",
+        "a9f0421092bd9c8021e7db3c8c94de0be757bd7d84ab780278938056358fdb16",
+        "95ddaf48b30b94987f9a1c566715ec296f1f402a79b1b4f179fd457adb1bec3c",
+        "aecf93b12dfb6fc9011aed9b73259890a1b68185e17f9a3fee375b4f2b411513",
+        "cd7dca6c70f14344296efe53d84bc77a1cb6d46a600fdd32608f2c802e6f9abd",
+        "27db305910c4e9c3bf9a423db17e5096a2edc286e40858cf8951d8d75e4a0a7d",
+        "0f953b6304d96985d193d0bf6a222a1aea9dfd3ca0c0b7c809ffcdfbc3af5fe6",
+        "df28ca1cdf86090964af26f822c23df078900d81fe0c3a064568873972afebe6",
+        "3cdf2d185a81656df3d8aaec39c3a222abb6c2aaa2debcc488b4f9dc3529da3c",
+        "08168374257f1359e3ee99cfb01acfc84c59c2fb0ba93c5116ba55869c79bdbd",
+        "c9a1304d30b6ef184db10a59ae0d6a262d37b39f9f122752eedc0fd6b8b1bd35",
+        "557ee6ad6fafdce2afbf515f8513ac0b9523d4b9cad178f54e432f3043b936cc",
+        "aa1bb5a1f71b626805b51acd823f4f5a1d37da35f0e07aa82dce32cf5190afbf",
+        "21bbaa17670f5c469a137bbfa23df5695f6e9f680cc97b76c63a73b35626149f",
+        "bdd2db36adc3b5466effc0e30e0d4d6c17795d6abdf97973be6f3bcc77941e34",
+        "9b720951fa82e9790f156636bb8323e970cc76f2c6e16c4e8779ad58b1485ba6",
+        "913d80b95a9bb17a6631c16678aedb737f8c0fede07b00c44cc594e7563ba750",
+        "d2b0ed616277da4cb91839f1706a4cb1294766c7d33f9257086e761dc27f6e86",
+        "71d90b00ce8e643dea5ec4e59934e1d5920568554e8501d9c69e69ab0283f0c7",
+        "382e4870d79342a78dc6c599236a213db39a9fe7e15ec15a6020095800ffd723",
+        "ed485d15f942c33725ab02dce04312cec61fb969ca2ce34eaed6812af5365e37",
+        "484477ba0ed9c3c86549d28fbb74e0ac9644e959db65a54a769bc4d3875d38b8",
+        "e848977bc49b06907c87fddac0e7e4ea83728d920d6f8cae6435a5cb8c59f3fc",
+        "36b86b4ee708a5666ac384777ab939457e1827ccfbcf297b5e434f51cf1cf098",
+        "fd0ed48428d5f230a994dd47b97059a595a3526a068a6e78f7f4a9bcaf786de3",
+        "a27d57745f4aa64b371f2cefb3c4f63f01b98652bbc2461e84a338ca4576600a",
+        "3083602ca7ed8b95fb4dda74400a8da862475ac598123792045b05e7575e8c12",
+        "e1247b47347276b872dffaa7e9c8422f4a26394523d9d6b17a9265bd7b936d24",
+        "ed880da3980ffa4c5888a087cf3f5999447519d2c89e3487d6dd12b7dfd78185",
+        "e0bb45777c21e6b14064764ca6f08ba1d02669c5c1e105b2b2fe6e8cd6bc007d",
+        "48a04565ae504bc81b8aa384438195e61953c8a2265a03da73d12bfd3cb9be40",
+        "803ca73f18e3c571add83506312bb18b1520b264c748351e789e1f3b5b196116",
+        "167da788eaa3d05056a9d136f8284ae136d1dd089fff590b592e9ca0ee831e95",
+        "fe3dd9d7614acd45f504138880a9b161d408a6020610f4c5b7d71592c42959af",
+        "764a799158138a9e95af72c2fb6f386ef5155963baa730a074cea8b4f09c4c5f",
+        "1b25ad26d586edc5e1a978964c6daa95608f4df4d2e22313fbe620467be7568c",
+        "9d8e0001e933238a0ebe2825510a8553e606f5a6b4150e9a55938d83a08a9538",
+        "30e6536be6f2cadcda85628708b04f00529c020e8d76275e0d3139eece413dc7",
+        "00258f8e17171a4b7e4f0d2f50e2851648a23140f219251026f773d7e451f18b",
+        "63faed88b71faa4395a3d10f422132ed89c5262bae2a40c9b941e0c2452b7aff",
+        "0af0c3b1f952ef4f58d346fb2eaee3fc9568c20bab5ffbf75852a71dcd096ae2",
+        "91d6b68cad23cf0e01987e4be6eed560ad6ca880df1fd68434ad7835ec472c7b",
+        "4f585015404f4efb41a8c063cd7e99df9ad9c645e5d02c5c71d44b272e52c5fb",
+        "14851cc674be87425f8613a04f308f695da42086231b4c37708dcfbbc5aeb1b0",
+        "c2a57602d71cfce7d7bdff216215626fe6bc30117afb45dc380b1e120cc2dc58",
+        "59a0231175267fae2d3c73b9beb7684e4d5e2ff6a7e65c7ecd05a0729cacaebe",
+        "da8e5f3602c1622ab20f2ac22b450749e660aed15204cbcb72e4c30c66ee721f",
+        "531675af6ac30580933549bd2335b4ff4fce5a980fa12b196e6817172ec01af9",
+        "fe71c3bb1007a5b27d69011c8cbf7def486f4da736023722d10872d1a518990a",
+        "5a8fdd94b5bcb9acc3aa7133777e03f35dfd63395b8ac3443f6f489164787765",
+        "9e82ac361e8720e149346d5016f7b3a2254363ae751a3370555014cad76b9a64",
+        "12dbc1537de8ccc75613e782feed64f0a5777eb5312dd3798b8aaa6e8da2febb",
+        "9b167c6406b60aa98fd23b6b55680132e29902dec300b8703b39780863673dbe",
+        "e0ce8ad5d76eb3966b2fe7ff05adb6b9ddb46820a2d2ec0bf2defbe5a3c53203",
+        "ed6f751d1f68bec3146baf5ca6a3b4a70750ed29e48170a05c4bd11b0e7797c3",
+        "a67e4748b6389ead078c08a924f20c2c66806c128e53d0c9badc07ad1fc7176d",
+        "e4e7378725db2d98f6e2e9b163fe733f634760e9c6f96e439af38de3dc0cd5ff",
+        "a386712791c9c1ed235a8d0276083ff1ca7ca7412acaa05bff6ae3e5bd034d58",
+        "330b5a9ff64280053c5c13f9106d3c15e7f5c949767e275e044c1024b34a5cb4",
+        "bcfe6dbc023f8d142a27ffa22160f10d679f7da1676fa2838c5b4ab7c6239bd0",
+        "497efd81ce2b7b62875bb24801433b2b37596376967246040e7d11f462803579",
+        "970d5692bdbcfcbd4d73f450db749afc44bf2d8dd87a098202525fc95234f03c",
+        "bfe2d0b45336495f603c354bfe62dcab82b0a7b3e1c1b38b97cb7377849c04f9",
+        "0cc1f6ffee96e037c6b8a67c7e36f1cd2a20d71ad59f3c9200efc0bc52db7c1f",
+        "222f6529084ace14f24a0dd50aa9d6e454b57057f51ed1f8d22f0f174458a46d",
+        "7d2746ed3547aa4b77b6a36c967b02a9d068dc2fb89a4fb47fdd246d04d4eb4b",
+        "a0bbb1b0dee1710380e13d30cd74e543d102687821f9469eeabab20e588154fa",
+        "3b061679b42a2dfed45d50bdd23737932caba5d445c2ca7aaed77b11098a48b6",
+        "4e60e9845aaebb4dbe81e365d74b747875d9c8d15824e81e5c0de6bc41ce9e6c",
+        "ef85d0bfe1978c75198de3a00c533bc5b3a6c1f6989a5b4348663546be92ce66",
+        "6c85dc7e5498ceca52295c66afb60016eb11ba194707ef6923f9b67a2753eb8b",
+        "4f7a3cb44d33c31be7b5aa6a7aae4e38b81a760020d772630233ab7ae11621f5",
+        "1fbb70a4b3ce26f32be3751666d787725a147fb520e90d2d5e19160ce342cf7e",
+        "904927dc8ed1d09406611b57e804d65d56da22069bf33058d1166980be4268e6",
+        "590454a79bdb8ac8c83a007129a41055bcb626ddb5233b501f5cb8877a9c47ef",
+        "1ab0a83428e7ccaaa34e2a8ee994ffd2f6b9dc43749f15bf251d443aad3bf3bb",
+        "114bb97225832ebb28afc63ea91650715f4f530855ac1d5d5ae14adb28a4c201",
+        "c46dc9d241947305cff1d59d398a49ba417eebd1e3f127df505a2290a8931fbb",
+        "f48dae5d555678b28265168c8095e94b8e1e33dd79a7995025ef45fa45ca6b61",
+        "d578108f1e24e3921f2bd6e35f151057c0f5fe75dd6cc46922f9f1adcd7a6c47",
+        "e4ba77f7b3492272bb3c6324a32fc6d8bd8b479dadffd1c16d3a79bb1ca8cd80",
+        "71bbdfdc14e03ae46bb5dcc5bbd71f2bbdcedfd05666f7d6bbca1d9b6bb9aeb8",
+        "7d7be14ba9ba6376724f297513788da7d56c1d7f51ba4dbe234ee39347568d0e",
+        "e8ea7031f70c184e4560b9429a595499207a71f1ced1d4ce6093ddda1b968c1a",
+        "219f41d71079f9093300bf17db3e5250b20b9f494b1e0963d0451fb7d690242e",
+        "29f84f36aaf16b5bc07d62b67ad2027f84dc5279b9a8b2bbfd7d7aff5c70e1d2",
+        "079b4ab8cdc3fdd9f259635037ff7b7abf7b88102cad32524fa8065d98479e0d",
+        "cdf5c552183bf891c81ec11f09224cd3080a2ccef484c8a5ea4bf393fafca230",
+        "f6d82a5fecb6c3f20dd5445f76dbcf9746cd988088b0b527a245f35593aeee9a",
+        "d1ea45a94474c41f5ba616032ae1d1aca35528706169fd35e0f347ecfb0ef679",
+        "472daef960f689e19cce8fd1d6c374dae63fd1c882f58e9cbd3ba0491d523419",
+        "e5a85295e99598856d7e339d2059a8db2ffe39e8acb1130a90034febb035f31d",
+        "a0d59c685bf6c72f2b2547e8a3bfa6d23ded0c260d16924f2fe1f63ce4bc12e6",
+        "4a468e2b6eb789007b9e873e93cae655e6d17980844417b68f7ae5426f3da26e",
+        "d921d559081fb8b5efc26d4bfd749e3ed8f5e9c97cfb1b4281f2f1317630058d",
+        "0fe9da3ddf61ecd8cb0b142dadf7e6f53b01f9ea056f5413b9b51114ff9a9574",
+        "b184d1012128b079742e89ecf3f8c2e4fa647199d829ed9cca99f96b3fd2778c",
+        "749158f2a32d04952944e9fa57dee42fd0df5b198238d286adc993808bdded33",
+        "437c8ed0660b73cb526ede0f334342d7a22b9b5ebd9eb163b69ff8afc72692f2",
+        "9fe8752d6e6734953becba2f2634240a7e4a24d1208503a3f076b055dff08196",
+        "ab46f88447b34f03f24decf314c18a982f644666faa91d034189237ae91f7749",
+        "8b0e46c2ffede3b3dfe49de4b95204bbd7ff77e8f5900157bfd84ba6297e9862",
+        "d6fea78d74cd7a33cab8bbb6be40fc5cdfc4a649e84f0c9871d25a3d30e60835",
+        "966cf0364144019fb91e2dff589d013992a5a254d52f26453e3409a43aabddd7",
+        "da4d12cc68a21157b7ae8dce2ffe6cdbc18172ae07e8fc24c24bd63c4bea297b",
+        "fd177d84c136fe3c66c12ad11f8b645fac4a53211b2c47dc0082ecb8b3b17183",
+        "10a4a493033f5c1e191234ad4023fd583f73e2f7f09a16f474dc9c0fc01d6155",
+        "06ef04afd5f252c53a835458b2f258d6afcd5cec819921d6d4744adcf9d36e4c",
+        "297d309849215e7db745e6f7df27796e6be5982c89d4facf53290e6a55ef4a44",
+        "1fd31938d6edf71d4cde086d4d84a875922da44a9c2825e6631b89c4f857e114",
+        "4aff95a6b41088e22096d3ea6a43cb87e88064a1ba7c1331a1a47152ee446fd3",
+        "70289c4e4b2b4a66b150aacc6ad32358a5f5e206099752427f703623afd970cb",
+        "87bc0b919296acde0602501c17f1306c3979315dca9d87665c87f78a6862a54b",
+        "900c82ed9f6467f8c688181ad5f82fe8564b973f376ee284fc829671715fa957",
+        "a54c5ffe080c9f1663fef2c7d927f2db50815cac9f1253c3721914e09b95669a",
+        "6f61fee9b9d79d448c62e9bc314fc9014116be7447f10ea6277f17687e038b1e",
+        "f2aac12e9600bd49f8a335fb2c2ea20e05e27ceb320549d8d575b61943f41b70",
+        "570e277f9c2ade6b4eb414ea132c1df77e83a798c836c613ac060da75d3faeaa",
+        "58c43f7ebe723859c2ba4c18d90c11e27cc07a82cb18d38c02783efbd38509d8",
+        "56c8968174b4f1eead74cae7c1238897a0ab34255b38cb88419543caaa92c3fc",
+        "432c182cad7091810a03ce2af3c8564cbe86552ea269ab38759aeb59e702f519",
+        "08052be8a6b0d6b759f9e32aa6f55b80d8c90b5aead5d6deaec0c387852f6e28"
+      ]
+    },
+    {
+      "id": "main-courtyard/native-save.json",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "first-season"
+      },
+      "commands": [
+        {
+          "type": "accept",
+          "requestId": "d0-r0",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "clem-room"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r2",
+          "maker": "h1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Street card",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 2,
+              "scope": "simple",
+              "style": "templated",
+              "price": 330
+            }
+          ]
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "first-night",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "photograph",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "venue",
+                  "anniversary"
+                ],
+                "motifs": [
+                  {
+                    "id": "first-photo",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r0",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "The hours in these hands",
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "hugo-craft"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r5",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 3
+        },
+        {
+          "type": "reserve",
+          "requestId": "d3-r6",
+          "startsInDays": 2,
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r5",
+          "maker": "h1",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "The hours in these hands",
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "hugo-craft"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r4"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r7"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r2"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "hugo-handover",
+          "approach": "quiet-sendoff",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "portrait",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "hugo",
+                  "dedication"
+                ],
+                "motifs": [
+                  {
+                    "id": "bench",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r5"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r8"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r0"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r8",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r7"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "courtyard",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "invitation",
+                "layout": "gallery",
+                "palette": "linen",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r11",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 0
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "clem-room"
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "accept",
+          "requestId": "d9-r5",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 0
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "accept",
+          "requestId": "d10-r0"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "accept",
+          "requestId": "d11-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d11-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        }
+      ],
+      "states": [
+        "d5666e2346663da576514b1ba7e993c2ff574bd07d9a4464135291e5d05c9cd3",
+        "b3b18b07489d345c17fafc49d52ea0f97fbc9946b5f3013958c430f9cb600cdf",
+        "fd3f0638133857b948d59916dda021d80db902987b2f490dee653c25e50c70c4",
+        "d6210a363bf1f260db755f10390a294d0e2a3e56eba2f9a247adcdb06daa4d25",
+        "bd90b7bbc252ac89812bc94f4c3644a89b59bc49cbaa6bbd0cdc2b9bb0681e49",
+        "85d4eeda5e42fc7f9fa2cc86ff080d400c35c25d84d58daaebde845cf5f9e873",
+        "c49fbcc3515a076d40adca3b7e51a1e689ecde466c88661e1d4a7293075a85c8",
+        "758633a4529e00e433c565de50512f0e8a5c43e9dea5cab2ddfff3ed9aaab5e6",
+        "1496e85ed4027cfd82a5023e87150c36529b6d3c57992ea91d425bd5b32a7323",
+        "a1a835b8be51f5ae2b8fe364f05675673f743ca18b5a7725542e1811f9a93bcb",
+        "d2d66679a0013a8e934a6ee09a8ee6277a4a357a1b89f962306d612475257321",
+        "6f784ecc9cc9fac3b260320b8d253937df4eb79ff318ddf52e9625d32d764b86",
+        "3baa7d906d419509e435b54ba8931eae0120eca744b3d350c78b88aa05f65420",
+        "8280e374beabc388d56bea2632a0b306267c135db069854d610b80a666768fe9",
+        "ad6d75e09e8662e4b5704e31e1f765a7353cd27dded396af359f62cc1a5e3151",
+        "8669e87f7b85da850f75c846d985c0d6235de12f6059b2360faf4025be0a142e",
+        "fc890d7cbc5f0174774bf745be7b2a5e9c98cde8cc73ae5905b5b938851ca779",
+        "e008d411bcafd280e2106ecf097c5622adc4dc463bad09062ea42003d5015ded",
+        "d1ba70ca05b1af1daf0ca30b7a5cd44049cc50df39978342bd7ca0cb60878150",
+        "a4b2c32d75b2bb1a8e7bdf6e94fce440f67865df78c1be3dc6b0c3b5c8617ae1",
+        "c45b0c95dbab50d0e18295dd6d41a89917d660b3ec31aed456768ffe7e24c898",
+        "c902cba75b09ef0701c6b1f62b7f57755cd323ab96f117c77ca9453f59f2f4e2",
+        "af1fc0424a03d220f885687a2b7868959315da83b2bb0d66e16ba8ca166f249b",
+        "b7147ab3777e9f7058e5ee3cbbc15b8232549ff81454bb0e481c3e1501e824da",
+        "a5f3ee0ba12035d1369cf2139311b39504241fb62cadc49f72ab51baf86057ba",
+        "854bfadfde2a92aa06bd2d770d2c8293cb2ee3b26eb151bd9fd6fa3c26622129",
+        "450d4fd95600b1ab38cb082780949623376af0e1e041e130991d99333db72618",
+        "59bb16168a40d77fc49136cf88b9d865440d50f2095ab1f86de412fdb38d53d0",
+        "dbc5e4675a3938ebc21413ad2e40d5aa02048e147bae2be05f28b6c7b1d19a28",
+        "99f9cd0e849a92ac3287a208133f5895aaa707bccaa08e0cbd7ad7dc6abf1741",
+        "834609ba1ec82df6b4c5152daa8c1e722009e5d3a2947b03944c0d5db9af42a3",
+        "797bcfcd4d22b1aa180526c680ba4ecd58ecf57bf780a3b658fe27d6daf63542",
+        "59c2c13214631cd2bda42b8176551463e7e24f3d32fbeb098db341fac86f1019",
+        "5614f132104c5c14da206bdef9490719f96de5f46125cfb6195e1dbb459d7d63",
+        "97d5e3063f8011055a979e9bc450678c33591bbd0b41c6e62350d923af7ffb41",
+        "59b165f0709555d32c276027b3c6de860ac1823df9024ced77e3389ed8d553a3",
+        "a50f60dd0f7d36e73802908245ddcf68343326d9d6c8504b9e269c3e321dadb4",
+        "cf1b2dee7f9f2ba370549c8a3a1fd1ff5b1f510a6e175a5800427f606baf2fe4",
+        "c8252e5dfabed239222e438d042599cd0d342a8e431da1c11a92ba5dd1a8bfd4",
+        "09f7f98150113953a469e068f1ae8daf90b66697c3eb5116ae876c5e322aaaf2",
+        "4776d7569fe9b434cd428faecc546317e70657a953581a692be0081bfa4fabec",
+        "89750ab9480cd96e7aaf3a84f66644798d735615d3894ff131162e1ea08568c7",
+        "a448d6ca66e8ccd808d495d6d25b201d9eac9750b077fcda264d02d51d916d5b",
+        "76b0a2df005d4fc1903cff005f16c1a6858618c9a3873bfec6ddc469ff1dd1c9",
+        "5bf2518782d35688bc22f9dae614f3d3ebd22221427855b64869765bbee55c98",
+        "fdce2aaa4ef7bc84f64c04510a305471945623fe4336321bc5eceba0ffd6e2ef",
+        "17b071752b0c3f4c3e92dd7d997f50c1cb10ae3d9cbe221615321fa581921a44",
+        "487e25e4d2bdad198f9affdcc8c885a5b36d12fa324e6be90697002826f95270",
+        "ff07be1d541f33b38bf22876feb02c43ae47933e4efbfb331c20fe414c8ac5e0",
+        "4d768a069b7591f0202d9a5ed5b26b506d87e3c4d581642dd5a595e9bbe34dc7",
+        "baf61949ebd0088b4d169fd9a69d5c134a24c6a8f5a8fef8ab8f03173b95eec4",
+        "ed6e672ed9bdb1902adce0e45ded1b438aef4d27e30def2d40781eba57fc6886",
+        "8d90075957dc3203a0f411e7e8f9e90a9a4b2d5ce74bba1549991925c7aaea35",
+        "309ed2667cc0bc77d7881845708a4d8f0eee0b4e32b8dde55ee17d26062d1e0a",
+        "33aa3b3cd389f767bfdfd5d50cfc970b1e7bcce1ae7afdc63d4ab960670053eb",
+        "e7313b915c24f628f583551d2cf34601833d74439c31b02f8532a25b917ad3e9",
+        "f6b879e79a1f54b08af17bab9d6b9c89a62e9b6e87ef2d3a05dd52c887fe1778",
+        "8de912de6230cd9082def3f204d96e7397604ca6795d4c7400dfb5d76f1de67f",
+        "f54f372ce4970ca3d48e8c0cc836d18c4aecd36c4f2e43e3847f252590a4d001",
+        "30f48b34e02807d06941789a89f847b890c762f034633b1f3289f387b5507598",
+        "4e24fb63953928150c366735cfcd080612b089e225ba138c872ed66b958b81c1",
+        "68d736ae23a8ddcdd8161e4ce1f40031a71f8104850ff5e42c6da6f11ffbd9f6",
+        "1d4602705c9ab25887b5078e64cf8019bd6f8d81231b00987bbd21ded9ecce91",
+        "c78380e8effde519b4f2ce8c6d9f158b06bc4470955d986c87c3ebc84f86e754",
+        "72c3371d1d75d56eff1e646c98492df5fa75256dac43adecfd3129cd3472d27d",
+        "b767aebfa054f616715847b6e23df60e9df2de0aeae4117d73442e3b3956f73d",
+        "09bd2b5ff457a1187f883942f29f323e34d4f316b74bc877c323316e185a8e9a",
+        "af87000e5dd8f493db64687ccebd52e079e1c89ddae2d66e9a5cd2e4c12f178c",
+        "1d89cce6bedc8985e870c68656f698defb67732efd00816b2b3e155e948f514d",
+        "9ed603d958e6cf1ba89f667d5be7d88ecf01d9948485e58d070d067293f91ec3",
+        "c8e2000755750414af96c5bf95ff8cc24455df2fffff0babc71a59aad026828e"
+      ]
+    },
+    {
+      "id": "main-trail/native-save.json",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "first-season"
+      },
+      "commands": [
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Street card",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 2,
+              "scope": "simple",
+              "style": "templated",
+              "price": 330
+            }
+          ]
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r0",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "clem-band"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r2",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r3",
+          "maker": "h2"
+        },
+        {
+          "type": "accept",
+          "requestId": "d0-r4"
+        },
+        {
+          "type": "decline",
+          "requestId": "d0-r1"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r0",
+          "counter": true,
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "A place at the counter",
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "mara-newcomers"
+        },
+        {
+          "type": "accept",
+          "requestId": "d1-r3"
+        },
+        {
+          "type": "mentor",
+          "resourceId": "j1",
+          "specialization": "templates"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r5"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d1-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n2",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "clem-ten",
+          "approach": "new-band",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "split",
+                "palette": "poppy",
+                "typeface": "serif",
+                "copy": [
+                  "band",
+                  "anniversary",
+                  "venue"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 71,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d2-r4",
+          "maker": "h2"
+        },
+        {
+          "type": "buy",
+          "item": "checklist"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d2-r3"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n3",
+          "option": 2
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r0",
+          "counter": true,
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "A place at the counter",
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "mara-newcomers"
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r5",
+          "maker": "h1"
+        },
+        {
+          "type": "accept",
+          "requestId": "d3-r6",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "clem-band"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d3-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n4",
+          "option": 0
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "mara-regular",
+          "approach": "weekly-rhythm",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "card",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "card-1",
+                  "bakery"
+                ],
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "card",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "card-2",
+                  "bakery"
+                ],
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "card",
+                "layout": "stack",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "card-3",
+                  "bakery"
+                ],
+                "motifs": [
+                  {
+                    "id": "loaf",
+                    "x": 50,
+                    "y": 35,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "reserve",
+          "requestId": "d4-r1",
+          "startsInDays": 2
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r7"
+        },
+        {
+          "type": "accept",
+          "requestId": "d4-r5",
+          "maker": "h2",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "The hours in these hands",
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          },
+          "intention": "hugo-next-hands"
+        },
+        {
+          "type": "decline",
+          "requestId": "d4-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n5",
+          "option": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r10"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r3"
+        },
+        {
+          "type": "accept",
+          "requestId": "d5-r11"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d5-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n6",
+          "option": 1
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r0"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r1"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r3"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r9"
+        },
+        {
+          "type": "decline",
+          "requestId": "d6-r10"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n7",
+          "option": 0
+        },
+        {
+          "type": "setMenu",
+          "offers": [
+            {
+              "name": "Bespoke Launch",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 3,
+              "scope": "any",
+              "style": "custom",
+              "price": 900
+            },
+            {
+              "name": "Street card",
+              "launches": 1,
+              "spacingDays": 3,
+              "turnaroundDays": 1,
+              "scope": "simple",
+              "style": "templated",
+              "price": 330
+            }
+          ]
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r5",
+          "maker": "h1"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d7-r7",
+          "startsInDays": 1
+        },
+        {
+          "type": "reserve",
+          "requestId": "d7-r11",
+          "startsInDays": 1,
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "motifs": [
+                  {
+                    "id": "watch",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "accept",
+          "requestId": "d7-r6"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r8"
+        },
+        {
+          "type": "decline",
+          "requestId": "d7-r9"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n8",
+          "option": 1
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d8-r2",
+          "startsInDays": 1
+        },
+        {
+          "type": "accept",
+          "requestId": "d8-r12",
+          "maker": "h2"
+        },
+        {
+          "type": "decline",
+          "requestId": "d8-r4"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n9",
+          "option": 0
+        },
+        {
+          "type": "pace",
+          "pace": "push"
+        },
+        {
+          "type": "acceptProject",
+          "projectId": "lantern-night",
+          "approach": "trail",
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "programme",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "map",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              {
+                "kind": "sign",
+                "layout": "headline",
+                "palette": "river",
+                "typeface": "serif",
+                "copy": [
+                  "event",
+                  "date",
+                  "place",
+                  "contributors"
+                ],
+                "motifs": [
+                  {
+                    "id": "lantern",
+                    "x": 50,
+                    "y": 56,
+                    "scale": 2,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r0"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d9-r2",
+          "startsInDays": 1,
+          "design": {
+            "version": 1,
+            "pieces": [
+              {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              }
+            ]
+          }
+        },
+        {
+          "type": "decline",
+          "requestId": "d9-r5"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "choose",
+          "newsId": "n10",
+          "option": 0
+        },
+        {
+          "type": "overtime"
+        },
+        {
+          "type": "reserve",
+          "requestId": "d10-r4",
+          "startsInDays": 1
+        },
+        {
+          "type": "reserve",
+          "requestId": "d10-r1",
+          "startsInDays": 1
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "ring"
+        },
+        {
+          "type": "choose",
+          "newsId": "n11",
+          "option": 0
+        },
+        {
+          "type": "temp"
+        },
+        {
+          "type": "accept",
+          "requestId": "d11-r6"
+        },
+        {
+          "type": "runDay",
+          "calls": true
+        },
+        {
+          "type": "answer",
+          "option": "cut"
+        }
+      ],
+      "states": [
+        "d5666e2346663da576514b1ba7e993c2ff574bd07d9a4464135291e5d05c9cd3",
+        "eadb594e25ba2b6aa36f6bb20c92764aab255535b9c19066b0f3a6eb973edac1",
+        "41af3045214132cc0b04dc627d993cca72470a3004fa76d85c70021e16fe7485",
+        "50eb9574803579bea79edf629d8b2f18bca0b1c4eb52e223292f51cadd43a1e3",
+        "53ee865ee2629d60aa6799d7e1de3a2650ef94553c9f294e7da503a7bdce1326",
+        "505f5f0abfda75c7cf8da088f269d19d20a8e7efeb57736f17fe04efcdd5d289",
+        "e61a9f6d4c20ba193fb1b9ac207350850a7803376f253f93a517e883d36d9b7c",
+        "4e70f57b66c91cf9f24d98b4ed61f5cfd0c24de2143c5e87eaa3b9554583c752",
+        "2ef1c37556f4c038a5843f0aeca4221b9a77815cec1ff7d96b429855c722fb57",
+        "7d56c587783915dd9fe512e7e339f38d88edb605e7860c35ceddea5f28dc994c",
+        "b5d1e4d53a9f44a8c9b928821ef6428857f3ab5c9f87e63577f582d9ada01fec",
+        "2c3c02f62835ee60675cd76ef65154dd69fc40fb52283bd8c7f095c1099f1427",
+        "f5f7a84aac3fa76e713d8a4db0121f689adb5982cff7073f597868e750450d9a",
+        "db5d384d93d47840ea6cbbbe8b0c03b8e54baf921e577e868e178bc7b1b1867c",
+        "efb991aea4625571d4e4a06d4bfc63857b75b56a3f8e2d732c4dd643f2ce6204",
+        "6160c2e5908dad2e6587303ff34beab86859683639ea5dce2e8fa47a3eb66f88",
+        "be1f6a38c2a5a17b202158b5b188d0a7aed1df0923c41ea6d5ae59078e501668",
+        "bb242ab85fa2ac4a01dbbe504d970894e8888e9339d4648a03f336b7a1ca2cf4",
+        "f89969aad0007f92a229b002ff45f2ded674d5fc6b927e897e6c1f934acf0ea1",
+        "ab77136285a79ee74a2c1e98ea96c965356cd0e0fcbf566e6cf28f853ae1620b",
+        "ec0af0db80446736147fee5be4f17db475b8a2c4fdbe575b293c9577cc22f8a0",
+        "96813d42cce32e9f340cc0911595a006bbfb1c127eb55348a930cf4108bb2b37",
+        "c6b894b3acbdc8b93fb3ec7e62f4c21a82ab48c7df77626edc37c083793f7d7f",
+        "06af1fe97939863fcf48a79bba03f49933e189f1768c8bcd5b49e0d2cbcd4a27",
+        "276f9097436ca79ec2524b404b1b2e89441dff7a9346045343e73827073de1ce",
+        "d8d5460b4facfbff402d362bb9e445ab092d5a51109942905c019223265138b8",
+        "e9fa16161b653d82903094b84ff0aacf77954119dba6b084d9c2114f18289bfc",
+        "f0a272a5a058a21d0d9374d886496488b5f246507a4dfe85d1ee96e8364d503d",
+        "7f8c9e0a28091f2b6d0782bc1425c63b4ef315a10bd17225f3aad5e0e9c40fcc",
+        "2df1c3d9c8c8e82fff4af2595c81a58563c83ee132178726e49cc5ecec778285",
+        "89ad0368d06d1015085d80d8eea5e1691090ee9d3667cded5472d8ff5b47e7f4",
+        "41474711779daeff1a3e1fbd98d945dff4130214cdb650f54b00e075963fce99",
+        "c57ebf2e7185d90840c2bff082db148c18301a14971e0200440086048d13b5b6",
+        "50e4d701ad990466974f38596e04cc08591f3f672223eb6784c45598c32f557c",
+        "19f7b88793ed0379399f6d5bb33ec60b4c57ad38858b1e478d1f203ff835edee",
+        "eb37a147c7e653627322ab27dc626dc912fcde714625f75f643fbf845857dc5e",
+        "44e12514ba237c587fcf76724408d518d4938d786ceac7bf6d115c26899d3ad8",
+        "96ed166a1b7b59662d2e9d55bd9f4d2438b15fcc2a58bac40cb1561b46de86a4",
+        "c660b8a3b87c661707712a2ff0be13a521dba4984fe3fc39966220ff556cf650",
+        "6ab0a60acbe6ffeb0095a2e5f65c07af479e525c44ec243804af40c12912eeae",
+        "10c4caa0c2c297f225b6728f46b8714fc9a6a6493ecda6c0dab502696149e528",
+        "3b20f1b8c33d512ee9f4398837457540f3c0e07f8678e0eb55846d8d30247083",
+        "6d5b1985f2e108006809530464cb307f3aca0b538c7accb28740dd05fcb3d698",
+        "46f0a3927af0b1b5bb4e2b8b35a6e553980a032f172935fdd016efd95d3d37bf",
+        "5788ee40355bee5ec16a1d0fc47169c967fe3a5a23d20bfdc1b9dc7ebe8913d2",
+        "09fd5aed1cc69e5d7a37a20155f3fd55dbb122d0e552255c982653debdeb4588",
+        "587d2aa95722625222cf62524a5a9f4102159861d5ae306f738b0d3124c44a98",
+        "41ceb11ca6bfcfb08d36c61c4ea40fcb40b68a2ee864188adacda772dbbe7135",
+        "df2deb890755918831903ff660d850ba8d2d2b0c969c2114cb29004d0db720c9",
+        "0fba5bae5d2157efb4b18045ab81d48a8d1f98f016ec1d740c4e0556b765c4b5",
+        "88e1fc02f95b16d3af3fb3cdde4a1d78a148b7640f39b6988519ad3f9a730bd7",
+        "bfc0826383349165f8a70cd92a734d61860e178e2e6eacec601dee3d5a75affa",
+        "c173e42586a05074c92d7a1e3d7985867e838911ff69dd622bffa425f50db942",
+        "0148b34f07236389ce800bf3de787b9177d4fe5a7096bf37deb5e4db4c46f12a",
+        "ac70994bf6ad9f2f4421e812eb3f15e8c7533fcd57865293971772e8c6433d8d",
+        "5b90b1074f950d09ecd0bc2e6704a058a25a371dee38fa9699eaeb539bf0c149",
+        "2c5890c619afbabcb981331984b9b1e02b21272b70ccbcca05c260e87e306bca",
+        "680bdf6f4228aff2beb0cbb7c4747f0a2a8332d1ff101c0c37d7653540460837",
+        "95c84c878e43302d507b35a46927d4b81c00cb9472f8d40dcd81f7ff04c31dae",
+        "fbd87935572b9682965aa965752d7c335f5bacf5c35a2e52ecd9eff8a681e4c0",
+        "26dd166fc1b9248e02d772f87c9c4fee22acc86af0dcdb8cbceb5e08ecb1e20a",
+        "58f530d048d78396533ae0ee27eb2d2c4b0a6d30bf6e12054ef1b0a2f04e55d3",
+        "0ba84b709183ca02f16e356dac9afb2dba69f5501bb2c0466fb80c0feb1de257",
+        "2ef16afe2abeacd3441de145a4d602ddd381160d793e32eeadffe7f8bf3a551a",
+        "1b99942fb50d685d3226014ae307d0ea57156b9a4377bb040eafb5bb0cf0b6dd",
+        "0d7cc91b5336bf276bc05928b525cb8db0cd487bb6a700ae6ec1bdbcb5778a47",
+        "e418cc8e3b74f95aae2ef5d0ad82e2be3760bcc7b4ccba696f47b9dbf493232f",
+        "9cd539822ce872647fb76af4abc337dec3743106d179cc5d84e2c8557aa62d7b",
+        "af5ccf1fd654800b74f48c7a364bf4a66e5fdcdc71a70cfe9742025d5fce297a",
+        "717a11ce4bfe18ae28c0861f7d030697eb5c3bc0a719697a137f82f14831b656",
+        "242fce084e57ee080775755755c916fd7fe8dd73eb1c0194026a54d60f69ac2c",
+        "d2ff7f5cc49b86038369f18d0bb96822bd40a4e5845e3c190bb1bc5271142389",
+        "d413b3f3598ebe304d2a7070ec0d66ece79d84f93bbfeb4c79d0de9cd73e9010",
+        "44369f6c3b4d4f7a9990ae63e5bc08e56774c48da312c4564b541cce408a1a08",
+        "274eeb964c99cd4769b9e890a78923477c0ce669bfec5647e3d7b97dd2fa107d",
+        "bbf62c39464f55eba8cf0102ee18127d915045ec18880b063af48340009a3058",
+        "9a5ccd15b7405bfc332424ea012eab650e9ee96facd76bfee3af1e3bd7c751be",
+        "fcacb327da585b924f89e7dd4d7e4ca1cf2a51e51060998a729b923afc1698b7",
+        "9fa406be05820d25e579dc1c02871a0feae0e2304e86d1d23cda621fab607e74",
+        "31deb8ec9385e3686f0a11511da94cf193313c960e53a5704a76c3e2cd1d6470",
+        "7a03cfbe367e1e4d241dec38d2105228056788a5b285f98bd1b14b2a70ab40cc",
+        "9e1e18dd8c2a01d056c2e5c7e7e26ceadc0a7b61afda899340a4f4ac5e46f2a4",
+        "7592ce1d184fac486a9976154e1e3200358faa72f6998ac551f137130e2444e3",
+        "20f098bd9d89a35afa97735c82ecbe3769cace83e85ae3b7a6c5b929c0e5672b",
+        "76268271161d92586c3837d28ddb4ce525e10d33b9a48aad1563bd8368367e84",
+        "fc1676ba0df7e30f11fb1f121f9d2cd2e90d49e3391a34b19cceb4dac97d7e9d",
+        "463ea0753977813cb49a42db5421361885c0dd5f524b19917b0ed364292ba36e"
+      ]
+    },
+    {
+      "id": "generated/6.1-prepared-and-taught-pattern",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "career-pattern-baseline",
+        "continuation": {
+          "version": 2,
+          "season": 2,
+          "pieces": [
+            {
+              "id": "carried-1",
+              "sourceJobId": "c1-l1",
+              "sourceSeason": 1,
+              "castId": "clem",
+              "source": {
+                "kind": "ordinary",
+                "requestId": "d0-r0",
+                "intention": "clem-room"
+              },
+              "design": {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              "title": "One night. One trio.",
+              "copy": [
+                {
+                  "id": "title",
+                  "text": "One night. One trio.",
+                  "role": "title"
+                },
+                {
+                  "id": "detail",
+                  "text": "Out of town. In the room. At Clem’s.",
+                  "role": "detail"
+                },
+                {
+                  "id": "customer",
+                  "text": "Clem Jazz Bar",
+                  "role": "footer"
+                }
+              ]
+            }
+          ],
+          "relationships": [
+            {
+              "castId": "mara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "ines",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "kofi",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "bea",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "eli",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "odile",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "sam",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "ravi",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "nell",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hugo",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "quiet-sendoff",
+                "outcome": "delivered"
+              },
+              "creativePromise": {
+                "sourceSeason": 1,
+                "contractId": "c6",
+                "requestId": "d2-r0",
+                "jobId": "c6-l1",
+                "castId": "hugo",
+                "deliveredAt": 2017,
+                "intention": "hugo-craft",
+                "design": {
+                  "kind": "poster",
+                  "layout": "gallery",
+                  "palette": "midnight",
+                  "typeface": "serif",
+                  "copy": [
+                    "title",
+                    "detail",
+                    "customer"
+                  ],
+                  "headline": "The hours in these hands",
+                  "motifs": [
+                    {
+                      "id": "watch",
+                      "x": 50,
+                      "y": 50,
+                      "scale": 3,
+                      "rotation": 0
+                    }
+                  ],
+                  "treatment": "standard"
+                },
+                "title": "The art of restoration",
+                "copy": [
+                  {
+                    "id": "title",
+                    "text": "The art of restoration",
+                    "role": "title"
+                  },
+                  {
+                    "id": "detail",
+                    "text": "A workshop with Hugo.",
+                    "role": "detail"
+                  },
+                  {
+                    "id": "customer",
+                    "text": "Hugo Watch Repair",
+                    "role": "footer"
+                  }
+                ]
+              }
+            },
+            {
+              "castId": "priya",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "wren",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "juno",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "theo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "lu",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ash",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "dev",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "rosa",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "mina",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "oscar",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "florence",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "idris",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "pip",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "yusuf",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "tilly",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "gus",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "amara",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "bo",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "clem",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 3,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "first-night",
+                "outcome": "delivered"
+              },
+              "creativePromise": {
+                "sourceSeason": 1,
+                "contractId": "c1",
+                "requestId": "d0-r0",
+                "jobId": "c1-l1",
+                "castId": "clem",
+                "deliveredAt": 333,
+                "intention": "clem-room",
+                "design": {
+                  "kind": "poster",
+                  "layout": "gallery",
+                  "palette": "midnight",
+                  "typeface": "serif",
+                  "copy": [
+                    "title",
+                    "detail",
+                    "customer"
+                  ],
+                  "headline": "Leave the light on for the late set",
+                  "motifs": [
+                    {
+                      "id": "trumpet",
+                      "x": 50,
+                      "y": 50,
+                      "scale": 3,
+                      "rotation": 0
+                    }
+                  ],
+                  "treatment": "standard"
+                },
+                "title": "One night. One trio.",
+                "copy": [
+                  {
+                    "id": "title",
+                    "text": "One night. One trio.",
+                    "role": "title"
+                  },
+                  {
+                    "id": "detail",
+                    "text": "Out of town. In the room. At Clem’s.",
+                    "role": "detail"
+                  },
+                  {
+                    "id": "customer",
+                    "text": "Clem Jazz Bar",
+                    "role": "footer"
+                  }
+                ]
+              }
+            },
+            {
+              "castId": "yara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "finn",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "lorna",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "agnes",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "tobias",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "saoirse",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "malik",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "rory",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hana",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ollie",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "zainab",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ivo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "committee",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "association",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "courtyard",
+                "outcome": "delivered"
+              }
+            }
+          ],
+          "patterns": [],
+          "cash": 7530,
+          "rep": {
+            "small": 0,
+            "moment": 4,
+            "careful": -9,
+            "rush": 0
+          },
+          "upgrades": [],
+          "staffing": {
+            "aiTier": "none",
+            "routing": "human"
+          },
+          "kit": {
+            "status": "ready",
+            "remaining": 0
+          },
+          "rentExtra": 180
+        }
+      },
+      "commands": [
+        {
+          "type": "preparePattern",
+          "sourceId": "carried-1"
+        },
+        {
+          "type": "hire"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "teachPattern",
+          "patternId": "pattern-1",
+          "resourceId": "j1"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        },
+        {
+          "type": "runDay"
+        }
+      ],
+      "states": [
+        "4c36699430c0ffb866a896d428c82c71a5e3367f142659958dbbf5a67c81feb5",
+        "e5e56407f9b98606c6a1989583825004a42b7640c9bca113ea9938c23b11d6ec",
+        "38061e81fba851759df5e7ace50a55cfb4f84d8f049f10469f66f5e21f0318b0",
+        "ed452a1d374c276e21d329cc95656b51dc0991d9b8aafa1629321af2a4ba2922",
+        "9f56c2b412c9e7b2c76bbecaaf10781dbf1642cde27bf1fa26ebfaedbb496372",
+        "cdcdcb8f8382f6919a4d7847fafac32f0617b2a07906c6998caff9dae6fa2576",
+        "5aa1c36e4dc14803049cefaaad8e59d148fdca6543dcfd932b8cc1941a1593fe",
+        "bc1a56f626a0cf3ed761448c678591327a4ed72bf4b2506df3e776fe81886ecd",
+        "c490a6849959589b204b370825092ff998d7ac83b0d7edb634c2ac8bd102d212",
+        "f31a259d5ebb2d1ea6a731cf75c457f41ea506cee10edda17f585b788bb45109",
+        "be30329d83bce1dd0ed2b13ae301bc9160c7959543f3a0e4995ad6c347614a5b",
+        "11f6048d2e7eaaaf7f144fec3022459aa98c7fa535d093f3ad30e3ce5d16036b",
+        "1733c4516730c3c609f3abe3ca6086543cbaac2c2d2abe519e4aa7a2839a75bd",
+        "7a985fe0cc77cbd34247ebb400679e64b4eabbed6158fb5beb587090a27970c0",
+        "beff15176b74a43ce7e1f15c14628b19b4e08426309c622a2807462a9117870f",
+        "7b84bcf76357e57c4ab3d3172907695eb8e1861aad720ec18c6f5d7f0b1f9534"
+      ]
+    },
+    {
+      "id": "generated/6.1-inherited-trained-pattern",
+      "config": {
+        "scenarioId": "main-street",
+        "seed": "career-pattern-child",
+        "continuation": {
+          "version": 2,
+          "season": 3,
+          "pieces": [
+            {
+              "id": "carried-1",
+              "sourceJobId": "c1-l1",
+              "sourceSeason": 1,
+              "castId": "clem",
+              "source": {
+                "kind": "ordinary",
+                "requestId": "d0-r0",
+                "intention": "clem-room"
+              },
+              "design": {
+                "kind": "poster",
+                "layout": "gallery",
+                "palette": "midnight",
+                "typeface": "serif",
+                "copy": [
+                  "title",
+                  "detail",
+                  "customer"
+                ],
+                "headline": "Leave the light on for the late set",
+                "motifs": [
+                  {
+                    "id": "trumpet",
+                    "x": 50,
+                    "y": 50,
+                    "scale": 3,
+                    "rotation": 0
+                  }
+                ],
+                "treatment": "standard"
+              },
+              "title": "One night. One trio.",
+              "copy": [
+                {
+                  "id": "title",
+                  "text": "One night. One trio.",
+                  "role": "title"
+                },
+                {
+                  "id": "detail",
+                  "text": "Out of town. In the room. At Clem’s.",
+                  "role": "detail"
+                },
+                {
+                  "id": "customer",
+                  "text": "Clem Jazz Bar",
+                  "role": "footer"
+                }
+              ]
+            }
+          ],
+          "relationships": [
+            {
+              "castId": "mara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "ines",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "kofi",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "bea",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "eli",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "odile",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "sam",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "ravi",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "nell",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hugo",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "quiet-sendoff",
+                "outcome": "delivered"
+              },
+              "creativePromise": {
+                "sourceSeason": 1,
+                "contractId": "c6",
+                "requestId": "d2-r0",
+                "jobId": "c6-l1",
+                "castId": "hugo",
+                "deliveredAt": 2017,
+                "intention": "hugo-craft",
+                "design": {
+                  "kind": "poster",
+                  "layout": "gallery",
+                  "palette": "midnight",
+                  "typeface": "serif",
+                  "copy": [
+                    "title",
+                    "detail",
+                    "customer"
+                  ],
+                  "headline": "The hours in these hands",
+                  "motifs": [
+                    {
+                      "id": "watch",
+                      "x": 50,
+                      "y": 50,
+                      "scale": 3,
+                      "rotation": 0
+                    }
+                  ],
+                  "treatment": "standard"
+                },
+                "title": "The art of restoration",
+                "copy": [
+                  {
+                    "id": "title",
+                    "text": "The art of restoration",
+                    "role": "title"
+                  },
+                  {
+                    "id": "detail",
+                    "text": "A workshop with Hugo.",
+                    "role": "detail"
+                  },
+                  {
+                    "id": "customer",
+                    "text": "Hugo Watch Repair",
+                    "role": "footer"
+                  }
+                ]
+              }
+            },
+            {
+              "castId": "priya",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "wren",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "juno",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "theo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "lu",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ash",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "dev",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "rosa",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "mina",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "oscar",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "florence",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "idris",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "pip",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "yusuf",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "tilly",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "gus",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "amara",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "bo",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "clem",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 3,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "first-night",
+                "outcome": "delivered"
+              },
+              "creativePromise": {
+                "sourceSeason": 1,
+                "contractId": "c1",
+                "requestId": "d0-r0",
+                "jobId": "c1-l1",
+                "castId": "clem",
+                "deliveredAt": 333,
+                "intention": "clem-room",
+                "design": {
+                  "kind": "poster",
+                  "layout": "gallery",
+                  "palette": "midnight",
+                  "typeface": "serif",
+                  "copy": [
+                    "title",
+                    "detail",
+                    "customer"
+                  ],
+                  "headline": "Leave the light on for the late set",
+                  "motifs": [
+                    {
+                      "id": "trumpet",
+                      "x": 50,
+                      "y": 50,
+                      "scale": 3,
+                      "rotation": 0
+                    }
+                  ],
+                  "treatment": "standard"
+                },
+                "title": "One night. One trio.",
+                "copy": [
+                  {
+                    "id": "title",
+                    "text": "One night. One trio.",
+                    "role": "title"
+                  },
+                  {
+                    "id": "detail",
+                    "text": "Out of town. In the room. At Clem’s.",
+                    "role": "detail"
+                  },
+                  {
+                    "id": "customer",
+                    "text": "Clem Jazz Bar",
+                    "role": "footer"
+                  }
+                ]
+              }
+            },
+            {
+              "castId": "yara",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "finn",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "lorna",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "agnes",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "declined-before-promise"
+            },
+            {
+              "castId": "tobias",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 2,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "saoirse",
+              "regular": true,
+              "lost": true,
+              "ordinaryDelivered": 1,
+              "lastResolution": "promise-kept"
+            },
+            {
+              "castId": "malik",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "rory",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "hana",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ollie",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "zainab",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "ivo",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "committee",
+              "regular": false,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": null
+            },
+            {
+              "castId": "association",
+              "regular": true,
+              "lost": false,
+              "ordinaryDelivered": 0,
+              "lastResolution": "promise-kept",
+              "milestone": {
+                "approach": "courtyard",
+                "outcome": "delivered"
+              }
+            }
+          ],
+          "patterns": [
+            {
+              "id": "carried-pattern-1",
+              "sourceId": "carried-1",
+              "status": "ready",
+              "remaining": 0,
+              "noorKnows": true
+            }
+          ],
+          "cash": -7990,
+          "rep": {
+            "small": 0,
+            "moment": -18,
+            "careful": -25,
+            "rush": 0
+          },
+          "upgrades": [],
+          "staffing": {
+            "aiTier": "none",
+            "routing": "human"
+          },
+          "kit": {
+            "status": "ready",
+            "remaining": 0
+          },
+          "rentExtra": 360,
+          "noor": {
+            "id": "j1"
+          }
+        }
+      },
+      "commands": [
+        {
+          "type": "runDay"
+        }
+      ],
+      "states": [
+        "6b214f5a6300b8e4b5aab0d65e0d1743a0089773bc6ceb526df31650eb833616",
+        "f044e00d92db6d48af617accec1cabdc1f6311f07a24897fa23520e1945c934a"
+      ]
+    }
+  ],
+  "continuations": [
+    {
+      "tapeId": "careful/native-save.json",
+      "selected": [],
+      "seed": "career-baseline-next",
+      "hash": "a51c1407e3ecfada039902858f7712dbc79cec1df21766fa01801e3b131dfa47"
+    },
+    {
+      "tapeId": "careful/native-save.json",
+      "selected": [
+        "c1-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "3ffdd8484cb6e7329a52cc0f27547f0c62bb3e917129b878fa572044ea4a230c"
+    },
+    {
+      "tapeId": "careful/native-save.json",
+      "selected": [
+        "c1-l1",
+        "c4-l1",
+        "c6-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "0152528cece99bce54124e26ed26322a19328eac674611d1e4e250fda11c2d01"
+    },
+    {
+      "tapeId": "careful/native-save.json",
+      "selected": [
+        "c13-l1",
+        "c18-l1",
+        "c18-l2"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "2e7c01d276d2d6f85607ba4087d721b5efaecea4e37361511b10188f2d3ee3dc"
+    },
+    {
+      "tapeId": "festival-balanced/native-save.json",
+      "selected": [],
+      "seed": "career-baseline-next",
+      "hash": "155f56c014e1e3c319d185640243017faeb0cb30ce23f2015d52b785c662eebb"
+    },
+    {
+      "tapeId": "festival-balanced/native-save.json",
+      "selected": [
+        "c1-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "57076b2950a89fa37b6347da0afcfa054c01afc8c5b89e5ff0ad9f9d1421fb85"
+    },
+    {
+      "tapeId": "festival-balanced/native-save.json",
+      "selected": [
+        "c1-l1",
+        "c2-l1",
+        "c3-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "5c873ca857634ab2dfa14e9173eb95eb30fe7cdd483e26a27a2fbf4ba5974e4a"
+    },
+    {
+      "tapeId": "festival-balanced/native-save.json",
+      "selected": [
+        "c13-l1",
+        "c13-l2",
+        "c13-l3"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "df1c25a4243870a33de7ee4660cd6247f7e697e57f8e5e525e0547f8deb4e7c9"
+    },
+    {
+      "tapeId": "main-courtyard/native-save.json",
+      "selected": [],
+      "seed": "career-baseline-next",
+      "hash": "acb1e96e19b9d129a62c87debec61476c381bd7eb1f678a007bc0a5fc4a6d281"
+    },
+    {
+      "tapeId": "main-courtyard/native-save.json",
+      "selected": [
+        "c1-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "0e677796b10579f32aad49f109bf9084b51137487a17a24573bcf7b65cbcba41"
+    },
+    {
+      "tapeId": "main-courtyard/native-save.json",
+      "selected": [
+        "c1-l1",
+        "c5-l1",
+        "c6-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "57003e9644206927190ef92fb40b854dbf5210e33ab1a954c66ed707629699a8"
+    },
+    {
+      "tapeId": "main-courtyard/native-save.json",
+      "selected": [
+        "c13-l1",
+        "c20-l1",
+        "c23-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "4551ed16c3455d2f8d3b4318405f8503a10a50053612f3748beb9c9ddf51fa9b"
+    },
+    {
+      "tapeId": "main-trail/native-save.json",
+      "selected": [],
+      "seed": "career-baseline-next",
+      "hash": "383b80dabcd84aa387c17b3ffd38135d422ffb9f2866cb9ac96c88f3672a1d3d"
+    },
+    {
+      "tapeId": "main-trail/native-save.json",
+      "selected": [
+        "c1-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "2833d50974bc0b6d71bee1f3c64b312e25b3e24456c131142423f7ec7a7ba188"
+    },
+    {
+      "tapeId": "main-trail/native-save.json",
+      "selected": [
+        "c1-l1",
+        "c5-l1",
+        "c7-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "123fabe00211b7d353e460bf0568a5dcb6c7c284ac4d8852c67e68649082dfc5"
+    },
+    {
+      "tapeId": "main-trail/native-save.json",
+      "selected": [
+        "c26-l2",
+        "c26-l3",
+        "c27-l1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "3491ffb9545ce2909d10f98a4d54fcb7604635190166710d8c14aec34d5bccf2"
+    },
+    {
+      "tapeId": "generated/6.1-prepared-and-taught-pattern",
+      "selected": [],
+      "seed": "career-baseline-next",
+      "hash": "74371e709d961a0afbfae5519981e50e86103be933b81b43ba59fb87e5bba119"
+    },
+    {
+      "tapeId": "generated/6.1-prepared-and-taught-pattern",
+      "selected": [
+        "carried-1"
+      ],
+      "seed": "career-baseline-next",
+      "hash": "89224f851cbd4df8ab4319aaadd81db50fa678d47658f03b2a949ae858abd252"
+    }
+  ]
+}

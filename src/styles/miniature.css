@@ -1,0 +1,73 @@
+.miniature-study { --mini-paper: #f0e4cb; --mini-ink: #203c33; --mini-edge: #8d7855; max-width: 1360px; margin: auto; padding: 30px 34px 80px; color: var(--mini-paper); font-family: 'Atkinson Hyperlegible', sans-serif; }
+body:has(.miniature-study) { margin: 0; background: #152824; background-image: radial-gradient(ellipse at 50% 30%, #30473d, transparent 70%); }
+.miniature-study *, .miniature-world * { box-sizing: border-box; }
+.miniature-study header { display: flex; align-items: baseline; gap: 24px; margin: 0 0 24px; }
+.miniature-study header p { color: #dfb771; font: 18px 'Young Serif', Georgia, serif; margin: 0; }
+.miniature-study header h1 { font: 22px 'Young Serif', Georgia, serif; font-weight: 400; margin: 0; }
+.miniature-study header span { margin-left: auto; color: #acb7a8; font-size: 12px; text-transform: uppercase; letter-spacing: .14em; }
+.miniature-world { background: #233735; position: relative; border: 1px solid #8e805e; color: #f1e8d5; overflow: hidden; isolation: isolate; }
+.miniature-world__stage { height: clamp(350px, 38vw, 540px); position: relative; touch-action: pan-y; cursor: grab; background: radial-gradient(ellipse at 53% 35%, #466150, #243c34 70%, #1a302b); }
+.miniature-world__stage:active { cursor: grabbing; }
+.miniature-world__stage > div:first-child { position: absolute !important; inset: 0; }
+.miniature-world__stage canvas { display: block; touch-action: pan-y; }
+.miniature-world__time { position: absolute; top: 22px; left: 26px; display: flex; gap: 16px; font-family: 'Young Serif', Georgia, serif; font-size: 17px; text-shadow: 0 2px 8px #182a22; pointer-events: none; }
+.miniature-world__time span + span { border-left: 1px solid #e8d4ab80; padding-left: 16px; font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 14px; align-self: center; }
+.miniature-world__cameras { display: flex; background: #f0e4cb; color: #203c33; border-top: 1px solid #a89570; }
+.miniature-world__cameras button { flex: 1; border: 0; background: transparent; border-right: 1px solid #b6a580; padding: 17px 8px; min-height: 56px; font: 15px 'Young Serif', Georgia, serif; color: inherit; cursor: pointer; position: relative; }
+.miniature-world__cameras button:last-child { border-right: 0; }
+.miniature-world__cameras button[aria-pressed=true] { background: #ded6b9; }
+.miniature-world__cameras button[aria-pressed=true]::after { content: ''; position: absolute; bottom: 8px; left: 37%; width: 26%; height: 2px; background: #47624b; }
+.miniature-world__neighbours { display: flex; overflow: auto; background: #1c332b; padding: 8px 12px; gap: 8px; }
+.miniature-world__neighbours button { background: transparent; color: #d5ddcd; border: 1px solid #6c7e65; border-radius: 20px; padding: 8px 16px; font: 13px 'Atkinson Hyperlegible', sans-serif; min-height: 38px; cursor: pointer; }
+.miniature-world__neighbours button[aria-pressed=true] { color: #f7e1a9; border-color: #d1af69; background: #3b4b36; }
+.miniature-world button:focus-visible, .miniature-study :is(button,select,summary):focus-visible { outline: 3px solid #795415; outline-offset: -4px; }
+.miniature-world__neighbours button:focus-visible, .miniature-work-inspection button:focus-visible, .miniature-study__record summary:focus-visible { outline-color: #e1bb69; }
+.miniature-work-inspection:focus-visible { outline: 3px solid #795415; outline-offset: -3px; }
+.miniature-art-sources { position: absolute; left: -10000px; top: 0; width: 768px; height: auto; visibility: hidden; pointer-events: none; }
+.miniature-art-sources > div { width: 768px; }
+.miniature-art-sources svg { display: block; width: 100%; height: auto; }
+.miniature-fallback { position: absolute; inset: 0; overflow: hidden; background: #233735; }
+.miniature-fallback .lw-world { width: 100%; height: 100%; }
+.miniature-fallback p { position: absolute; bottom: 0; left: 16px; font: 12px 'Atkinson Hyperlegible', sans-serif; }
+.miniature-study__caption { display: flex; justify-content: space-between; gap: 32px; padding: 28px 32px; background: #efe3ca; color: #203c33; border: 1px solid #b3a181; border-top: none; }
+.miniature-study__eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .17em; margin: 0 0 10px; color: #765a31; }
+.miniature-study__caption h2 { font: 25px/1.3 'Young Serif', Georgia, serif; font-weight: 400; margin: 0 0 9px; }
+.miniature-study__caption p:last-child { margin: 0; font-size: 14px; max-width: 62ch; line-height: 1.5; }
+.miniature-study__caption nav { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+.miniature-study__caption :is(select,button) { font: 14px 'Atkinson Hyperlegible', sans-serif; color: #203c33; border: 1px solid #8d9477; background: #f7efdd; padding: 12px; min-height: 45px; max-width: 100%; }
+.miniature-study__record { font-size: 13px; color: #b6c4b5; margin-top: 24px; line-height: 1.5; }
+.miniature-study__record summary { cursor: pointer; padding-block: 10px; }
+@media (max-width: 640px) {
+  .miniature-study { padding: 20px 12px 60px; }
+  .miniature-study header { display: block; margin-bottom: 18px; }
+  .miniature-study header p { font-size: 16px; margin-bottom: 8px; }
+  .miniature-study header h1 { font-size: 18px; }
+  .miniature-study header span { display: block; margin-top: 9px; font-size: 10px; }
+  .miniature-world__stage { height: 430px; }
+  .miniature-world[data-view=studio] .miniature-world__stage { height: 320px; }
+  .miniature-world__time { top: 18px; left: 18px; font-size: 15px; }
+  .miniature-world__cameras button { font-size: 12px; padding-inline: 3px; min-height: 58px; }
+  .miniature-world__neighbours { padding: 7px; gap: 6px; }
+  .miniature-world__neighbours button { padding-inline: 12px; min-height: 44px; }
+  .miniature-study__caption { display: block; padding: 23px 20px; }
+  .miniature-study__caption h2 { font-size: 22px; }
+  .miniature-study__caption nav { margin-top: 18px; display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+  .miniature-study__caption :is(select,button) { font-size: 12px; padding-inline: 8px; }
+}
+@media (max-width: 340px) { .miniature-study { padding-inline: 8px; } .miniature-world__stage { height: 410px; } .miniature-world[data-view=studio] .miniature-world__stage { height: 300px; } .miniature-study__caption { padding-inline: 16px; } }
+.miniature-world__work { display: flex; gap: 8px; padding: 10px 14px; background: #233b31; overflow-x: auto; }
+.miniature-world__status { padding: 9px 14px; border-top: 1px solid #647d69; background: #233b31; color: #e3e5ce; font: 13px/1.5 'Atkinson Hyperlegible', sans-serif; }
+.miniature-world__status p { margin: 0; color: inherit; }
+.miniature-world__status p + p { margin-top: 5px; }
+.miniature-world__status button { display: inline-block; margin-left: 12px; border: 1px solid #d5d8bb; background: #ede1c8; color: #233b31; padding: 8px 12px; min-height: 44px; font: inherit; cursor: pointer; }
+.miniature-world__work button { min-height: 46px; flex-shrink: 0; background: #ede1c8; border: 1px solid #c0ac83; border-radius: 2px; color: #233b31; text-align: left; padding: 8px 14px; font: 13px 'Atkinson Hyperlegible', sans-serif; cursor: pointer; }
+.miniature-world__work button span { display: block; font-size: 12px; color: #43533c; margin-top: 3px; }
+.miniature-world__work button[aria-pressed=true] { background: #d1d8bb; }
+.miniature-work-inspection { padding: 32px; background: #efe4ce; color: #263e31; display: grid; grid-template-columns: minmax(240px, 360px) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; border-top: 1px solid #a79776; scroll-margin-top: 110px; }
+.miniature-work-inspection figure { margin: 0; box-shadow: 0 3px 15px #3c2d2430; }
+.miniature-work-inspection figure > svg { display: block; width: 100%; height: auto; }
+.miniature-work-inspection h3 { font: 22px/1.3 'Young Serif', Georgia, serif; margin: 0 0 12px; color: #263e31; }
+.miniature-work-inspection p { font: 15px/1.5 'Atkinson Hyperlegible', sans-serif; max-width: 50ch; }
+.miniature-work-inspection .miniature-work-inspection__stage { text-transform: uppercase; font-size: 11px; letter-spacing: .13em; color: #6a5b36; margin: 0 0 12px; }
+.miniature-work-inspection button { min-height: 44px; font: 14px 'Atkinson Hyperlegible', sans-serif; background: #263e31; color: #f7ecd4; border: 1px solid #263e31; padding: 10px 18px; cursor: pointer; }
+@media (max-width: 640px) { .miniature-work-inspection { grid-template-columns: 1fr; padding: 22px; gap: 20px; } .miniature-work-inspection figure { max-width: 300px; width: 100%; margin: auto; } .miniature-world__work { padding: 8px; } }

@@ -1,0 +1,410 @@
+/* Lantern Works miniature. Motion is opt-out via .lw-reduced (the reducedMotion prop) and the media query.
+   Everything that moves animates transform or opacity only. */
+.lw-world {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--dusk-900);
+  font-family: var(--font-body);
+}
+
+.lw-phone {
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.lw-sign {
+  font-family: var(--font-sign);
+}
+
+.lw-clock {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.lw-tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.lw-retired {
+  opacity: 0.38;
+}
+
+.lw-gone {
+  display: none;
+}
+
+/* Neighbours. */
+.lw-nb[role='button'] {
+  cursor: pointer;
+  outline: none;
+}
+
+.lw-nb .lw-focus {
+  opacity: 0;
+}
+
+.lw-nb:focus-visible .lw-focus {
+  opacity: 1;
+}
+
+.lw-nb:hover .lw-hit {
+  fill: var(--lamp-glow);
+  fill-opacity: 0.35;
+}
+
+/* People: a working bob, legs that swing while walking. */
+.lw-leg {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+.lw-world:not(.lw-reduced) .lw-bob {
+  animation: lw-bob 900ms ease-in-out infinite alternate;
+}
+
+.lw-world:not(.lw-reduced) .lw-walking .lw-leg {
+  animation: lw-swing 300ms ease-in-out infinite alternate;
+}
+
+.lw-world:not(.lw-reduced) .lw-walking .lw-leg-b {
+  animation-direction: alternate-reverse;
+}
+
+/* Morning arrivals: in from the left along the street, one after another. */
+.lw-world:not(.lw-reduced) .lw-arrive {
+  animation: lw-arrive 1100ms cubic-bezier(0.2, 0.7, 0.3, 1) var(--delay, 0ms) backwards;
+}
+
+.lw-world:not(.lw-reduced) .lw-arrive .lw-leg {
+  animation: lw-swing 275ms ease-in-out 4 alternate;
+  animation-delay: var(--delay, 0ms);
+}
+
+.lw-world:not(.lw-reduced) .lw-arrive .lw-bubble {
+  animation: lw-fade-in 300ms ease-out backwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Folders arc between surfaces. */
+.lw-world:not(.lw-reduced) .lw-fly {
+  animation: lw-arc 650ms ease-in-out;
+}
+
+/* Beats start invisible: with animations off they are never seen. */
+.lw-beat {
+  opacity: 0;
+}
+
+.lw-world:not(.lw-reduced) .lw-parcel {
+  animation: lw-parcel 800ms ease-in-out;
+}
+
+.lw-world:not(.lw-reduced) .lw-land {
+  animation: lw-land 800ms linear;
+}
+
+.lw-world:not(.lw-reduced) .lw-pip {
+  animation: lw-pip 900ms ease-out 450ms;
+}
+
+.lw-world:not(.lw-reduced) .lw-ride {
+  animation: lw-ride 1300ms ease-in 450ms;
+}
+
+.lw-world:not(.lw-reduced) .lw-binned {
+  animation: lw-show 1600ms linear;
+}
+
+.lw-world:not(.lw-reduced) .lw-fly-bin {
+  animation: lw-bin 900ms ease-in both;
+}
+
+.lw-world:not(.lw-reduced) .lw-burst {
+  animation: lw-burst 1300ms ease-out 650ms;
+}
+
+.lw-world:not(.lw-reduced) .lw-dim {
+  animation: lw-dim 1800ms ease-in-out;
+}
+
+/* Kit ready: the cards pop onto their pins and a shine crosses the board. */
+.lw-pop {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+.lw-world:not(.lw-reduced) .lw-pop {
+  animation: lw-pop 420ms cubic-bezier(0.3, 1.6, 0.5, 1) backwards;
+}
+
+.lw-shimmer {
+  opacity: 0;
+}
+
+.lw-world:not(.lw-reduced) .lw-shimmer {
+  animation: lw-shimmer 750ms ease-in-out 120ms;
+}
+
+/* The window sign flips over when the menu changes or the shop closes. */
+.lw-flip {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+.lw-world:not(.lw-reduced) .lw-flip {
+  animation: lw-flip 420ms ease-out;
+}
+
+/* Status marks. */
+.lw-world:not(.lw-reduced) .lw-warn {
+  animation: lw-blink 1s steps(1, end) infinite;
+}
+
+.lw-world:not(.lw-reduced) .lw-puff {
+  animation: lw-rise 900ms ease-out backwards;
+}
+
+.lw-world:not(.lw-reduced) .lw-screen-glow {
+  animation: lw-flicker 2.6s linear infinite;
+}
+
+@keyframes lw-bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes lw-swing {
+  from {
+    transform: rotate(-16deg);
+  }
+  to {
+    transform: rotate(16deg);
+  }
+}
+
+@keyframes lw-arrive {
+  from {
+    transform: translate(-230px, -68px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes lw-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lw-arc {
+  from {
+    transform: translate(var(--dx), var(--dy));
+  }
+  50% {
+    transform: translate(calc(var(--dx) * 0.5), calc(var(--dy) * 0.5 - 30px));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes lw-parcel {
+  0% {
+    opacity: 1;
+    transform: translate(var(--dx), var(--dy));
+  }
+  45% {
+    opacity: 1;
+    transform: translate(calc(var(--dx) * 0.5), calc(var(--dy) * 0.5 - 34px));
+  }
+  85% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@keyframes lw-land {
+  0%,
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes lw-pip {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.6);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-16px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
+
+@keyframes lw-ride {
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(var(--dx), var(--dy));
+  }
+}
+
+@keyframes lw-show {
+  0%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lw-bin {
+  0% {
+    transform: translate(var(--dx), var(--dy));
+  }
+  55% {
+    transform: translate(calc(var(--dx) * 0.4), calc(var(--dy) * 0.4 - 40px));
+  }
+  100% {
+    transform: translateY(12px);
+  }
+}
+
+@keyframes lw-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(1.25);
+  }
+}
+
+@keyframes lw-dim {
+  0% {
+    opacity: 0;
+  }
+  25%,
+  70% {
+    opacity: 0.28;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lw-pop {
+  from {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+}
+
+@keyframes lw-shimmer {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  20% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(110px);
+  }
+}
+
+@keyframes lw-flip {
+  0% {
+    transform: scaleY(0.05);
+  }
+  65% {
+    transform: scaleY(1.06);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes lw-blink {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+@keyframes lw-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes lw-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  45% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lw-world *,
+  .lw-world *::before,
+  .lw-world *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.lw-reduced * {
+  animation: none !important;
+  transition: none !important;
+}

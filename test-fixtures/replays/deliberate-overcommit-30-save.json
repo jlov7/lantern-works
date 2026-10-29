@@ -1,0 +1,763 @@
+{
+  "v": 1,
+  "rules": "lantern-6.1.0",
+  "id": "audit-deliberate-overcommit-30",
+  "label": "Audit deliberate-overcommit-30",
+  "savedAt": "2026-10-27T13:51:04.343Z",
+  "config": {
+    "scenarioId": "main-street",
+    "seed": "first-season"
+  },
+  "commands": [
+    {
+      "type": "setMenu",
+      "offers": [
+        {
+          "name": "Bespoke Launch",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 3,
+          "scope": "any",
+          "style": "custom",
+          "price": 900
+        },
+        {
+          "name": "Street card",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 2,
+          "scope": "simple",
+          "style": "templated",
+          "price": 330
+        }
+      ]
+    },
+    {
+      "type": "hire"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r0",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "title",
+              "detail",
+              "customer"
+            ],
+            "headline": "Leave the light on for the late set",
+            "motifs": [
+              {
+                "id": "trumpet",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      },
+      "intention": "clem-band"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r2",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r3",
+      "maker": "h2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d0-r1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r0",
+      "counter": true,
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "title",
+              "detail",
+              "customer"
+            ],
+            "headline": "A place at the counter",
+            "motifs": [
+              {
+                "id": "loaf",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      },
+      "intention": "mara-newcomers"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r3"
+    },
+    {
+      "type": "mentor",
+      "resourceId": "j1",
+      "specialization": "templates"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n2",
+      "option": 0
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "clem-ten",
+      "approach": "new-band",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "split",
+            "palette": "poppy",
+            "typeface": "serif",
+            "copy": [
+              "band",
+              "anniversary",
+              "venue"
+            ],
+            "motifs": [
+              {
+                "id": "trumpet",
+                "x": 71,
+                "y": 50,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      }
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r4",
+      "maker": "h2"
+    },
+    {
+      "type": "buy",
+      "item": "checklist"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r3"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n3",
+      "option": 2
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r0",
+      "counter": true,
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "title",
+              "detail",
+              "customer"
+            ],
+            "headline": "A place at the counter",
+            "motifs": [
+              {
+                "id": "loaf",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      },
+      "intention": "mara-newcomers"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r5",
+      "maker": "h1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r6",
+      "maker": "h2",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "title",
+              "detail",
+              "customer"
+            ],
+            "headline": "Leave the light on for the late set",
+            "motifs": [
+              {
+                "id": "trumpet",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      },
+      "intention": "clem-band"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n4",
+      "option": 0
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "mara-regular",
+      "approach": "weekly-rhythm",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "card",
+            "layout": "stack",
+            "palette": "midnight",
+            "typeface": "serif",
+            "copy": [
+              "card-1",
+              "bakery"
+            ],
+            "motifs": [
+              {
+                "id": "loaf",
+                "x": 50,
+                "y": 35,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          },
+          {
+            "kind": "card",
+            "layout": "stack",
+            "palette": "midnight",
+            "typeface": "serif",
+            "copy": [
+              "card-2",
+              "bakery"
+            ],
+            "motifs": [
+              {
+                "id": "loaf",
+                "x": 50,
+                "y": 35,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          },
+          {
+            "kind": "card",
+            "layout": "stack",
+            "palette": "midnight",
+            "typeface": "serif",
+            "copy": [
+              "card-3",
+              "bakery"
+            ],
+            "motifs": [
+              {
+                "id": "loaf",
+                "x": 50,
+                "y": 35,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      }
+    },
+    {
+      "type": "reserve",
+      "requestId": "d4-r1",
+      "startsInDays": 2
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r7"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r5",
+      "maker": "h2",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "title",
+              "detail",
+              "customer"
+            ],
+            "headline": "The hours in these hands",
+            "motifs": [
+              {
+                "id": "watch",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      },
+      "intention": "hugo-next-hands"
+    },
+    {
+      "type": "decline",
+      "requestId": "d4-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n5",
+      "option": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r10"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r11"
+    },
+    {
+      "type": "decline",
+      "requestId": "d5-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d5-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n6",
+      "option": 1
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r0"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r9"
+    },
+    {
+      "type": "decline",
+      "requestId": "d6-r10"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n7",
+      "option": 0
+    },
+    {
+      "type": "setMenu",
+      "offers": [
+        {
+          "name": "Bespoke Launch",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 3,
+          "scope": "any",
+          "style": "custom",
+          "price": 900
+        },
+        {
+          "name": "Street card",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 1,
+          "scope": "simple",
+          "style": "templated",
+          "price": 330
+        }
+      ]
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r5",
+      "maker": "h1"
+    },
+    {
+      "type": "reserve",
+      "requestId": "d7-r7",
+      "startsInDays": 1
+    },
+    {
+      "type": "reserve",
+      "requestId": "d7-r11",
+      "startsInDays": 1,
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "poster",
+            "layout": "gallery",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "title",
+              "detail",
+              "customer"
+            ],
+            "motifs": [
+              {
+                "id": "watch",
+                "x": 50,
+                "y": 50,
+                "scale": 3,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      }
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r6"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r8"
+    },
+    {
+      "type": "decline",
+      "requestId": "d7-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n8",
+      "option": 1
+    },
+    {
+      "type": "overtime"
+    },
+    {
+      "type": "reserve",
+      "requestId": "d8-r2",
+      "startsInDays": 1
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r12",
+      "maker": "h2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n9",
+      "option": 0
+    },
+    {
+      "type": "pace",
+      "pace": "push"
+    },
+    {
+      "type": "letGo",
+      "resourceId": "j1"
+    },
+    {
+      "type": "pace",
+      "pace": "careful"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r4"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r5"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r7"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r8"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r9"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r10"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r11"
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r12"
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "lantern-night",
+      "approach": "trail",
+      "design": {
+        "version": 1,
+        "pieces": [
+          {
+            "kind": "programme",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "event",
+              "date",
+              "place",
+              "contributors"
+            ],
+            "motifs": [
+              {
+                "id": "lantern",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          },
+          {
+            "kind": "map",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "event",
+              "date",
+              "place",
+              "contributors"
+            ],
+            "motifs": [
+              {
+                "id": "lantern",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          },
+          {
+            "kind": "sign",
+            "layout": "headline",
+            "palette": "river",
+            "typeface": "serif",
+            "copy": [
+              "event",
+              "date",
+              "place",
+              "contributors"
+            ],
+            "motifs": [
+              {
+                "id": "lantern",
+                "x": 50,
+                "y": 56,
+                "scale": 2,
+                "rotation": 0
+              }
+            ],
+            "treatment": "standard"
+          }
+        ]
+      }
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ride"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ride"
+    }
+  ]
+}

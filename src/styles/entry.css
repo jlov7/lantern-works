@@ -1,0 +1,61 @@
+.title .title-copy { min-width: 0; }
+.title h1 { overflow-wrap: anywhere; hyphens: auto; }
+.title .street-list { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.title .street { min-width: 0; }
+.title .street-event { color: var(--lamp-soft); font-weight: 700; margin-block: .4rem .75rem; }
+.title .street-challenges { margin-top: .5rem; border-top: 1px solid var(--ui-edge); }
+.title .street-challenges > summary { min-height: 44px; padding-block: .65rem; cursor: pointer; font-size: .9rem; }
+.title .street-challenges p { margin-bottom: .5rem; }
+.title .first-season .btn { max-width: 100%; }
+.title .first-season p, .title .street p { overflow-wrap: anywhere; }
+.title .how p { max-width: 70ch; }
+.title-miniature { min-width: 0; container-type: inline-size; }
+.title .title-miniature .hero-world { position: relative; aspect-ratio: 12 / 7; }
+.title .title-miniature .hero-world > svg { position: absolute; inset: 0; height: 100%; }
+.title-illustration-placeholder { display: grid; place-content: center; gap: .5rem; text-align: center; color: var(--ui-paper); background: var(--ui-deep); }
+.title-illustration-placeholder > span { font: 1.5rem var(--font-sign); }
+.title-illustration-placeholder > small { line-height: 1.4; color: var(--ui-muted); }
+@container (max-width: 639px) {
+  .title .title-miniature .hero-world { aspect-ratio: 100 / 74; }
+}
+@media (max-width: 900px) {
+  .title .title-hero > .hero-world { order: 0; }
+}
+
+/* A commission on the table, with its street beyond the window. */
+.title .title-hero { gap: clamp(1.5rem, 4vw, 3.5rem); }
+.title .title-sign { margin-bottom: 1rem; }
+.title h1 { max-width: 14ch; hyphens: none; font-size: clamp(2.3rem, 4.5vw, 3.8rem); line-height: 1.08; }
+.title .lede { max-width: 36ch; line-height: 1.55; }
+.title .first-season { background: transparent; border: 0; padding: 0; margin-top: 1.5rem; }
+.title .first-season p { margin-bottom: .65rem; }
+.title-scene, .title-illustration-placeholder { aspect-ratio: 1.15; border: 1px solid #836b4b; border-radius: 5px; overflow: hidden; background: #423326; }
+.title-scene { display: grid; grid-template-rows: 48% 52%; box-shadow: 0 18px 50px #0005; }
+.title-scene__street { position: relative; overflow: hidden; border: 9px solid #4c3828; border-bottom-width: 12px; }
+.title-scene__street img { width: 100%; height: 100%; object-fit: cover; object-position: center 58%; display: block; }
+.title-scene__street span { position: absolute; bottom: .6rem; left: .7rem; padding: .2rem .5rem; color: #f5e8cd; background: #2e2923d9; font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; }
+.title-scene__desk { position: relative; background: repeating-linear-gradient(4deg, #78513a, #78513a 2px, #805a40 3px, #805a40 27px); }
+.title-scene__proof { position: absolute; width: 46%; top: -18%; left: 8%; transform: rotate(-5deg); padding: 2%; background: #eee2c5; box-shadow: 0 5px 14px #24181080; }
+.title-scene__proof svg { display: block; width: 100%; }
+.title-scene__note { position: absolute; top: 25%; left: 58%; color: #faeed6; display: grid; gap: .35rem; }
+.title-scene__note span { text-transform: uppercase; letter-spacing: .1em; font-size: 10px; }
+.title-scene__note strong { font: clamp(16px, 2vw, 24px)/1.2 var(--font-sign); }
+.title-scene__note small { max-width: 12ch; line-height: 1.3; }
+.title-scene__clem { position: absolute; right: -2%; bottom: -11%; width: 25%; filter: drop-shadow(0 4px 5px #24181099); }
+.title-drawer { margin-top: .75rem; border-top: 1px solid var(--ui-edge); }
+.title-drawer > summary { cursor: pointer; min-height: 3.5rem; padding: .8rem .15rem; display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; color: var(--ui-paper); }
+.title-drawer > summary::before { content: '+'; color: var(--lamp-soft); font-size: 1.25rem; }
+.title-drawer[open] > summary::before { content: '−'; }
+.title-drawer > summary span, .title-drawer > summary h2 { font: 1.15rem var(--font-sign); margin: 0; }
+.title-drawer > summary small { color: var(--ui-muted); }
+.title-drawer .saved { margin-top: .5rem; }
+.title .title-foot { margin-top: 1.5rem; }
+@media (max-width: 900px) {
+  .title .title-hero { gap: 1.5rem; }
+  .title-miniature { order: 0; }
+  .title-scene, .title-illustration-placeholder { aspect-ratio: 1.35; }
+}
+@media (max-width: 480px) {
+  .title-scene__note strong { font-size: 16px; }
+  .title-scene__note small { display: none; }
+}

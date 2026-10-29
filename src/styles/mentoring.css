@@ -1,0 +1,12 @@
+.mentoring { margin-block: 1rem; padding: 1rem; border: 1px solid var(--ui-edge); border-radius: .6rem; background: var(--ui-paper); color: var(--ui-ink); }
+.mentoring summary { cursor: pointer; font-weight: 650; min-height: 2.75rem; align-content: center; }
+.mentoring h3 { margin: 0 0 .5rem; }
+.mentoring fieldset { border: 0; margin: 0; padding: 0; }
+.mentoring legend { font-weight: 600; margin-block: .75rem; }
+.mentoring-option { display: flex; gap: .7rem; padding: .8rem 0; align-items: flex-start; cursor: pointer; }
+.mentoring-option input { flex-shrink: 0; margin-top: .25rem; }
+.mentoring-option span span { display: block; font-size: .9rem; line-height: 1.5; margin-top: .3rem; }
+.mentoring-quote { border-top: 1px solid var(--ui-paper-shade); padding-top: .8rem; }
+.mentoring-quote > button { margin-top: .75rem; }
+.dayplan-block.stage-mentoring { background: #816a98; }
+@media (max-width: 599px) { .mentoring { padding: .8rem; } .mentoring-quote > button { width: 100%; } }

@@ -1,0 +1,168 @@
+/* One command surface, with room for a roster beside the decision on a large screen. */
+.workspace-stage.stage { display: block; max-width: 1480px; padding: 1rem; }
+.workspace-place { min-width: 0; }
+.workspace-place .world-col { position: static; width: 100%; }
+.workspace-place .world-wrap { max-height: none; }
+.workspace-place .due-next { display: block; margin-block: 1rem; }
+.workspace-place .planning { padding: 1rem 0; }
+.workspace-place .planning-tabs { display: block; }
+.workspace-place .tablist { flex-wrap: wrap; }
+.workspace-queue { padding: 0; grid-template-columns: minmax(0, 1fr); }
+.workspace-queue > * { min-width: 0; }
+.workspace-place .btn, .workspace-dock .btn { white-space: normal; max-width: 100%; overflow-wrap: anywhere; }
+.window-status { margin-bottom: .6rem; }
+.window-status h2 { margin-bottom: .15rem; }
+.roster-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .4rem; }
+.roster-peek { margin-bottom: .6rem; border-block: 1px solid var(--ui-edge); }
+.roster-peek summary, .decision-levers summary, .morning-notes summary, .decision-plan summary { min-height: 44px; padding-block: .6rem; cursor: pointer; }
+.roster-peek ul, .queue-comparison .tickets { list-style: none; padding: 0; margin: 0; display: grid; gap: .4rem; }
+.roster-row { width: 100%; min-height: 64px; text-align: left; border: 1px solid var(--ui-edge); border-radius: 6px; background: var(--ui-surface); color: var(--ui-text); padding: .65rem .75rem; display: grid; gap: .1rem; cursor: pointer; }
+.roster-row strong { color: var(--lamp-soft); }
+.roster-row.is-current { border-color: var(--lamp); }
+.roster-fit { color: var(--lamp-soft); }
+.focused-decision .ticket { display: flex; flex-direction: column; align-items: stretch; gap: .35rem; padding: .85rem 1rem; mask: none; }
+.focused-decision .ticket-head { display: flex; }
+.focused-decision .ticket-line { font-size: 1rem; margin: 0; }
+.focused-decision .ticket-head .ticket-biz { margin-left: 0; }
+.focused-decision .ticket .ticket-actions { display: flex; flex-wrap: wrap; margin-top: .4rem; gap: .4rem; }
+.focused-decision .ticket-name { font-size: 1.45rem; }
+.focused-decision .ticket .btn { min-height: 44px; }
+.focused-decision .ticket .btn-maker { min-height: 76px; justify-content: flex-start; }
+.focused-decision .ticket .btn-maker.is-chosen { background: var(--ui-ink); border-color: var(--ui-ink); color: var(--ui-paper); }
+.focused-decision .maker-actions { margin-top: 0; }
+.maker-choice { border: 0; padding: 0; margin: .2rem 0 0; }
+.maker-choice legend { font-weight: 700; margin-bottom: .3rem; }
+.maker-radio { display: inline-block; min-width: 1rem; }
+.window-scene { display: none; }
+.focused-decision .ticket .verdict { font-size: 1rem; }
+.focused-decision .ticket .dayplan { margin-top: .5rem; }
+.workspace-place .dayplan-ticks { margin-right: 1rem; }
+.workspace-place .dayplan-lane { grid-template-columns: 4.5rem minmax(0, 1fr); }
+
+.reply-receipt { background: var(--ui-surface); border: 1px solid var(--lamp); padding: 1.25rem; border-radius: 8px; }
+.reply-receipt .ticket-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.decision-levers, .morning-notes { margin-top: .75rem; }
+.due-link { border: 0; background: none; color: var(--lamp-soft); padding: .4rem 0 .75rem; text-align: left; min-height: 44px; text-decoration: underline; cursor: pointer; }
+.pending-news { font-weight: 700; color: var(--lamp-soft); }
+#pending-news { margin-bottom: 1rem; }
+.queue-comparison { color: var(--ui-text); background: var(--ui-deep); width: min(760px, calc(100% - 2rem)); max-height: calc(100dvh - 2rem); padding: 1.25rem; border: 1px solid var(--ui-edge); border-radius: 12px; overflow: auto; }
+.queue-comparison::backdrop { background: rgb(0 0 0 / 70%); }
+.queue-comparison > header { display: flex; gap: .75rem; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.queue-comparison .queue-head { padding-bottom: 1rem; }
+.queue-comparison .tickets > li { color: var(--ui-text); }
+.queue-comparison .ticket-group { background: var(--ui-surface); color: var(--ui-text); border: 1px solid var(--ui-edge); mask: none; display: block; }
+.queue-comparison .ticket-group .ticket-actions { display: flex; flex-wrap: wrap; margin-top: .75rem; }
+.queue-comparison .ticket-group .btn { color: var(--ui-text); border-color: var(--ui-muted); }
+.queue-comparison .ticket-group .btn-take { background: var(--lamp); color: var(--ui-ink); }
+.queue-comparison .walker-list li { display: block; margin-bottom: .75rem; }
+.queue-comparison .btn { min-height: 44px; white-space: normal; }
+.queue-comparison .queue-notes { margin-block: .75rem; }
+.workspace-dock.actionbar { position: fixed; z-index: 25; inset: auto 0 0; padding: .35rem max(.5rem, env(safe-area-inset-left)) calc(.35rem + env(safe-area-inset-bottom)); gap: .25rem; background: var(--ui-deep); border-top: 1px solid var(--ui-edge); }
+.workspace-dock .actionbar-row { position: static; width: 100%; max-width: 1180px; padding: 0; border: 0; box-shadow: none; background: none; animation: none; flex-wrap: wrap; }
+.workspace-dock .actionbar-row::before { display: none; }
+.workspace-dock > .outlook { margin: 0 auto; width: min(100%, 1180px); }
+.workspace-dock .place-nav { width: min(100%, 1180px); margin: auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .3rem; }
+.place-nav .btn { min-height: 44px; padding-inline: .1rem; border-color: transparent; background: none; color: var(--ui-muted); }
+.place-nav .btn[aria-current] { background: var(--ui-surface); border-color: var(--lamp); color: var(--lamp-soft); }
+.workspace-dock .btn-open { flex: 1; max-width: 38rem; }
+.workspace-dock .btn-review { display: none; }
+.workspace-dock > .coach { width: min(100%, 42rem); margin: 0 auto .3rem; }
+.return-customer, .review-tomorrow { margin-block: .5rem 1rem; }
+.work-place .evening { margin-block: 1rem; container-type: inline-size; }
+.is-evening .work-place > .evening { margin-top: 0; }
+.is-composing .workspace-stage.stage { padding: .5rem; }
+@container (max-width: 17rem) { .evening-stats { grid-template-columns: minmax(0, 1fr); gap: .5rem; } }
+.work-place .dayplan { margin-block: 1rem; }
+.workspace-place .promises, .workspace-place .dayplan { container-type: inline-size; }
+@container (max-width: 17rem) {
+  .promise-list li { grid-template-columns: minmax(0, 1fr); gap: .15rem; }
+  .promise-list .p-due { grid-column: 1; grid-row: 2; }
+  .promise-list .p-state { grid-row: 3; }
+  .workspace-place .dayplan-lane { grid-template-columns: minmax(0, 1fr); gap: .2rem; }
+  .workspace-place .dayplan-ticks { margin-left: 0; }
+}
+.work-place .race-bars li { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto; }
+.work-place .race-bars li > span:first-child { overflow-wrap: anywhere; }
+.work-place .world-wrap > svg { width: 100%; height: auto; max-height: 480px; }
+.workshop .ws-mini { display: block; }
+
+@media (min-width: 900px) {
+  .workspace-queue { display: grid; grid-template-columns: minmax(280px, .65fr) minmax(0, 1fr); gap: .5rem 1.5rem; }
+  .workspace-queue > .window-status, .workspace-queue > .roster-controls, .workspace-queue > .coach { grid-column: 1 / -1; }
+  .workspace-queue > .window-neighbours { grid-column: 1; grid-row: 3 / span 4; }
+  .workspace-queue .roster-peek { margin: 0; border: 0; }
+  .workspace-queue .roster-peek > summary { font-weight: 700; }
+  .workspace-queue .roster-peek > ul { display: grid; }
+  .window-scene { display: block; margin-bottom: .75rem; }
+  .window-scene > svg { width: 100%; height: auto; }
+  .window-scene .due-next { margin-block: .5rem; }
+  .workspace-queue > .coach { grid-column: 2; }
+  .workspace-queue > .focused-decision, .workspace-queue > .decision-levers { grid-column: 2; }
+  .work-place { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 1.25rem; }
+  .work-place > .world-col, .work-place > .call, .work-place > .evening, .work-place > .review-tomorrow, .work-place > .daylog { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .workspace-stage.stage { padding: .65rem .75rem; }
+  .game .topbar { min-height: 56px; gap: .3rem; }
+  .game .topbar .stat-served, .game .topbar .stat-profit { display: none; }
+  .game .topbar .topbar-day { margin-right: auto; }
+  .game .topbar .stat-cash { padding-inline: .4rem; }
+  .game .topbar .stat-cash .stat-label { display: none; }
+  .game .topbar-more summary { min-height: 44px; display: flex; align-items: center; }
+  .roster-controls { align-items: flex-start; }
+  .roster-controls .btn { font-size: .875rem; }
+  .focused-decision .ticket { padding: .7rem; gap: .3rem; }
+  .focused-decision .ticket-name { font-size: 1.3rem; }
+  .focused-decision .ticket .ticket-small { font-size: 1rem; }
+  .focused-decision .ticket .btn-maker { padding: .4rem; }
+  .focused-decision .ticket .btn-maker .small { font-size: .875rem; }
+  .queue-comparison { width: 100%; max-width: none; height: 100dvh; max-height: 100dvh; margin: 0; border: 0; border-radius: 0; padding: .9rem; }
+  .queue-comparison > header { position: sticky; top: -.9rem; z-index: 3; background: var(--ui-deep); padding-block: .5rem; }
+  .queue-comparison > header .btn { max-width: 48%; }
+  .workspace-dock .actionbar-row { gap: .35rem; }
+  .workspace-dock .actionbar-row > .btn { min-height: 44px; font-size: .9rem; }
+  .workspace-dock .open-sub { font-size: .8rem; }
+  .workspace-dock .playbar-track { display: none; }
+  .workspace-dock .playbar .clock { min-width: 3rem; }
+  .workshop .workshop-foot { flex-wrap: wrap; gap: .4rem; }
+  .workshop .workshop-foot .btn { flex: 1; min-width: 0; white-space: normal; }
+}
+@media (max-height: 580px) {
+  .workspace-dock.actionbar { position: static; margin: 1rem 0 0; }
+  .game { padding-bottom: 0; }
+  .game .topbar-wrap { position: static; }
+  .workspace-dock > .coach { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .focused-decision .ticket, .reply-receipt { animation: none; }
+}
+
+.workspace-dock.actionbar[data-flowing='true'] { position: static; margin-top: 1rem; }
+.game:has(.workspace-dock[data-flowing='true']) { padding-bottom: 0; }
+.compare-options > summary { min-height: 44px; padding-block: .7rem; cursor: pointer; }
+.compare-bulk { margin-bottom: 1rem; }
+.comparison-group-roster { list-style: none; padding: 0; display: grid; gap: .4rem; }
+
+.focused-decision .brief-preview { border-top: 1px solid #b9ad99; margin-top: .3rem; }
+.brief-preview > summary { min-height: 52px; cursor: pointer; display: flex; align-items: center; gap: .65rem; padding-block: .4rem; font-weight: 700; }
+.brief-preview > summary .campaign-art { width: 30px; height: 40px; flex: 0 0 30px; }
+.brief-preview .brief-artwork { margin: .25rem 0; flex-wrap: wrap; }
+.brief-preview .brief-artwork .campaign-art { flex-basis: 180px; width: min(100%, 180px); max-height: 340px; }
+.brief-preview .brief-artwork figcaption { flex: 1 1 10rem; }
+.work-place > .portfolio { grid-column: 1 / -1; min-width: 0; }
+
+.morning-overview { grid-column: 1 / -1; padding: .7rem .9rem; margin-bottom: .5rem; background: var(--ui-surface); border-left: 3px solid var(--lamp); }
+.morning-overview p { margin: .15rem 0; }
+.morning-replies fieldset { display: grid; gap: .4rem; padding: .5rem 0; border: 0; }
+.morning-replies label { display: flex; align-items: center; gap: .6rem; min-height: 44px; }
+.morning-replies input { width: 22px; height: 22px; flex-shrink: 0; }
+.morning-replies .ticket-actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+.morning-replies .btn { min-height: 44px; white-space: normal; }
+@media (min-width: 900px) { .workspace-queue > .window-neighbours { grid-row: 4 / span 4; } }
+
+@media (min-width: 900px) { .workspace-queue .roster-peek > ul { max-height: min(45dvh, 30rem); overflow-y: auto; overscroll-behavior: contain; padding-right: .3rem; } }
+
+.morning-replies fieldset { max-height: min(40svh, 24rem); overflow-y: auto; overscroll-behavior: contain; }
+
+.modal:has(.morning-replies) .modal-head h2 { min-width: 0; overflow-wrap: anywhere; }
+.modal:has(.morning-replies) .modal-head > button { flex-shrink: 0; white-space: nowrap; }

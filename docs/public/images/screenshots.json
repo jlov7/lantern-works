@@ -1,0 +1,28 @@
+{
+  "rules": "lantern-7.0.0",
+  "capturedOn": "2026-10-29",
+  "method": "Chromium production build, visible UI interactions, reduced motion, 1440 by 1000 viewport; delivery captures its panel. Converted from PNG to WebP.",
+  "sequence": [
+    "Compose a first print for Clem",
+    "Accept it and open the first workday",
+    "See the delivered print",
+    "Follow the remembered invitation and sketch the anniversary photograph"
+  ],
+  "images": [
+    {
+      "file": "delivery.webp",
+      "bytes": 23868,
+      "sha256": "a7c855c6ac559616aa834c789dbcda57bb8c5ce48ceb36420e132b01fe495766"
+    },
+    {
+      "file": "drawing-desk.webp",
+      "bytes": 65006,
+      "sha256": "cdca63e4f2d11cbe3b1abc64d19bd3522e02f118cc44f31063dc13f5ed6cee96"
+    },
+    {
+      "file": "window.webp",
+      "bytes": 113442,
+      "sha256": "80079ebf461f9ce9e8bd8e1d6e84fd0acfd0b68b86be5596ab92b519a440a9e2"
+    }
+  ]
+}

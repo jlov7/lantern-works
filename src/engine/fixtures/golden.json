@@ -1,0 +1,15 @@
+{
+  "rulesVersion": "lantern-7.0.0",
+  "tapeVersion": "lantern-tape-3",
+  "runs": {
+    "main-street/old": "e08af85de20de59a",
+    "main-street/faster": "3e5cae9ebe6d580b",
+    "main-street/active": "357c381c45ce4621",
+    "festival-week/old": "a0ef1f8a5b451218",
+    "festival-week/faster": "832c4a0f8fdcbb20",
+    "festival-week/active": "2f0f1368dc13bcca",
+    "bespoke-rush/old": "07a5fabd5d0493a2",
+    "bespoke-rush/faster": "b06253bcb58c691d",
+    "bespoke-rush/active": "36e1679cdfbaddd2"
+  }
+}

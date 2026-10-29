@@ -1,0 +1,13 @@
+.payoff-response { margin: 0 0 .65rem; font-size: .95rem; line-height: 1.55; text-wrap: pretty; }
+.payoff-progress .payoff-heading h3 { font-size: 1.3rem; }
+.payoff-progress .payoff-body { grid-template-columns: 84px minmax(0, 1fr); }
+.payoff-delivery:is(.payoff-delivered,.payoff-compromised) .payoff-body { display:grid; grid-template-columns:minmax(170px,.9fr) minmax(0,1.2fr); align-items:center; gap:clamp(1rem,3vw,2.5rem); padding:1rem clamp(1rem,3vw,2rem) 1.5rem; }
+.payoff-delivery:is(.payoff-delivered,.payoff-compromised) .payoff-milestone-art { padding:clamp(.8rem,2vw,1.5rem); background:#3a4d40; box-shadow:inset 0 0 0 1px #16291d44; }
+.payoff-delivery:is(.payoff-delivered,.payoff-compromised) .campaign-art { max-width:340px; margin-inline:auto; transform:rotate(-1deg); }
+.payoff-delivery .payoff-words { padding:0; }
+.payoff-customer { float:right; width:72px; height:88px; margin:0 0 .6rem .75rem; overflow:hidden; border-radius:45% 45% 3px 3px; background:#dac7a5; }
+.payoff-invitation { margin-top:1rem; }
+@media (max-width:600px) {
+  .payoff-delivery:is(.payoff-delivered,.payoff-compromised) .payoff-body { grid-template-columns:1fr; gap:.8rem; padding:.65rem .85rem 1rem; }
+  .payoff-delivery:is(.payoff-delivered,.payoff-compromised) .payoff-milestone-art { width:min(100%,240px); box-sizing:border-box; margin-inline:auto; }
+}

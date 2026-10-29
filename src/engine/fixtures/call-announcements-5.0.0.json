@@ -1,0 +1,184 @@
+{
+  "rules": "lantern-5.0.0",
+  "config": {
+    "scenarioId": "festival-week",
+    "seed": "8000"
+  },
+  "commands": [
+    {
+      "type": "setMenu",
+      "offers": [
+        {
+          "name": "Bespoke Launch",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 3,
+          "scope": "any",
+          "style": "custom",
+          "price": 900
+        },
+        {
+          "name": "Launchlet",
+          "launches": 1,
+          "spacingDays": 3,
+          "turnaroundDays": 1,
+          "scope": "simple",
+          "style": "templated",
+          "price": 340
+        }
+      ]
+    },
+    {
+      "type": "accept",
+      "requestId": "d0-r0"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "hire"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r5"
+    },
+    {
+      "type": "decline",
+      "requestId": "d1-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n2",
+      "option": 1
+    },
+    {
+      "type": "acceptProject",
+      "projectId": "clem-ten",
+      "approach": "first-night",
+      "maker": "h1"
+    },
+    {
+      "type": "mentor",
+      "resourceId": "j1",
+      "specialization": "templates"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r2"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d2-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ring"
+    },
+    {
+      "type": "choose",
+      "newsId": "n3",
+      "option": 2
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r0"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r3"
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r10"
+    },
+    {
+      "type": "temp"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r1"
+    },
+    {
+      "type": "decline",
+      "requestId": "d3-r9"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n4",
+      "option": 1
+    },
+    {
+      "type": "pace",
+      "pace": "careful"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-n"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r1"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r3"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ring"
+    }
+  ],
+  "answerIndices": [
+    20,
+    36
+  ]
+}

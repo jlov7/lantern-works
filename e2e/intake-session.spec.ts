@@ -1,0 +1,48 @@
+import { LEGACY_RULES_VERSION } from '../src/engine/versions';
+import { expect, test } from '@playwright/test';
+import { PRESETS } from '../src/engine/rules';
+import { replay } from '../src/engine/sim';
+import type { Command } from '../src/engine/types';
+import { MAX_COMMANDS, shareSchema } from '../src/ui/schema';
+import ordinary from '../src/ui/game/fixtures/ordinary-order-intake.json' with { type: 'json' };
+import { selectCustomer } from './workspace-helpers';
+
+test('long saved intake keeps the separate-order warning and exact anniversary acceptance', async ({ page }, info) => {
+  const tape = shareSchema.parse(ordinary);
+  const edits: Command[] = Array.from({ length: MAX_COMMANDS + 2 }, () => ({ type: 'setMenu', offers: [PRESETS.bespoke] }));
+  const commands = [...edits, ...tape.commands.slice(0, 27)];
+  const save = { v: 1, rules: LEGACY_RULES_VERSION, id: 'long-intake', label: 'Long intake session', savedAt: new Date().toISOString(), config: tape.config, commands };
+  expect(replay(tape.config, commands, LEGACY_RULES_VERSION).errors).toEqual([]);
+  await page.goto('/');
+  await page.evaluate(save => {
+    localStorage.setItem('lantern.stamps.v1', JSON.stringify(['first-season']));
+    localStorage.setItem('lantern.guide.v1', 'replay');
+    localStorage.setItem('lantern.runs.v1', JSON.stringify([save]));
+  }, save);
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue Long intake session', exact: true }).click();
+  await expect(page.locator('.coach')).toHaveCount(0);
+  await expect(page.locator('.news-done')).toContainText('Ten years of Clem: not taken yet.');
+  const customer = await selectCustomer(page, 'd5-n');
+  await customer.getByRole('button', { name: 'Tomas makes it', exact: true }).click();
+  await customer.getByRole('button', { name: 'Take with Tomas', exact: true }).click();
+  await page.locator('.reply-receipt').getByRole('button', { name: /^Next customer/ }).click();
+  const news = page.locator('.news-done');
+  await expect(news).toContainText('Ten years of Clem: taken at the window.');
+  await expect(news).toContainText('Leave that order unanswered and Clem will not return.');
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('lantern.runs.v1')!).find((s: { id: string }) => s.id === 'long-intake'));
+  expect(saved.commands).toEqual([...edits, ...tape.commands.slice(0, 28)]);
+  const expected = replay(tape.config, saved.commands, LEGACY_RULES_VERSION);
+  expect(expected.errors).toEqual([]);
+  await page.reload();
+  await page.getByRole('button', { name: 'Continue Long intake session', exact: true }).click();
+  await expect(page.locator('.coach')).toHaveCount(0);
+  await expect(news).toContainText('Ten years of Clem: taken at the window.');
+  await expect(news).toContainText('Leave that order unanswered and Clem will not return.');
+  const restored = await page.evaluate(() => JSON.parse(localStorage.getItem('lantern.runs.v1')!).find((s: { id: string }) => s.id === 'long-intake'));
+  expect(restored.commands).toEqual(saved.commands);
+  expect(replay(tape.config, restored.commands, LEGACY_RULES_VERSION)).toEqual(expected);
+  await news.scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ path: `scratch/intake-session-${info.project.name}.png` });
+});

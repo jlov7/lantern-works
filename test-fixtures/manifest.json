@@ -1,0 +1,143 @@
+{
+  "formatVersion": 1,
+  "kind": "Synthetic game regression fixtures. Software replay coverage only.",
+  "fixtures": [
+    {
+      "file": "replays/absent-gathering-save.json",
+      "purpose": "Gathering with no earned contribution.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "98f9e7d4e1516bf2721c816e3bfeb1d7d47c63f1cd1506e9b07acfc9cac5faf2"
+    },
+    {
+      "file": "replays/ai-route-continuity.json",
+      "purpose": "Continuing AI route command replay.",
+      "rulesVersions": [
+        "lantern-4.7.1"
+      ],
+      "sha256": "d95349f7803544bd6d21e35e5cf3ae4fea51a8b3ece34f096967de77ec61cb77"
+    },
+    {
+      "file": "replays/busy-courtyard.json",
+      "purpose": "Busy studio capacity disclosure regression.",
+      "rulesVersions": [
+        "lantern-5.0.0"
+      ],
+      "sha256": "e216ff9f3b21d043a2b47635faf9153a6fed09ae05e91842ab90973ddc6b82cd"
+    },
+    {
+      "file": "replays/careful-season2.json",
+      "purpose": "Second-season relationship summary regression.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "d6392bab7ebc30e3ab24013c52c7f0b7bd9c6827455fffe5a82f05b1bfe6095b"
+    },
+    {
+      "file": "replays/continuing-storage.json",
+      "purpose": "Local-storage map containing continuing-season replays.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "cbe7f6412979306120113a44b665759563484f9337d821b85e30a5b73497b475"
+    },
+    {
+      "file": "replays/courier-session.json",
+      "purpose": "Courier request, booking, and evening replay.",
+      "rulesVersions": [
+        "lantern-4.9.1"
+      ],
+      "sha256": "f39312372a2209a018db753ff1cef449eaeaa29e33f3b1dc9471d8ee10508fb7"
+    },
+    {
+      "file": "replays/deliberate-overcommit-30-save.json",
+      "purpose": "Failed gathering contribution regression.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "1894deab177819ec75607e5367df60cdf7a1ed92121a5fb784600e0b306663cf"
+    },
+    {
+      "file": "replays/deliberate-overcommit-4-save.json",
+      "purpose": "Partial gathering contribution regression.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "87b45cfa7c38053a79499f7f7f2666027aafacac9ff72074aea092f3b014bbe2"
+    },
+    {
+      "file": "replays/early-workboard.json",
+      "purpose": "Early planned-work schedule regression.",
+      "rulesVersions": [
+        "lantern-4.6.2"
+      ],
+      "sha256": "6c1f6c10501924b790ae47ff732932244670ad87017eb32de5262318188a28e8"
+    },
+    {
+      "file": "replays/festival-season1.json",
+      "purpose": "Festival call, help, and morning-reply regression.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "8bb935fb20547d0a9c5f3f0dfa3c527f2f753843665304d78e32d4c39a9dee25"
+    },
+    {
+      "file": "replays/first-session.json",
+      "purpose": "Season continuity and production regression.",
+      "rulesVersions": [
+        "lantern-4.7.1"
+      ],
+      "sha256": "50dbbf7db8d27b23192a0b761dfc4cd7452dea20e487b49567ea9107a72fc459"
+    },
+    {
+      "file": "replays/handmade-run.json",
+      "purpose": "Branching, replay, and workspace regression.",
+      "rulesVersions": [
+        "lantern-4.7.1"
+      ],
+      "sha256": "619b0c8e943ac43942672113a6d6cce65b02306ce564a663d3f47eb19c6eb402"
+    },
+    {
+      "file": "replays/historical-trail-save.json",
+      "purpose": "Complete gathering and original-programme regression.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "1bd05440423d49f3a99f1413132c2d960be02932917584af743ab155789ffee0"
+    },
+    {
+      "file": "replays/ordinary-loop.json",
+      "purpose": "Ordinary-loop gazette and ending regression.",
+      "rulesVersions": [
+        "lantern-4.6.2"
+      ],
+      "sha256": "1dedbd770c2163c7947dba744c90f75540d6e97d01986a6b2995e5334aa8cb7c"
+    },
+    {
+      "file": "replays/phone-compromised.json",
+      "purpose": "Compromised closing and career continuity regression.",
+      "rulesVersions": [
+        "lantern-6.1.0"
+      ],
+      "sha256": "a72aa7819fff60bab3f0d8dd99dde1eca87597c66609688ba73c4195af049099"
+    },
+    {
+      "file": "replays/production-day.json",
+      "purpose": "Production-day layout and command replay.",
+      "rulesVersions": [
+        "lantern-4.6.1"
+      ],
+      "sha256": "7d37497b71693ae4414875b863b73e2d5e1897972d2dd65fb79e461e500d42bb"
+    },
+    {
+      "file": "replays/sign-tapes.json",
+      "purpose": "Sign artwork and world-selection regressions.",
+      "rulesVersions": [
+        "lantern-4.6.2",
+        "lantern-4.6.3-sign"
+      ],
+      "sha256": "82e975f7a6689db14a44e7e9730e8b9f837bc7c7c7445d2d6f67d763395f398f"
+    }
+  ]
+}

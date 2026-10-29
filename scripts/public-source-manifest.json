@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "files": [
+    ".gitignore",
+    ".nvmrc",
+    ".oxlintrc.json",
+    "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "LICENSE",
+    "CONTENT-LICENSE.md",
+    "index.html",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "playwright.config.ts",
+    "tsconfig.json",
+    "tsconfig.app.json",
+    "tsconfig.node.json",
+    "tsconfig.test.json",
+    "vite.config.ts",
+    "vercel.json",
+    "scripts/balance.ts",
+    "evals/offers.jsonl",
+    "scripts/size.mjs",
+    "scripts/public-source.mjs",
+    "scripts/public-source.test.mjs",
+    "scripts/public-source-manifest.json",
+    "renovate.json",
+    "playwright.compat.config.ts",
+    "playwright.dev.config.ts"
+  ],
+  "directories": [
+    "src/",
+    "dev/",
+    "e2e/",
+    "public/",
+    "test-fixtures/",
+    "docs/public/",
+    ".github/"
+  ],
+  "exclude": [
+    "e2e/gathering-placement.config.ts",
+    "src/ui/creative/study-entry.tsx",
+    "src/ui/creative/study.tsx",
+    "src/ui/creative/study.config.mjs",
+    "src/ui/creative/proof-desk.spec.ts",
+    "src/ui/creative/proof.playwright.config.ts",
+    "src/ui/miniature/study-entry.tsx",
+    "src/ui/miniature/study.spec.ts",
+    "src/ui/miniature/playwright.config.ts",
+    "src/ui/world/preview.tsx",
+    "src/ui/neighbourhood/study.tsx",
+    "src/ui/atelier/study.tsx",
+    "src/ui/soundscapeStudy.tsx"
+  ],
+  "map": {
+    "docs/public/AGENTS.md": "AGENTS.md"
+  },
+  "packageScripts": [
+    "dev",
+    "build",
+    "preview",
+    "lint",
+    "typecheck",
+    "test",
+    "balance",
+    "e2e",
+    "verify",
+    "coverage",
+    "size",
+    "test:compat",
+    "test:dev"
+  ],
+  "invalidTestKeys": {
+    "e2e/screens.spec.ts": [
+      "sk-proj-1234567890abcdefghijklmnopqrstu"
+    ],
+    "src/ui/screens/screens.test.ts": [
+      "sk-proj-abcdefghijklmnopqrstuvwxyz0123",
+      "sk-ant-api03-abcdefghijklmnopqrstuvwxyz"
+    ]
+  }
+}

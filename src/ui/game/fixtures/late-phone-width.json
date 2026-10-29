@@ -1,0 +1,169 @@
+{
+  "config": {
+    "scenarioId": "main-street",
+    "seed": "e2e-1"
+  },
+  "commands": [
+    {
+      "type": "accept",
+      "requestId": "d0-r0"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "accept",
+      "requestId": "d1-r0"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n2",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r6"
+    },
+    {
+      "type": "accept",
+      "requestId": "d2-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n3",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d3-r4"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n4",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r2"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r8"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r9"
+    },
+    {
+      "type": "accept",
+      "requestId": "d4-r10"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n5",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d5-r0"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n6",
+      "option": 0
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "answer",
+      "option": "ride"
+    },
+    {
+      "type": "choose",
+      "newsId": "n7",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d7-r2"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n8",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d8-r3"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r4"
+    },
+    {
+      "type": "decline",
+      "requestId": "d8-r7"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n9",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d9-r1"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    },
+    {
+      "type": "choose",
+      "newsId": "n10",
+      "option": 0
+    },
+    {
+      "type": "accept",
+      "requestId": "d10-r0"
+    },
+    {
+      "type": "runDay",
+      "calls": true
+    }
+  ]
+}

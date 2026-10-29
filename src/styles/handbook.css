@@ -1,0 +1,46 @@
+/* The studio's folded reference sheet, inside the shared dialog. */
+.modal:has(.handbook) .modal-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--ui-stage);
+}
+.handbook {
+  margin-top: 1rem;
+  padding: clamp(1rem, 4vw, 1.75rem);
+  max-width: 62ch;
+  background: var(--ui-paper);
+  color: var(--ui-ink);
+  border-radius: 2px;
+  line-height: 1.55;
+}
+.handbook h3 {
+  margin: 0 0 .85rem;
+  font: 1.35rem/1.3 var(--font-sign);
+  color: var(--ui-ink);
+}
+.handbook p { margin: 0 0 .85rem; }
+.handbook details { border-top: 1px solid var(--ui-ink-soft); }
+.handbook details:first-of-type { margin-top: 1.25rem; }
+.handbook summary {
+  padding: .8rem 0;
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--ui-ink);
+}
+.handbook summary:hover { color: var(--ui-ink-soft); }
+.handbook summary:focus-visible { outline-color: var(--ui-ink); }
+.handbook details p { font-size: .95rem; }
+.handbook-colophon {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ui-ink-soft);
+  color: var(--ui-ink-soft);
+  font: .85rem/1.45 var(--font-sign);
+}
+.handbook-colophon svg { flex: none; fill: none; stroke: currentColor; stroke-width: 1; }
+.handbook-colophon span span { display: block; font: .8rem/1.5 var(--font-body); }
