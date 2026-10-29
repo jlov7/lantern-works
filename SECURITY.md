@@ -1,12 +1,10 @@
 # Security and privacy
 
-## Report a problem privately
+## Support and reporting
 
-Use **Security → Report a vulnerability** on the GitHub repository when private
-reporting is enabled. If that option is unavailable, use a private contact route
-listed by the maintainer on their GitHub profile. Do not put credentials, private
-links or exploit details into a public issue. Include steps to reproduce and the
-possible impact. This personal project does not offer a guaranteed response time.
+This personal project has no public support inbox or guaranteed response time.
+Do not post credentials, private replay links or exploit details in public
+discussions.
 
 ## What stays in the browser
 
@@ -48,5 +46,4 @@ has a content security policy. Vercel headers add framing restrictions and other
 response controls; another host needs equivalent configuration.
 
 Supported historical rules are covered by replay tests. The
-[quality note](docs/public/QUALITY.md) describes testing limits. Please report
-security issues against the current source and include the relevant rules version.
+[quality note](docs/public/QUALITY.md) describes testing limits.

@@ -70,6 +70,6 @@ Nothing is automatically sent. Review it before sharing it in a bug report.
 
 For an ordinary bug, include the screen, steps and browser version. A replay can
 help reproduce a gameplay problem, but check its contents before posting it.
-Report security issues privately using [SECURITY.md](../../SECURITY.md).
+[Security and privacy](../../SECURITY.md) explains what the game stores and shares.
 
 [Player guide](PLAYER-GUIDE.md) · [Back to the overview](../../README.md)

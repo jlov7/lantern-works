@@ -135,7 +135,7 @@ export function EndShare({ state, title, line, medalLine, hero }: { state: Compa
         </p>
       )}
       {!challengeUrl && <p className="muted small" role="status">{prepared?.key === startKey && prepared.error ? prepared.error : 'Preparing the studio challenge...'}</p>}
-      <p className="muted small">Replay links include your moves and artwork. Studio challenges also include the work, resources and relationships you carried forward. They never include an API key or anything you typed to Claude.</p>
+      <p className="muted small">Replay links include your moves and artwork. Studio challenges also include the work, resources and relationships you carried forward. Your API key is excluded. Saved offer names can contain words from your Claude prompts.</p>
     </section>
   );
 }

@@ -6,6 +6,8 @@ A browser game about running a small creative studio. Meet the people on your st
 design their prints, and decide which promises your team can keep. The work you make
 appears in their windows and becomes part of the neighbourhood.
 
+**[Play Lantern Works](https://lantern-works-jlov7s-projects.vercel.app/)**
+
 ![Clem at the studio window, with his print ready to make](docs/public/images/window.webp)
 
 The whole game runs in your browser. **No account, API key or installation is needed

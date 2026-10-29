@@ -23,6 +23,5 @@ large seasons may exceed replay-link limits. Optional model requests depend on
 an external provider and are not required to play; no live provider call is part
 of the normal verification command.
 
-This package has not itself been made public or deployed by its preparation
-process. Hosting checks must be performed on the chosen release address before
-calling that deployment verified.
+Check saving, replay links and offline reopening on the actual hosting address
+before sharing a deployment with players.

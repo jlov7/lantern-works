@@ -54,13 +54,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 5271,
-      "sha256": "a38a1e794487ba0149b1587e7e90f15d18dfe73bc8599d0e21be8779d16418ab"
+      "bytes": 5348,
+      "sha256": "497e793092cbadf8427f95a7fca6841b2b24b7a27a6acc4300109730d3663ef9"
     },
     {
       "path": "SECURITY.md",
-      "bytes": 2729,
-      "sha256": "db800620cfadc2cd3950cb2031df9bfcd776a0527f99dc626ceaa29896a6699b"
+      "bytes": 2386,
+      "sha256": "c205caef58c878d473308129acdf92969a30c53b66e4fe98c73d572cfc3cc72e"
     },
     {
       "path": "dev/bridge-core.ts",
@@ -104,13 +104,13 @@
     },
     {
       "path": "docs/public/QUALITY.md",
-      "bytes": 1611,
-      "sha256": "9b434e789abcc05505512d01134c477efe21d3ea3bbf5f442f533683d73693bf"
+      "bytes": 1543,
+      "sha256": "fe851186d809f078afd6150f98c6bfbf5a92daa0a0d49927ad826b559f3376e9"
     },
     {
       "path": "docs/public/TROUBLESHOOTING.md",
-      "bytes": 3575,
-      "sha256": "afcccfdad30fd8e1f3f595565185c813fba8e5180a9e3eeaf0944a9df300d7b4"
+      "bytes": 3586,
+      "sha256": "516ed847f23625fcdd62e308fb11259aa2dbc79dabcc56207d8bbb25f6b38874"
     },
     {
       "path": "docs/public/artwork-manifest.json",
@@ -2009,8 +2009,8 @@
     },
     {
       "path": "src/ui/screens/EndShare.tsx",
-      "bytes": 6614,
-      "sha256": "8451073cf9778994787f23160c8971a1fe850ea70ad76b18118adc8222f11dd9"
+      "bytes": 6639,
+      "sha256": "ec4c71511e437a236b0d9c1d5a367b240dab20054788ee887cbf600b7474fe6a"
     },
     {
       "path": "src/ui/screens/GazettePage.tsx",
@@ -2398,5 +2398,5 @@
       "sha256": "c60d98238105ca8644a9b2a30cecf9cbf24b7ec6a618c65b16225183b61e4947"
     }
   ],
-  "sourceSha256": "27c63ea34be56182d3c3270c79dc792556b30c57dc52e3d49718380699eb3f6e"
+  "sourceSha256": "3a29e9a3061394a99943ca7ca49be265dfc392958afd7ff562b1384dfa3672b3"
 }
