@@ -27,6 +27,14 @@ test.beforeEach(async ({ page }) => {
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('lantern.runs.v1') ?? '[]')[0]?.config.seed)).toBe('first-season');
 });
 
+test('the first lesson is visible before the player moves focus or scrolls', async ({ page }, info) => {
+  await expect(coach(page).getByRole('heading', { name: 'Someone at your door' })).toBeFocused();
+  await expect(coach(page)).toBeInViewport({ ratio: 1 });
+  await clearOfBars(coach(page), page);
+  expect(await commands(page)).toEqual([]);
+  await page.screenshot({ path: info.outputPath('opening-guide.png') });
+});
+
 test('manual Next reveals the customer lesson and its real first action to keyboard players', async ({ page }, info) => {
   const before = await commands(page);
   await coach(page).getByRole('button', { name: 'Next', exact: true }).focus();
@@ -36,6 +44,8 @@ test('manual Next reveals the customer lesson and its real first action to keybo
   await clearOfBars(coach(page), page);
   const first = page.getByRole('button', { name: 'Take it', exact: true });
   await clearOfBars(first, page);
+  await expect(page.locator('.focused-decision .verdict')).toBeInViewport({ ratio: 1 });
+  await clearOfBars(page.locator('.focused-decision .verdict'), page);
   expect(await commands(page)).toEqual(before);
   await page.screenshot({ path: `scratch/guide-control-handoff/customer-${info.project.name}.png` });
   await page.keyboard.press('Tab');

@@ -145,12 +145,13 @@ test('a first creative promise survives Undo and reload, then becomes a remember
   await expect(page.locator('.window-tools')).toHaveCount(0);
   await expect(page.getByRole('navigation', { name: 'Game places' })).toHaveCount(0);
   await expect(page.locator('.project-sketch-notice')).toContainText('Opens on Day 3');
-  await expect(page.getByRole('region', { name: 'Day controls' }).getByRole('button', { name: /Keep sketch/ })).toBeVisible();
+  await expect(page.locator('.project-draft-note')).toContainText('Unbooked sketches are lost if you leave the season, reload or compare approaches');
+  await expect(page.getByRole('region', { name: 'Day controls' }).getByRole('button', { name: 'Return to customers', exact: true })).toBeVisible();
   const tape = (await saved(page)).commands;
   await page.locator('#project-quote-h').focus();
   await page.keyboard.press('Space');
   expect((await saved(page)).commands).toEqual(tape);
-  await page.getByRole('button', { name: 'Keep sketch & return to customers', exact: true }).click();
+  await page.getByRole('region', { name: 'Day controls' }).getByRole('button', { name: 'Return to customers', exact: true }).click();
   await page.getByRole('button', { name: /Open the shop for Day 2/ }).click();
   await expect(page.getByRole('button', { name: "Review tomorrow's window", exact: true })).toBeVisible();
   await page.getByRole('button', { name: "Review tomorrow's window", exact: true }).click();

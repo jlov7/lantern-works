@@ -36,7 +36,7 @@ export function FirstProof({ castId, briefId, patterns = [], brief, draft, disab
     </div>
     {patterns.length > 0 && <fieldset className="first-proof__patterns" disabled={disabled}><legend>Start from a studio pattern</legend><p>Keep this customer's words. Savings apply when the maker knows the pattern.</p>{patterns.map(pattern => <div key={pattern.id}><button type="button" className="btn" onClick={() => onChange({ design: structuredClone(pattern.design) })}>Use {pattern.title}</button><p className="small">{patternBriefingLine(pattern.briefReductions, brief.pieces.map(piece => piece.title))}</p></div>)}<button type="button" className="btn btn-quiet" onClick={() => onChange({ design: structuredClone(brief.defaultDesign) })}>Use the standard proof</button></fieldset>}
     <details className="first-proof__own-line" open={lineOpen} onToggle={event => setLineOpen(event.currentTarget.open)}><summary>Add a line of your own</summary><label>Your line <span>{piece.headline?.length ?? 0}/64</span><input type="text" value={piece.headline ?? ''} maxLength={64} disabled={disabled} onChange={event => changePiece({ headline: event.target.value })} /></label></details>
-    <p className="first-proof__promise">The customer’s words stay on the print. These choices are included in the quoted price and work.</p>
+    <p className="first-proof__promise">These choices are included in the quoted price and work. Taking the request adds this print to your season. Unaccepted edits are lost if you leave the season or reload.</p>
     {inspecting && <Modal title="Your working proof" onClose={() => setInspecting(false)}>
       <div className="first-proof-inspection">
         <div className="first-proof-inspection__tools">

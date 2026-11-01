@@ -167,7 +167,7 @@ export function EndScreen({ state: initialState, meta: initialMeta, onBranch, on
           <div className="end-actions">
             {!readOnly && hasAuthorshipRules(state.rulesVersion) && <button type="button" className="btn btn-primary" onClick={() => setContinuing(true)}>{career?.complete ? 'Continue in open studio' : 'Continue this studio'}</button>}
             {!readOnly && (
-              <button type="button" className="btn btn-primary" onClick={onNewSeason}>
+              <button type="button" className={`btn${hasAuthorshipRules(state.rulesVersion) ? '' : ' btn-primary'}`} onClick={onNewSeason}>
                 Play this street again
               </button>
             )}

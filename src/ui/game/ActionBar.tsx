@@ -117,7 +117,7 @@ export const ActionBar = memo(function ActionBar({ place, onPlace, onReview, day
             <button type="button" className="btn btn-quiet" onClick={onUndo} disabled={!canUndo}>
               Undo
             </button>
-            {proofDecision ? proofDecision.blocked ? <button type="button" className="btn btn-primary" onClick={proofDecision.onReturn}>Keep sketch & return to customers</button> : <button type="submit" form="project-proof-decision" className="btn btn-primary" disabled={planning || proofDecision.invalid}>{proofDecision.reviewing ? 'Book this proof' : 'Review proof & promise'}</button> : <>
+            {proofDecision ? proofDecision.blocked ? <button type="button" className="btn btn-primary" onClick={proofDecision.onReturn}>Return to customers</button> : <button type="submit" form="project-proof-decision" className="btn btn-primary" disabled={planning || proofDecision.invalid}>{proofDecision.reviewing ? 'Book this proof' : 'Review proof & promise'}</button> : <>
             {(newsWaiting || reviewWaiting) && <button type="button" className="btn btn-primary btn-review" onClick={review}>{newsWaiting ? 'Answer street news' : 'Review waiting buyers'}</button>}
             <button type="button" className={`btn btn-open${newsWaiting || reviewWaiting ? '' : ' btn-primary'}`} onClick={onOpen} disabled={planning} aria-keyshortcuts="Space" aria-describedby={newsWaiting ? 'news-waiting' : [haggling ? 'haggle-waiting' : '', regulars.length ? 'regulars-waiting' : '', outlook ? 'outlook' : ''].filter(Boolean).join(' ') || undefined}>
               <span>Open <span className="open-words">the shop for </span>{dayLabel(day)}</span>

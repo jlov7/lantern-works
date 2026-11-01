@@ -147,6 +147,7 @@ export const Ticket = memo(function Ticket({ state, plan, calendar, request, for
       {open && !compact && (
         <><p className="ticket-line">{line}</p>{memory && <p className="ticket-memory">“{memory}”</p>}{servedBefore > 0 && hasAuthorshipRules(state.rulesVersion) && <p className="small">If you decline before promising, no promise is broken. {returnAfterReply(state, request.castId)} Leaving this request unanswered when you open loses the relationship.</p>}</>
       )}
+      {open && !compact && quickBrief && proof && <FirstProof castId={request.castId} briefId={request.briefId} patterns={compatiblePatterns(state, quickBrief)} brief={quickBrief} draft={proof} disabled={proofDisabled} onChange={next => onDraft(request.id, next)} />}
       <p className="verdict verdict-buy">
         {!buying && !ask && reaction.kind === 'walk' && <span>Will not buy: {objection(reaction.reason, request.segment)}</span>}
         {offer && request.offer && offer.price === 0 ? (
@@ -168,7 +169,6 @@ export const Ticket = memo(function Ticket({ state, plan, calendar, request, for
         )}
         {risk && <span className={`fit fit-${risk.tone}`}> {risk.chip}</span>}
       </p>
-      {open && !compact && quickBrief && proof && <FirstProof castId={request.castId} briefId={request.briefId} patterns={compatiblePatterns(state, quickBrief)} brief={quickBrief} draft={proof} disabled={proofDisabled} onChange={next => onDraft(request.id, next)} />}
       {request.source === 'booking' && <p className="small booking-line">{choose ? `One neighbour towards your medal count, ${deal.launches} launches starting tomorrow. Each maker's first-launch work is below, before tomorrow's new buyers. If it all goes out on time, big-night neighbours hear about it.` : bookingLine(state, request)}</p>}
       {!compact && !separate && request.source !== 'booking' && !request.offer && (open || servedBefore > 0) && <p className="small ticket-future">{servedBefore > 0 ? hasAuthorshipRules(state.rulesVersion) ? 'A clear reply keeps the door open. Silence loses the relationship.' : 'Keep this regular: left out, they will not return.' : `On time: stronger "${SEGMENTS[request.segment].label}" word of mouth.`}</p>}
       {separate && <p className="small ticket-future">{separate}</p>}

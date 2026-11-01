@@ -224,8 +224,8 @@
     },
     {
       "path": "e2e/creative-promise.spec.ts",
-      "bytes": 14466,
-      "sha256": "0c9f1e7f80a1116ab549755f05d2d3da6057a0c8d31124bae2de15850a18ca2e"
+      "bytes": 14670,
+      "sha256": "bfbad73a8433aac488fc4bf2bc6a03d55b4b08f53a90702b34d35980badcca17"
     },
     {
       "path": "e2e/decision-navigation.spec.ts",
@@ -289,8 +289,8 @@
     },
     {
       "path": "e2e/guide-commitment.spec.ts",
-      "bytes": 5121,
-      "sha256": "4ed2406ced164d75b245489878827fbc168011a2e437ff9f81e29550c472bd75"
+      "bytes": 5198,
+      "sha256": "afbfcce89d33a16c961cf72e9277e70dade8ecd921a420cc732ed27efae84edf"
     },
     {
       "path": "e2e/guide-folded.spec.ts",
@@ -299,8 +299,8 @@
     },
     {
       "path": "e2e/guide-handoff.spec.ts",
-      "bytes": 5905,
-      "sha256": "26e7ea7ab167eee7c5d5b937acf4fcad2acb0bc2ecdc79a2b4248f730a7adee8"
+      "bytes": 6488,
+      "sha256": "e33f71c22f2e8bbd3976d0e3e2f07e8ebb0665bb61f6f6d41c254a0b0b93bd07"
     },
     {
       "path": "e2e/handbook.spec.ts",
@@ -954,8 +954,8 @@
     },
     {
       "path": "src/styles/commissions.css",
-      "bytes": 10177,
-      "sha256": "2ac68be6950e1cfd3ab0b372e3ff64b09a65c3d0b5c3c848e4c5cd3b918f1524"
+      "bytes": 10241,
+      "sha256": "ce77757a7883b30b7e70753ea1edcbe56ad6cf239c3aa18c102617221a45f5db"
     },
     {
       "path": "src/styles/continuing-studio.css",
@@ -1029,8 +1029,8 @@
     },
     {
       "path": "src/ui/EndScreen.tsx",
-      "bytes": 15166,
-      "sha256": "84770ba9e8295f6aadbef1bc21f47cd02825e178b676d4668935dd0b4f1c8035"
+      "bytes": 15219,
+      "sha256": "b2a8d306122c784acc721eda1c8df1a8c2ce1825940f10029406ea45adcdf651"
     },
     {
       "path": "src/ui/ErrorBoundary.tsx",
@@ -1070,7 +1070,7 @@
     {
       "path": "src/ui/Ticket.tsx",
       "bytes": 16554,
-      "sha256": "777d7d67626abefeaca6d846c6667f7fe5488fbd3b49523c901e904df1fa6994"
+      "sha256": "56046558dc2b05b07c40c43a2e4d3e31f42771c184eaaff2a0a62afe857f8472"
     },
     {
       "path": "src/ui/Title.tsx",
@@ -1144,8 +1144,8 @@
     },
     {
       "path": "src/ui/creative/FirstProof.tsx",
-      "bytes": 5469,
-      "sha256": "be035d0683ecb31758d491ead9456d0f36a88458ef4849405c29df4ba9e86174"
+      "bytes": 5539,
+      "sha256": "126e9ba804a1c008397e19139393aa5e2ea42958010a88a395b57ed658b33395"
     },
     {
       "path": "src/ui/creative/Motif.tsx",
@@ -1194,8 +1194,8 @@
     },
     {
       "path": "src/ui/game/ActionBar.tsx",
-      "bytes": 7715,
-      "sha256": "3429c1c89e4479a57320258d5bd299e706d9569a7181b5cc284bc5a4c6a5b1e7"
+      "bytes": 7701,
+      "sha256": "c282c8d4f5da00a003d198c51961e5a7ac5ec5c8f17e7d479f07cd44597cb636"
     },
     {
       "path": "src/ui/game/BriefPreview.tsx",
@@ -1254,8 +1254,8 @@
     },
     {
       "path": "src/ui/game/ProjectBoard.tsx",
-      "bytes": 19875,
-      "sha256": "0b231e7a30b1fb13079e7d66ac43f7212b6f8c392a991d927411b5fcfe5045f9"
+      "bytes": 20222,
+      "sha256": "99d18d3a42c0b90d2c860ab73e016f1555757063b43d53f5b8fea6326c9fbfb6"
     },
     {
       "path": "src/ui/game/ReplyReview.tsx",
@@ -1510,7 +1510,7 @@
     {
       "path": "src/ui/game/guideSteps.ts",
       "bytes": 1267,
-      "sha256": "8e1e13a4eb657378e4721b7d38d4005ed666f25444d846a81f50212f0e26ffd7"
+      "sha256": "b987be24421680e5db3aa71b3a171ca96911bbb6f316269145fa52bb22985d47"
     },
     {
       "path": "src/ui/game/live.test.ts",
@@ -2398,5 +2398,5 @@
       "sha256": "c60d98238105ca8644a9b2a30cecf9cbf24b7ec6a618c65b16225183b61e4947"
     }
   ],
-  "sourceSha256": "3a29e9a3061394a99943ca7ca49be265dfc392958afd7ff562b1384dfa3672b3"
+  "sourceSha256": "9b8615dfea7d968a66d68e2cf92a1086b298d4045dc05cd3d46432b54fd70c8c"
 }

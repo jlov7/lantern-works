@@ -114,6 +114,7 @@
 .project-desk-context > details[open] { flex-basis: 100%; }
 .project-desk-context summary { min-height: 44px; padding: .65rem 0; cursor: pointer; font-size: .85rem; }
 .project-desk-chrome .project-sketch-notice { margin: 0 0 .6rem; }
+.project-desk-chrome .project-draft-note { margin: 0 0 .6rem; }
 .campaign-authored { width: 100%; min-width: 0; }
 .campaign-authored .designed-artwork { margin: 0; }
 .campaign-authored figcaption { font-size: .8rem; }

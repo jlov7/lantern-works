@@ -40,7 +40,8 @@ test('the guide starts with a creative choice and keeps offer editing available 
   await coach(page).getByRole('button', { name: 'Next' }).click();
   await expect(coach(page)).toHaveAccessibleName('Guide, step 2 of 5');
   await expect(coach(page)).toContainText('Your first promise');
-  await expect(coach(page)).toContainText('The price, work and deadline are above the piece.');
+  await expect(page.locator('.focused-decision .verdict')).toContainText('890 cr');
+  await expect(page.locator('.focused-decision .verdict')).toBeInViewport({ ratio: 1 });
   expect((await saved(page)).commands).toEqual(edited.commands);
   await takeFocused(page, 'Ada');
   await expect(coach(page)).toHaveAccessibleName('Guide, step 3 of 5');
