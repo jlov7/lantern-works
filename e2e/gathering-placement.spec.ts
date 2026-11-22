@@ -42,7 +42,7 @@ test('the delivered print can replay and skip placement with the keyboard', asyn
   await page.keyboard.press('Enter');
   await expect(payoff).not.toHaveAttribute('data-scene-motion');
   await expect(payoff.getByRole('button', { name: 'Replay placement' })).toBeFocused();
-  await expect(payoff.locator('.campaign-art[data-approach="first-night"]')).toBeVisible();
+  await expect(payoff.locator('[data-approach="first-night"]')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await payoff.screenshot({ path: info.outputPath('clem-delivery-phone.png') });
 });
@@ -53,7 +53,7 @@ test('reduced motion presents the same print and response without placement moti
   const payoff = page.locator('.evening .commission-payoff').filter({ has: page.locator('[data-payoff-piece="c5-l1"]') });
   await expect(payoff).not.toHaveAttribute('data-scene-motion');
   await expect(payoff.getByRole('button', { name: /placement/ })).toHaveCount(0);
-  await expect(payoff.locator('.campaign-art[data-approach="first-night"]')).toBeVisible();
+  await expect(payoff.locator('[data-approach="first-night"]')).toBeVisible();
   await expect(payoff.locator('.payoff-response')).toContainText('Leave that just as it is.');
 });
 

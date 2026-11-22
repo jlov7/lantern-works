@@ -7,7 +7,7 @@ import { laterRequestCopy, newsPresentation } from '../src/ui/game/careerContinu
 const seasons = careers.routes.find(r => r.id === 'prosperous')!.seasons;
 function prefix(stage: CareerStage, card: NewsCardId): CompanyState {
   const tape = seasons.find(s => s.stage === stage)!;
-  let state = createRun(tape.config as RunConfig);
+  let state = createRun(tape.config as RunConfig, careers.rules);
   for (const command of tape.commands as Command[]) {
     if (state.news.some(n => n.card === card && n.day === state.day && n.choice === null)) return state;
     const result = applyCommand(state, command);

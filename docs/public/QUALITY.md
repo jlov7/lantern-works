@@ -1,6 +1,6 @@
 # Quality and known limits
 
-Lantern Works is a personal R&D game. New seasons use `lantern-7.0.0` rules.
+Lantern Works is a personal R&D game. New seasons use `lantern-7.1.0` rules.
 The source includes automated checks for engine behaviour, saved histories,
 browser interaction, accessibility rules and the production bundle.
 
@@ -8,7 +8,7 @@ browser interaction, accessibility rules and the production bundle.
 and phone widths, including offline reopening and updates. Earlier compiled-game
 qualification also exercised Firefox and WebKit; those historical runs do not
 qualify later code changes. The included `pnpm test:compat` suite checks first play,
-dialogs, recovery and replay backups in Firefox and WebKit. `pnpm test:dev` checks
+dialogs, recovery, replay backups, the shared press and Clem’s finished print in Firefox and WebKit. `pnpm test:dev` checks
 native dialogs under React's development lifecycle. Automated checks are
 engineering evidence; they do not establish that people will enjoy the game.
 

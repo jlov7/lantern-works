@@ -52,7 +52,7 @@ for (const moment of moments) test(`native Day ${moment.day + 1} ${moment.approa
   const payoff = page.locator('.evening .commission-payoff').filter({ has: page.locator(`[data-payoff-piece="${moment.piece}"]`) });
   await expect(payoff.locator('.payoff-response')).toContainText(moment.response);
   await expect(payoff.locator('.payoff-line')).toContainText('delivered');
-  await expect(payoff.locator(`.campaign-art[data-approach="${moment.approach}"]`)).toBeVisible();
+  await expect(payoff.locator(`[data-approach="${moment.approach}"]`)).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   expect((await new AxeBuilder({ page }).include('.commission-payoff').analyze()).violations).toEqual([]);
   await payoff.screenshot({ path: info.outputPath(`day-${moment.day + 1}-${moment.approach}.png`) });

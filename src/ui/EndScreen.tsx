@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState, type JSX } from 'react';
+import { bookedPracticePress, projectFor } from '../engine/projects';
 import { goalsFor } from '../engine/goals';
 import { CAST_BY_ID, scenarioById } from '../engine/rules';
 import { medalFor, medalParFor, summarize } from '../engine/selectors';
 import type { CompanyState, RunConfig } from '../engine/types';
-import { dayLabel } from './format';
+import { castName, dayLabel } from './format';
 import { addStamps, loadPrefs, loadStamps } from './persist';
 import { GHOST_IDS, useGhosts } from './screens/ghosts';
 import { gazette } from './screens/gazette';
@@ -44,6 +45,9 @@ export function EndScreen({ state: initialState, meta: initialMeta, onBranch, on
   const run = useRun({ state: initialState, meta: initialMeta });
   const { state, meta } = run;
   const career = careerIdentity(state);
+  const pressId = bookedPracticePress(state);
+  const pressBooking = pressId && state.contracts.find(contract => contract.project?.id === pressId);
+  const otherInvitation = pressId && projectFor(state, pressId === 'clem-ten' ? 'mara-regular' : 'clem-ten');
   const [continuing, setContinuing] = useState(false);
   const sum = summarize(state);
   const end = useMemo(() => seasonEnding(state), [state]);
@@ -250,6 +254,7 @@ export function EndScreen({ state: initialState, meta: initialMeta, onBranch, on
           What if?
         </h2>
         <p className="muted small">Go back to any morning and try something else. {readOnly ? 'Their season stays as it was; yours starts from that morning.' : 'This season stays saved; the new one is a branch.'}</p>
+        {pressBooking && otherInvitation && <p>{castName(pressBooking.castId)} booked the long print run on {dayLabel(pressBooking.acceptedDay)}. To try {castName(otherInvitation.castId)}’s commission, branch from {dayLabel(Math.min(pressBooking.acceptedDay, otherInvitation.closes))} or earlier. Pick an earlier morning if you need to earn the invitation.</p>}
         <ol className="rewind-days">
           {events.map((ev, d) => (
             <li key={d}>
@@ -257,7 +262,7 @@ export function EndScreen({ state: initialState, meta: initialMeta, onBranch, on
                 <span className="rewind-n">
                   {dayLabel(d)} <span aria-hidden="true">{DAY_GLYPH[marks[d]!]}</span>
                 </span>
-                <span className="rewind-ev">{ev}</span>
+                <span className="rewind-ev">{pressBooking && pressBooking.acceptedDay === d ? `${castName(pressBooking.castId)} booked the press` : ev}</span>
               </button>
             </li>
           ))}

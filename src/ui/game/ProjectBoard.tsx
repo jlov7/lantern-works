@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { approachFor, nightCalendar, ordinaryOrdersDelivered, PROJECT_IDS, projectFor, projectBlocked, projectBrief, projectRecords, lendingSources } from '../../engine/projects';
+import { approachFor, bookedPracticePress, nightCalendar, ordinaryOrdersDelivered, practicePressChoice, practicePressOptions, PROJECT_IDS, projectFor, projectBlocked, projectBrief, projectRecords, lendingSources } from '../../engine/projects';
 import { careerStage } from '../../engine/career';
 import { validateDesign, type DesignSpec } from '../../engine/design';
 import { hasAuthorshipRules } from '../../engine/versions';
@@ -59,6 +59,12 @@ export function ProjectBoard({ selection, onSelection, state, disabled, onAccept
   const bookingBlocked = approach ? projectBlocked(state, selected, approach, sourceId) : null;
   const calendar = nightCalendar(state);
   const records = projectRecords(state);
+  const sharedPress = practicePressChoice(state) && (selected === 'clem-ten' || selected === 'mara-regular');
+  const pressBooked = bookedPracticePress(state);
+  const pressNeighbour = selected === 'clem-ten' ? 'Clem' : 'Mara';
+  const otherNeighbour = selected === 'clem-ten' ? 'Mara' : 'Clem';
+  const otherHasLeft = state.lostCast.includes(selected === 'clem-ten' ? 'mara' : 'clem');
+  const pressOptions = useMemo(() => !approach && sharedPress ? practicePressOptions(state) : [], [approach, sharedPress, state]);
   const booked = records.find(record => record.id === selected);
   const composing = authored && !!approach && !booked;
   useLayoutEffect(() => {
@@ -104,6 +110,7 @@ export function ProjectBoard({ selection, onSelection, state, disabled, onAccept
   };
   const last = state.commands.at(-1);
   const context = <><h3 ref={nameHeading} tabIndex={-1}>{selected === 'lantern-night' ? calendar.name : definition.name}</h3><p>{definition.invitation}</p>
+    {sharedPress && <p className="project-prerequisite">{pressBooked ? `${pressBooked === 'clem-ten' ? 'Clem' : 'Mara'} booked the shared press. No press booking remains for ${pressBooked === 'clem-ten' ? 'Mara' : 'Clem'} this season.` : otherHasLeft ? `${otherNeighbour} is no longer commissioning work from the studio. The studio has one long-run booking this season.` : `Booking ${pressNeighbour} closes ${otherNeighbour}’s commission for the season.`}</p>}
     {authored && !booked && <CommissionConversation key={selected} state={state} projectId={selected} />}
     {selected !== 'lantern-night' ? <p className="project-prerequisite">Ordinary orders delivered for {castName(definition.castId)}: {ordinaryOrdersDelivered(state, definition.castId)}/{definition.required}. Invitation runs from {dayLabel(definition.opens)} to {dayLabel(definition.closes)}.</p> : <p className="project-prerequisite">A courtyard needs one completed milestone. A trail needs two completed hosts. {!careerStage(state) || careerStage(state) === 'opening' ? "Hugo's quiet sendoff contributes a keepsake, rather than an open workshop. " : ''}You have {records.filter(record => record.earned && record.id !== 'lantern-night').length} completed milestones, including {records.filter(record => record.earned && record.host).length} hosts.</p>}</>;
   const compare = () => { flushSync(() => onSelection({ id: selected, approach: null })); setConfirming(false); nameHeading.current?.focus(); };
@@ -111,12 +118,30 @@ export function ProjectBoard({ selection, onSelection, state, disabled, onAccept
     {!composing && <>
     <header className="project-board-head"><div><p className="small">Commission board</p><h2 id="project-board-h" ref={heading} tabIndex={-1}>{calendar.name}, {dayLabel(calendar.day)}</h2></div><button type="button" className="btn" onClick={onReturn}>Return to {customer ?? 'customers'}</button></header>
     <p className="project-calendar">Choose the gathering on Days {calendar.opens + 1}–{calendar.closes + 1}. Production starts {dayLabel(calendar.release)}; every promised piece is due {dayLabel(calendar.day)}.</p>
+    {pressOptions.length > 0 && <section className="project-press-choice" aria-label="Choose the shared press booking">
+      <h3>One press booking for Clem or Mara</h3>
+      <p>There’s time for one long print run this season. Here’s what each neighbour could do with it.</p>
+      <div className="project-approaches" role="group" aria-label="Shared press options">
+        {pressOptions.map(({ id, approach: example, closes, blocked, quote }) => (
+          <button key={id} type="button" className="project-approach" onClick={() => choose(id)}>
+            <strong>{example.artifact}</strong>
+            <span>{example.benefit}</span>
+            <span className="small">{quote
+              ? `${credits(quote.offer.price)} advance · ${credits(quote.project.materials)} materials · ${quote.offer.launches} ${quote.offer.launches === 1 ? 'print' : 'prints'} · ${blocked ? `book by ${dayLabel(closes)}` : `due ${dayLabel(quote.jobs.at(-1)!.dueAt / RULES.minutesPerDay - 1)}`}`
+              : 'There isn’t time to finish this commission.'}</span>
+            {blocked && <span className="small">{blocked}</span>}
+            <span className="project-review">See {id === 'clem-ten' ? 'Clem' : 'Mara'}’s approaches</span>
+          </button>
+        ))}
+      </div>
+    </section>}
     <details className="project-roster" open={wide || (!approach && !booked)}><summary>Choose a commission ({records.length} booked)</summary><ul>{PROJECT_IDS.map(id => { const def = projectFor(state, id); const record = records.find(item => item.id === id); return <li key={id}><button type="button" className="project-row" aria-current={id === selected ? 'true' : undefined} onClick={() => choose(id)}><strong>{id === 'lantern-night' ? calendar.name : castName(def.castId)}</strong><span>{id === 'lantern-night' ? calendar.name : def.name}</span><span className="small">{record ? `${record.delivered}/${record.promised} delivered · ${record.status}` : projectBlocked(state, id, def.approaches[0]!) ?? 'Ready to book'}</span></button></li>; })}</ul></details>
     {context}
     </>}
     {booked ? <section className="project-receipt reply-receipt" ref={receipt} tabIndex={-1}><h3>Booked: {approachFor(state, booked.approach).name}</h3><p>{credits(booked.contract.price)} paid up front. {booked.contract.project!.materials ? `${credits(booked.contract.project!.materials)} in materials paid.` : 'No materials bill.'}</p><p>{booked.delivered} of {booked.promised} launches delivered. {projectCompletionLine(booked)}</p>{booked.contract.project?.proof && <div className="project-approved-pieces">{booked.contract.project.proof.design.pieces.map((piece, index) => <DesignedArtwork key={index} piece={piece} copy={booked.contract.project!.proof!.pieces[index]!.copy} label={booked.contract.project!.proof!.pieces[index]!.title} />)}</div>}<button type="button" className="btn" disabled={!canUndo || last?.type !== 'acceptProject' || last.projectId !== selected} onClick={onUndo}>Undo commission</button></section> : !approach ? <div className="project-approaches" role="group" aria-label={`Approaches to ${definition.name}`}>{definition.approaches.map(option => <button type="button" className="project-approach" key={option} onClick={() => { flushSync(() => onSelection({ id: selected, approach: option })); setConfirming(false); quoteHeading.current?.focus({ preventScroll: true }); quoteHeading.current?.scrollIntoView({ block: 'start', behavior: 'instant' }); }}><strong>{approachFor(state, option).name}</strong>{proposal === option && <span className="project-proposal">Following your earlier print</span>}<span>{approachFor(state, option).detail}</span><span className="small">{approachFor(state, option).benefit}</span><span className="project-review">Review this approach</span></button>)}</div> : <form id="project-proof-decision" className="project-quote" aria-labelledby="project-quote-h" onSubmit={event => { event.preventDefault(); if (!reviewing) reviewProof(); else book(); }}>
       <div ref={deskChrome} className={composing ? 'project-desk-chrome' : undefined}>
       {composing ? <><header className="project-desk-head"><h2 id="project-quote-h" ref={quoteHeading} tabIndex={-1}>{brief!.title}</h2><button type="button" className="btn btn-small" onClick={onReturn}>Back to the window</button></header><div className="project-desk-context"><button type="button" className="btn btn-small" onClick={compare}>Compare approaches</button><details><summary>Brief with {castName(definition.castId)}</summary>{context}<p>{approachFor(state, approach).detail}</p></details></div></> : <><button type="button" className="btn btn-small" onClick={compare}>Compare approaches</button><h3 id="project-quote-h" ref={quoteHeading} tabIndex={-1}>{approachFor(state, approach).name}</h3><p>{approachFor(state, approach).detail}</p></>}
+      {sharedPress && !pressBooked && <p className="project-prerequisite">Booking this proof gives {pressNeighbour} the shared press slot. {otherHasLeft ? `${otherNeighbour} is no longer commissioning work from the studio.` : `${otherNeighbour}’s commission cannot be booked this season.`}</p>}
       {approachFor(state, approach).requiresSource && <fieldset className="project-lending" disabled={disabled}><legend>Lend a retained piece</legend><label>Retained piece for the archive<select value={sourceId ?? ''} onChange={event => { onSelection({ ...selection, sourceId: event.target.value || undefined, reviewing: false }); setConfirming(false); }}><option value="">Choose a retained piece</option>{sources.map(source => <option key={source.id} value={source.id}>{source.title} · Season {source.sourceSeason}</option>)}</select></label>{source && <><DesignedArtwork piece={source.design} copy={source.copy} label={source.title} /><p>The archive borrows this exact print. Make its new caption and invitation below.</p></>}</fieldset>}
       {bookingBlocked && <p className={`project-sketch-notice${authored ? ' project-draft-note' : ''}`}><strong>{bookingBlocked}</strong>{authored ? 'Unbooked sketches are lost if you leave the season, reload or compare approaches.' : 'You can work on a sketch while you wait. No booking has been made.'}</p>}
       {authored && !bookingBlocked && <p className="small project-draft-note">Booking adds the proof to your season. Leaving the season, reloading or comparing approaches discards an unbooked sketch.</p>}

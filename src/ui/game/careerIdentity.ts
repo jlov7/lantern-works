@@ -1,4 +1,5 @@
 import { careerStage, careerStories } from '../../engine/career';
+import { hasPracticePressRules } from '../../engine/versions';
 import type { CompanyState } from '../../engine/types';
 
 export function careerIdentity(state: CompanyState) {
@@ -6,7 +7,7 @@ export function careerIdentity(state: CompanyState) {
   if (!stage) return null;
   const purpose = {
     opening: { title: 'Opening the studio', line: 'Make the first promises, find a working rhythm, and choose what to make for the street.' },
-    practice: { title: 'A practice of your own', line: 'Help Clem develop the archive, Mara try a market, and Ivo make his own workshop. The work now builds on what happened before.' },
+    practice: { title: 'A practice of your own', line: hasPracticePressRules(state.rulesVersion) ? 'Clem and Mara need the same press. Choose who gets the long run while Ivo sets up his own workshop.' : 'Help Clem develop the archive, Mara try a market, and Ivo make his own workshop. The work now builds on what happened before.' },
     legacy: { title: 'What the studio leaves behind', line: 'Choose what to share with the neighbourhood: an archive, a shared table, or repair knowledge. Retained work can have a new use.' },
     open: { title: 'Open studio', line: 'The authored career is complete. Keep making recurring archive displays, seasonal tables and repair work, with another gathering each season.' },
   }[stage];

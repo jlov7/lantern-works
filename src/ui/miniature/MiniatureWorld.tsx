@@ -12,6 +12,7 @@ import { loadPrefs, savePrefs, PREFS_EVENT } from '../persist';
 import '../../styles/miniature.css';
 const EMPTY_TEXTURES: PrintTextures = new Map();
 const MiniatureCanvas = lazy(() => import('./MiniatureCanvas'));
+const WorkerMiniatureCanvas = lazy(() => import('./WorkerMiniatureCanvas'));
 class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode; onFailure: () => void }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
@@ -28,6 +29,7 @@ export interface MiniatureWorldProps extends WorldProps {
 export function MiniatureWorld({ playbackRunning = false, initialView = 'studio', onRendererMetrics, onInspect, ...props }: MiniatureWorldProps) {
   const root = useRef<HTMLElement>(null);
   const [failed, setFailed] = useState(false);
+  const [workerFailed, setWorkerFailed] = useState(false);
   const [rendererChoice, setRendererChoice] = useState<'checking' | 'miniature' | 'illustrated'>('checking');
   const [painted, setPainted] = useState(false);
   const [textureSet, setTextureSet] = useState<{ key: string; sources: PrintSource[]; textures: PrintTextures }>();
@@ -41,13 +43,14 @@ export function MiniatureWorld({ playbackRunning = false, initialView = 'studio'
   const [visible, setVisible] = useState(true);
   const fail = useCallback(() => setFailed(true), []);
   useEffect(() => {
+    let probe: Worker | undefined;
+    let generation = 0;
     const choose = (view: 'miniature' | 'illustrated') => {
       setRendererChoice(view);
       if (view === 'illustrated') { setTextureSet(undefined); setPainted(false); }
     };
-    const update = () => {
-      const saved = loadPrefs().studioView;
-      if (saved) { choose(saved); return; }
+    const chooseMain = () => {
+      setWorkerFailed(true);
       const context = document.createElement('canvas').getContext('webgl2');
       if (!context) { choose('illustrated'); fail(); return; }
       const info = context.getExtension('WEBGL_debug_renderer_info');
@@ -55,9 +58,33 @@ export function MiniatureWorld({ playbackRunning = false, initialView = 'studio'
       context.getExtension('WEBGL_lose_context')?.loseContext();
       choose(/SwiftShader|llvmpipe|softpipe|Software Rasterizer/i.test(renderer) ? 'illustrated' : 'miniature');
     };
+    const update = () => {
+      generation++;
+      probe?.terminate();
+      probe = undefined;
+      const saved = loadPrefs().studioView;
+      if (saved) { choose(saved); return; }
+      if (typeof Worker !== 'undefined' && typeof OffscreenCanvas !== 'undefined' && 'transferControlToOffscreen' in HTMLCanvasElement.prototype) {
+        const current = generation;
+        try {
+          probe = new Worker(new URL('./renderer-probe.worker.ts', import.meta.url), { type: 'module' });
+          probe.onmessage = event => {
+            if (current !== generation) return;
+            const result = event.data as { view: 'miniature' | 'illustrated'; unavailable?: boolean };
+            if (result.unavailable) chooseMain();
+            else choose(result.view);
+            probe?.terminate();
+            probe = undefined;
+          };
+          probe.onerror = () => { if (current === generation) chooseMain(); probe?.terminate(); probe = undefined; };
+          return;
+        } catch { /* Fall through to the original capability check. */ }
+      }
+      chooseMain();
+    };
     window.addEventListener(PREFS_EVENT, update);
     update();
-    return () => window.removeEventListener(PREFS_EVENT, update);
+    return () => { generation++; probe?.terminate(); window.removeEventListener(PREFS_EVENT, update); };
   }, [fail]);
   const frameKey = miniatureFrameKey(props.frame);
   // oxlint-disable-next-line react-hooks/exhaustive-deps -- The projection key includes every work transition; clock text stays outside the renderer.
@@ -111,6 +138,7 @@ export function MiniatureWorld({ playbackRunning = false, initialView = 'studio'
   const drag = useRef<{ x: number; y: number; pan: number; moved: boolean } | null>(null);
   const fallback = <div className="miniature-fallback"><World {...props} /><p>The illustrated studio is ready.</p></div>;
   const illustrated = failed || rendererChoice !== 'miniature';
+  const CanvasView = !workerFailed && typeof HTMLCanvasElement !== 'undefined' && 'transferControlToOffscreen' in HTMLCanvasElement.prototype ? WorkerMiniatureCanvas : MiniatureCanvas;
   const camera = (next: CameraView) => { cameraChosen.current = true; setView(next); setPan(0); };
   const inspect = (jobId: string) => {
     onInspect?.(); setFocusedJob(jobId); camera('work');
@@ -128,7 +156,7 @@ export function MiniatureWorld({ playbackRunning = false, initialView = 'studio'
       if (Math.abs(dx) < 8 && !held.moved) return;
       held.moved = true; setPan(Math.max(-.36, Math.min(.36, held.pan - dx / 700)));
     }} onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }} onPointerLeave={() => { drag.current = null; }}>
-      {illustrated ? fallback : <><SceneBoundary fallback={null} onFailure={fail}><Suspense fallback={null}><MiniatureCanvas scene={scene} textures={textures} view={view} phone={phone} pan={pan} visible={visible} focusedJob={focusedJob} onContextLost={fail} onMetrics={metrics} onTexturesCommitted={committed} /></Suspense></SceneBoundary>{!painted && fallback}</>}
+      {illustrated ? fallback : <><SceneBoundary fallback={null} onFailure={fail}><Suspense fallback={null}><CanvasView scene={scene} textures={textures} view={view} phone={phone} pan={pan} visible={visible} focusedJob={focusedJob} onContextLost={fail} onWorkerFailure={() => { setWorkerFailed(true); setPainted(false); }} onMetrics={metrics} onTexturesCommitted={committed} /></Suspense></SceneBoundary>{!painted && fallback}</>}
       {!illustrated && <ArtworkTextures ref={textureOwner} sources={sources} onReady={ready} onFailure={fail} active={visible} />}
       <div className="miniature-world__time" aria-hidden="true"><span>Day {props.frame.day + 1}</span><span>{props.frame.clock}</span></div>
     </div>

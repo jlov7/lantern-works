@@ -99,13 +99,13 @@
     },
     {
       "path": "docs/public/PLAYER-GUIDE.md",
-      "bytes": 4523,
-      "sha256": "f664f0919776d8d513bcb4c501d92fc386edfc89e70c444f5a0090ebbf62758e"
+      "bytes": 5122,
+      "sha256": "1ead94fdd2664abb6f912b661d71caa576a7b24ce207ce2431c57fe9c5ad43b7"
     },
     {
       "path": "docs/public/QUALITY.md",
-      "bytes": 1543,
-      "sha256": "fe851186d809f078afd6150f98c6bfbf5a92daa0a0d49927ad826b559f3376e9"
+      "bytes": 1586,
+      "sha256": "c9054b20ae869cd2871c96473055680e9d5e3c8d29c1bb5b36b9727f3775bfc9"
     },
     {
       "path": "docs/public/TROUBLESHOOTING.md",
@@ -174,8 +174,8 @@
     },
     {
       "path": "e2e/career-continuity.spec.ts",
-      "bytes": 3439,
-      "sha256": "9c7a04387faadba422ecc4d81f87fec6b1288c9a05061bf0ce888777be63a123"
+      "bytes": 3454,
+      "sha256": "2de53cb7457c3c6dcfc5e412443c2f0186faa0e6eb3704fc62442b33eaa69127"
     },
     {
       "path": "e2e/career-identity.spec.ts",
@@ -284,8 +284,8 @@
     },
     {
       "path": "e2e/gathering-placement.spec.ts",
-      "bytes": 7288,
-      "sha256": "5c762ec63b3664648da56683bdfaa69f1074cc288f429a656d490408845735b0"
+      "bytes": 7262,
+      "sha256": "432e49d5e878d62ae3c33a0f82c9338855ccc49c997e61fe03703721b9d2dd93"
     },
     {
       "path": "e2e/guide-commitment.spec.ts",
@@ -314,8 +314,8 @@
     },
     {
       "path": "e2e/heartfelt-delivery.spec.ts",
-      "bytes": 5403,
-      "sha256": "f1e1bd8d857fa70dd894d78d225dde3e856075515398a00999639086a6d8f344"
+      "bytes": 5390,
+      "sha256": "a7fe4db8745df84e54b63029822b3642205cb0a5b4656c5d8463afa78539634a"
     },
     {
       "path": "e2e/initial-load.spec.ts",
@@ -344,8 +344,8 @@
     },
     {
       "path": "e2e/miniature-game.spec.ts",
-      "bytes": 22671,
-      "sha256": "3b9525753ee51f856a06b81915a28a8ffe7438f35076b1c13f2a41bd58c824de"
+      "bytes": 25202,
+      "sha256": "92fdbb0186e5e6772bfba041838422b5619010c969fb1a3eb7d0a17481a6a2ac"
     },
     {
       "path": "e2e/morning-session.spec.ts",
@@ -396,6 +396,16 @@
       "path": "e2e/postcard-artwork.spec.ts",
       "bytes": 6654,
       "sha256": "66271374cf52dac1d9c1ef58925697badd3bde3222cf01f7419fdab6cd7b8bd9"
+    },
+    {
+      "path": "e2e/practice-press.spec.ts",
+      "bytes": 5740,
+      "sha256": "104d6b88d919b61660d74fc1698fa10d32f88ab4f33f6b8529e7e5bae6f21700"
+    },
+    {
+      "path": "e2e/print-lift.spec.ts",
+      "bytes": 9522,
+      "sha256": "8cff91bba62358ed664361bc7a9c55e0cc8408d83252e7c843cd7572543f68d2"
     },
     {
       "path": "e2e/regular-loss-warning.spec.ts",
@@ -504,8 +514,8 @@
     },
     {
       "path": "playwright.compat.config.ts",
-      "bytes": 637,
-      "sha256": "e1f1ce094b39e4d9977269820d7d1d37e1105814d06765eef902f85dc2f85fdd"
+      "bytes": 685,
+      "sha256": "f8e5c356fe1749bc273156c3e5f241b8ba0db040395cabc305b3493b573cd92e"
     },
     {
       "path": "playwright.config.ts",
@@ -644,8 +654,8 @@
     },
     {
       "path": "src/engine/career.test.ts",
-      "bytes": 21942,
-      "sha256": "aafa114ec509b89ac067d84f51503e2376a1e397cb3cfa18f44bbd472a2c4c31"
+      "bytes": 22082,
+      "sha256": "c7d6d6e0d6d7187b584468748e69a648a71c19e18a3911bb84edee521e90b4e2"
     },
     {
       "path": "src/engine/career.ts",
@@ -745,7 +755,7 @@
     {
       "path": "src/engine/fixtures/golden.json",
       "bytes": 503,
-      "sha256": "9873fcd3642be25f8409fe27a0c95b76bc8150770f4d3e7bee64773aa4b4d438"
+      "sha256": "58d057b3fca956087e4eca5d3e1b125c7b640053270669882c33235236a3ae35"
     },
     {
       "path": "src/engine/fixtures/heartfelt-careful.json",
@@ -858,14 +868,19 @@
       "sha256": "80c861cead92494e89fea813793a8b922c2489be0dc708f3e70e870fe3a46b41"
     },
     {
+      "path": "src/engine/practicePress.test.ts",
+      "bytes": 4701,
+      "sha256": "c6dd9f4c7ef781f05674f867a8c70f83af4701f38075b56b9f952448d0eb8f2d"
+    },
+    {
       "path": "src/engine/projects.test.ts",
       "bytes": 15576,
       "sha256": "6247a6d6822e4f3dd8cd72ede8b8264df7322d56bc2c33d9af44783c4e1e19d5"
     },
     {
       "path": "src/engine/projects.ts",
-      "bytes": 29732,
-      "sha256": "d3629453d88711e89be5b3555a6dda2b7e75660b5c652c9051c71ad2f85bcdfe"
+      "bytes": 32189,
+      "sha256": "6cc2b1d672046db236b8e306f5c2698ae8408b9bb43b72f404226186c1dabdc8"
     },
     {
       "path": "src/engine/properties.test.ts",
@@ -924,8 +939,8 @@
     },
     {
       "path": "src/engine/versions.ts",
-      "bytes": 1108,
-      "sha256": "54f796fe92e1877ca01cf2416c825771511dcc0c7802cc3435b6e0c1dddad435"
+      "bytes": 1330,
+      "sha256": "49d76f7bf1aebe0c4bc34ee4807d0af8d7e51ea2e513001d929dc2893f61ea44"
     },
     {
       "path": "src/main.tsx",
@@ -954,8 +969,8 @@
     },
     {
       "path": "src/styles/commissions.css",
-      "bytes": 10241,
-      "sha256": "ce77757a7883b30b7e70753ea1edcbe56ad6cf239c3aa18c102617221a45f5db"
+      "bytes": 10428,
+      "sha256": "693ddf8cb58d65a952fbb5580a00075596c690bd6d9fb371f2734da2b2e9751e"
     },
     {
       "path": "src/styles/continuing-studio.css",
@@ -1003,6 +1018,11 @@
       "sha256": "e6dfb5c84be4dd21ad792a6ae19f3823da5e263f5bea1554e2c295998da44490"
     },
     {
+      "path": "src/styles/print-lift.css",
+      "bytes": 3183,
+      "sha256": "9eb4a24fe058e76059ab9f484471e9f916d618a6ee407f0aef391888511785f8"
+    },
+    {
       "path": "src/styles/replay-backup.css",
       "bytes": 543,
       "sha256": "13792d452e1f021c124e8adcc5c4039b49a9497072ae578c4ead8a4598cccf05"
@@ -1029,8 +1049,8 @@
     },
     {
       "path": "src/ui/EndScreen.tsx",
-      "bytes": 15219,
-      "sha256": "b2a8d306122c784acc721eda1c8df1a8c2ce1825940f10029406ea45adcdf651"
+      "bytes": 16024,
+      "sha256": "f4b0e6eed2a0dddd7770f8f32e6e5b5bdd819226fb96c298bd27426dff0cc781"
     },
     {
       "path": "src/ui/ErrorBoundary.tsx",
@@ -1129,13 +1149,13 @@
     },
     {
       "path": "src/ui/creative/ContinueStudio.tsx",
-      "bytes": 5323,
-      "sha256": "0dbdee72f346f29364b9345fce9379b9155ba0a7c5521e6733a866a23ccb46b5"
+      "bytes": 6414,
+      "sha256": "8eb04b5060e2f7e3fe39f5683f566be2d6c7fe4c6afe99b79ab676d2a3dedc5d"
     },
     {
       "path": "src/ui/creative/DesignedArtwork.tsx",
-      "bytes": 8702,
-      "sha256": "54e3dc260f2c7d9e776116ca63ba3ccbe21d709234b2d44b2ba8572905d2ddbf"
+      "bytes": 8567,
+      "sha256": "494d866adbf091f8282205d8358b983a3c4ef1db16528bde4c3e87de26e9b58e"
     },
     {
       "path": "src/ui/creative/FeaturedWork.tsx",
@@ -1171,6 +1191,16 @@
       "path": "src/ui/creative/assets/hugo-at-bench.webp",
       "bytes": 129106,
       "sha256": "60776d7c8578050fa8136ab60b86d12375decd2722e0957e67754ea42d2c884e"
+    },
+    {
+      "path": "src/ui/creative/describePrint.test.ts",
+      "bytes": 884,
+      "sha256": "042d78d67c4a41a7b6da9441652ee0d87386e70a5430467a4d32408ad5277c08"
+    },
+    {
+      "path": "src/ui/creative/describePrint.ts",
+      "bytes": 472,
+      "sha256": "794ec33cbff6429fe6cf0331b2db046cdef48ad17376c8d0205ded55338092a3"
     },
     {
       "path": "src/ui/creative/index.ts",
@@ -1254,8 +1284,8 @@
     },
     {
       "path": "src/ui/game/ProjectBoard.tsx",
-      "bytes": 20222,
-      "sha256": "99d18d3a42c0b90d2c860ab73e016f1555757063b43d53f5b8fea6326c9fbfb6"
+      "bytes": 22859,
+      "sha256": "fa264266651c0f4c4bef4e589f12fc88dcf981ac5e4e18403a81185cc11cc2d5"
     },
     {
       "path": "src/ui/game/ReplyReview.tsx",
@@ -1349,8 +1379,8 @@
     },
     {
       "path": "src/ui/game/careerContinuity.test.ts",
-      "bytes": 12452,
-      "sha256": "53d001184e1258c18ace7245fd548218457d1b2497202fdf61b3582b2a323c52"
+      "bytes": 12520,
+      "sha256": "65456d6de512989aeb964611eb319bc5a3eea88341736bbc88a2648c2398d0b4"
     },
     {
       "path": "src/ui/game/careerContinuity.ts",
@@ -1364,8 +1394,8 @@
     },
     {
       "path": "src/ui/game/careerIdentity.ts",
-      "bytes": 1419,
-      "sha256": "e11a4841070deb8eac603082e84fa250bad2e5253fdb465fdd4586c1e74713ad"
+      "bytes": 1630,
+      "sha256": "08a70389861640e6c8d6e03b8eb3c05db714cd96c6d9137c68334077674e4a83"
     },
     {
       "path": "src/ui/game/clock.ts",
@@ -1844,18 +1874,28 @@
     },
     {
       "path": "src/ui/miniature/MiniatureCanvas.tsx",
-      "bytes": 5923,
-      "sha256": "bcadb254c25ef28f6cdd1ecac9db13bf6cd6634a43bfb752f248662201415ef9"
+      "bytes": 3903,
+      "sha256": "a6be455c02175fc7765cf90d69257af7de6edc6abdeea144f587700518bc9205"
     },
     {
       "path": "src/ui/miniature/MiniatureWorld.tsx",
-      "bytes": 13663,
-      "sha256": "8b4677465603a943d4dec2885a903a6d549641a3807f05486d3c6fdb69b9fbfc"
+      "bytes": 15180,
+      "sha256": "f9c8095b63375ad6aec13976a51e23ad17cfb7233e9762ec9bf82488d3a7afef"
+    },
+    {
+      "path": "src/ui/miniature/RoomScene.tsx",
+      "bytes": 2590,
+      "sha256": "d1bafdc3dd3a2aa50f2f882d26b31a82fdfabe24094b3b5ae8c44717d166dd4f"
     },
     {
       "path": "src/ui/miniature/Studio.tsx",
-      "bytes": 25078,
-      "sha256": "ddc5f830ad918f0900c29db2280c8c3ebb3b360d719fab9d109e502700649af4"
+      "bytes": 26280,
+      "sha256": "5d830455d2369f8e923c133bb1f6ea8aba3bdc039a8e930d364391d8472509fb"
+    },
+    {
+      "path": "src/ui/miniature/WorkerMiniatureCanvas.tsx",
+      "bytes": 6207,
+      "sha256": "e5aaf3801a9b905d9d79070ff59f7985197c0d5a083a3da6e6dd3795867a6407"
     },
     {
       "path": "src/ui/miniature/adapter.test.ts",
@@ -1879,8 +1919,18 @@
     },
     {
       "path": "src/ui/miniature/materials.tsx",
-      "bytes": 6915,
-      "sha256": "34f057d188771c7dd3aab0effc772ad198d90adec378e4815d88ad4126590df8"
+      "bytes": 6983,
+      "sha256": "1423a40897dda5843e3f493eaa0de5bf100ea852c12e5b17e03411d07674160c"
+    },
+    {
+      "path": "src/ui/miniature/renderer-probe.worker.ts",
+      "bytes": 525,
+      "sha256": "df90094d7818c6ae5151a193ec3c0e8d7fb594612beda18c2784df77922ea5b7"
+    },
+    {
+      "path": "src/ui/miniature/room.worker.tsx",
+      "bytes": 8151,
+      "sha256": "11c4ef34a0a6656cf166ff1aef0547ba314742eb76c50984788279c4d708d9f6"
     },
     {
       "path": "src/ui/miniature/study-frames.ts",
@@ -1949,13 +1999,18 @@
     },
     {
       "path": "src/ui/portfolio/CommissionPayoff.tsx",
-      "bytes": 10238,
-      "sha256": "1c2d974fa7688a2daf08494f18e03cf7e25852ca7b7ac82e89704e0692c3cb59"
+      "bytes": 10585,
+      "sha256": "cdad41f686e270e28d5957db26e04223058a91bb1e9068a04a6cddb7695f852e"
     },
     {
       "path": "src/ui/portfolio/PortfolioGallery.tsx",
       "bytes": 4498,
       "sha256": "c20014a0b60173c8da768d8a945ed3cc8af481921c2764993eea2070bb9ced43"
+    },
+    {
+      "path": "src/ui/portfolio/PrintLift.tsx",
+      "bytes": 4804,
+      "sha256": "32cfeec1e6dd895dbfe900a49efe37e0ccc88f26389eeed53ab08800a4a3bf9e"
     },
     {
       "path": "src/ui/portfolio/study.ts",
@@ -2398,5 +2453,5 @@
       "sha256": "c60d98238105ca8644a9b2a30cecf9cbf24b7ec6a618c65b16225183b61e4947"
     }
   ],
-  "sourceSha256": "9b8615dfea7d968a66d68e2cf92a1086b298d4045dc05cd3d46432b54fd70c8c"
+  "sourceSha256": "9ca5e01b29250e20e036331727436dce54b64a5342dc0cc3cfe6516c3aa458a3"
 }

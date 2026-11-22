@@ -23,7 +23,7 @@ function pendingNews(stage: CareerStage, card: NewsCardId): CompanyState {
   const cached = newsStates.get(key);
   if (cached) return cached;
   const tape = seasons.find(s => s.stage === stage)!;
-  let state = createRun(tape.config as RunConfig);
+  let state = createRun(tape.config as RunConfig, careers.rules);
   for (const command of tape.commands as Command[]) {
     const news = state.news.find(n => n.card === card && n.day === state.day && n.choice === null);
     if (news) { newsStates.set(key, state); return state; }
@@ -170,7 +170,8 @@ describe('ordinary requests after one-time milestones', () => {
       expect(briefFor(order, PRESETS.bespoke, old.config, undefined, old.rulesVersion).request).toBe(line);
     }
     const tape = seasons.find(s => s.stage === 'practice')!;
-    const state = replay(tape.config as RunConfig, tape.commands as Command[]).state;
+    const { state, errors } = replay(tape.config as RunConfig, tape.commands as Command[], careers.rules);
+    expect(errors).toEqual([]);
     const before = structuredClone(state);
     for (const piece of portfolioAt(state)) {
       const contract = state.contracts.find(c => c.id === piece.contractId)!;

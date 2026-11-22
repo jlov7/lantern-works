@@ -1,5 +1,6 @@
 // Earlier seasons keep their original rules through replay, branching, sharing and comparison.
-export const CURRENT_RULES_VERSION = 'lantern-7.0.0';
+export const PRESS_CHOICE_RULES_VERSION = 'lantern-7.1.0';
+export const CURRENT_RULES_VERSION = PRESS_CHOICE_RULES_VERSION;
 export const CAREER_RULES_VERSION = 'lantern-7.0.0';
 export const CREATIVE_PROMISE_RULES_VERSION = 'lantern-6.1.0';
 export const AUTHORSHIP_RULES_VERSION = 'lantern-6.0.0';
@@ -23,5 +24,9 @@ export function hasCreativePromiseRules(version: string): boolean {
 }
 
 export function hasCareerRules(version: string): boolean {
-  return version === CAREER_RULES_VERSION;
+  return version === CAREER_RULES_VERSION || hasPracticePressRules(version);
+}
+
+export function hasPracticePressRules(version: string): boolean {
+  return version === PRESS_CHOICE_RULES_VERSION;
 }

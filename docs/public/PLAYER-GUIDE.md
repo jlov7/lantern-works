@@ -38,6 +38,16 @@ Illustrations can be moved with the pointer or keyboard controls. Inspect the
 whole draft before approving the quote. Approval saves that exact composition;
 delivery, the portfolio and later displays use the same work.
 
+When Clem’s anniversary print comes off the press, you can lift the sheet in
+the evening scene. Use the print button with a tap, Enter or Space. With
+reduced motion the finished image is available immediately.
+
+In the second season, Clem and Mara share one press booking under the 7.1
+rules. Compare their commissions before approving a proof. Booking reserves
+the press for that neighbour for the season. To play the other outcome, finish
+the season and use **Try a branch**. Pick a morning when the other invitation
+is still open. Go back earlier if that neighbour still needs ordinary orders.
+
 ## Keep your season
 
 The game attempts to save after each move in this browser. A save warning means

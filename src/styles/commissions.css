@@ -30,6 +30,9 @@
 .project-board-head > div { flex: 1 1 14rem; }
 .project-board-head .small { margin-bottom: .25rem; }
 .project-calendar { border-bottom: 1px solid #b9ad99; padding-bottom: .7rem; margin-bottom: .7rem; }
+.project-press-choice { margin-bottom: .8rem; }
+.project-press-choice > h3 { margin: 0 0 .3rem; }
+.project-press-choice > p { margin: 0 0 .6rem; }
 .project-roster { margin-bottom: .8rem; }
 .project-roster > summary { min-height: 44px; padding-block: .5rem; cursor: pointer; font-weight: 700; }
 .project-roster ul, .project-progress ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
@@ -80,7 +83,7 @@
   .project-board { display: grid; grid-template-columns: 265px minmax(0, 1fr); gap: .4rem 1.5rem; }
   .project-board > .project-board-head, .project-board > .project-calendar { grid-column: 1 / -1; }
   .project-board > .project-roster { grid-column: 1; grid-row: 3 / span 7; }
-  .project-board > h3, .project-board > p:not(.project-calendar), .project-board > .project-approaches, .project-board > .project-quote, .project-board > .project-receipt, .project-board > .commission-conversation { grid-column: 2; }
+  .project-board > h3, .project-board > p:not(.project-calendar), .project-board > .project-press-choice, .project-board > .project-approaches, .project-board > .project-quote, .project-board > .project-receipt, .project-board > .commission-conversation { grid-column: 2; }
   .project-board > .project-roster > ul { display: grid; }
   .project-approaches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

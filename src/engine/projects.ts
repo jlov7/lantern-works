@@ -1,6 +1,6 @@
 // Authored commissions. Quotes and history are pure views; sim.ts accepts and fulfils their promises.
 import { CAST_BY_ID, RULES } from './rules';
-import { hasAuthorshipRules, hasCareerRules, hasStudioRules } from './versions';
+import { hasAuthorshipRules, hasCareerRules, hasPracticePressRules, hasStudioRules } from './versions';
 import { careerStage, projectStory, type ProjectContext } from './career';
 import { approveProof, briefForProject, type ProjectDesignBrief, type DesignSpec } from './design';
 import { creativePromise } from './ordinary';
@@ -11,6 +11,16 @@ export const PROJECT_IDS: ProjectId[] = ['clem-ten', 'mara-regular', 'hugo-hando
 export const PROJECT_APPROACHES: ProjectApproach[] = ['first-night', 'new-band', 'weekly-rhythm', 'market-debut', 'quiet-sendoff', 'open-bench', 'courtyard', 'trail'];
 export const FOREGROUND_PROJECTS = PROJECT_IDS.filter(id => id !== 'lantern-night');
 const DAY = RULES.minutesPerDay;
+
+const PRESS_CHOICES = ['clem-ten', 'mara-regular'] as const;
+export function practicePressChoice(s: ProjectContext): boolean {
+  return hasPracticePressRules(s.rulesVersion) && careerStage(s) === 'practice';
+}
+export function bookedPracticePress(s: CompanyState): (typeof PRESS_CHOICES)[number] | null {
+  if (!practicePressChoice(s)) return null;
+  const id = s.contracts.find(c => c.project?.id === 'clem-ten' || c.project?.id === 'mara-regular')?.project?.id;
+  return id === 'clem-ten' || id === 'mara-regular' ? id : null;
+}
 
 /** Early ordinary visits make the stories discoverable. They still need an offer, real work and delivery. */
 export function projectIntroductions(s: CompanyState, day: number): { castId: string; visit: number }[] {
@@ -41,8 +51,16 @@ export function projectFor(s: ProjectContext, id: ProjectId): ProjectDefinition 
     const identity = { storyNodeId: story.nodeId, stage };
     if (stage === 'opening') return { ...base, ...identity };
     if (stage === 'legacy' || stage === 'open') {
-      if (id === 'clem-ten') return { ...base, ...identity, name: stage === 'legacy' ? 'Clem’s shared archive' : 'An archive rotation at Clem', invitation: stage === 'legacy' ? 'Clem is opening the archive to the street. Lend an exact print the studio retained, with a new caption and invitation, or curate a coordinated display.' : 'The archive keeps rotating. Lend a retained print with a fresh caption, or prepare the next coordinated display.' };
-      if (id === 'mara-regular') return { ...base, ...identity, name: stage === 'legacy' ? 'Mara’s shared table' : 'Moonrise’s seasonal table', invitation: 'Mara can bring bread to one shared table, or open the bakery with a coordinated set of labels and invitations. The smaller promise contributes bread without making the bakery a host.' };
+      if (id === 'clem-ten') {
+        const history = stage === 'legacy' && hasPracticePressRules(s.rulesVersion) && s.config.continuation?.version === 3 ? s.config.continuation.career.stories : [];
+        const pressMemory = history.some(story => story.nodeId === 'mara-practice' && story.approach) && !history.some(story => story.nodeId === 'clem-practice' && story.approach) ? 'Mara reserved the shared press last season. Clem had no press booking. ' : '';
+        return { ...base, ...identity, name: stage === 'legacy' ? 'Clem’s shared archive' : 'An archive rotation at Clem', invitation: stage === 'legacy' ? `${pressMemory}Clem is opening the archive to the street. Lend an exact print the studio retained, with a new caption and invitation, or curate a coordinated display.` : 'The archive keeps rotating. Lend a retained print with a fresh caption, or prepare the next coordinated display.' };
+      }
+      if (id === 'mara-regular') {
+        const history = stage === 'legacy' && hasPracticePressRules(s.rulesVersion) && s.config.continuation?.version === 3 ? s.config.continuation.career.stories : [];
+        const pressMemory = history.some(story => story.nodeId === 'clem-practice' && story.approach) && !history.some(story => story.nodeId === 'mara-practice' && story.approach) ? 'Clem reserved the shared press last season. Mara had no press booking. ' : '';
+        return { ...base, ...identity, name: stage === 'legacy' ? 'Mara’s shared table' : 'Moonrise’s seasonal table', invitation: `${pressMemory}Mara can bring bread to one shared table, or open the bakery with a coordinated set of labels and invitations. The smaller promise contributes bread without making the bakery a host.` };
+      }
       return { ...base, ...identity, castId: 'ivo', name: stage === 'legacy' ? 'Ivo passes on repairs' : 'Repairs, returned to the bench', invitation: 'Ivo can share a careful reference sheet, or teach a repair class with an invitation and a demonstration sheet. A sheet contributes useful work; the class opens the workshop.' };
     }
     if (id === 'hugo-handover') {
@@ -195,6 +213,8 @@ export function projectBlocked(s: CompanyState, id: ProjectId, approach: Project
     if (s.lostCast.includes(def.castId)) return 'They are no longer commissioning work from the studio.';
     const done = ordinaryOrdersDelivered(s, def.castId);
     if (done < def.required) return `Deliver ${def.required - done} more ordinary ${def.required - done === 1 ? 'order' : 'orders'} for ${def.castId === 'clem' ? 'Clem' : def.castId === 'mara' ? 'Mara' : def.castId === 'ivo' ? 'Ivo' : 'Hugo'} first.`;
+    const press = bookedPracticePress(s);
+    if (PRESS_CHOICES.some(choice => choice === id) && press && press !== id) return `${press === 'clem-ten' ? 'Clem' : 'Mara'} has the shared press slot this season. ${id === 'clem-ten' ? 'Clem' : 'Mara'} must wait for a later season.`;
   } else {
     const done = projectRecords(s).filter(p => p.id !== id && p.earned);
     if (approach === 'courtyard' && !done.length) return 'Complete one milestone commission before booking the gathering.';
@@ -283,6 +303,19 @@ export function profileBriefMinutes(s: Pick<CompanyState, 'upgrades'>, templated
 
 export function projectQuote(s: CompanyState, id: ProjectId, approach: ProjectApproach, design?: DesignSpec, sourceId?: string): ProjectQuote | null {
   if (projectBlocked(s, id, approach, sourceId)) return null;
+  return quoteTerms(s, id, approach, design, sourceId);
+}
+
+/** Show what each neighbour is asking for, including a commission the player could still unlock. */
+export function practicePressOptions(s: CompanyState) {
+  if (!practicePressChoice(s) || bookedPracticePress(s)) return [];
+  return ([['clem-ten', 'new-band'], ['mara-regular', 'weekly-rhythm']] as const).map(([id, option]) => ({
+    id, approach: approachFor(s, option), closes: projectFor(s, id).closes,
+    blocked: projectBlocked(s, id, option), quote: quoteTerms(s, id, option),
+  }));
+}
+
+function quoteTerms(s: CompanyState, id: ProjectId, approach: ProjectApproach, design?: DesignSpec, sourceId?: string): ProjectQuote | null {
   const def = projectFor(s, id);
   const stage = careerStage(s);
   let { offer, need, materials, profiles, contributors } = baseProjectTerms(s, id, approach);

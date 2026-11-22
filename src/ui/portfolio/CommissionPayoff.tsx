@@ -6,6 +6,7 @@ import type { ProjectId } from '../../engine/types';
 import { CustomerPortrait } from '../atelier/AtelierWindow';
 import { artifactLabel } from '../game/portfolio';
 import { CampaignArtwork } from './Artwork';
+import { PrintLift } from './PrintLift';
 import '../../styles/commission-payoff.css';
 import '../../styles/commission-response.css';
 import '../../styles/neighbourhood.css';
@@ -20,13 +21,14 @@ export function CommissionPayoff({ payoff: p, variant = 'evening', onInvitation 
   const milestone = p.kind === 'milestone';
   const delivery = milestone || p.kind === 'ordinary';
   const featured = p.featuredPiece ?? p.pieces[0];
+  const clemPrint = p.kind === 'milestone' && p.phase === 'delivered' && featured?.castId === 'clem' && featured.brief.project?.id === 'clem-ten' && !!featured.brief.proof;
   const hasPlacement = delivery ? !!featured : p.kind === 'night' && p.pieces.length > 0;
   const animate = !reducedMotion && !motionSkipped && hasPlacement;
   const contributorOrders = [...new Map(p.contributors.map(piece => [piece.contractId, piece])).values()];
   return <section className={`commission-payoff payoff-${p.kind} payoff-${p.phase} payoff-${variant}${delivery ? ' payoff-delivery' : ''}`} aria-labelledby={`${id}-title`} data-payoff-kind={p.kind} data-payoff-phase={p.phase} data-scene-motion={animate || undefined}>
     <div className="payoff-heading">{!delivery && <p className="payoff-eyebrow">{p.kind === 'window' ? 'Lantern Works · this season' : `${p.calendar.name} · Day ${p.calendar.day + 1}`}</p>}<Heading id={`${id}-title`}>{p.title}</Heading></div>
     <div className="payoff-body">
-      {delivery ? <div className="payoff-milestone-art" data-payoff-piece={featured?.jobId} onAnimationEnd={() => setMotionSkipped(true)}>{featured ? <CampaignArtwork brief={featured.brief} launch={featured.launch} launches={featured.launches} /> : <div className="payoff-empty">Not delivered</div>}</div> : <EventVignette payoff={p} onPlacementEnd={() => setMotionSkipped(true)} />}
+      {delivery ? clemPrint && featured ? <PrintLift piece={featured} reducedMotion={reducedMotion} onPlacementEnd={() => setMotionSkipped(true)} /> : <div className="payoff-milestone-art" data-payoff-piece={featured?.jobId} onAnimationEnd={() => setMotionSkipped(true)}>{featured ? <CampaignArtwork brief={featured.brief} launch={featured.launch} launches={featured.launches} /> : <div className="payoff-empty">Not delivered</div>}</div> : <EventVignette payoff={p} onPlacementEnd={() => setMotionSkipped(true)} />}
       <div className="payoff-words">{delivery && featured && p.response && <div className="payoff-customer" aria-hidden="true"><CustomerPortrait castId={featured.castId} mood={p.phase === 'delivered' ? 'pleased' : p.phase === 'partial' || p.phase === 'failed' ? 'concerned' : 'listening'} /></div>}{p.response && <p className="payoff-response">{p.response}</p>}<p className="payoff-line">{p.line}</p>{p.consequence && <p className="payoff-consequence">{p.consequence}</p>}
         {p.invitation && onInvitation && <button type="button" className="btn payoff-invitation" onClick={() => onInvitation(p.invitation!.projectId)}>{p.invitation.label}</button>}
         {p.kind === 'night' && p.promised > 1 && <ul className="payoff-parts" aria-label="Promised work">{p.slots.map(slot => <li key={slot.label} className={slot.piece ? 'is-delivered' : 'is-missing'}><span aria-hidden="true">{slot.piece ? '●' : '○'}</span><span>{slot.label}: {slot.piece ? 'delivered' : p.phase === 'preparing' || p.phase === 'ready' ? 'still in the works' : 'not delivered'}</span></li>)}</ul>}

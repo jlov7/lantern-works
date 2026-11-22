@@ -52,7 +52,7 @@ function legacyReady(): CompanyState {
 }
 
 describe('exact career rules and finite authored stages', () => {
-  it('distinguishes fresh 7.0 from fresh 6.1 without inferring a version from continuation', () => {
+  it('distinguishes a fresh career from a fresh 6.1 studio without inferring a version from continuation', () => {
     const config = { scenarioId: 'main-street', seed: 'career-boundary' };
     const now = createRun(config);
     const old = createRun(config, CREATIVE_PROMISE_RULES_VERSION);
@@ -258,8 +258,11 @@ describe('fixed recurring briefs and visible paid reuse', () => {
     s = step(s, { type: 'buy', item: 'library' });
     s = step(s, { type: 'preparePattern', sourceId: 'carried-1' });
     while (s.day < 7) {
-      for (const [id, approach] of [['clem-ten', 'new-band'], ['mara-regular', 'weekly-rhythm']] as const) if (!projectBlocked(s, id, approach)) s = step(s, { type: 'acceptProject', projectId: id, approach, design: projectBrief(s, id, approach).defaultDesign });
-      for (const request of s.requests.filter(r => r.day === s.day && r.status === 'waiting')) s = step(s, { type: 'decline', requestId: request.id });
+      for (const [id, approach] of [['clem-ten', 'new-band'], ['hugo-handover', 'quiet-sendoff']] as const) if (!projectBlocked(s, id, approach)) s = step(s, { type: 'acceptProject', projectId: id, approach, design: projectBrief(s, id, approach).defaultDesign });
+      for (const request of s.requests.filter(r => r.day === s.day && r.status === 'waiting')) {
+        const take = request.castId === 'ivo' && reactionFor(s, request).kind === 'buy';
+        s = step(s, { type: take ? 'accept' : 'decline', requestId: request.id });
+      }
       s = step(s, { type: 'runDay' });
     }
     const brief = projectBrief(s, 'lantern-night', 'trail');

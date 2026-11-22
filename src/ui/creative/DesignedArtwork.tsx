@@ -1,5 +1,6 @@
+import { describePrint } from './describePrint';
 import { useId, useLayoutEffect, useState } from 'react';
-import { LAYOUTS, MOTIFS, PALETTES, TYPEFACES, motifSize, type BriefCopy, type DesignPiece } from '../../engine/design';
+import { LAYOUTS, PALETTES, TYPEFACES, motifSize, type BriefCopy, type DesignPiece } from '../../engine/design';
 import { Motif } from './Motif';
 import '../../styles/creative.css';
 
@@ -73,7 +74,7 @@ export function DesignedPrint({ piece, copy, label, className = '', compact = fa
     : piece.layout === 'split' ? { x: 8, y: 15, width: 36, height: 56, size: 6.4 }
     : piece.layout === 'stack' ? { x: 8, y: 61, width: 84, height: 14, size: 5.2 }
     : { x: 8, y: 7, width: 84, height: 16, size: 5.8 };
-  const description = [label, ...selectedCopy.map(c => c.text), piece.headline, ...piece.motifs.map(m => piece.kind === 'portrait' && m.id === 'bench' ? 'Hugo at his watchmaker’s bench' : MOTIFS[m.id])].filter(Boolean).join('. ');
+  const description = describePrint(piece, copy, label);
   return <svg viewBox="0 0 100 100" role={compact ? undefined : "img"} aria-hidden={compact || undefined} aria-label={compact ? undefined : description} className={`designed-artwork__print ${className}`} style={{ color: palette.ink, backgroundColor: palette.paper }} fill="currentColor" data-layout={piece.layout} data-palette={piece.palette} data-typeface={piece.typeface} data-treatment={piece.treatment}>
       <defs><pattern id={`grain-${id}`} width="4" height="4" patternUnits="userSpaceOnUse"><path d="m.3 .4.2.1m2 1.8.1.1M1 3h.1" stroke="currentColor" strokeWidth=".12" opacity=".2" /></pattern></defs>
       <rect width="100" height="100" fill={palette.paper} /><rect width="100" height="100" fill={`url(#grain-${id})`} />

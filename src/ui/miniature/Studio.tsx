@@ -1,5 +1,6 @@
 import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { CanvasTexture, InstancedMesh, Object3D, SRGBColorSpace } from 'three';
+import youngSerifFont from '@fontsource/young-serif/files/young-serif-latin-400-normal.woff2?url';
 import { Solid, type MaterialName } from './materials';
 import { useMaterials } from './material-context';
 import type { miniatureScene, Point } from './adapter';
@@ -165,19 +166,38 @@ function Person({ at, look, working = false, customer = false, clem = false }: {
   </group>;
 }
 
+let workerFont: Promise<void> | undefined;
+function signFontReady(): Promise<unknown> {
+  if (typeof document !== 'undefined') return document.fonts.ready;
+  return workerFont ??= new FontFace('Young Serif', `url("${youngSerifFont}")`).load().then(face => {
+    (self as unknown as { fonts?: FontFaceSet }).fonts?.add(face);
+  });
+}
+// oxlint-disable-next-line react/only-export-components -- The worker imports this font readiness helper.
+export function loadWorkerSignFont(): Promise<unknown> { return signFontReady(); }
+function signTexture(text: string): CanvasTexture<HTMLCanvasElement | OffscreenCanvas> {
+  const canvas = typeof document === 'undefined' ? new OffscreenCanvas(1024, 128) : document.createElement('canvas');
+  canvas.width = 1024; canvas.height = 128;
+  const context = canvas.getContext('2d')!;
+  context.fillStyle = '#243c31'; context.fillRect(0, 0, 1024, 128);
+  context.fillStyle = '#d6b879'; context.textAlign = 'center'; context.textBaseline = 'middle'; context.font = '52px "Young Serif"'; context.fillText(text, 512, 69);
+  const texture = new CanvasTexture(canvas);
+  texture.colorSpace = SRGBColorSpace;
+  return texture;
+}
 function Sign({ text, at, width, height }: { text: string; at: Point; width: number; height: number }) {
-  const [texture, setTexture] = useState<CanvasTexture>();
+  const [texture, setTexture] = useState<CanvasTexture<HTMLCanvasElement | OffscreenCanvas> | undefined>(() => typeof document === 'undefined' ? signTexture(text) : undefined);
+  const workerOwned = useRef(texture);
   useEffect(() => {
+    const initialWorkerTexture = workerOwned.current;
+    if (typeof document === 'undefined') return () => initialWorkerTexture?.dispose();
     let cancelled = false;
-    let owned: CanvasTexture | undefined;
-    void document.fonts.ready.then(() => {
+    let owned: CanvasTexture<HTMLCanvasElement | OffscreenCanvas> | undefined;
+    void signFontReady().then(() => {
       if (cancelled) return;
-      const canvas = document.createElement('canvas'); canvas.width = 1024; canvas.height = 128;
-      const context = canvas.getContext('2d')!;
-      context.fillStyle = '#243c31'; context.fillRect(0, 0, 1024, 128);
-      context.fillStyle = '#d6b879'; context.textAlign = 'center'; context.textBaseline = 'middle'; context.font = '52px "Young Serif"'; context.fillText(text, 512, 69);
-      owned = new CanvasTexture(canvas); owned.colorSpace = SRGBColorSpace; setTexture(owned);
-    });
+      const next = signTexture(text);
+      owned = next; setTexture(next);
+    }).catch(() => undefined);
     return () => { cancelled = true; owned?.dispose(); };
   }, [text]);
   return texture ? <mesh position={at}><planeGeometry args={[width, height]} /><meshStandardMaterial map={texture} roughness={1} /></mesh> : null;

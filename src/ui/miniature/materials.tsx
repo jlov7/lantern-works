@@ -8,7 +8,8 @@ import { Materials, useMaterials } from './material-context';
 const COLORS = { timber: '#89613f', edge: '#503a2b', plank: '#a47d53', plaster: '#bfb29a', green: '#254139', greenLight: '#416050', iron: '#292e2c', brass: '#a28a50', paper: '#e9d9b8', dark: '#162824', cobble: '#596469', rug: '#783d32', skin: '#a77750', skinLight: '#c99c78', skinDark: '#76513d', silver: '#b5b3a6', cream: '#c3af8f', hair: '#302b24', leaf: '#506148', blue: '#303b4b', terra: '#885941' };
 export type MaterialName = keyof typeof COLORS;
 function grainTexture(wood: boolean) {
-  const canvas = document.createElement('canvas'); canvas.width = 256; canvas.height = 256;
+  const canvas = typeof document === 'undefined' ? new OffscreenCanvas(256, 256) : document.createElement('canvas');
+  canvas.width = 256; canvas.height = 256;
   const ctx = canvas.getContext('2d')!;
   ctx.fillStyle = '#aaa18c'; ctx.fillRect(0, 0, 256, 256);
   let seed = 71;

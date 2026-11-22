@@ -87,7 +87,6 @@ test('the real studio is readable at 320, 390 and 1280, and every queued print c
   expect(await saved(page)).toEqual(commands);
   expect(errors).toEqual([]);
 });
-
 test('the illustrated preference persists and switching views preserves the command tape', async ({ page }) => {
   await load(page); await ready(page);
   await (await settings(page)).getByRole('radio', { name: 'Illustrated studio', exact: true }).check();
@@ -103,9 +102,11 @@ test('the illustrated preference persists and switching views preserves the comm
   await page.keyboard.press('Escape'); await ready(page);
   expect(await saved(page)).toEqual(commands);
 });
-
-for (const failure of ['WebGL', 'MiniatureWorld', 'MiniatureCanvas']) test(`${failure} failure leaves the real illustrated game playable`, async ({ page }) => {
-  if (failure === 'WebGL') await page.addInitScript({ content: `const original = HTMLCanvasElement.prototype.getContext; HTMLCanvasElement.prototype.getContext = function(type, ...args) { return ['webgl', 'webgl2', 'experimental-webgl'].includes(type) ? null : original.call(this, type, ...args); };` });
+for (const failure of ['WebGL', 'MiniatureWorld', 'WorkerMiniatureCanvas']) test(`${failure} failure leaves the real illustrated game playable`, async ({ page }) => {
+  if (failure === 'WebGL') {
+    await page.route('**/assets/renderer-probe.worker-*.js', route => route.fulfill({ contentType: 'text/javascript', body: "self.postMessage({view:'illustrated',unavailable:true})" }));
+    await page.addInitScript({ content: `const original = HTMLCanvasElement.prototype.getContext; HTMLCanvasElement.prototype.getContext = function(type, ...args) { return ['webgl', 'webgl2', 'experimental-webgl'].includes(type) ? null : original.call(this, type, ...args); };` });
+  }
   else await page.route(`**/assets/${failure}-*.js`, route => route.abort());
   await load(page);
   const tryMiniature = page.getByRole('button', { name: 'Try miniature room', exact: true });
@@ -116,17 +117,39 @@ for (const failure of ['WebGL', 'MiniatureWorld', 'MiniatureCanvas']) test(`${fa
     await expect(tryMiniature).toHaveCount(0);
   }
   await expect(page.locator('.work-place .lw-world')).toBeVisible();
+  if (failure === 'WebGL') {
+    await expect(room(page)).toHaveAttribute('data-fallback', 'true');
+    await expect(page.locator('canvas[data-miniature-renderer]')).toHaveCount(0);
+  }
   await goPlace(page, 'Window');
   await expect(page.getByRole('heading', { name: 'At the window', exact: true })).toBeVisible();
   expect(await saved(page)).toEqual(commands);
 });
 
-test('lost graphics remain illustrated across workspace navigation', async ({ page }) => {
-  await load(page); await ready(page);
-  await page.locator('canvas[data-miniature-renderer]').evaluate(element => {
-    const gl = (element as HTMLCanvasElement).getContext('webgl2')!;
-    gl.getExtension('WEBGL_lose_context')!.loseContext();
+async function observeRoomWorker(page: Page, install: () => void) {
+  await page.context().route('**/assets/room.worker-*.js', async route => {
+    const script = await route.fetch();
+    await route.fulfill({ response: script, body: '(' + install.toString() + ')();\n' + await script.text() });
   });
+}
+
+test('lost graphics remain illustrated across workspace navigation', async ({ page }) => {
+  await observeRoomWorker(page, () => {
+    addEventListener('message', event => {
+      if (event.data.canvas) Object.assign(globalThis, { testCanvas: event.data.canvas });
+    }, { once: true });
+  });
+  await load(page); await ready(page);
+  const worker = page.workers().find(worker => worker.url().includes('/room.worker-'));
+  if (worker) {
+    await worker.evaluate(() => {
+      const canvas = (globalThis as unknown as { testCanvas: OffscreenCanvas }).testCanvas;
+      canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!.loseContext();
+    });
+  } else {
+    await page.locator('canvas[data-miniature-renderer]').evaluate(element =>
+      (element as HTMLCanvasElement).getContext('webgl2')!.getExtension('WEBGL_lose_context')!.loseContext());
+  }
   await expect(room(page)).toHaveAttribute('data-fallback', 'true');
   await expect(page.locator('.miniature-fallback .lw-world')).toBeVisible();
   await goPlace(page, 'Window'); await goPlace(page, 'Work');
@@ -152,6 +175,11 @@ test('inspecting pauses a real day and unchanged artwork stays bound through its
   });
   for (let step = 0; step < 8 && await page.getByRole('button', { name: 'Next hour', exact: true }).count(); step++) await page.getByRole('button', { name: 'Next hour', exact: true }).click();
   await expect(page.locator('.evening')).toBeVisible(); await ready(page);
+  await expect.poll(() => room(page).evaluate(element => {
+    const expected = [...element.querySelectorAll('[data-print-key]')].map(print => print.getAttribute('data-print-key')).sort();
+    const committed = JSON.parse(element.getAttribute('data-print-textures') ?? '[]').sort();
+    return JSON.stringify(committed) === JSON.stringify(expected);
+  })).toBe(true);
   const history = await page.evaluate(() => (window as unknown as { textureHistory: string[][] }).textureHistory);
   expect(history.length).toBeGreaterThan(1);
   const unchanged = history[0]!.filter(key => history.at(-1)!.includes(key));
@@ -181,9 +209,9 @@ test('active work opens close while keeping the full room a player choice', asyn
 });
 
 test('the close camera retains lighting without compiling a new shader variant', async ({ page }, info) => {
-  await page.addInitScript(() => {
+  function countShaderPrograms() {
     const state = { programs: 0, variants: new Set<string>() };
-    (window as unknown as { cameraPrograms: typeof state }).cameraPrograms = state;
+    (globalThis as unknown as { cameraPrograms: typeof state }).cameraPrograms = state;
     const create = WebGL2RenderingContext.prototype.createProgram;
     WebGL2RenderingContext.prototype.createProgram = function () { state.programs++; return create.call(this); };
     const link = WebGL2RenderingContext.prototype.linkProgram;
@@ -192,7 +220,9 @@ test('the close camera retains lighting without compiling a new shader variant',
       const sources = this.getAttachedShaders(program)!.map(shader => [this.getShaderParameter(shader, this.SHADER_TYPE), this.getShaderSource(shader)]).sort((a, b) => Number(a[0]) - Number(b[0]));
       state.variants.add(JSON.stringify(sources));
     };
-  });
+  }
+  await page.addInitScript(countShaderPrograms);
+  await observeRoomWorker(page, countShaderPrograms);
   await load(page); await ready(page);
   await page.evaluate(() => document.fonts.ready);
   await expect.poll(() => page.evaluate(() => {
@@ -204,10 +234,12 @@ test('the close camera retains lighting without compiling a new shader variant',
   await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
   const cdp = await page.context().newCDPSession(page);
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
-  const count = () => page.evaluate(() => {
-    const state = (window as unknown as { cameraPrograms: { programs: number; variants: Set<string> } }).cameraPrograms;
+  const worker = page.workers().find(worker => worker.url().includes('/room.worker-'));
+  function readPrograms() {
+    const state = (globalThis as unknown as { cameraPrograms: { programs: number; variants: Set<string> } }).cameraPrograms;
     return { programs: state.programs, variants: state.variants.size };
-  });
+  }
+  const count = () => worker ? worker.evaluate(readPrograms) : page.evaluate(readPrograms);
   const before = await count();
   expect(before.variants).toBeGreaterThan(0);
   const observations = [];
@@ -264,6 +296,7 @@ test('a continuing studio keeps its actual print and shows Tomas and Noor learni
 });
 
 test('the software-rendering recommendation offers a persistent player choice', async ({ page }) => {
+  await page.route('**/assets/renderer-probe.worker-*.js', route => route.fulfill({ contentType: 'text/javascript', body: "self.postMessage({view:'illustrated',unavailable:true})" }));
   await page.addInitScript(() => {
     const getParameter = WebGL2RenderingContext.prototype.getParameter;
     WebGL2RenderingContext.prototype.getParameter = function(parameter) {
@@ -298,6 +331,7 @@ test('returning to Work retains one dormant renderer and its artwork resources',
   for (let visit = 0; visit < 3; visit++) {
     await goPlace(page, 'Window');
     await expect(room(page)).toHaveAttribute('data-visible', 'false');
+    if (await page.locator('canvas[data-renderer-thread="worker"]').count()) await expect(page.locator('canvas[data-renderer-thread="worker"]')).toHaveAttribute('data-suspended', 'true');
     await page.waitForTimeout(200);
     const hidden = await metrics();
     await page.waitForTimeout(300);
@@ -313,10 +347,11 @@ test('returning to Work retains one dormant renderer and its artwork resources',
   expect(await saved(page)).toEqual(commands);
   await page.getByRole('button', { name: 'Lantern Works: back to the street map', exact: true }).click();
   await expect(page.locator('canvas[data-miniature-renderer]')).toHaveCount(0);
-  await expect.poll(() => canvas!.evaluate(element => (element as HTMLCanvasElement).getContext('webgl2')?.isContextLost())).toBe(true);
+  await expect.poll(() => canvas!.evaluate(element => (element as HTMLElement).dataset.rendererThread === 'worker' ? (element as HTMLElement).dataset.contextLost === 'true' : (element as HTMLCanvasElement).getContext('webgl2')?.isContextLost())).toBe(true);
 });
 
 test('unrelated settings preserve automatic software fallback and explicit view changes apply immediately', async ({ page }) => {
+  await page.route('**/assets/renderer-probe.worker-*.js', route => route.fulfill({ contentType: 'text/javascript', body: "self.postMessage({view:'illustrated',unavailable:true})" }));
   await page.addInitScript(() => {
     const getParameter = WebGL2RenderingContext.prototype.getParameter;
     WebGL2RenderingContext.prototype.getParameter = function(parameter) {
