@@ -45,12 +45,16 @@ export const TopBar = memo(function TopBar(p: Props): JSX.Element {
   useEffect(() => {
     const el = bar.current;
     if (!el || typeof ResizeObserver === 'undefined') return;
-    const update = () => document.documentElement.style.setProperty('--topbar-h', `${Math.ceil(el.getBoundingClientRect().height)}px`);
+    const update = () => {
+      const height = `${Math.ceil(el.getBoundingClientRect().height)}px`;
+      const style = document.documentElement.style;
+      if (style.getPropertyValue('--topbar-h') !== height) style.setProperty('--topbar-h', height);
+    };
     update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
     return () => {
-      ro.disconnect();
+      observer.disconnect();
       document.documentElement.style.removeProperty('--topbar-h');
     };
   }, []);

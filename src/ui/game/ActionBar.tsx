@@ -76,14 +76,16 @@ export const ActionBar = memo(function ActionBar({ place, onPlace, onReview, day
     const measure = () => {
       const height = Math.ceil(el.getBoundingClientRect().height);
       const flowing = window.innerHeight <= 580 || height > window.innerHeight / 3;
-      el.dataset.flowing = String(flowing);
-      document.documentElement.style.setProperty('--actionbar-h', `${flowing ? 0 : height}px`);
+      if (el.dataset.flowing !== String(flowing)) el.dataset.flowing = String(flowing);
+      const inset = `${flowing ? 0 : height}px`;
+      const style = document.documentElement.style;
+      if (style.getPropertyValue('--actionbar-h') !== inset) style.setProperty('--actionbar-h', inset);
     };
     measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
     window.addEventListener('resize', measure);
-    return () => { ro.disconnect(); window.removeEventListener('resize', measure); document.documentElement.style.removeProperty('--actionbar-h'); };
+    return () => { observer.disconnect(); window.removeEventListener('resize', measure); document.documentElement.style.removeProperty('--actionbar-h'); };
   }, []);
   // The evening's way on gets focus, so keyboard and screen-reader players land on it.
   useEffect(() => {

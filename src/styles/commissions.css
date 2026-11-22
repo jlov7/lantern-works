@@ -30,7 +30,10 @@
 .project-board-head > div { flex: 1 1 14rem; }
 .project-board-head .small { margin-bottom: .25rem; }
 .project-calendar { border-bottom: 1px solid #b9ad99; padding-bottom: .7rem; margin-bottom: .7rem; }
-.project-press-choice { margin-bottom: .8rem; }
+.project-press-choice { margin-bottom: .8rem; container-type: inline-size; }
+@container (min-width: 34rem) {
+  .project-press-choice > .project-approaches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .project-press-choice > h3 { margin: 0 0 .3rem; }
 .project-press-choice > p { margin: 0 0 .6rem; }
 .project-roster { margin-bottom: .8rem; }

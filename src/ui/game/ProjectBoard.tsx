@@ -1,3 +1,4 @@
+import { observeLayout } from '../observeLayout';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { approachFor, bookedPracticePress, nightCalendar, ordinaryOrdersDelivered, practicePressChoice, practicePressOptions, PROJECT_IDS, projectFor, projectBlocked, projectBrief, projectRecords, lendingSources } from '../../engine/projects';
@@ -72,12 +73,14 @@ export function ProjectBoard({ selection, onSelection, state, disabled, onAccept
     if (!composing || !chrome) return;
     const form = chrome.closest('form')!;
     const pieces = form.querySelector<HTMLElement>('.proof-desk__pieces');
-    const measure = () => form.style.setProperty('--proof-workspace-height', `calc(100svh - var(--topbar-h, 4rem) - var(--actionbar-h, 5rem) - ${Math.ceil(chrome.getBoundingClientRect().height + (pieces?.getBoundingClientRect().height ?? 0))}px - 2.5rem)`);
-    const observer = new ResizeObserver(measure);
-    observer.observe(chrome);
-    if (pieces) observer.observe(pieces);
+    const measure = () => {
+      const chromeHeight = Math.ceil(chrome.getBoundingClientRect().height + (pieces?.getBoundingClientRect().height ?? 0));
+      const available = `calc(100svh - var(--topbar-h, 4rem) - var(--actionbar-h, 5rem) - ${chromeHeight}px - 2.5rem)`;
+      if (form.style.getPropertyValue('--proof-workspace-height') !== available) form.style.setProperty('--proof-workspace-height', available);
+    };
+    const stopObserving = observeLayout(pieces ? [chrome, pieces] : [chrome], measure);
     measure();
-    return () => { observer.disconnect(); form.style.removeProperty('--proof-workspace-height'); };
+    return () => { stopObserving(); form.style.removeProperty('--proof-workspace-height'); };
   }, [composing]);
   const routes = useMemo(() => {
     if (!approach || (authored && !reviewing)) return [];

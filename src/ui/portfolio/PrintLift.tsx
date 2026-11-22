@@ -5,7 +5,7 @@ import { DesignedPrint } from '../creative/DesignedArtwork';
 import '../../styles/print-lift.css';
 
 /** Each hinged band reveals a different third of one approved print. */
-export function PrintLift({ piece, reducedMotion, onPlacementEnd }: { piece: WorkPiece; reducedMotion: boolean; onPlacementEnd: () => void }) {
+export function PrintLift({ piece, reducedMotion, onPlacementEnd }: { piece: WorkPiece; reducedMotion: boolean; onPlacementEnd?: () => void }) {
   const source = useId();
   const proof = piece.brief.proof!;
   const copy = proof.pieces[piece.launch - 1]!.copy;
@@ -26,7 +26,7 @@ export function PrintLift({ piece, reducedMotion, onPlacementEnd }: { piece: Wor
 
   const begin = (event: PointerEvent<HTMLButtonElement>) => {
     if (!event.isPrimary || event.button !== 0) return;
-    onPlacementEnd();
+    onPlacementEnd?.();
     ignoreDragClick.current = false;
     if (reducedMotion) return;
     start.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
@@ -68,7 +68,7 @@ export function PrintLift({ piece, reducedMotion, onPlacementEnd }: { piece: Wor
     <button type="button" className="print-lift__control" aria-label={lifted ? 'Lay Clem’s print down' : 'Lift Clem’s print'} aria-describedby={source + '-description'}
       style={style}
       onPointerDown={begin} onPointerMove={move} onPointerUp={finish} onPointerCancel={() => { start.current = null; setDragLift(null); }}
-      onClick={event => { onPlacementEnd(); if (event.detail === 0 || !ignoreDragClick.current) setLifted(value => !value); }}>
+      onClick={event => { onPlacementEnd?.(); if (event.detail === 0 || !ignoreDragClick.current) setLifted(value => !value); }}>
       <span className="print-lift__press" aria-hidden="true"><span className="print-lift__rail" /></span>
       <span className="print-lift__sheet" aria-hidden="true">
         <svg className="print-lift__master" width="0" height="0"><defs><symbol id={source} viewBox="0 0 100 100">

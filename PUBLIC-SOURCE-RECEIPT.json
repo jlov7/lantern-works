@@ -89,8 +89,8 @@
     },
     {
       "path": "docs/public/ARTWORK.md",
-      "bytes": 3421,
-      "sha256": "e2fc8361be89cdcad75586ecb9f2268b994f5514fb7d5a38e9be385fdf83d7d7"
+      "bytes": 3637,
+      "sha256": "9af4308fa2fa3da90ba7e5101bc460e8a49f78597c544b621a4144eb1e94b8bc"
     },
     {
       "path": "docs/public/HOSTING.md",
@@ -114,8 +114,8 @@
     },
     {
       "path": "docs/public/artwork-manifest.json",
-      "bytes": 4622,
-      "sha256": "a2f257ee0600deca07738278805a60a630f00e231aef2c1a3d0105b00beaa374"
+      "bytes": 5052,
+      "sha256": "51f783318a0d461e30aefcb911bcc13d6af40939ffd68c19f18054f8075ecad8"
     },
     {
       "path": "docs/public/images/delivery.webp",
@@ -126,6 +126,21 @@
       "path": "docs/public/images/drawing-desk.webp",
       "bytes": 65006,
       "sha256": "cdca63e4f2d11cbe3b1abc64d19bd3522e02f118cc44f31063dc13f5ed6cee96"
+    },
+    {
+      "path": "docs/public/images/first-order/phone-journal.webp",
+      "bytes": 79276,
+      "sha256": "5a81d24baceb5143d1a92aa9d47619e26065a4dd2725e3ca141eaed155e36956"
+    },
+    {
+      "path": "docs/public/images/first-order/press-and-delivery.webp",
+      "bytes": 59768,
+      "sha256": "5fca386c14f91c9772fa755f371f870adcde2c5dc6ed2c4b25adcb6648659d41"
+    },
+    {
+      "path": "docs/public/images/first-order/street.webp",
+      "bytes": 96364,
+      "sha256": "d47d177d2ef68f5779fc9f5f5ac44202364e6a5c2708873baeb4e3e0c260bf39"
     },
     {
       "path": "docs/public/images/screenshots.json",
@@ -181,6 +196,11 @@
       "path": "e2e/career-identity.spec.ts",
       "bytes": 14230,
       "sha256": "1c3381d7783722ee292fa2c94751bed47e51c2c0cff53b6042930ea4dd49f59c"
+    },
+    {
+      "path": "e2e/clem-commission.spec.ts",
+      "bytes": 9005,
+      "sha256": "0b4d320482cde611e8ad6a4275d4d850b93c7bac16ec06ce56b6969c30927ed3"
     },
     {
       "path": "e2e/closing-promise.spec.ts",
@@ -268,6 +288,11 @@
       "sha256": "3412cd71af0cd7f63700456b2c89ea99a364e6cf380dc4defcab3f25e01a4ebe"
     },
     {
+      "path": "e2e/first-order.spec.ts",
+      "bytes": 3856,
+      "sha256": "3f1e8d15e2542e05582d1219acbff27f82585e04e91ed120cba23b17dc9bca4e"
+    },
+    {
       "path": "e2e/fixtures/header-morning.json",
       "bytes": 4891,
       "sha256": "4eb970878ffc464d956d705bef2326c03e5562ccaec3a1a15ec911fa4de8ca86"
@@ -344,8 +369,8 @@
     },
     {
       "path": "e2e/miniature-game.spec.ts",
-      "bytes": 25202,
-      "sha256": "92fdbb0186e5e6772bfba041838422b5619010c969fb1a3eb7d0a17481a6a2ac"
+      "bytes": 26723,
+      "sha256": "1aabf42dbdeed503eb5beff3eef8a6e5a9df5f78e95a95ad86b137aade33ed37"
     },
     {
       "path": "e2e/morning-session.spec.ts",
@@ -399,8 +424,8 @@
     },
     {
       "path": "e2e/practice-press.spec.ts",
-      "bytes": 5740,
-      "sha256": "104d6b88d919b61660d74fc1698fa10d32f88ab4f33f6b8529e7e5bae6f21700"
+      "bytes": 8835,
+      "sha256": "68423e209417cbf27735ecd7876df26a3c511f90b3164b917939daee27331339"
     },
     {
       "path": "e2e/print-lift.spec.ts",
@@ -514,8 +539,8 @@
     },
     {
       "path": "playwright.compat.config.ts",
-      "bytes": 685,
-      "sha256": "f8e5c356fe1749bc273156c3e5f241b8ba0db040395cabc305b3493b573cd92e"
+      "bytes": 735,
+      "sha256": "4eacbff7a77ef896b55b7c054357d61abf61ac5d6a1fe0490355a1af92f816aa"
     },
     {
       "path": "playwright.config.ts",
@@ -589,8 +614,8 @@
     },
     {
       "path": "src/App.tsx",
-      "bytes": 13155,
-      "sha256": "cc1f9c6e41a7a511c67919ed6b79c5e16b5cf4667c143aa2ef1cf86c40be31d6"
+      "bytes": 14393,
+      "sha256": "f2f19914d0fc908a911df785167c29e2460cce75fa7a789b44c0b70ed55d324a"
     },
     {
       "path": "src/ai/bridge.test.ts",
@@ -958,6 +983,11 @@
       "sha256": "b297e979cc94462768d2695e81c4aa7c6731cfb8327618add77e67e17cbce9c6"
     },
     {
+      "path": "src/styles/clem-commission.css",
+      "bytes": 7757,
+      "sha256": "44a272dd502704c7eb48a0ce42e92ad1d33be869ffc2cbf0fee19ad4769298dd"
+    },
+    {
       "path": "src/styles/commission-payoff.css",
       "bytes": 2629,
       "sha256": "4775dfe3c59fc1e72abfd61a960bceb7aeacba55fdd5983024cbb11cee1263c4"
@@ -969,8 +999,8 @@
     },
     {
       "path": "src/styles/commissions.css",
-      "bytes": 10428,
-      "sha256": "693ddf8cb58d65a952fbb5580a00075596c690bd6d9fb371f2734da2b2e9751e"
+      "bytes": 10591,
+      "sha256": "6144585aa95730bc1aab514dc5c72ce3c14b1eed339f934238837714e4878c5a"
     },
     {
       "path": "src/styles/continuing-studio.css",
@@ -986,6 +1016,11 @@
       "path": "src/styles/entry.css",
       "bytes": 4413,
       "sha256": "f0801c71cd61acda32b89b223e5622fe5b78c9441b79b46f90cd32503b0fe006"
+    },
+    {
+      "path": "src/styles/first-order.css",
+      "bytes": 3979,
+      "sha256": "545aa3deaeb63ae963790c9f93c9ed4aa70585cb27668c0a45ac33e1898a1349"
     },
     {
       "path": "src/styles/first-proof.css",
@@ -1039,8 +1074,8 @@
     },
     {
       "path": "src/styles/workspace.css",
-      "bytes": 12155,
-      "sha256": "a7774c15ab011af81c822fbe001e42857530b531857943fd8bef01f6fc7992df"
+      "bytes": 12913,
+      "sha256": "5cfa00d09d016d90e094dc7eff34eaf3bed3223b72db12bd9a66f0d4d52d342b"
     },
     {
       "path": "src/ui/Dialogs.tsx",
@@ -1094,8 +1129,8 @@
     },
     {
       "path": "src/ui/Title.tsx",
-      "bytes": 9440,
-      "sha256": "c0343418218a5eb4b4e24e0efbf49bd8969fca5242688fe84295bae70b39a73b"
+      "bytes": 9131,
+      "sha256": "147c2e7ddb8c52f458b42c1bf20a4b0b42b6a6b8b2f719a32f2209533687e9e0"
     },
     {
       "path": "src/ui/advisor.test.ts",
@@ -1136,6 +1171,36 @@
       "path": "src/ui/atelier/assets/window.webp",
       "bytes": 429494,
       "sha256": "ebe112975bff95ecae7962169acfe290b8b1f60b5b866b1a05c27dfbef90eb2a"
+    },
+    {
+      "path": "src/ui/clem/ClemCommission.tsx",
+      "bytes": 9598,
+      "sha256": "efc3f70fbd57cf1b663cabd64db426cd3ea893dc9eaf409992ad6c44129c23f3"
+    },
+    {
+      "path": "src/ui/clem/FirstOrder.tsx",
+      "bytes": 11106,
+      "sha256": "a9a5c30b6c2fbcc25315a6805dfc23d82170ad2d013fca797fd6f43403633136"
+    },
+    {
+      "path": "src/ui/clem/JazzStorefront.tsx",
+      "bytes": 648,
+      "sha256": "9090189a7af114ece51c110c7455fc0aedc7aeac05e441783324b7cd3638c73c"
+    },
+    {
+      "path": "src/ui/clem/assets/press-bench.webp",
+      "bytes": 133058,
+      "sha256": "ac3ce48d64eedec00a01a8a116f97fd443bc3fa6d257d4adbe2e65a4677ff68d"
+    },
+    {
+      "path": "src/ui/clem/commission.test.ts",
+      "bytes": 1301,
+      "sha256": "523151110ecb111b95c23d11f9c6e10f539d076bbf01ef931a1cd2d7a89e2bc1"
+    },
+    {
+      "path": "src/ui/clem/commission.ts",
+      "bytes": 2948,
+      "sha256": "fd24d74319f15ebfd1a13b7d90b248f55b68bb470dc2e2d0135aa8c424172d67"
     },
     {
       "path": "src/ui/creative/CareerProgress.tsx",
@@ -1179,8 +1244,8 @@
     },
     {
       "path": "src/ui/creative/ProofDesk.tsx",
-      "bytes": 19068,
-      "sha256": "77ba3afd61746c0e37a520dd614c57ff81322aa06c8df74709fb294731c7d592"
+      "bytes": 19197,
+      "sha256": "982d64e53a1c3eb42a3df2db06591198f0ec91472038a9955035783e7bbf3cf2"
     },
     {
       "path": "src/ui/creative/assets/first-night-room.jpg",
@@ -1224,8 +1289,8 @@
     },
     {
       "path": "src/ui/game/ActionBar.tsx",
-      "bytes": 7701,
-      "sha256": "c282c8d4f5da00a003d198c51961e5a7ac5ec5c8f17e7d479f07cd44597cb636"
+      "bytes": 7872,
+      "sha256": "ee5684a6bd01091b6feeb54ca2262563cb1849b18343ce5b0d29e32ce3ac1a7a"
     },
     {
       "path": "src/ui/game/BriefPreview.tsx",
@@ -1284,8 +1349,8 @@
     },
     {
       "path": "src/ui/game/ProjectBoard.tsx",
-      "bytes": 22859,
-      "sha256": "fa264266651c0f4c4bef4e589f12fc88dcf981ac5e4e18403a81185cc11cc2d5"
+      "bytes": 23035,
+      "sha256": "2c6867014df635fecb4a192fe465c8a48bc39f20de0d98383f118656f2511c1c"
     },
     {
       "path": "src/ui/game/ReplyReview.tsx",
@@ -1329,8 +1394,8 @@
     },
     {
       "path": "src/ui/game/TopBar.tsx",
-      "bytes": 7164,
-      "sha256": "7dde3b7334210ee4f5d3351810c955ce153fabf495561648b32bb4b7cbdf97e9"
+      "bytes": 7306,
+      "sha256": "c6426f7624b924f31f57e4fd5c28658a7f3c92aa7ed361f9822c0e498b2a90c8"
     },
     {
       "path": "src/ui/game/WindowQueue.tsx",
@@ -1466,6 +1531,16 @@
       "path": "src/ui/game/evolvingWork.test.ts",
       "bytes": 9841,
       "sha256": "b3e7acc4d18049f4c7f346f6e7fe412f4b8a0bb8ab12f20d4461af8c4b8d15fa"
+    },
+    {
+      "path": "src/ui/game/firstOrder.test.ts",
+      "bytes": 1810,
+      "sha256": "d054c81059741282957a3aa43fbf06772fcd95b1f005f12ee2166c22b1498f20"
+    },
+    {
+      "path": "src/ui/game/firstOrder.ts",
+      "bytes": 4108,
+      "sha256": "ed5dd25ae3b618fb81446fc685a5e3da244816298bb2c87c4c47bb07ec0543cd"
     },
     {
       "path": "src/ui/game/firstSeason.ts",
@@ -1983,6 +2058,11 @@
       "sha256": "2461c26a1373496e631c1a0296d66f0432e291e34b13f9ba82cfc016ab1740cb"
     },
     {
+      "path": "src/ui/observeLayout.ts",
+      "bytes": 545,
+      "sha256": "8fbecf9dc7abc03268f211c13f259ef591f025f8df9ae879bb5a42c2742c2f43"
+    },
+    {
       "path": "src/ui/persist.test.ts",
       "bytes": 4936,
       "sha256": "dfb8df578be0db73beea517ae5f6df671405f32eff62c01dbeda7b4c18545315"
@@ -2009,8 +2089,8 @@
     },
     {
       "path": "src/ui/portfolio/PrintLift.tsx",
-      "bytes": 4804,
-      "sha256": "32cfeec1e6dd895dbfe900a49efe37e0ccc88f26389eeed53ab08800a4a3bf9e"
+      "bytes": 4809,
+      "sha256": "c03e00000123841e882d33938044d42f0e43c9d8f4db6adf8ca0d72c41faf002"
     },
     {
       "path": "src/ui/portfolio/study.ts",
@@ -2111,6 +2191,11 @@
       "path": "src/ui/screens/TitleScene.tsx",
       "bytes": 1089,
       "sha256": "c6599176c0dc8e8e072b38ac46c9b6c31de6425086358c9f0e1e725372ea6103"
+    },
+    {
+      "path": "src/ui/screens/TitleStampBook.tsx",
+      "bytes": 762,
+      "sha256": "fce50c287e69d11232ceef1da067b18845014559109a0ef93c9724f3c5422e98"
     },
     {
       "path": "src/ui/screens/endings.check.ts",
@@ -2264,8 +2349,8 @@
     },
     {
       "path": "src/ui/world/World.tsx",
-      "bytes": 16336,
-      "sha256": "ecd629eecf04e053eb032cf6e123f75f257e598a730b851e79f0acbe1e183a59"
+      "bytes": 16402,
+      "sha256": "a8b4268b79a4b9e8800679ef97c888ebe5ec1353b3117befe8a6fe4f5da9c90b"
     },
     {
       "path": "src/ui/world/beats.tsx",
@@ -2444,8 +2529,8 @@
     },
     {
       "path": "vercel.json",
-      "bytes": 940,
-      "sha256": "7522cd6a6f1e254d1d0d6cf3b2e88c999dd2a96ea8d6417a88ed71f051d3d0e1"
+      "bytes": 1019,
+      "sha256": "40efaea1e3cfa3f626354dd4c8a4679e6608750e85abf11a03d1698df02a7071"
     },
     {
       "path": "vite.config.ts",
@@ -2453,5 +2538,5 @@
       "sha256": "c60d98238105ca8644a9b2a30cecf9cbf24b7ec6a618c65b16225183b61e4947"
     }
   ],
-  "sourceSha256": "9ca5e01b29250e20e036331727436dce54b64a5342dc0cc3cfe6516c3aa458a3"
+  "sourceSha256": "c23e6cd4acd9cb1d7f5fd9b367925746b0db5380646fb71532df41a371eef26e"
 }

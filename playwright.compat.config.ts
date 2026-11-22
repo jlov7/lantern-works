@@ -4,7 +4,7 @@ import base from './playwright.config';
 // Keep the browser-engine checks focused on first play, dialogs, recovery and portable saves.
 export default defineConfig({
   ...base,
-  testMatch: ['handbook.spec.ts', 'saved-replay.spec.ts', 'replay-recovery.spec.ts', 'creative-promise.spec.ts', 'resilience.spec.ts', 'print-lift.spec.ts', 'practice-press.spec.ts'],
+  testMatch: ['handbook.spec.ts', 'saved-replay.spec.ts', 'replay-recovery.spec.ts', 'creative-promise.spec.ts', 'resilience.spec.ts', 'print-lift.spec.ts', 'practice-press.spec.ts', 'clem-commission.spec.ts', 'first-order.spec.ts'],
   workers: 2,
   projects: [
     { name: 'firefox', use: { ...devices['Desktop Firefox'], viewport: { width: 1280, height: 800 } } },

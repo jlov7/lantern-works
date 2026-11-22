@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, type JSX } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState, type JSX } from 'react';
 import { GOALS } from '../engine/goals';
 import { nightCalendar } from '../engine/projects';
 import { RULES, SCENARIOS, scenarioById } from '../engine/rules';
@@ -6,17 +6,17 @@ import { PAR } from '../engine/selectors';
 import type { RunConfig } from '../engine/types';
 import { dayLabel } from './format';
 import { HandbookButton } from './HandbookButton';
-import { dailyConfig, loadRuns, loadStamps, subscribeRuns } from './persist';
+import { dailyConfig, loadRuns, subscribeRuns } from './persist';
 import { replayFingerprint } from './resumeReplay';
 import type { SavedRun } from './schema';
 import { FIRST_SEASON, FIRST_SEASON_LABEL } from './screens/firstSeason';
 import { TitleMiniature } from './screens/TitleMiniature';
 import { SavesList } from './screens/SavesList';
 import { olderSaves, type SaveFacts } from './screens/saves';
-import { StampGlyph } from './screens/StampGlyph';
-import { STAMPS } from './stamps';
 import { useReducedMotion } from './useReducedMotion';
 import '../styles/entry.css';
+
+const TitleStampBook = lazy(() => import('./screens/TitleStampBook'));
 
 const STREET_HOOK: Record<string, string> = {
   'main-street': 'Win repeat work and decide which neighbourhood commissions to make room for.',
@@ -40,7 +40,7 @@ export function Title({ onStart, onResume, notice, onDismissNotice }: { onStart:
   const [runs, setRuns] = useState(loadRuns);
   useEffect(() => subscribeRuns(setRuns), []);
   const hasSaves = runs.length > 0 || olderSaves().length > 0;
-  const [stamps] = useState(loadStamps);
+  const [readStamps, setReadStamps] = useState(false);
   // The most recent season still in progress, offered as the obvious next step.
   const [read, setRead] = useState<Map<string, SaveFacts | null>>(() => new Map());
   const readSave = useCallback((run: SavedRun, facts: SaveFacts | null) => {
@@ -106,6 +106,7 @@ export function Title({ onStart, onResume, notice, onDismissNotice }: { onStart:
             <p className="first-kicker">A new season</p>
             <button type="button" className="btn btn-primary btn-large" onClick={startDaily}>Open the studio</button>
           </div>}
+          <p><a className="btn btn-quiet" href="?commission=clem">Play Clem’s commission</a></p>
         </div>
         <TitleMiniature config={daily.config} reducedMotion={reducedMotion} />
       </header>
@@ -157,25 +158,9 @@ export function Title({ onStart, onResume, notice, onDismissNotice }: { onStart:
         <HandbookButton />
       </details>
 
-      <details className="title-drawer stamp-book">
+      <details className="title-drawer stamp-book" onToggle={event => { if (event.currentTarget.open) setReadStamps(true); }}>
         <summary><span>Stamp book</span><small>Optional achievements</small></summary>
-        <p className="muted small">
-          {stamps.filter((id) => STAMPS.some((s) => s.id === id)).length} of {STAMPS.length} collected.
-        </p>
-        <ul className="stamps">
-          {STAMPS.map((s) => {
-            const got = stamps.includes(s.id);
-            return (
-              <li key={s.id} className={got ? 'got' : 'missing'}>
-                <StampGlyph glyph={s.glyph} />
-                <span className="stamp-text">
-                  <strong>{got ? s.title : 'Not yet'}</strong>
-                  <span>{s.hint}</span>
-                </span>
-              </li>
-            );
-          })}
-        </ul>
+        {readStamps && <Suspense fallback={<p className="muted small" role="status">Opening the stamp book…</p>}><TitleStampBook /></Suspense>}
       </details>
       <footer className="title-foot muted small">The street, people and numbers are fictional. Rules {RULES.version}. No account or API required, no tracking. Saves stay in this browser.</footer>
     </main>

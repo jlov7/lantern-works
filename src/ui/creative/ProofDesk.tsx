@@ -1,3 +1,4 @@
+import { observeLayout } from '../observeLayout';
 import { useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import { LAYOUT_IDS, LAYOUTS, MOTIFS, PALETTE_IDS, PALETTES, TYPEFACE_IDS, TYPEFACES, TREATMENTS, fitMotif, motifFits, motifSize, quoteDesign, validateDesign, type DesignBrief, type DesignPiece, type DesignSpec, type MotifPlacement } from '../../engine/design';
 import type { CompatiblePattern } from '../../engine/patterns';
@@ -31,12 +32,12 @@ export function ProofDesk({ brief, design, onChange, disabled = false, focused =
   useLayoutEffect(() => {
     const measure = () => {
       setTallEasel(easel.current!.getBoundingClientRect().height > window.innerHeight / 2);
-      setFlowTools(window.innerHeight < 620 || parseFloat(getComputedStyle(document.documentElement).fontSize) > 20);
+      const shortStack = matchMedia('(max-width: 720px) and (max-height: 720px)').matches;
+      setFlowTools(shortStack || window.innerHeight < 620 || parseFloat(getComputedStyle(document.documentElement).fontSize) > 20);
     };
-    const observer = new ResizeObserver(measure);
-    observer.observe(easel.current!);
+    const stopObserving = observeLayout([easel.current!], measure);
     window.addEventListener('resize', measure);
-    return () => { observer.disconnect(); window.removeEventListener('resize', measure); };
+    return () => { stopObserving(); window.removeEventListener('resize', measure); };
   }, []);
   useLayoutEffect(() => { if (focused) tools.current!.scrollTop = 0; }, [mode, focused, pieceIndex]);
   const index = Math.min(pieceIndex, design.pieces.length - 1);
