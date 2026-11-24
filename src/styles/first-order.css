@@ -37,7 +37,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: .4rem;
 }
-.first-order-editions label {
+.first-order-editions > label {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-content: start;
@@ -49,11 +49,36 @@
   border-radius: 4px;
   cursor: pointer;
 }
-.first-order-editions label:has(:checked) { border-color: var(--clem-gold); background: #314238; }
-.first-order-editions label:focus-within { outline: 2px solid var(--clem-gold); outline-offset: 2px; }
+.first-order-editions > label:has(:checked) { border-color: var(--clem-gold); background: #314238; }
+.first-order-editions > label:focus-within { outline: 2px solid var(--clem-gold); outline-offset: 2px; }
 .first-order-editions strong { line-height: 1.1; }
 .first-order-editions input { margin: .08rem 0 0; accent-color: var(--clem-gold); }
 .first-order-editions label span { grid-column: 2; color: var(--clem-muted); font-size: .78rem; line-height: 1.25; }
+.first-order-promise { grid-template-columns: 1fr; }
+.first-order-own-promise { min-width: 0; }
+.first-order-own-promise summary { min-height: 44px; align-content: center; cursor: pointer; }
+.first-order-own-promise textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: .45rem .55rem;
+  margin: .2rem 0;
+  color: var(--clem-ink);
+  background: #1d2925;
+  border: 1px solid var(--clem-edge);
+  border-radius: 4px;
+  font: inherit;
+  resize: vertical;
+}
+.first-order-own-promise textarea:focus-visible { outline: 2px solid var(--clem-gold); outline-offset: 2px; }
+.first-order-promise-preview:not(:empty) { margin-block: .25rem .55rem; }
+.first-order[data-step='next-morning'] :is(.clem-top, .clem-story) { max-width: 960px; }
+.first-order-morning-print { margin: 0; }
+.first-order-morning-print > svg { display: block; width: 100%; height: auto; }
+.first-order-morning-print figcaption { color: var(--clem-muted); font-size: .88rem; }
+@media (min-width: 701px) {
+  .first-order-morning-note .clem-primary { justify-self: start; }
+}
 .first-order-time {
   display: block;
   grid-column: 2;

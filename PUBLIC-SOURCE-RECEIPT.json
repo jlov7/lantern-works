@@ -99,8 +99,8 @@
     },
     {
       "path": "docs/public/PLAYER-GUIDE.md",
-      "bytes": 5122,
-      "sha256": "1ead94fdd2664abb6f912b661d71caa576a7b24ce207ce2431c57fe9c5ad43b7"
+      "bytes": 5531,
+      "sha256": "7dc6ce78a212758e9aa499bde3546b4c49561c060b1612ec26713dac9308af18"
     },
     {
       "path": "docs/public/QUALITY.md",
@@ -643,6 +643,11 @@
       "sha256": "872c9fdb8582c69b9d99bfbdf285c38e58077df66c4bbe5d8ddd369a0e89f1e4"
     },
     {
+      "path": "e2e/two-morning-promise.spec.ts",
+      "bytes": 6525,
+      "sha256": "29e754707d1741feac581c170e1f94278ac064191c476865d44bb9b5ee135f76"
+    },
+    {
       "path": "e2e/working-proof-keyboard.spec.ts",
       "bytes": 2564,
       "sha256": "a90759cb4bb2e4d7b82e5ca6ba7feff0629f08bba6c1f80cd40149f4ffb06a55"
@@ -679,8 +684,8 @@
     },
     {
       "path": "playwright.compat.config.ts",
-      "bytes": 735,
-      "sha256": "4eacbff7a77ef896b55b7c054357d61abf61ac5d6a1fe0490355a1af92f816aa"
+      "bytes": 766,
+      "sha256": "5dfd3afd3d8087d18a5b3fd9c4cb82d5a462893794084398585f9bc6c2b72384"
     },
     {
       "path": "playwright.config.ts",
@@ -779,8 +784,8 @@
     },
     {
       "path": "src/App.tsx",
-      "bytes": 14238,
-      "sha256": "8b13aca38449300d918e8e1f7f07ea1471dbfff5e6a485783d657f72aea35b16"
+      "bytes": 14451,
+      "sha256": "0e6df0f7a6be66c80353410c6d24dad750f23dd0f233370d672b1193bfa0aead"
     },
     {
       "path": "src/ai/bridge.test.ts",
@@ -1194,8 +1199,8 @@
     },
     {
       "path": "src/styles/first-order.css",
-      "bytes": 8796,
-      "sha256": "fd7fb846188e0b6269786a8294be80b5e3b75951cc64a8a1af55fe2839ab0d1b"
+      "bytes": 9860,
+      "sha256": "bcbc892e6ecd6570efd28275078d1e24c4a2e0d9ad0ed44c32bc914c6ecc277e"
     },
     {
       "path": "src/styles/first-proof.css",
@@ -1314,8 +1319,8 @@
     },
     {
       "path": "src/ui/Title.tsx",
-      "bytes": 9225,
-      "sha256": "66b87acdf8395e7e0cfa0b8dcfc4dddb9cb51b15460d1ac64cc8ec103a1d9767"
+      "bytes": 9332,
+      "sha256": "6d048c7ef691ed7f268ac5e381eac971fa7ad2a412de0d334af8cf7e18026094"
     },
     {
       "path": "src/ui/advisor.test.ts",
@@ -1364,8 +1369,8 @@
     },
     {
       "path": "src/ui/clem/FirstOrder.tsx",
-      "bytes": 24541,
-      "sha256": "18d22842e84920534b45dd7d3176abf3e8363d6ef9b929ee0bf7d5f106825afb"
+      "bytes": 28641,
+      "sha256": "deeffb8e8f2802477b8cf0708588635df9a507ddcfbc2fa77afd40cb6024f589"
     },
     {
       "path": "src/ui/clem/FirstOrderWorld.tsx",
@@ -1381,6 +1386,11 @@
       "path": "src/ui/clem/PressPull.tsx",
       "bytes": 3836,
       "sha256": "c03ad6044bb3e57e962dc80671516bd51f1a6f6b611c021b7a9de406f885b014"
+    },
+    {
+      "path": "src/ui/clem/PromiseChoice.tsx",
+      "bytes": 2406,
+      "sha256": "5cf714bcf233a2af1f87b919f229266794f2035af438dcdd814c2b3f8a5911fe"
     },
     {
       "path": "src/ui/clem/assets/press-bench.webp",
@@ -1789,13 +1799,13 @@
     },
     {
       "path": "src/ui/game/firstOrder.test.ts",
-      "bytes": 7052,
-      "sha256": "4e6f1324c8350cdc6e3b93b2e96a0423a2691cc0a1c27a3053a00b9233760dad"
+      "bytes": 10191,
+      "sha256": "30fe75161efda68fedfd03bc55ce8d02861b454bfe9f5b6714c8b762ad68fc90"
     },
     {
       "path": "src/ui/game/firstOrder.ts",
-      "bytes": 4993,
-      "sha256": "9c8420013d37a53ff90150c53bd0d926b35b54b315c3684ec2c0ab01da61d28d"
+      "bytes": 7092,
+      "sha256": "63ef4865387ad5336f2b8494d513bfc6ae2d8db102d9e7949eb5cfa0afa3ab0b"
     },
     {
       "path": "src/ui/game/firstOrderScene.test.ts",
@@ -1806,6 +1816,16 @@
       "path": "src/ui/game/firstOrderScene.ts",
       "bytes": 2772,
       "sha256": "5e1f5583975a8e0f8be2c63b75af076fe1bc0459a8d6e942196aadb18f483c96"
+    },
+    {
+      "path": "src/ui/game/firstPromise.test.ts",
+      "bytes": 1575,
+      "sha256": "541a80040c85b75e184c1d04105d1f28df90eb3f9186849bb106f513e28b7073"
+    },
+    {
+      "path": "src/ui/game/firstPromise.ts",
+      "bytes": 2124,
+      "sha256": "63aa612c2eae63ef98b6d1933405ebd416adce6364ee56d36ab43a16e517fe1c"
     },
     {
       "path": "src/ui/game/firstSeason.ts",
@@ -2928,5 +2948,5 @@
       "sha256": "c60d98238105ca8644a9b2a30cecf9cbf24b7ec6a618c65b16225183b61e4947"
     }
   ],
-  "sourceSha256": "5ad0aca4da3e2063c6c6318b16efc3442ddac93c09cc13268df34287f6696750"
+  "sourceSha256": "ccdc05feaace5996c3ab83970b32c8441925e4fd1c6fc144cd6e13fbf5fc15a6"
 }

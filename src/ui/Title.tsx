@@ -106,6 +106,7 @@ export function Title({ onStart, onResume, notice, onDismissNotice }: { onStart:
             <p className="first-kicker">A new season</p>
             <button type="button" className="btn btn-primary btn-large" onClick={startDaily}>Open the studio</button>
           </div>}
+          <p><a className="btn btn-quiet" href="?opening=promise">Play Two Mornings on Main Street</a></p>
           <p><a className="btn btn-quiet" href="?commission=clem">Play Clem’s commission</a></p>
           <p><a className="btn btn-quiet" href="?practice=decision">Decision practice</a></p>
         </div>

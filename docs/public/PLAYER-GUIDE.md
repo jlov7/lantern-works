@@ -1,5 +1,12 @@
 # Your first morning
 
+For a short story, choose **Play Two Mornings on Main Street**. Make a promise to
+Clem or Yara and print something for the jazz bar. You can write the promise in
+your own words, read the suggested meaning and confirm it before booking. The
+game handles that line in your browser and saves only the confirmed choice.
+The next morning, replay the other edition to see what changes or carry on into
+the season.
+
 Choose **First season: Main Street (guided)**. You have twelve days in this season,
 and the morning waits while you decide what to do.
 

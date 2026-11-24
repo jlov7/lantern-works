@@ -4,7 +4,7 @@ import { FIRST_ORDER_RULES_VERSION, PRESS_CHOICE_RULES_VERSION } from '../../eng
 import { decodeShare, encodeShare } from '../persist';
 import { FIRST_SEASON } from '../screens/firstSeason';
 import { frameAt } from '../timeline';
-import { bookFirstOrder, deliverFirstOrder, firstOrderBuyers, freshFirstOrder, loadFirstOrder, selectFirstEdition } from './firstOrder';
+import { bookFirstOrder, deliverFirstOrder, firstOrderBuyers, firstOrderPromiseOutcome, freshFirstOrder, loadFirstOrder, replayFirstOrderPromise, selectFirstEdition, type FirstOrder } from './firstOrder';
 
 import { computeMorningPlan } from './morningPlan';
 
@@ -130,5 +130,53 @@ describe('the first order', () => {
     expect(room.state.contracts[0]?.intention).toBe('clem-room');
     expect(band.state.contracts[0]?.intention).toBe('clem-band');
     expect(band.piece.deliveredAt).toBeLessThan(room.piece.deliveredAt!);
+  });
+});
+
+describe('the two-morning promise', () => {
+  it('judges both promises from the real results of the two editions', () => {
+    const room = deliverFirstOrder(fresh)!;
+    const band = deliverFirstOrder(bandDraft)!;
+    expect(firstOrderPromiseOutcome('clem', room)).toEqual({ kept: true, roomPrint: true, yaraReturns: false, yaraHasRoom: false });
+    expect(firstOrderPromiseOutcome('clem', band)).toEqual({ kept: false, roomPrint: false, yaraReturns: true, yaraHasRoom: true });
+    expect(firstOrderPromiseOutcome('yara', room)).toEqual({ kept: false, roomPrint: true, yaraReturns: false, yaraHasRoom: false });
+    expect(firstOrderPromiseOutcome('yara', band)).toEqual({ kept: true, roomPrint: false, yaraReturns: true, yaraHasRoom: true });
+    const order = band.state.requests.find(item => item.day === 1 && item.castId === 'yara')!;
+    expect(order.status).toBe('waiting');
+    const declined = { ...band, state: { ...band.state, requests: band.state.requests.map(req => req === order ? { ...req, status: 'declined' as const } : req) } };
+    expect(firstOrderPromiseOutcome('yara', declined)).toMatchObject({ kept: false, yaraHasRoom: false });
+  });
+
+  it('returns to the press with the same proof details and promise', () => {
+    const opening = freshFirstOrder(true);
+    const draft: FirstOrder = {
+      ...opening, step: 'window', nextMorning: true, promise: 'yara',
+      design: { ...opening.design, pieces: [{ ...opening.design.pieces[0]!, headline: 'First set', palette: 'poppy' }] },
+    };
+    const other = replayFirstOrderPromise(draft);
+    expect(other).toMatchObject({ edition: 'band', step: 'press', promise: 'yara', rules: draft.rules, replaying: true });
+    expect(other.nextMorning).toBeUndefined();
+    expect(other.design.pieces[0]).toMatchObject({ headline: 'First set', palette: 'poppy', layout: 'headline' });
+    expect(deliverFirstOrder(draft)?.piece.brief.proof?.design.pieces[0]?.motifs[0]?.id).toBe('door');
+    expect(deliverFirstOrder(other)?.piece.brief.proof?.design.pieces[0]?.motifs[0]?.id).toBe('trumpet');
+    expect(replayFirstOrderPromise(other).design).toEqual(draft.design);
+    expect(deliverFirstOrder(other)?.state.config).toEqual(deliverFirstOrder(draft)?.state.config);
+  });
+
+  it('only restores a second morning from a current promise ending', () => {
+    const ending: FirstOrder = { ...fresh, step: 'window', nextMorning: true, promise: 'clem' };
+    const read = vi.fn(() => JSON.stringify(ending));
+    vi.stubGlobal('sessionStorage', { getItem: read });
+    try {
+      expect(loadFirstOrder(true)).toEqual(ending);
+      expect(read).toHaveBeenLastCalledWith('lantern.first-order-promise.v1');
+      for (const invalid of [{ ...ending, promise: undefined }, { ...ending, rules: undefined }, { ...ending, step: 'press' },
+        { ...ending, nextMorning: undefined, replaying: true, step: 'design' }]) {
+        read.mockReturnValueOnce(JSON.stringify(invalid));
+        expect(loadFirstOrder(true)).toEqual(freshFirstOrder(true));
+      }
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 });
