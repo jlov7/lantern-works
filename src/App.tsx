@@ -24,7 +24,7 @@ const loadEnd = () => import('./ui/EndScreen').then((m) => (endModule = m));
 /** Bumped on every navigation, so an end screen that finishes loading after the player went elsewhere is dropped. */
 let navSeq = 0;
 
-type Screen = { kind: 'title'; notice: string | null } | { kind: 'first-order' } | { kind: 'resuming'; run: SavedRun } | { kind: 'game'; run: RunInitial } | { kind: 'end'; state: CompanyState; meta: RunMeta };
+type Screen = { kind: 'title'; notice: string | null } | { kind: 'first-order'; promiseStory: boolean } | { kind: 'resuming'; run: SavedRun } | { kind: 'game'; run: RunInitial } | { kind: 'end'; state: CompanyState; meta: RunMeta };
 
 function clearHash(): void {
   const url = new URL(location.href);
@@ -60,9 +60,13 @@ export function App(): JSX.Element | null {
 }
 
 function SeasonApp(): JSX.Element | null {
-  const [screen, setScreenNow] = useState<Screen>(() => !location.hash && new URLSearchParams(location.search).get('opening') === 'first-order'
-    ? { kind: 'first-order' }
-    : { kind: 'title', notice: null });
+  const [screen, setScreenNow] = useState<Screen>(() => {
+    const opening = new URLSearchParams(location.search).get('opening');
+    if (!location.hash && (opening === 'first-order' || opening === 'promise')) {
+      return { kind: 'first-order', promiseStory: opening === 'promise' };
+    }
+    return { kind: 'title', notice: null };
+  });
   const mounted = useRef(true);
   const pendingResume = useRef<(() => void) | null>(null);
   const cancelNavigation = useCallback(() => {
@@ -233,7 +237,7 @@ function SeasonApp(): JSX.Element | null {
   // The title is set before the game screen's own effects run, so the game can keep it current from there.
   useLayoutEffect(() => {
     if (screen.kind === 'first-order') return;
-    if (screen.kind === 'game' && new URLSearchParams(location.search).get('opening') === 'first-order') {
+    if (screen.kind === 'game' && ['first-order', 'promise'].includes(new URLSearchParams(location.search).get('opening') ?? '')) {
       const url = new URL(location.href);
       url.searchParams.delete('opening');
       history.replaceState(history.state, '', url);
@@ -257,7 +261,7 @@ function SeasonApp(): JSX.Element | null {
   }, [screen]);
 
   if (screen.kind === 'first-order') return <Suspense fallback={<main className="title" aria-busy="true"><p role="status">Opening Main Street…</p></main>}>
-    <FirstOrder onContinue={run => setScreen({ kind: 'game', run })} />
+    <FirstOrder promiseStory={screen.promiseStory} onContinue={run => setScreen({ kind: 'game', run })} />
   </Suspense>;
   if (screen.kind === 'resuming') return (
     <main className="title" id="main" aria-busy="true">

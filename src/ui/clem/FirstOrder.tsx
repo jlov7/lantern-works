@@ -8,7 +8,7 @@ import { DesignedPrint } from '../creative/DesignedArtwork';
 import { credits, dayLabel } from '../format';
 import { compareOutcomes } from '../game/comparison';
 import { fillFraction } from '../game/fill';
-import { bookFirstOrder, clearFirstOrder, deliverFirstOrder, firstOrderBrief, firstOrderBuyers, firstOrderEditions, firstOrderOffer, loadFirstOrder, saveFirstOrder, selectFirstEdition, type FirstOrder as Draft } from '../game/firstOrder';
+import { bookFirstOrder, clearFirstOrder, deliverFirstOrder, firstOrderBrief, firstOrderBuyers, firstOrderEditions, firstOrderOffer, firstOrderPromiseOutcome, firstOrderPromises, loadFirstOrder, replayFirstOrderPromise, saveFirstOrder, selectFirstEdition, type FirstOrder as Draft } from '../game/firstOrder';
 import { loadPrefs, newRunId, PREFS_EVENT, savePrefs, saveRun } from '../persist';
 import { PrintLift } from '../portfolio/PrintLift';
 import { clockLabel } from '../timeline';
@@ -20,6 +20,7 @@ import jazzWindow from '../neighbourhood/assets/jazz.webp';
 import bench from './assets/press-bench.webp';
 import { COMMIT_MS } from '../game/pressPull';
 import { PressPull, type PressPullHandle } from './PressPull';
+import { PromiseChoice } from './PromiseChoice';
 import type { WorldComparison, WorldPressHandle } from './FirstOrderWorld';
 import { sounds } from '../sound';
 import { pressAudioFromGesture, playPressSounds } from '../pressSounds';
@@ -47,8 +48,8 @@ function countPressDelivery() {
   }
 }
 
-export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitial) => void }) {
-  const [draft, setDraft] = useState(loadFirstOrder);
+export default function FirstOrder({ onContinue, promiseStory }: { onContinue: (run: RunInitial) => void; promiseStory: boolean }) {
+  const [draft, setDraft] = useState(() => loadFirstOrder(promiseStory));
   const [prefs, setPrefs] = useState(loadPrefs);
   const [compare, setCompare] = useState(false);
   const [compactStage, setCompactStage] = useState(false);
@@ -69,6 +70,8 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
   const handle = useRef<PressPullHandle>(null);
   const [error, setError] = useState<string>();
   const { step } = draft;
+  const nextMorning = promiseStory && draft.nextMorning === true;
+  const replaying = promiseStory && draft.replaying === true;
   const scene = step === 'design' ? 'design' : step === 'press' || step === 'lift' ? 'work' : 'window';
   const { startFromGesture } = useSoundscape({ enabled: prefs.sound, scene, attention: compare, relationship: false });
   useEffect(() => {
@@ -88,7 +91,7 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
   }, [draft, printed, visiblePrint]);
   const delivered = useMemo(() => delivery ? printSource(draft.edition, delivery) : null, [delivery, draft.edition]);
   const other = draft.edition === 'room' ? 'band' : 'room';
-  const alternative = useMemo(() => step === 'window' ? deliverFirstOrder(selectFirstEdition(draft, other)) : null, [draft, other, step]);
+  const alternative = useMemo(() => !promiseStory && step === 'window' ? deliverFirstOrder(selectFirstEdition(draft, other)) : null, [draft, other, promiseStory, step]);
   const otherDelivered = useMemo(() => alternative ? printSource(other, alternative) : null, [alternative, other]);
   const comparison = useMemo(() => {
     if (!compare || !delivery || !alternative || !delivered || !otherDelivered) return null;
@@ -125,7 +128,7 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
     narrow.addEventListener('change', update);
     return () => narrow.removeEventListener('change', update);
   }, []);
-  useEffect(() => saveFirstOrder(draft), [draft]);
+  useEffect(() => saveFirstOrder(draft, promiseStory), [draft, promiseStory]);
   useEffect(() => () => clearTimeout(domDeadline.current), []);
   useEffect(() => () => pressContainment.current?.remove(), []);
   useLayoutEffect(() => {
@@ -134,15 +137,15 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
     if (windowInWorld) world.current?.scrollToStage();
   }, [compare, windowInWorld]);
   useLayoutEffect(() => {
-    document.title = `${titles[step]} · Lantern Works`;
+    document.title = `${nextMorning ? 'The next morning' : titles[step]} · Lantern Works`;
     if (previous.current === step && step !== 'window') return;
     previous.current = step;
     window.scrollTo({ top: 0, behavior: 'instant' });
     heading.current?.focus({ preventScroll: true });
-  }, [step]);
+  }, [step, nextMorning]);
 
   const windowCloseup = windowExtent === 'close' || (windowExtent === undefined && (windowInWorld || compactWindow));
-  const push = useWindowPush(step === 'window', windowCloseup ? 'read' : 'window', backdropDecodedAt, reducedMotion, compare);
+  const push = useWindowPush(step === 'window' && !nextMorning, windowCloseup ? 'read' : 'window', backdropDecodedAt, reducedMotion, compare);
 
   const go = (next: Draft['step']) => {
     const update = () => {
@@ -158,6 +161,7 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
     setDraft(current => ({ ...current, design: { ...current.design, pieces: [{ ...current.design.pieces[0]!, ...settings }] } }));
   };
   const book = () => {
+    if (promiseStory && !draft.promise) return;
     const result = bookFirstOrder(draft);
     if (result.error) setError(result.error);
     else go('press');
@@ -165,8 +169,8 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
   const continueSeason = (state: CompanyState) => {
     if (continuing.current) return;
     continuing.current = true;
-    const meta = { id: newRunId(), label: 'First order: Main Street' };
-    if (saveRun({ v: 1, rules: state.rulesVersion, ...meta, savedAt: new Date().toISOString(), config: state.config, commands: state.commands })) clearFirstOrder();
+    const meta = { id: newRunId(), label: promiseStory ? 'A promise: Main Street' : 'First order: Main Street' };
+    if (saveRun({ v: 1, rules: state.rulesVersion, ...meta, savedAt: new Date().toISOString(), config: state.config, commands: state.commands })) clearFirstOrder(promiseStory);
     onContinue({ state, meta });
   };
   const plan = () => {
@@ -175,7 +179,7 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
     if (result.error) setError(result.error);
     else continueSeason(result.state);
   };
-  const pressFailed = () => setError('The print could not be delivered. You can still plan the rest of the morning.');
+  const pressFailed = () => setError(promiseStory ? 'The print could not be delivered. Try the press again.' : 'The print could not be delivered. You can still plan the rest of the morning.');
   const run = () => {
     if (!pressing.current) return;
     pressing.current = false;
@@ -273,7 +277,9 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
 
   const client = <figure className="first-order-client">
     <img src={clemPortrait} alt="" width={768} height={702} decoding="async" onError={event => { event.currentTarget.hidden = true; }} />
-    <figcaption><p className="first-order-line">“One trio, after the doors open.” <span>Clem</span></p></figcaption>
+    <figcaption><p className="first-order-line">{promiseStory
+      ? '“My sister kept the very first ticket. She’s bringing it tonight. Can you put our old doorway on the poster?”'
+      : '“One trio, after the doors open.”'} <span>Clem</span></p></figcaption>
   </figure>;
   const proof = useMemo(() => (
     <div className="clem-proof"><DesignedPrint piece={proofPaper} copy={copy} label={firstOrderBrief.title} /></div>
@@ -319,6 +325,41 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
     </section>
   );
 
+  if (nextMorning && draft.promise && delivery) {
+    const outcome = firstOrderPromiseOutcome(draft.promise, delivery);
+    const replay = () => {
+      setWindowExtent(undefined);
+      setBackdropDecodedAt(null);
+      setDraft(replayFirstOrderPromise);
+    };
+    return (
+      <main id="main" className="clem-commission first-order" data-step="next-morning">
+        <header className="clem-top"><a href="./">Lantern Works</a><span>Main Street · Day 2</span></header>
+        <section className="clem-story" aria-labelledby="first-order-heading">
+          <div className="clem-intro">
+            <h1 ref={heading} tabIndex={-1} id="first-order-heading" data-screen-heading>{outcome.yaraReturns ? 'Yara is back' : 'Yara’s place is empty'}</h1>
+          </div>
+          <div className="clem-panel first-order-morning-note">
+            {outcome.yaraReturns
+              ? <p className="first-order-line">“We practised taking a bow yesterday. By the end even the shy one wanted an encore. Have you got room for our order today?” <span>Yara</span></p>
+              : <p>Yara left without booking yesterday. Her order is gone from the queue this morning.</p>}
+            {outcome.yaraHasRoom && <p>Her order fits today. You can book it at the studio window.</p>}
+            <p>{outcome.roomPrint
+              ? 'Clem propped his sister’s ticket against the print in the window. It was still there when you opened up.'
+              : 'Clem left the musicians’ print in the window. His sister stayed for the encore.'}</p>
+            <p><strong>{outcome.kept ? 'You kept your promise.' : 'You broke your promise.'}</strong> <q>{firstOrderPromises[draft.promise]}</q></p>
+            <button className="clem-primary" type="button" onClick={replay}>Replay the other edition</button>
+            <button className="clem-quiet" type="button" onClick={() => continueSeason(delivery.state)}>Continue into the studio</button>
+          </div>
+          <figure className="clem-panel first-order-morning-print">
+            {renderProof(delivery)}
+            <figcaption>{outcome.roomPrint ? 'The room' : 'The musicians'} hung in Clem’s window yesterday at {clockLabel(delivery.piece.deliveredAt! % RULES.minutesPerDay)}.</figcaption>
+          </figure>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main id="main" className="clem-commission first-order" data-step={step} data-compact-stage={compactStage || undefined} data-world-comparison={compare && windowInWorld || undefined}
       onPointerMoveCapture={step === 'press' ? preparePressPointer : undefined}
@@ -338,6 +379,7 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
       <section className="clem-story" aria-labelledby="first-order-heading">
         <div className="clem-intro">
           <h1 ref={heading} tabIndex={-1} id="first-order-heading" data-screen-heading>{titles[step]}</h1>
+          {promiseStory && step === 'street' && <p>Clem needs a print in his window before tonight’s first set.</p>}
         </div>
         <Suspense fallback={step === 'street' ? renderStreet(false) : <>{renderWindow(false)}{step !== 'window' && benchFigure}</>}>
           <FirstOrderWorld ref={world} draft={draft} reducedMotion={reducedMotion} holdIllustration={domStroke || step === 'lift'}
@@ -356,6 +398,10 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
             {step === 'design' && <>
               <div className="first-order-tools">
                 {!compactStage && client}
+                {promiseStory && <>
+                  <p id="first-order-promise-stakes">Yara is waiting with a print order for her pupils’ showcase. She’d love to see the musicians on Clem’s poster. If they go in the window, she’ll save her order for you tomorrow.</p>
+                  <PromiseChoice confirmed={draft.promise} onConfirm={promise => setDraft(current => ({ ...current, promise }))} />
+                </>}
                 <fieldset className="first-order-editions">
                   <legend>What goes on the poster?</legend>
                   {firstOrderEditions.map(edition => <label key={edition.id}>
@@ -382,16 +428,17 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
                 </details>
               </div>
               <div className="first-order-book">
-                <button className="clem-primary" type="button" onClick={book}>Book for {credits(firstOrderOffer.price)}</button>
-                <p className="first-order-due">Promised by {dayLabel(firstOrderOffer.turnaroundDays - 1)}</p>
+                <button className="clem-primary" type="button" disabled={promiseStory && !draft.promise} onClick={book}>Book for {credits(firstOrderOffer.price)}</button>
+                {!promiseStory && <p className="first-order-due">Promised by {dayLabel(firstOrderOffer.turnaroundDays - 1)}</p>}
               </div>
             </>}
             {step === 'press' && <>
-              <h2>Clem has booked your proof</h2>
+              <h2>{replaying ? `Replaying: ${firstOrderEditions.find(edition => edition.id === draft.edition)!.title}` : 'Clem has booked your proof'}</h2>
+              {promiseStory && draft.promise && <p className="first-order-line">“{firstOrderPromises[draft.promise]}”</p>}
               <p>{firstOrderBuyers} other buyers are waiting. Run the press to make Clem’s print and leave their orders unanswered today.</p>
               <button className="clem-primary" type="button" aria-disabled={busy || undefined} onClick={event => pressFromPanel(event.nativeEvent.isTrusted)}>Run the press</button>
-              <button className="clem-quiet" type="button" aria-disabled={busy || undefined} onClick={plan}>Plan the rest of the morning</button>
-              <button className="clem-quiet" type="button" aria-disabled={busy || undefined} onClick={() => { if (!pressing.current) go('design'); }}>Change the proof</button>
+              {!promiseStory && <button className="clem-quiet" type="button" aria-disabled={busy || undefined} onClick={plan}>Plan the rest of the morning</button>}
+              {!replaying && <button className="clem-quiet" type="button" aria-disabled={busy || undefined} onClick={() => { if (!pressing.current) go('design'); }}>Change the proof</button>}
             </>}
             {step === 'lift' && delivery && <>
               <h2>{firstOrderBrief.title}</h2>
@@ -406,13 +453,16 @@ export default function FirstOrder({ onContinue }: { onContinue: (run: RunInitia
                 <p>{credits(delivery.state.revenue)} earned</p>
                 <p>{credits(delivery.state.cash)} in the till</p>
               </div>
-              <button className="clem-primary" type="button" onClick={() => continueSeason(delivery.state)}>Open the next morning</button>
+              <button className="clem-primary" type="button" onClick={() => {
+                if (promiseStory) setDraft(current => ({ ...current, nextMorning: true }));
+                else continueSeason(delivery.state);
+              }}>Open the next morning</button>
               <button className="clem-quiet" type="button" disabled={compare} onClick={() => setWindowExtent(windowCloseup ? 'wide' : 'close')}>
                 {windowCloseup ? 'See the whole window' : 'Look closer'}
               </button>
-              <button className="clem-quiet" type="button" aria-expanded={compare} aria-controls={compare ? 'first-order-comparison' : undefined} onClick={() => compare ? closeComparison() : setCompare(true)}>
+              {!promiseStory && <button className="clem-quiet" type="button" aria-expanded={compare} aria-controls={compare ? 'first-order-comparison' : undefined} onClick={() => compare ? closeComparison() : setCompare(true)}>
                 {compare ? 'Close the comparison' : 'Compare the other edition'}
-              </button>
+              </button>}
             </>}
             {(error || (visiblePrint && !delivery)) && <p className="clem-error" role="alert">{error ?? 'This proof needs to go back to the bench.'} {visiblePrint && !delivery && <button type="button" onClick={() => go('design')}>Back to the proof</button>}</p>}
           </div>
