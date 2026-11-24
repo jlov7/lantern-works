@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from 'react';
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, type JSX } from 'react';
 import { flushSync } from 'react-dom';
 import { RULES, phaseFor, scenarioById } from '../engine/rules';
 import { applyCommand, paceOn } from '../engine/sim';
@@ -27,12 +27,15 @@ import { StudioPanel } from './game/StudioPanel';
 import { TopBar } from './game/TopBar';
 import { useDialogs } from './game/useDialogs';
 import { useMorningPlan } from './game/useMorningPlan';
+import { haggling } from './game/morningReplies';
 import { useGuide } from './game/useGuide';
 import { usePlayback } from './game/usePlayback';
 import { useAnnouncer, useShortcuts } from './game/useStatus';
 import { PaceControl, WindowQueue } from './game/WindowQueue';
-import { WorldView } from './game/WorldView';
+import { prepareMiniatureWorld, WorldView } from './game/WorldView';
 import { DueNext } from './game/DueNext';
+import { foldExplanations } from './game/dayTwoBridge';
+import { dayTwoBridgeSeen, markDayTwoBridgeSeen } from './game/storage';
 import { castName, dayLabel } from './format';
 import { projectBlocked, projectBrief, projectFor } from '../engine/projects';
 import { hasAuthorshipRules, hasCreativePromiseRules, hasStudioRules } from '../engine/versions';
@@ -60,9 +63,6 @@ import { useReducedMotion } from './useReducedMotion';
 import '../styles/workspace.css';
 import '../styles/commissions.css';
 
-/** Neighbours at the window who named their own price and have no answer yet. */
-const haggling = (s: CompanyState) => windowRequests(s).filter((r) => r.status === 'waiting' && reactionTo(s, r).kind !== 'buy' && counterFor(s, r));
-
 /** The morning the midweek paper comes out: half the season played. */
 const MID = Math.floor(RULES.days / 2);
 
@@ -78,6 +78,7 @@ export function Game({ initial, onExit, onSeasonEnd }: { initial: RunInitial; on
     return () => window.removeEventListener(PREFS_EVENT, update);
   }, []);
   const [selected, setSelected] = useState<string | null>(() => windowRequests(initial.state).find(r => r.status === 'waiting')?.id ?? null);
+  const [seenBridge] = useState(dayTwoBridgeSeen);
   const [windowView, setWindowView] = useState<'customers' | 'commissions'>('customers');
   const [projectSelection, setProjectSelection] = useState<ProjectSelection>({ id: 'clem-ten', approach: null });
   const [ordinaryDrafts, setOrdinaryDrafts] = useState<Record<string, OrdinaryDraft>>({});
@@ -138,11 +139,21 @@ export function Game({ initial, onExit, onSeasonEnd }: { initial: RunInitial; on
   const place = held ? 'work' : chosenPlace;
   const [visitedWork, setVisitedWork] = useState(false);
   useEffect(() => { if (place === 'work') setVisitedWork(true); }, [place]);
+  useEffect(() => {
+    if (prefs.studioView !== 'miniature' || !hasAuthorshipRules(state.rulesVersion) || document.hidden) return;
+    const idle = window.requestIdleCallback?.(prepareMiniatureWorld);
+    return () => { if (idle !== undefined) window.cancelIdleCallback(idle); };
+  }, [prefs.studioView, state.rulesVersion]);
+  const workDetails = useDeferredValue(visitedWork);
   const readingEvening = !!play && done && place === 'work';
   const pendingSketch = projectSelection.approach !== null && hasAuthorshipRules(state.rulesVersion) && !state.contracts.some(contract => contract.project?.id === projectSelection.id);
   const composingProject = place === 'window' && windowView === 'commissions' && pendingSketch;
   const [planRetry, setPlanRetry] = useState(0);
   const morning = useMorningPlan(state, selected, !blocking && !state.finished, `${meta.id}:${planRetry}`, ordinaryDrafts);
+  const foldedMorning = foldExplanations(state.day, meta.label, seenBridge);
+  useEffect(() => {
+    if (foldedMorning && place === 'window' && windowView === 'customers' && morning.result && !blocking) markDayTwoBridgeSeen();
+  }, [foldedMorning, place, windowView, morning.result, blocking]);
   const outlook = morning.result?.outlook ?? null;
   const { startFromGesture } = useSoundscape({
     enabled: prefs.sound,
@@ -458,8 +469,13 @@ export function Game({ initial, onExit, onSeasonEnd }: { initial: RunInitial; on
   const windowScene = hasAuthorshipRules(state.rulesVersion) ? <AtelierWindow state={state} request={currentCustomer ?? null} reducedMotion={reducedMotion} onInspect={focusWindow} artwork={currentCustomer ? <CampaignArtwork brief={briefFor(currentCustomer, currentOffer, state.config, currentProof, state.rulesVersion)} miniature /> : undefined} /> : <><WorldView state={state} play={null} selected={selected} onSelect={onSelect} reducedMotion={reducedMotion} /><DueNext state={state} /></>;
   const planningMessage = <><p role="status">{morning.error ?? 'Checking the studio’s hours and promises…'}</p>{morning.error && <button type="button" className="btn" onClick={() => setPlanRetry(n => n + 1)}>Check the plan again</button>}</>;
   const queueSnapshot = morning.retained;
+  const dueTonight = state.jobs.filter(j => (j.status === 'active' || j.status === 'scheduled') && j.dueAt <= (state.day + 1) * RULES.minutesPerDay).length;
+  const projectNotice = !composingProject && hasStudioRules(state.rulesVersion)
+    ? <ProjectNotice state={state} onOpen={openProjects} sketch={pendingSketch ? projectBrief(state, projectSelection.id, projectSelection.approach!, projectSelection.sourceId).title : undefined} />
+    : null;
+  const projectAtRoster = foldedMorning && windowView === 'customers';
   const queue = queueSnapshot ? (
-    <WindowQueue plan={queueSnapshot.plan} pending={morning.result ? undefined : planningMessage} updatingProof={morning.draftPending} onReserve={onReserve} scene={windowScene} onUndo={onUndo} canUndo={run.canUndo && !blocking && !!morning.result} state={queueSnapshot.state} forecasts={queueSnapshot.plan.forecasts} selected={queueSnapshot.selected} disabled={blocking || !morning.result} locked={locked} onAccept={onAccept} ordinaryDrafts={ordinaryDrafts} onDraft={onDraft} onDecline={onDecline} onSelect={onSelect} onTakeAll={takeAll} onTakeSome={takeSome} onDeclineAll={declineAll} onDesign={designForWalkers} onQuickOffer={onQuickOffer} onLevers={onLevers} onReprice={onReprice} onPace={onPace} outlook={outlook} paceOpen={!opens || state.day >= opens.pace} aiOpen={!opens || state.day >= opens.ai} flyersOpen={!opens || state.day >= opens.flyers} rivals={ghosts ? GHOST_IDS.map((id) => ({ label: GHOSTS[id].label, served: ghosts[id].served[state.day - 1] ?? 0 })) : null} />
+    <WindowQueue foldedMorning={foldedMorning} afterRoster={projectAtRoster ? projectNotice : null} plan={queueSnapshot.plan} pending={morning.result ? undefined : planningMessage} updatingProof={morning.draftPending} onReserve={onReserve} scene={windowScene} onUndo={onUndo} canUndo={run.canUndo && !blocking && !!morning.result} state={queueSnapshot.state} forecasts={queueSnapshot.plan.forecasts} selected={queueSnapshot.selected} disabled={blocking || !morning.result} locked={locked} onAccept={onAccept} ordinaryDrafts={ordinaryDrafts} onDraft={onDraft} onDecline={onDecline} onSelect={onSelect} onTakeAll={takeAll} onTakeSome={takeSome} onDeclineAll={declineAll} onDesign={designForWalkers} onQuickOffer={onQuickOffer} onLevers={onLevers} onReprice={onReprice} onPace={onPace} outlook={outlook} paceOpen={!opens || state.day >= opens.pace} aiOpen={!opens || state.day >= opens.ai} flyersOpen={!opens || state.day >= opens.flyers} rivals={ghosts ? GHOST_IDS.map((id) => ({ label: GHOSTS[id].label, served: ghosts[id].served[state.day - 1] ?? 0 })) : null} />
   ) : <section className="queue workspace-queue" aria-label="Morning plan"><div className="window-scene">{windowScene}</div>{planningMessage}</section>;
   const opening = newToday(opens, state.day);
   // The midweek paper, once, on the morning the season turns; rivals as they stood at last night's close.
@@ -499,7 +515,10 @@ export function Game({ initial, onExit, onSeasonEnd }: { initial: RunInitial; on
           {place === 'window' && <section className="workspace-place" aria-label="Window">
             {blocking ? <p>The studio is working. <button type="button" className="btn" onClick={() => navigate('work')}>Watch the work</button></p> : <>
               {!composingProject && news?.choice === null && <div id="pending-news"><p className="pending-news">Street news needs your answer before opening.</p><NewsCard state={state} news={news} disabled={false} onChoose={onChoose} /></div>}
-              {!composingProject && <div className="window-tools"><button type="button" className="due-link" onClick={() => navigate('work')}>{state.jobs.filter(j => (j.status === 'active' || j.status === 'scheduled') && j.dueAt <= (state.day + 1) * RULES.minutesPerDay).length} launches due tonight · See Work</button>{hasStudioRules(state.rulesVersion) && <ProjectNotice state={state} onOpen={openProjects} sketch={pendingSketch ? projectBrief(state, projectSelection.id, projectSelection.approach!, projectSelection.sourceId).title : undefined} />}</div>}
+              {!composingProject && (dueTonight > 0 || (projectNotice && !projectAtRoster)) && <div className="window-tools">
+                {dueTonight > 0 && <button type="button" className="due-link" onClick={() => navigate('work')}>{dueTonight} {dueTonight === 1 ? 'launch' : 'launches'} due tonight. See Work</button>}
+                {!projectAtRoster && projectNotice}
+              </div>}
               {windowView === 'commissions' && hasStudioRules(state.rulesVersion) ? <ProjectBoard selection={projectSelection} onSelection={setProjectSelection} state={state} disabled={blocking} onAccept={onAcceptProject} onReturn={returnCustomer} customer={currentCustomer ? castName(currentCustomer.castId) : undefined} onUndo={onUndo} canUndo={run.canUndo && !blocking} /> : queue}
               {!composingProject && <details className="morning-notes"><summary>Morning notes</summary>
                 {news && news.choice !== null && <NewsCard state={state} news={news} disabled onChoose={onChoose} />}
@@ -511,7 +530,7 @@ export function Game({ initial, onExit, onSeasonEnd }: { initial: RunInitial; on
           {(place === 'work' || visitedWork) && <section className="workspace-place work-place" aria-label="Work" hidden={place !== 'work'} style={place !== 'work' ? { display: 'none' } : undefined}>
             {place === 'work' && play && done && <Evening play={play} live={state} ghosts={ghosts} reducedMotion={reducedMotion} onAction={onInsight} onHourByHour={onHourByHour} onInvitation={!finalEvening ? openInvitation : undefined} canHire={!applyCommand(state, { type: 'hire' }).error} onPrep={onPrep} opens={opens} extra={<>{tally && <p className="small tally">Season so far: {tally}</p>}{notice && evening && <p className="small notice">On the noticeboard: {notice}</p>}</>} />}
             <div className="world-col"><div className="world-wrap"><WorldView state={state} play={play} selected={selected} onSelect={onSelect} reducedMotion={reducedMotion} illustrated={prefs.studioView === 'illustrated'} /></div></div>
-            {place === 'work' && <>
+            {place === 'work' && (play || workDetails) && <>
             {play && held && play.after.call && <CallCard state={play.after} onAnswer={onAnswer} />}
             {play && !done && <DayLog play={play} />}
             {hasStudioRules(state.rulesVersion) && <ProjectProgress state={state} play={play} onOpen={openProjects} />}

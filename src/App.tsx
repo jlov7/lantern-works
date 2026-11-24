@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type JSX } from 'react';
-import { flushSync } from 'react-dom';
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState, type JSX } from 'react';
+import { withViewTransition } from './ui/viewTransition';
 import { RULES, scenarioById } from './engine/rules';
 import { supportsRulesVersion } from './engine/versions';
 import type { CompanyState, RunConfig } from './engine/types';
@@ -24,7 +24,7 @@ const loadEnd = () => import('./ui/EndScreen').then((m) => (endModule = m));
 /** Bumped on every navigation, so an end screen that finishes loading after the player went elsewhere is dropped. */
 let navSeq = 0;
 
-type Screen = { kind: 'title'; notice: string | null } | { kind: 'resuming'; run: SavedRun } | { kind: 'game'; run: RunInitial } | { kind: 'end'; state: CompanyState; meta: RunMeta };
+type Screen = { kind: 'title'; notice: string | null } | { kind: 'first-order' } | { kind: 'resuming'; run: SavedRun } | { kind: 'game'; run: RunInitial } | { kind: 'end'; state: CompanyState; meta: RunMeta };
 
 function clearHash(): void {
   const url = new URL(location.href);
@@ -36,7 +36,7 @@ const reduceMotion = (): boolean => typeof matchMedia !== 'undefined' && matchMe
 
 /** The document title for a screen. The game screen keeps it current as days pass; this is its first value. */
 function screenTitle(screen: Screen): string {
-  if (screen.kind === 'title') return 'Lantern Works';
+  if (screen.kind === 'title' || screen.kind === 'first-order') return 'Lantern Works';
   if (screen.kind === 'resuming') return 'Reading your season - Lantern Works';
   if (screen.kind === 'end') return 'Season over - Lantern Works';
   const s = screen.run.state;
@@ -44,8 +44,25 @@ function screenTitle(screen: Screen): string {
   return `Day ${Math.min(s.day, RULES.days - 1) + 1} of ${RULES.days}, ${street} - Lantern Works`;
 }
 
+const ClemCommission = lazy(() => import('./ui/clem/ClemCommission'));
+const FirstOrder = lazy(() => import('./ui/clem/FirstOrder'));
+const DecisionPractice = lazy(() => import('./ui/screens/DecisionPractice'));
+
 export function App(): JSX.Element | null {
-  const [screen, setScreenNow] = useState<Screen>({ kind: 'title', notice: null });
+  const route = new URLSearchParams(location.search);
+  if (!location.hash && route.get('practice') === 'decision') {
+    return <Suspense fallback={<main className="title" aria-busy="true"><p role="status">Opening decision practice…</p></main>}><DecisionPractice /></Suspense>;
+  }
+  if (route.get('commission') === 'clem') {
+    return <Suspense fallback={<main className="title" aria-busy="true"><p role="status">Opening the printshop…</p></main>}><ClemCommission /></Suspense>;
+  }
+  return <SeasonApp />;
+}
+
+function SeasonApp(): JSX.Element | null {
+  const [screen, setScreenNow] = useState<Screen>(() => !location.hash && new URLSearchParams(location.search).get('opening') === 'first-order'
+    ? { kind: 'first-order' }
+    : { kind: 'title', notice: null });
   const mounted = useRef(true);
   const pendingResume = useRef<(() => void) | null>(null);
   const cancelNavigation = useCallback(() => {
@@ -63,15 +80,9 @@ export function App(): JSX.Element | null {
     if (next.kind === 'game' && !gameModule) return void loadGame().then(() => seq === navSeq && go(next));
     // A prefetch only: if it fails (offline), the real load on reaching the end screen tries again.
     if (next.kind === 'game') setTimeout(() => void loadEnd().catch(() => undefined), 4000);
-    const doc = document as Document & { startViewTransition?: (cb: () => void) => { ready: Promise<void>; finished: Promise<void> } };
-    if (typeof doc.startViewTransition !== 'function' || reduceMotion()) return setScreenNow(next);
-    // The browser skips the animation (and rejects these) when the tab is hidden or another transition starts.
-    // The screen still changes, so the rejection is not an error.
-    const t = doc.startViewTransition(() => {
-      if (mounted.current && seq === navSeq) flushSync(() => setScreenNow(next));
-    });
-    t.ready.catch(() => undefined);
-    t.finished.catch(() => undefined);
+    withViewTransition(() => {
+      if (mounted.current && seq === navSeq) setScreenNow(next);
+    }, reduceMotion());
   }, [cancelNavigation]);
 
   useEffect(() => {
@@ -202,8 +213,8 @@ export function App(): JSX.Element | null {
   useEffect(() => {
     const was = prevKind.current;
     prevKind.current = kind;
-    if (kind === 'title' || kind === was) return;
-    if (was === 'title') history.pushState({ lantern: kind }, '');
+    if (kind === 'title' || kind === 'first-order' || kind === was) return;
+    if (was === 'title' || was === 'first-order') history.pushState({ lantern: kind }, '');
     else history.replaceState({ lantern: kind }, '');
   }, [kind]);
   useEffect(() => {
@@ -221,6 +232,12 @@ export function App(): JSX.Element | null {
 
   // The title is set before the game screen's own effects run, so the game can keep it current from there.
   useLayoutEffect(() => {
+    if (screen.kind === 'first-order') return;
+    if (screen.kind === 'game' && new URLSearchParams(location.search).get('opening') === 'first-order') {
+      const url = new URL(location.href);
+      url.searchParams.delete('opening');
+      history.replaceState(history.state, '', url);
+    }
     document.title = screenTitle(screen);
   }, [screen]);
 
@@ -239,6 +256,9 @@ export function App(): JSX.Element | null {
     h.focus({ preventScroll: true });
   }, [screen]);
 
+  if (screen.kind === 'first-order') return <Suspense fallback={<main className="title" aria-busy="true"><p role="status">Opening Main Street…</p></main>}>
+    <FirstOrder onContinue={run => setScreen({ kind: 'game', run })} />
+  </Suspense>;
   if (screen.kind === 'resuming') return (
     <main className="title" id="main" aria-busy="true">
       <h1 tabIndex={-1} data-screen-heading>Reading your season</h1>

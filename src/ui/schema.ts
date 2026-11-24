@@ -46,7 +46,7 @@ export const commandSchema = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('answer'), option: z.enum(['late', 'cut', 'ring', 'ride']) }),
 ]) satisfies z.ZodMiniType<Command>;
 
-export const configSchema = z.strictObject({ scenarioId: str(1, 40), seed: str(1, 40), continuation: z.optional(continuationSchema) });
+export const configSchema = z.strictObject({ scenarioId: str(1, 40), seed: str(1, 40), continuation: z.optional(continuationSchema), opening: z.optional(z.literal('clem-first-order')) });
 
 /** Bound external share imports. Local seasons can contain any number of legal morning edits. */
 export const MAX_COMMANDS = 600;

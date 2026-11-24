@@ -41,9 +41,9 @@ test('late-season roster uses the matching worker plan and comparison does no ma
   await page.reload();
   await page.getByRole('button', { name: 'Continue Late planning', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Checking the studio' })).toBeVisible();
-  await expect(page.getByRole('button', { name: /^Compare \/ All neighbours/ })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /^See all \d+ neighbours$/ })).toHaveCount(0);
   await expect(page.getByRole('region', { name: 'Day controls' }).locator('.btn-open')).toBeDisabled();
-  const compare = page.getByRole('button', { name: /^Compare \/ All neighbours/ });
+  const compare = page.getByRole('button', { name: /^See all \d+ neighbours$/ });
   await expect(compare).toBeVisible();
   const buyer = windowRequests(state).find(request => request.status === 'waiting' && reactionTo(state, request).kind === 'buy')!;
   const reaction = reactionTo(state, buyer);

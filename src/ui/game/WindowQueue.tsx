@@ -27,6 +27,7 @@ import { promiseLabel } from './promiseLabel';
 import { ReplyReview } from './ReplyReview';
 import { routineReplies, returnAfterReply } from './morningReplies';
 import { planFree } from './planFree';
+import { bridgeLine } from './dayTwoBridge';
 
 interface Props {
   plan: MorningPlan;
@@ -34,6 +35,8 @@ interface Props {
   updatingProof?: boolean;
   onReserve: (id: string, startsInDays: 1 | 2, design?: DesignSpec, intention?: CreativeIntention) => void;
   scene?: ReactNode;
+  foldedMorning: boolean;
+  afterRoster?: ReactNode;
   onUndo: () => void;
   canUndo: boolean;
   state: CompanyState;
@@ -130,7 +133,7 @@ export function PaceControl({ pace, disabled, onPace }: { pace: Pace; disabled: 
   );
 }
 
-export const WindowQueue = memo(function WindowQueue({ state, plan, pending, updatingProof = false, forecasts, selected, disabled, locked, onAccept, ordinaryDrafts, onDraft, onDecline, onSelect, onTakeAll, onTakeSome, onDeclineAll, onDesign, onQuickOffer, onReprice, onPace, outlook, paceOpen, aiOpen, flyersOpen, onLevers, rivals, onUndo, canUndo, scene, onReserve }: Props): JSX.Element {
+export const WindowQueue = memo(function WindowQueue({ state, plan, pending, updatingProof = false, forecasts, selected, disabled, locked, onAccept, ordinaryDrafts, onDraft, onDecline, onSelect, onTakeAll, onTakeSome, onDeclineAll, onDesign, onQuickOffer, onReprice, onPace, outlook, paceOpen, aiOpen, flyersOpen, onLevers, rivals, onUndo, canUndo, scene, onReserve, foldedMorning, afterRoster }: Props): JSX.Element {
   const [comparing, setComparing] = useState(false);
   const [replying, setReplying] = useState(false);
   const [leversOpen, setLeversOpen] = useState(false);
@@ -330,13 +333,24 @@ export const WindowQueue = memo(function WindowQueue({ state, plan, pending, upd
     ),
   ].filter(Boolean);
 
+  const freeInPlan = <p className="small"><strong>Free in the current plan:</strong> {plan.calendar.baseline ? planFree(plan.calendar.baseline).join(', ') : 'No working hours available'}. Forecast assumes no redos or later changes.</p>;
+
   return (
     <section className="queue workspace-queue" aria-label={isPending ? 'Morning plan' : undefined} aria-labelledby={isPending ? undefined : 'window-h'} aria-busy={!!pending}>
       {isPending ? <><div className="window-scene">{scene}</div><div ref={planning} tabIndex={-1}>{pending}</div></> : <>
-      <div className="window-status"><h2 id="window-h" tabIndex={-1}>At the window</h2><p className="small">{waiting.length} waiting · {takeable} fit together in queue order</p>{exposure && <p className="small exposure">{exposure}</p>}</div>
-      <div className="morning-overview"><p><strong>Promised today:</strong> {due.length ? due.map(job => promiseLabel(state, job.id)).join('; ') : 'No deliveries due yet.'}</p><p className="small"><strong>Free in the current plan:</strong> {plan.calendar.baseline ? planFree(plan.calendar.baseline).join(', ') : 'No working hours available'}. Forecast assumes no redos or later changes.</p>{baseline.atRisk.length > 0 && <p className="small exposure">Already at risk: {lateNames(state, baseline.atRisk)}.</p>}</div>
-      <div className="roster-controls"><span className="small">{focused ? `${all.indexOf(focused) + 1} of ${all.length} neighbours` : 'A quiet morning'}</span><button ref={compareButton} type="button" className="btn btn-small" onClick={() => setComparing(true)}>Compare / All neighbours ({all.length})</button>{routine.length > 1 && <button type="button" className="btn btn-small" disabled={disabled} onClick={event => { event.currentTarget.focus(); setReplying(true); }}>Reply to remaining ({routine.length})</button>}</div>
-      <div className="window-neighbours"><div className="window-scene">{scene}</div><details className="roster-peek" open={rosterOpen} onToggle={event => setRosterOpen(event.currentTarget.open)}><summary>Choose a neighbour ({waiting.length} waiting)</summary><ul aria-label="Customer roster">{all.map(rosterRow)}</ul></details></div>
+      <div className="window-status">
+        <h2 id="window-h" tabIndex={-1}>At the window</h2>
+        {foldedMorning ? <p className="window-bridge">{bridgeLine(waiting.length, takeable)}</p>
+          : <p className="small">{waiting.length} waiting, {takeable} {takeable === 1 ? 'fits' : 'fit'} in queue order</p>}
+        {exposure && <p className="small exposure">{exposure}</p>}
+      </div>
+      <div className="morning-overview">
+        <p><strong>Promised today:</strong> {due.length ? due.map(job => promiseLabel(state, job.id)).join('; ') : 'No deliveries due yet.'}</p>
+        {foldedMorning ? <details className="morning-more"><summary>How today’s plan works</summary>{freeInPlan}</details> : freeInPlan}
+        {baseline.atRisk.length > 0 && <p className="small exposure">Already at risk: {lateNames(state, baseline.atRisk)}.</p>}
+      </div>
+      <div className="roster-controls"><span className="small">{focused ? `${all.indexOf(focused) + 1} of ${all.length} neighbours` : 'A quiet morning'}</span><button ref={compareButton} type="button" className="btn btn-small" onClick={() => setComparing(true)}>See all {all.length} neighbours</button>{routine.length > 1 && <button type="button" className="btn btn-small" disabled={disabled} onClick={event => { event.currentTarget.focus(); setReplying(true); }}>Reply to remaining ({routine.length})</button>}</div>
+      <div className="window-neighbours"><div className="window-scene">{scene}</div><details className="roster-peek" open={rosterOpen} onToggle={event => setRosterOpen(event.currentTarget.open)}><summary>Choose a neighbour ({waiting.length} waiting)</summary><ul aria-label="Customer roster">{all.map(rosterRow)}</ul></details>{afterRoster}</div>
       <Coach step={0} manual text={hasCreativePromiseRules(state.rulesVersion) ? undefined : 'Meet your first neighbour and look at the piece they need. Choose Next when you are ready to make the promise.'} />
       <div ref={decision} className="focused-decision">
         {updatingProof && <p role="status">Updating the quote for this proof. Keep editing; approval will be available when it is ready.</p>}

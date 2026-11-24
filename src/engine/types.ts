@@ -93,6 +93,7 @@ export interface RunConfig {
   scenarioId: string;
   seed: string;
   continuation?: ContinuationSnapshot;
+  opening?: 'clem-first-order';
 }
 
 export interface CarriedPieceData {
@@ -176,7 +177,7 @@ export interface PatternTeaching {
   completedAt: number | null;
 }
 
-export type RequestStatus = 'waiting' | 'accepted' | 'declined' | 'walked';
+export type RequestStatus = 'waiting' | 'accepted' | 'declined' | 'walked' | 'deferred';
 /** Why a neighbour is at the window: an ordinary walk-in, word of mouth, flyers, street news, or a second chance. */
 export type RequestSource = 'walkin' | 'word' | 'flyer' | 'news' | 'amends' | 'premium' | 'booking' | 'project';
 
@@ -332,6 +333,7 @@ export type SimEventType =
   | 'outage_start'
   | 'outage_end'
   | 'walked'
+  | 'deferred'
   | 'news'
   | 'hired'
   | 'mentoring_start'

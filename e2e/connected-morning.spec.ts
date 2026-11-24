@@ -99,7 +99,7 @@ for (const width of [320, 390]) test(`proof and current choice survive review at
   await ticket.locator('.first-proof__own-line > summary').click();
   await ticket.getByRole('textbox', { name: /Your line/ }).fill('Music after the rain');
   const selected = await page.locator('[data-customer-heading]').textContent();
-  const compare = page.getByRole('button', { name: /^Compare \/ All neighbours/ });
+  const compare = page.getByRole('button', { name: /^See all \d+ neighbours$/ });
   await compare.click();
   await page.getByRole('dialog', { name: 'Compare all neighbours' }).getByRole('button', { name: /^Return to/ }).click();
   await expect(page.locator('[data-customer-heading]')).toHaveText(selected!);

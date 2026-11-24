@@ -28,7 +28,7 @@ test('the ordinary first-morning quote follows the kit schedule and Take remains
   await restore(page, 3);
   const row = await ticket(page, 'd0-r1');
   await expect(row.locator('.verdict-buy')).toContainText('about 3 hours, due tonight');
-  await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).click();
+  await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).click();
   await page.locator('.compare-options > summary').click();
   await page.locator('.queue-notes > summary').click();
   await expect(page.locator('.work-assumption')).toContainText('without redos or later orders. Kit setup is separate.');

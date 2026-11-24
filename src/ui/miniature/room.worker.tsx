@@ -6,11 +6,16 @@ import { Studio, loadWorkerSignFont } from './Studio';
 import type { CameraView, miniatureScene } from './adapter';
 import { cameraPose, RoomLights } from './RoomScene';
 import type { RendererMetrics } from './MiniatureCanvas';
+import { warmRoom } from './warmup';
+import { SignatureLayer } from './SignatureLayer';
+import { renderSignatureCamera, signatureSize } from './signatureRig';
+import type { FirstOrderStage } from '../game/firstOrderScene';
+import type { SignatureState } from '../game/signatureState';
 
 type Scene = ReturnType<typeof miniatureScene>;
 type Image = { key: string; bitmap: ImageBitmap };
-type Frame = { type: 'frame'; serial: number; scene: Scene; view: CameraView; phone: boolean; pan: number; focusedJob: string | null; images: Image[]; keys: string[] };
-type Message = { type: 'start'; canvas: OffscreenCanvas; width: number; height: number; dpr: number } | Frame | { type: 'resize'; width: number; height: number; dpr: number } | { type: 'visible'; value: boolean } | { type: 'close' };
+type Frame = { type: 'frame'; serial: number; scene: Scene; view: CameraView; phone: boolean; pan: number; focusedJob: string | null; images: Image[]; keys: string[]; warmupReady: boolean; stage?: FirstOrderStage; overlayWidth?: number; reducedMotion?: boolean };
+type Message = { type: 'start'; canvas: OffscreenCanvas; width: number; height: number; dpr: number } | Frame | { type: 'resize'; width: number; height: number; dpr: number } | { type: 'visible'; value: boolean } | { type: 'close' } | { type: 'signature'; value: SignatureState };
 const scope = self as unknown as {
   postMessage: (message: unknown) => void;
   close: () => void;
@@ -26,6 +31,12 @@ let textures = new Map<string, CanvasTexture>();
 let lastFrame: Frame | undefined;
 let rendered = false;
 let visible = true;
+let warming = false;
+let warmed = false;
+let signature: SignatureState | undefined;
+const readSignature = () => signature;
+let requestSignatureFrame: (() => void) | undefined;
+let acknowledged = -1;
 let pendingCommit: { serial: number; keys: string[] } | undefined;
 const retired: CanvasTexture[] = [];
 function configuration() {
@@ -45,6 +56,11 @@ function Rig({ data }: { data: Frame }) {
   const frames = useRef(0);
   const scene = data.scene;
   useEffect(() => {
+    requestSignatureFrame = invalidate;
+    return () => { requestSignatureFrame = undefined; };
+  }, [invalidate]);
+  useEffect(() => {
+    if (data.stage) return;
     const { target, offset } = cameraPose(data.view, data.phone, data.pan, scene, data.focusedJob, size.width, size.height);
     camera.position.copy(target).add(offset); camera.lookAt(target); camera.updateProjectionMatrix();
     invalidate();
@@ -52,16 +68,41 @@ function Rig({ data }: { data: Frame }) {
   const shadows = JSON.stringify([data.view === 'work', scene.people, scene.neighbours, scene.desks.map(desk => desk.id), scene.surfaces.filter(art => art.visible).map(art => [art.key, art.at]), scene.wall.map(piece => piece.jobId), scene.kit, scene.scenarioId, scene.learning?.label, data.keys]);
   // oxlint-disable-next-line react/immutability -- Three owns this mutable renderer API.
   useEffect(() => { gl.shadowMap.autoUpdate = false; gl.shadowMap.needsUpdate = true; invalidate(); }, [shadows, invalidate, gl]);
-  useFrame(() => {
+  useFrame(({ scene: room }) => {
+    // A draw invalidated before suspension can still reach Fiber's callback.
+    if (!visible) return;
+    const renderedSignature = data.stage ? signature : undefined;
+    if (data.stage && renderSignatureCamera(camera, data.stage, signatureSize(size.width, size.height, data.overlayWidth ?? 0), renderedSignature)) invalidate();
+    if (!warmed) {
+      if (warming || !data.warmupReady) return;
+      warming = true;
+      void warmRoom(gl, room, camera).then(ms => {
+        if (closing) return;
+        warmed = true;
+        scope.postMessage({ type: 'warmed', ms });
+        invalidate();
+      }).catch(error => {
+        if (!closing) scope.postMessage({ type: 'failure', reason: error instanceof Error ? error.message : String(error) });
+      });
+      return;
+    }
     const start = performance.now();
+    gl.render(room, camera);
     frames.current++;
     queueMicrotask(() => {
-      if (!rendered) {
+      const firstFrame = !rendered;
+      if (firstFrame) {
         rendered = true;
         scope.postMessage({ type: 'painted' });
       }
-      const metrics: RendererMetrics = { drawCalls: gl.info.render.calls, triangles: gl.info.render.triangles, geometries: gl.info.memory.geometries, textures: gl.info.memory.textures, frames: frames.current, lastFrameMs: Math.round((performance.now() - start) * 100) / 100 };
-      scope.postMessage({ type: 'metrics', metrics });
+      if (renderedSignature && renderedSignature.seq > acknowledged) {
+        acknowledged = renderedSignature.seq;
+        scope.postMessage({ type: 'signature-ack', seq: acknowledged });
+      }
+      if (firstFrame || !data.stage) {
+        const metrics: RendererMetrics = { drawCalls: gl.info.render.calls, triangles: gl.info.render.triangles, geometries: gl.info.memory.geometries, textures: gl.info.memory.textures, frames: frames.current, lastFrameMs: Math.round((performance.now() - start) * 100) / 100 };
+        scope.postMessage({ type: 'metrics', metrics });
+      }
       if (pendingCommit) {
         const { serial, keys } = pendingCommit;
         pendingCommit = undefined;
@@ -79,15 +120,17 @@ function Rig({ data }: { data: Frame }) {
         scope.postMessage({ type: 'committed', serial, keys });
       }
     });
-  });
+  }, 1);
   return null;
 }
 
 // oxlint-disable-next-line react/only-export-components -- This module is a worker entry, not a fast-refresh boundary.
 function TextureCommit({ serial, keys }: { serial: number; keys: string[] }) {
+  const invalidate = useThree(state => state.invalidate);
   useLayoutEffect(() => {
     pendingCommit = { serial, keys };
-  }, [serial, keys]);
+    invalidate();
+  }, [serial, keys, invalidate]);
   return null;
 }
 
@@ -95,7 +138,10 @@ function TextureCommit({ serial, keys }: { serial: number; keys: string[] }) {
 function Room({ data }: { data: Frame }) {
   return <>
     <RoomLights scene={data.scene} />
-    <MaterialProvider><BatchedStudio><Studio scene={data.scene} textures={textures} cutaway={data.view === 'work'} /></BatchedStudio></MaterialProvider>
+    <MaterialProvider>
+      <BatchedStudio><Studio scene={data.scene} textures={textures} cutaway={data.view === 'work'} firstOrder={!!data.stage} reducedMotion={data.reducedMotion} /></BatchedStudio>
+      {data.stage && <SignatureLayer stage={data.stage} textures={textures} read={readSignature} />}
+    </MaterialProvider>
     <Rig data={data} />
     <TextureCommit serial={data.serial} keys={data.keys} />
   </>;
@@ -156,7 +202,13 @@ async function process(message: Message) {
 }
 let queue = Promise.resolve();
 scope.onmessage = event => {
-  queue = queue.then(() => process(event.data)).catch(error => {
+  const message = event.data;
+  if (message.type === 'signature') {
+    signature = message.value;
+    requestSignatureFrame?.();
+    return;
+  }
+  queue = queue.then(() => process(message)).catch(error => {
     scope.postMessage({ type: 'failure', reason: error instanceof Error ? error.message : String(error) });
   });
 };

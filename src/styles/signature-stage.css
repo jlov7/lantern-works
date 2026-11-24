@@ -1,0 +1,98 @@
+.first-order-world { position: relative; min-width: 0; }
+.first-order-world[data-fallback=true] { display: contents; }
+.first-order-world__stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Keep the moving canvas separate from the surrounding panel and accessibility mirrors. */
+  contain: layout paint;
+  transform: translateZ(0);
+  visibility: hidden;
+  border-radius: 6px;
+  background: radial-gradient(ellipse at 50% 38%, #486250, #233735 75%);
+}
+.first-order-world[data-world-painted=true] .first-order-world__stage { visibility: visible; }
+.first-order-world[data-world-painted=true]:not([data-world-shot=choose]) { aspect-ratio: 1.52; }
+.first-order-world__stage > div:first-child { position: absolute !important; inset: 0; }
+.first-order-world__stage canvas { display: block; touch-action: pan-y; transform: translateZ(0); }
+/* Keep the SVG sizes for text rasterisation, without creating scrollable overflow. */
+.first-order-world .miniature-art-sources { position: absolute; left: 0; top: 0; width: 0; height: 0; overflow: hidden; visibility: hidden; pointer-events: none; }
+.first-order-world .miniature-art-sources > div { width: 768px; }
+.first-order-world .miniature-art-sources svg { display: block; width: 100%; height: auto; }
+.first-order-world__debug { position: absolute; inset: 0; pointer-events: none; }
+.first-order-world__debug i { display: block; position: absolute; outline: 2px solid white; }
+.first-order-world__debug i + i { outline: 2px solid #f1c06e; }
+@media (min-width: 701px) {
+  .first-order-world[data-world-shot=choose][data-world-painted=true] .clem-bench {
+    position: relative;
+    place-items: end end;
+    padding-right: .5rem;
+    pointer-events: none;
+    background: transparent;
+    box-shadow: none;
+    border-color: transparent;
+  }
+  .first-order-world[data-world-shot=choose][data-world-painted=true] .clem-proof { margin-right: 0; pointer-events: auto; }
+}
+@media (max-width: 700px) {
+  .first-order-world[data-world-painted=true]:not([data-world-shot=choose]) { aspect-ratio: 1.55; }
+  .first-order-world[data-world-shot=choose] .first-order-world__stage { position: relative; height: 90px; }
+  .first-order-world[data-fallback=false][data-world-shot=choose] .clem-bench { margin-top: .22rem; }
+  .first-order .clem-top .first-order-stage-client { display: block; }
+  .first-order-stage-client .first-order-client { --portrait-size: 44px; max-width: 10.6rem; gap: .38rem; }
+  .first-order-stage-client .first-order-line { font: .85rem/1.2 var(--font-body); }
+  .first-order-stage-client .first-order-line span { font-size: .75rem; }
+}
+@media (max-width: 539px) and (500px <= height <= 640px) {
+  .first-order-world[data-world-shot=choose] .first-order-world__stage { height: 72px; }
+  .first-order-world[data-fallback=false][data-world-shot=choose] .clem-bench { padding: .2rem; }
+  .first-order[data-compact-stage=true] .clem-intro {
+    margin-top: 0;
+  }
+  .first-order[data-compact-stage=true] .clem-story { gap: .25rem; }
+  .first-order[data-compact-stage=true] .first-order-tools { padding: .2rem; }
+  .first-order[data-compact-stage=true] .first-order-editions legend { margin-bottom: .12rem; }
+  .first-order[data-compact-stage=true] .first-order-editions label { padding: .35rem .4rem; }
+}
+.first-order-world[data-world-shot=press][data-world-ready=true] .first-order-world__stage,
+.first-order-world[data-world-shot=press][data-world-ready=true] canvas { touch-action: none; user-select: none; }
+.first-order-world[data-world-hover=press] canvas { cursor: grab; }
+.first-order-world[data-world-pressed=press] canvas { cursor: grabbing; }
+.first-order-world__tag {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 20px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #14231fd9;
+  color: var(--clem-ink);
+  font: 13px/16px var(--font-body);
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.first-order-world[data-street=true] { grid-column: 1 / -1; }
+.first-order-world[data-street=true][data-world-shot=street][data-world-painted=true] { aspect-ratio: auto; }
+.first-order-street[data-world=true] { background: transparent; pointer-events: none; }
+.first-order-street[data-world=true] img { visibility: hidden; }
+.first-order-street[data-world=true] figcaption { pointer-events: auto; }
+
+.first-order-world[data-world-shot=choose] .first-order-world__stage {
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
+}
+.first-order-world[data-world-hover=room] canvas,
+.first-order-world[data-world-hover=band] canvas { cursor: pointer; }
+
+@media (min-width: 701px) {
+  .first-order-world[data-world-shot=choose][data-world-painted=true] .clem-proof {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    margin: 0;
+  }
+}

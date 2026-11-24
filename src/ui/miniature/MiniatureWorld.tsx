@@ -8,11 +8,20 @@ import { miniatureFrameKey, miniatureScene, type CameraView } from './adapter';
 import { describeFrame } from '../world/place';
 import { ArtworkTextures, type PrintSource, type PrintTextures, type TextureOwner } from './ArtworkTextures';
 import type { RendererMetrics } from './MiniatureCanvas';
-import { loadPrefs, savePrefs, PREFS_EVENT } from '../persist';
+import { loadPrefs, savePrefs } from '../persist';
+import { useRendererChoice } from './useRendererChoice';
 import '../../styles/miniature.css';
 const EMPTY_TEXTURES: PrintTextures = new Map();
 const MiniatureCanvas = lazy(() => import('./MiniatureCanvas'));
-const WorkerMiniatureCanvas = lazy(() => import('./WorkerMiniatureCanvas'));
+const loadWorkerCanvas = () => import('./WorkerMiniatureCanvas');
+const WorkerMiniatureCanvas = lazy(loadWorkerCanvas);
+let preparedWorker: typeof import('./WorkerMiniatureCanvas').default | undefined;
+
+export function prepareRoomRenderer() {
+  if (typeof HTMLCanvasElement !== 'undefined' && 'transferControlToOffscreen' in HTMLCanvasElement.prototype) {
+    void loadWorkerCanvas().then(module => { preparedWorker = module.default; }).catch(() => { /* A requested room still uses the illustrated fallback on failure. */ });
+  }
+}
 class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode; onFailure: () => void }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
@@ -27,10 +36,9 @@ export interface MiniatureWorldProps extends WorldProps {
   onInspect?: () => void;
 }
 export function MiniatureWorld({ playbackRunning = false, initialView = 'studio', onRendererMetrics, onInspect, ...props }: MiniatureWorldProps) {
+  const [WorkerCanvas] = useState(() => preparedWorker ?? WorkerMiniatureCanvas);
   const root = useRef<HTMLElement>(null);
   const [failed, setFailed] = useState(false);
-  const [workerFailed, setWorkerFailed] = useState(false);
-  const [rendererChoice, setRendererChoice] = useState<'checking' | 'miniature' | 'illustrated'>('checking');
   const [painted, setPainted] = useState(false);
   const [textureSet, setTextureSet] = useState<{ key: string; sources: PrintSource[]; textures: PrintTextures }>();
   const textureOwner = useRef<TextureOwner>(null);
@@ -42,50 +50,8 @@ export function MiniatureWorld({ playbackRunning = false, initialView = 'studio'
   const [phone, setPhone] = useState(false);
   const [visible, setVisible] = useState(true);
   const fail = useCallback(() => setFailed(true), []);
-  useEffect(() => {
-    let probe: Worker | undefined;
-    let generation = 0;
-    const choose = (view: 'miniature' | 'illustrated') => {
-      setRendererChoice(view);
-      if (view === 'illustrated') { setTextureSet(undefined); setPainted(false); }
-    };
-    const chooseMain = () => {
-      setWorkerFailed(true);
-      const context = document.createElement('canvas').getContext('webgl2');
-      if (!context) { choose('illustrated'); fail(); return; }
-      const info = context.getExtension('WEBGL_debug_renderer_info');
-      const renderer = info ? String(context.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
-      context.getExtension('WEBGL_lose_context')?.loseContext();
-      choose(/SwiftShader|llvmpipe|softpipe|Software Rasterizer/i.test(renderer) ? 'illustrated' : 'miniature');
-    };
-    const update = () => {
-      generation++;
-      probe?.terminate();
-      probe = undefined;
-      const saved = loadPrefs().studioView;
-      if (saved) { choose(saved); return; }
-      if (typeof Worker !== 'undefined' && typeof OffscreenCanvas !== 'undefined' && 'transferControlToOffscreen' in HTMLCanvasElement.prototype) {
-        const current = generation;
-        try {
-          probe = new Worker(new URL('./renderer-probe.worker.ts', import.meta.url), { type: 'module' });
-          probe.onmessage = event => {
-            if (current !== generation) return;
-            const result = event.data as { view: 'miniature' | 'illustrated'; unavailable?: boolean };
-            if (result.unavailable) chooseMain();
-            else choose(result.view);
-            probe?.terminate();
-            probe = undefined;
-          };
-          probe.onerror = () => { if (current === generation) chooseMain(); probe?.terminate(); probe = undefined; };
-          return;
-        } catch { /* Fall through to the original capability check. */ }
-      }
-      chooseMain();
-    };
-    window.addEventListener(PREFS_EVENT, update);
-    update();
-    return () => { generation++; probe?.terminate(); window.removeEventListener(PREFS_EVENT, update); };
-  }, [fail]);
+  const resetIllustration = useCallback(() => { setTextureSet(undefined); setPainted(false); }, []);
+  const { choice: rendererChoice, workerFailed, setChoice: setRendererChoice, setWorkerFailed } = useRendererChoice(fail, resetIllustration);
   const frameKey = miniatureFrameKey(props.frame);
   // oxlint-disable-next-line react-hooks/exhaustive-deps -- The projection key includes every work transition; clock text stays outside the renderer.
   const scene = useMemo(() => miniatureScene(props.frame, props.state, props.selectedRequestId, focusedJob), [frameKey, props.state, props.selectedRequestId, focusedJob]);
@@ -138,7 +104,7 @@ export function MiniatureWorld({ playbackRunning = false, initialView = 'studio'
   const drag = useRef<{ x: number; y: number; pan: number; moved: boolean } | null>(null);
   const fallback = <div className="miniature-fallback"><World {...props} /><p>The illustrated studio is ready.</p></div>;
   const illustrated = failed || rendererChoice !== 'miniature';
-  const CanvasView = !workerFailed && typeof HTMLCanvasElement !== 'undefined' && 'transferControlToOffscreen' in HTMLCanvasElement.prototype ? WorkerMiniatureCanvas : MiniatureCanvas;
+  const CanvasView = !workerFailed && typeof HTMLCanvasElement !== 'undefined' && 'transferControlToOffscreen' in HTMLCanvasElement.prototype ? WorkerCanvas : MiniatureCanvas;
   const camera = (next: CameraView) => { cameraChosen.current = true; setView(next); setPan(0); };
   const inspect = (jobId: string) => {
     onInspect?.(); setFocusedJob(jobId); camera('work');
@@ -149,25 +115,28 @@ export function MiniatureWorld({ playbackRunning = false, initialView = 'studio'
     requestAnimationFrame(() => root.current?.querySelector<HTMLButtonElement>(jobId === 'studio-pattern' ? 'button[data-inspect-pattern]' : `button[data-inspect-job="${CSS.escape(jobId ?? '')}"]`)?.focus());
   };
   return <section ref={root} className="miniature-world" data-view={view} data-camera-pan={pan} data-fallback={failed || rendererChoice === 'illustrated'} data-renderer-choice={rendererChoice} data-playback-running={playbackRunning} data-visible={visible} data-reduced-motion={props.reducedMotion === true} aria-label={describeFrame(props.frame)}>
-    <div className="miniature-world__stage" onPointerDown={event => { if (event.isPrimary && event.button === 0) drag.current = { x: event.clientX, y: event.clientY, pan, moved: false }; }} onPointerMove={event => {
-      const held = drag.current; if (!held) return;
-      const dx = event.clientX - held.x; const dy = event.clientY - held.y;
-      if (!held.moved && Math.abs(dy) > 6 && Math.abs(dy) > Math.abs(dx)) { drag.current = null; return; }
-      if (Math.abs(dx) < 8 && !held.moved) return;
-      held.moved = true; setPan(Math.max(-.36, Math.min(.36, held.pan - dx / 700)));
-    }} onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }} onPointerLeave={() => { drag.current = null; }}>
-      {illustrated ? fallback : <><SceneBoundary fallback={null} onFailure={fail}><Suspense fallback={null}><CanvasView scene={scene} textures={textures} view={view} phone={phone} pan={pan} visible={visible} focusedJob={focusedJob} onContextLost={fail} onWorkerFailure={() => { setWorkerFailed(true); setPainted(false); }} onMetrics={metrics} onTexturesCommitted={committed} /></Suspense></SceneBoundary>{!painted && fallback}</>}
-      {!illustrated && <ArtworkTextures ref={textureOwner} sources={sources} onReady={ready} onFailure={fail} active={visible} />}
-      <div className="miniature-world__time" aria-hidden="true"><span>Day {props.frame.day + 1}</span><span>{props.frame.clock}</span></div>
+    <div className="miniature-world__scene">
+      <div className="miniature-world__stage" onPointerDown={event => { if (event.isPrimary && event.button === 0) drag.current = { x: event.clientX, y: event.clientY, pan, moved: false }; }} onPointerMove={event => {
+        const held = drag.current; if (!held) return;
+        const dx = event.clientX - held.x; const dy = event.clientY - held.y;
+        if (!held.moved && Math.abs(dy) > 6 && Math.abs(dy) > Math.abs(dx)) { drag.current = null; return; }
+        if (Math.abs(dx) < 8 && !held.moved) return;
+        held.moved = true; setPan(Math.max(-.36, Math.min(.36, held.pan - dx / 700)));
+      }} onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }} onPointerLeave={() => { drag.current = null; }}>
+        {illustrated ? fallback : <><SceneBoundary fallback={null} onFailure={fail}><Suspense fallback={null}><CanvasView scene={scene} textures={textures} warmupReady={textures.size === sources.length} view={view} phone={phone} pan={pan} visible={visible} focusedJob={focusedJob} reducedMotion={props.reducedMotion} onContextLost={fail} onWorkerFailure={() => { setWorkerFailed(true); setPainted(false); }} onMetrics={metrics} onTexturesCommitted={committed} /></Suspense></SceneBoundary>{!painted && fallback}</>}
+        {!illustrated && <ArtworkTextures ref={textureOwner} sources={sources} onReady={ready} onFailure={fail} active={visible} />}
+        <div className="miniature-world__time" aria-hidden="true"><span>Day {props.frame.day + 1}</span><span>{props.frame.clock}</span></div>
+      </div>
+      {!failed && rendererChoice !== 'checking' && <nav className="miniature-world__cameras" aria-label="Studio camera">
+        {rendererChoice === 'illustrated' ? <button type="button" onClick={() => { savePrefs({ ...loadPrefs(), studioView: 'miniature' }); setPainted(false); setRendererChoice('miniature'); }}>Try miniature room</button> : <>
+          {initialView === 'window' && <button type="button" aria-pressed={view === 'window'} onClick={() => camera('window')}>At the window</button>}
+          <button type="button" aria-pressed={view === 'work'} onClick={() => camera('work')}>On the bench</button>
+          <button type="button" aria-pressed={view === 'studio'} onClick={() => camera('studio')}>The studio</button>
+        </>}
+      </nav>}
+      {!failed && rendererChoice === 'miniature' && <button className="miniature-world__fallback" type="button"
+        onClick={() => { savePrefs({ ...loadPrefs(), studioView: 'illustrated' }); setRendererChoice('illustrated'); setTextureSet(undefined); setPainted(false); }}>Use illustrated studio</button>}
     </div>
-    {!failed && rendererChoice !== 'checking' && <nav className="miniature-world__cameras" aria-label="Studio camera">
-      {rendererChoice === 'illustrated' ? <button type="button" onClick={() => { savePrefs({ ...loadPrefs(), studioView: 'miniature' }); setPainted(false); setRendererChoice('miniature'); }}>Try miniature room</button> : <>
-      {initialView === 'window' && <button type="button" aria-pressed={view === 'window'} onClick={() => camera('window')}>At the window</button>}
-      <button type="button" aria-pressed={view === 'work'} onClick={() => camera('work')}>On the bench</button>
-      <button type="button" aria-pressed={view === 'studio'} onClick={() => camera('studio')}>The studio</button>
-      <button type="button" onClick={() => { savePrefs({ ...loadPrefs(), studioView: 'illustrated' }); setRendererChoice('illustrated'); setTextureSet(undefined); setPainted(false); }}>Use illustrated studio</button>
-      </>}
-    </nav>}
     <div className="miniature-world__status">
       {rendererChoice === 'illustrated' && !failed && <p>Keep the illustrated studio for a lighter view. You can try the miniature room above.</p>}
       {scene.learning && <>{scene.learning.otherLabel && <p>{scene.learning.otherLabel}</p>}<p>{scene.learning.label}{scene.learning.source && <button type="button" data-inspect-pattern onClick={() => inspect('studio-pattern')}>Inspect the pattern</button>}</p>{!playbackRunning && <p>The day is paused. Resume when you’re ready.</p>}</>}

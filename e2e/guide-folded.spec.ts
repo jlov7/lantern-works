@@ -37,7 +37,7 @@ test('skipping the replayed customer lesson reaches the focused late decision wi
   await expect(page.locator('.ticket-waiting')).toHaveCount(1);
   await expect(page.locator('.ticket-waiting .btn-take-risky')).toBeVisible();
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('lantern.runs.v1')!)[0].commands)).toEqual(commands);
-  await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).focus();
+  await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).focus();
   await page.keyboard.press('Enter');
   await expect(page.getByRole('dialog', { name: 'Compare all neighbours' })).toBeVisible();
   await expect(page.locator('.late-fold')).toHaveAttribute('open');

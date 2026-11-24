@@ -1,6 +1,6 @@
 # Artwork provenance
 
-The twelve painted raster assets below were generated on 26 October 2026 with
+The first twelve painted raster assets below were generated on 26 October 2026 with
 OpenAI's built-in image generation tool, then converted for the browser build.
 They depict fictional people and places. No image generation runs while you play.
 The jazz-bar archive image is fictional too; it is not a historical photograph.
@@ -25,6 +25,7 @@ composited separately. Required lettering is rendered by the game.
 | [open-studios.webp](../../src/ui/neighbourhood/assets/open-studios.webp) | Open-studio gathering. A workshop gallery setting with space for separate player work. |
 | [first-night-room.jpg](../../src/ui/creative/assets/first-night-room.jpg) | First-night room. A fictional archival-style jazz-bar photograph; not a historical photograph. |
 | [hugo-at-bench.webp](../../src/ui/creative/assets/hugo-at-bench.webp) | Hugo at the bench. A keepsake illustration using the existing Hugo portrait as its character reference. |
+| [press-bench.webp](../../src/ui/clem/assets/press-bench.webp) | Printshop bench. Generated on 22 November 2026 from the original commission art study, with an open work surface for the player's live proof. |
 
 The [asset manifest](artwork-manifest.json) records the exact files, byte sizes,
 SHA-256 hashes and generation intent. WebP assets were encoded with cwebp;

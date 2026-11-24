@@ -1,5 +1,5 @@
 // The evening card: one sentence, three numbers, the race with the ghost studios, and at most two notes you can act on.
-import { memo, type JSX, type ReactNode } from 'react';
+import { memo, type CSSProperties, type JSX, type ReactNode } from 'react';
 import { RULES } from '../../engine/rules';
 import { medalParFor, servedByDay, summarize } from '../../engine/selectors';
 import { credits, dayLabel, pct, signed } from '../format';
@@ -14,6 +14,7 @@ import { GHOSTS } from '../../engine/policies';
 import { GHOST_IDS, type GhostId, type GhostResult } from '../screens/ghosts';
 import { eveningCommissionAftermath, eveningCommissionPayoffs } from './commissionPayoff';
 import { CommissionPayoff } from '../portfolio/CommissionPayoff';
+import { fillFraction } from './fill';
 
 const DAY = RULES.minutesPerDay;
 
@@ -101,7 +102,7 @@ export const Evening = memo(function Evening({ play, live, ghosts, reducedMotion
           {race.map((r) => (
             <li key={r.id} className={r.id === 'you' ? 'is-you' : ''}>
               <span className="race-name">{r.label}</span>
-              <span className="race-bar" style={{ width: r.id === 'you' || ghosts ? `${(r.n / top) * 100}%` : 0 }} />
+              <span className="race-bar" style={{ '--fill': r.id === 'you' || ghosts ? fillFraction(r.n, top) : 0 } as CSSProperties} />
               <span className="race-n">{r.id === 'you' || ghosts ? r.n : ''}</span>
             </li>
           ))}

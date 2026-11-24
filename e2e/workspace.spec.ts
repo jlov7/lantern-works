@@ -36,7 +36,7 @@ function morning(config: RunConfig, commands: Command[], day: number) {
 }
 
 async function choose(page: Page, name: string) {
-  await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).click();
+  await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).click();
   const comparison = page.getByRole('dialog', { name: 'Compare all neighbours' });
   await comparison.getByRole('button').filter({ has: page.locator('strong', { hasText: new RegExp(`^${name}$`) }) }).first().click();
   await expect(page.locator('[data-customer-heading]')).toHaveText(name);
@@ -140,7 +140,7 @@ test('place navigation and resizing preserve the selected customer and deliberat
   await expect.poll(() => page.evaluate(() => scrollY)).toBeCloseTo(position, 0);
   await expect(page.locator('[data-customer-heading]')).toHaveText('Mina');
   const before = await commandsOf(page);
-  const compare = page.getByRole('button', { name: /^Compare \/ All neighbours/ });
+  const compare = page.getByRole('button', { name: /^See all \d+ neighbours$/ });
   await compare.click();
   await page.setViewportSize({ width: 320, height: 844 });
   await expect(page.getByRole('dialog', { name: 'Compare all neighbours' })).toBeVisible();

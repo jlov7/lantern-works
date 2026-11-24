@@ -1,10 +1,11 @@
-import { memo, type JSX } from 'react';
+import { memo, type CSSProperties, type JSX } from 'react';
 import { RULES } from '../engine/rules';
 import { humanLoad, todayLoad } from '../engine/selectors';
 import { reworkBp } from '../engine/sim';
 import type { AiTier, CompanyState, Command, Job, Routing } from '../engine/types';
 import { dayLabel, hours, oneIn, ROUTING_LABEL, TIER_LABEL } from './format';
 import { aiDailyCost } from './game/capacityCosts';
+import { fillFraction } from './game/fill';
 import { promiseLabel } from './game/promiseLabel';
 
 const TIERS: AiTier[] = ['none', 'solo', 'duo'];
@@ -72,7 +73,7 @@ export const DeskPanel = memo(function DeskPanel({ state, yesterday, disabled, a
           </strong>
         </div>
         <div className="gauge-track" aria-hidden="true">
-          <div className={`gauge-fill${ratio > 1 ? ' over' : ratio > 0.85 ? ' tight' : ''}`} style={{ width: `${Math.min(100, ratio * 100)}%` }} />
+          <div className={`gauge-fill${ratio > 1 ? ' over' : ratio > 0.85 ? ' tight' : ''}`} style={{ '--fill': fillFraction(load.committed, load.available) } as CSSProperties} />
         </div>
         {today.committed > 0 && (
           <p className={`small gauge-today${todayRatio > 0.85 ? ' is-tight' : ''}`}>

@@ -13,15 +13,15 @@ export function EndShare({ state, title, line, medalLine, hero }: { state: Compa
   const startKey = JSON.stringify([state.config, state.rulesVersion]);
   const [prepared, setPrepared] = useState<{ key: string; url: string | null; error?: string } | null>(null);
   useEffect(() => {
-    if (!state.config.continuation) return;
+    if (!state.config.continuation && !state.config.opening) return;
     let live = true;
-    void encodeShare(state.config, [], `Season ${state.config.continuation.season}`, state.rulesVersion).then(
+    void encodeShare(state.config, [], state.config.continuation ? `Season ${state.config.continuation.season}` : 'Clem’s first order', state.rulesVersion).then(
       (encoded) => { if (live) setPrepared({ key: startKey, url: `${base}#start=${encoded}` }); },
       () => { if (live) setPrepared({ key: startKey, url: null, error: 'The studio challenge could not be prepared in this browser.' }); },
     );
     return () => { live = false; };
   }, [state.config, state.rulesVersion, startKey, base]);
-  const challengeUrl = state.config.continuation ? prepared?.key === startKey ? prepared.url : null : `${base}#play=${encodeURIComponent(state.config.scenarioId)}:${encodeURIComponent(state.config.seed)}:${encodeURIComponent(state.rulesVersion)}`;
+  const challengeUrl = state.config.continuation || state.config.opening ? prepared?.key === startKey ? prepared.url : null : `${base}#play=${encodeURIComponent(state.config.scenarioId)}:${encodeURIComponent(state.config.seed)}:${encodeURIComponent(state.rulesVersion)}`;
   const share = useMemo(() => shareText(state, challengeUrl ?? ''), [state, challengeUrl]);
   const [shareMsg, setShareMsg] = useState<string | null>(null);
   const [cardMsg, setCardMsg] = useState<string | null>(null);

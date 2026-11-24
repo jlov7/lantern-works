@@ -381,3 +381,28 @@ test('unrelated settings preserve automatic software fallback and explicit view 
   await expect(page.locator('canvas[data-miniature-renderer]')).toHaveCount(0);
   expect(await saved(page)).toEqual(commands);
 });
+
+test('a studio camera and its prints survive folding and rotating the viewport', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.setViewportSize({ width: 382, height: 618 });
+  await load(page); await ready(page);
+  const canvas = await page.locator('canvas[data-miniature-renderer]').elementHandle();
+  const camera = room(page).getByRole('button', { name: 'On the bench', exact: true });
+  await camera.click();
+  await expect.poll(async () => JSON.parse(await room(page).getAttribute('data-print-textures') ?? '[]').length).toBeGreaterThan(0);
+  const textures = await room(page).getAttribute('data-print-textures');
+  const dimensions = () => page.locator('canvas[data-miniature-renderer]').evaluate(element => element.getBoundingClientRect().width);
+  let previous = await dimensions();
+  for (const [width, height] of [[669, 867], [951, 585], [594, 368], [385, 571], [382, 618]] as const) {
+    await page.setViewportSize({ width, height });
+    await expect.poll(dimensions).not.toBe(previous);
+    previous = await dimensions();
+    await expect(camera).toHaveAttribute('aria-pressed', 'true');
+    await expect(room(page)).toHaveAttribute('data-print-textures', textures!);
+    expect(await page.locator('canvas[data-miniature-renderer]').evaluate((element, original) => element === original, canvas)).toBe(true);
+  }
+  await goPlace(page, 'Window');
+  expect(await saved(page)).toEqual(commands);
+  expect(errors).toEqual([]);
+});

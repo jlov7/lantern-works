@@ -3,7 +3,7 @@
 .portfolio-heading > div { min-width: 0; flex: 1 1 12rem; }
 .portfolio-heading h2 { margin: .3rem 0 0; max-width: 26ch; }
 .portfolio h2, .portfolio h3 { color: var(--ink); }
-.portfolio-eyebrow { display: block; font: 700 .69rem/1.4 var(--font-body); letter-spacing: .11em; text-transform: uppercase; color: var(--ink-soft); }
+.portfolio-eyebrow { display: block; font: 700 .69rem/1.4 var(--font-body); letter-spacing: normal; text-transform: none; color: var(--ink-soft); }
 .portfolio-count { flex: 0 0 auto; margin: 0; text-align: right; font: 1.2rem/1.3 var(--font-sign); }
 .portfolio-count span { display: block; font: .75rem/1.6 var(--font-body); color: var(--ink-soft); }
 .portfolio-selected { display: grid; grid-template-columns: minmax(180px, .9fr) minmax(0, 1fr); align-items: center; gap: clamp(1.2rem, 4vw, 3rem); }

@@ -3,6 +3,8 @@
 
 const KEY_GUIDE = 'lantern.guide.v1';
 const KEY_EVENING = 'lantern.evening.v1';
+const KEY_DAY_TWO_BRIDGE = 'lantern.day2-bridge.v1';
+const KEY_DECISION_PRACTICE = 'lantern.decision-practice.v1';
 
 function get(key: string): string | null {
   try {
@@ -41,3 +43,8 @@ export function eveningUnseen(runId: string): number | null {
 }
 export const markEvening = (runId: string, day: number): void => set(KEY_EVENING, JSON.stringify({ runId, day }));
 export const clearEvening = (): void => set(KEY_EVENING, null);
+
+export const dayTwoBridgeSeen = (): boolean => get(KEY_DAY_TWO_BRIDGE) === 'seen';
+export const markDayTwoBridgeSeen = (): void => set(KEY_DAY_TWO_BRIDGE, 'seen');
+export const decisionPracticeSettings = (): string | null => get(KEY_DECISION_PRACTICE);
+export const rememberDecisionPractice = (search: string): void => set(KEY_DECISION_PRACTICE, search);

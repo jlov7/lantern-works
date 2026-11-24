@@ -58,12 +58,12 @@ test('an exhausted capacity comparison says so without changing the recorded mor
   await disclosure.locator('summary').click();
   await expect(disclosure).toContainText('None of these changes makes room for a different buyer in queue order.');
   await disclosure.locator('summary').click();
-  await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).click();
+  await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).click();
   const comparison = page.getByRole('dialog', { name: 'Compare all neighbours' });
   await comparison.locator('.compare-options > summary').click();
   await expect(comparison.locator('.levers button')).toHaveCount(0);
   await comparison.getByRole('button', { name: /^Return to / }).click();
-  await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).click();
+  await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).click();
   await expect(comparison.locator('.compare-options')).not.toHaveAttribute('open');
   await comparison.getByRole('button', { name: /^Return to / }).click();
   await goPlace(page, 'Studio');

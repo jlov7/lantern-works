@@ -3,7 +3,7 @@
 .neighbourhood h2,.neighbourhood h3,.neighbourhood p { min-width:0; overflow-wrap:anywhere; hyphens:auto; }
 .neighbourhood h2,.neighbourhood h3 { color:var(--ink); }
 .neighbourhood-heading { display:flex; align-items:end; justify-content:space-between; gap:1.5rem; padding:1.35rem 1.6rem 1rem; }
-.neighbourhood-detail-label { color:#6d5c46; font:700 .69rem/1.3 sans-serif; letter-spacing:.14em; text-transform:uppercase; }
+.neighbourhood-detail-label { color:#6d5c46; font:700 .69rem/1.3 sans-serif; letter-spacing:normal; text-transform:none; }
 .neighbourhood-heading h2 { margin:.25rem 0 0; font-size:clamp(1.8rem,3.5vw,2.9rem); line-height:1.05; font-weight:normal; }
 .neighbourhood-heading p { margin:0 0 .2rem; font-size:.95rem; max-width:19rem; line-height:1.4; }
 .neighbourhood-scene { position:relative; isolation:isolate; height:clamp(320px,43vw,480px); overflow:hidden; background-size:cover; background-position:center; transition:background-position .7s ease; }
@@ -11,7 +11,7 @@
 .neighbourhood-print { position:absolute; left:50%; top:50%; width:clamp(170px,30%,280px); aspect-ratio:1; padding:7px; background:#efdfbf; box-shadow:2px 5px 2px #17160c80, 5px 9px 17px #17160cb0; transform:translate(-50%,-43%) perspective(800px) rotateY(3deg) rotate(-1deg); }
 .neighbourhood-print > * { margin:0; display:block; width:100%; height:100%; object-fit:contain; }
 .neighbourhood-scene-label { position:absolute; right:1.4rem; top:1.1rem; bottom:auto; min-width:0; max-width:50%; overflow-wrap:anywhere; color:#fff3d8; text-shadow:0 2px 5px #151510; text-align:right; display:grid; gap:.2rem; background:#1d2b21df; padding:.5rem .65rem; }
-.neighbourhood-scene-label span { font:700 .65rem/1.3 sans-serif; text-transform:uppercase; letter-spacing:.12em; }
+.neighbourhood-scene-label span { font:700 .65rem/1.3 sans-serif; text-transform:none; letter-spacing:normal; }
 .neighbourhood-scene-label strong { font-size:1.3rem; }
 .neighbourhood-trail { position:absolute; bottom:8%; left:45%; right:12%; display:flex; justify-content:space-between; border-bottom:2px dashed #f2d99a; color:#f2d99a; transform:rotate(-7deg); opacity:.8; }
 .neighbourhood[data-mode="unfinished"] .neighbourhood-scene { filter:saturate(.75); }

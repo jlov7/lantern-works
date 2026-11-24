@@ -6,22 +6,61 @@ body:has(.miniature-study) { margin: 0; background: #152824; background-image: r
 .miniature-study header h1 { font: 22px 'Young Serif', Georgia, serif; font-weight: 400; margin: 0; }
 .miniature-study header span { margin-left: auto; color: #acb7a8; font-size: 12px; text-transform: uppercase; letter-spacing: .14em; }
 .miniature-world { background: #233735; position: relative; border: 1px solid #8e805e; color: #f1e8d5; overflow: hidden; isolation: isolate; }
+.miniature-world__scene { position: relative; }
 .miniature-world__stage { height: clamp(350px, 38vw, 540px); position: relative; touch-action: pan-y; cursor: grab; background: radial-gradient(ellipse at 53% 35%, #466150, #243c34 70%, #1a302b); }
 .miniature-world__stage:active { cursor: grabbing; }
 .miniature-world__stage > div:first-child { position: absolute !important; inset: 0; }
-.miniature-world__stage canvas { display: block; touch-action: pan-y; }
+.miniature-world__stage canvas { display: block; touch-action: pan-y; transform: translateZ(0); }
 .miniature-world__time { position: absolute; top: 22px; left: 26px; display: flex; gap: 16px; font-family: 'Young Serif', Georgia, serif; font-size: 17px; text-shadow: 0 2px 8px #182a22; pointer-events: none; }
 .miniature-world__time span + span { border-left: 1px solid #e8d4ab80; padding-left: 16px; font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 14px; align-self: center; }
-.miniature-world__cameras { display: flex; background: #f0e4cb; color: #203c33; border-top: 1px solid #a89570; }
-.miniature-world__cameras button { flex: 1; border: 0; background: transparent; border-right: 1px solid #b6a580; padding: 17px 8px; min-height: 56px; font: 15px 'Young Serif', Georgia, serif; color: inherit; cursor: pointer; position: relative; }
-.miniature-world__cameras button:last-child { border-right: 0; }
-.miniature-world__cameras button[aria-pressed=true] { background: #ded6b9; }
-.miniature-world__cameras button[aria-pressed=true]::after { content: ''; position: absolute; bottom: 8px; left: 37%; width: 26%; height: 2px; background: #47624b; }
+.miniature-world__cameras {
+  position: absolute;
+  z-index: 1;
+  width: max-content;
+  inset-inline: 0;
+  margin-inline: auto;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 22px;
+  background: #f0e4cbe6;
+  color: #203c33;
+  box-shadow: 0 0 0 1px #a89570;
+}
+.miniature-world__cameras button {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 20px;
+  font: 15px 'Young Serif', Georgia, serif;
+  white-space: nowrap;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.miniature-world__cameras button:hover { background: #e4d7b9; }
+.miniature-world__cameras button[aria-pressed=true] { background: #203c33; color: #f0e4cb; }
+.miniature-world__fallback {
+  position: absolute;
+  z-index: 1;
+  top: calc(12px + env(safe-area-inset-top));
+  right: 12px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 22px;
+  border: 1px solid #e8d4ab80;
+  background: #16282399;
+  color: #f0e4cb;
+  font: 13px 'Atkinson Hyperlegible', sans-serif;
+  cursor: pointer;
+}
 .miniature-world__neighbours { display: flex; overflow: auto; background: #1c332b; padding: 8px 12px; gap: 8px; }
 .miniature-world__neighbours button { background: transparent; color: #d5ddcd; border: 1px solid #6c7e65; border-radius: 20px; padding: 8px 16px; font: 13px 'Atkinson Hyperlegible', sans-serif; min-height: 38px; cursor: pointer; }
 .miniature-world__neighbours button[aria-pressed=true] { color: #f7e1a9; border-color: #d1af69; background: #3b4b36; }
 .miniature-world button:focus-visible, .miniature-study :is(button,select,summary):focus-visible { outline: 3px solid #795415; outline-offset: -4px; }
-.miniature-world__neighbours button:focus-visible, .miniature-work-inspection button:focus-visible, .miniature-study__record summary:focus-visible { outline-color: #e1bb69; }
+.miniature-world .miniature-world__cameras button:focus-visible { outline: 2px solid #203c33; outline-offset: 2px; }
+.miniature-world__fallback:focus-visible, .miniature-world__neighbours button:focus-visible, .miniature-work-inspection button:focus-visible, .miniature-study__record summary:focus-visible { outline-color: #e1bb69; }
 .miniature-work-inspection:focus-visible { outline: 3px solid #795415; outline-offset: -3px; }
 .miniature-art-sources { position: absolute; left: -10000px; top: 0; width: 768px; height: auto; visibility: hidden; pointer-events: none; }
 .miniature-art-sources > div { width: 768px; }
@@ -46,13 +85,19 @@ body:has(.miniature-study) { margin: 0; background: #152824; background-image: r
   .miniature-world__stage { height: 430px; }
   .miniature-world[data-view=studio] .miniature-world__stage { height: 320px; }
   .miniature-world__time { top: 18px; left: 18px; font-size: 15px; }
-  .miniature-world__cameras button { font-size: 12px; padding-inline: 3px; min-height: 58px; }
+  .miniature-world__cameras button { font-size: 14px; padding-inline: 10px; }
   .miniature-world__neighbours { padding: 7px; gap: 6px; }
   .miniature-world__neighbours button { padding-inline: 12px; min-height: 44px; }
   .miniature-study__caption { display: block; padding: 23px 20px; }
   .miniature-study__caption h2 { font-size: 22px; }
   .miniature-study__caption nav { margin-top: 18px; display: grid; grid-template-columns: 1fr auto; gap: 8px; }
   .miniature-study__caption :is(select,button) { font-size: 12px; padding-inline: 8px; }
+}
+@media (max-width: 410px) and (max-height: 620px) {
+  .miniature-world__cameras { bottom: auto; top: 64px; }
+}
+@media (max-width: 340px) {
+  .miniature-world__cameras button { font-size: 12px; padding-inline: 7px; }
 }
 @media (max-width: 340px) { .miniature-study { padding-inline: 8px; } .miniature-world__stage { height: 410px; } .miniature-world[data-view=studio] .miniature-world__stage { height: 300px; } .miniature-study__caption { padding-inline: 16px; } }
 .miniature-world__work { display: flex; gap: 8px; padding: 10px 14px; background: #233b31; overflow-x: auto; }

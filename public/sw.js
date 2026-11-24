@@ -16,7 +16,13 @@ self.addEventListener('install', (event) => {
       const res = await fetch(new URL('asset-manifest.json', SCOPE), { cache: 'no-cache' });
       const { files } = await res.json();
       const cache = await caches.open(CACHE);
-      await cache.addAll([SCOPE, new URL('favicon.svg', SCOPE).href, ...files.map((f) => new URL(f, SCOPE).href)]);
+      await cache.addAll([
+        SCOPE,
+        new URL('favicon.svg', SCOPE).href,
+        new URL('manifest.webmanifest', SCOPE).href,
+        new URL('apple-touch-icon.png', SCOPE).href,
+        ...files.map((f) => new URL(f, SCOPE).href),
+      ]);
     })(),
   );
 });

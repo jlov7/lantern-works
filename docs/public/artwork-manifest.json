@@ -108,6 +108,15 @@
       "intent": "A keepsake illustration using the existing Hugo portrait as its character reference.",
       "bytes": 129106,
       "sha256": "60776d7c8578050fa8136ab60b86d12375decd2722e0957e67754ea42d2c884e"
+    },
+    {
+      "file": "src/ui/clem/assets/press-bench.webp",
+      "title": "Printshop bench",
+      "generatedOn": "2026-11-22",
+      "tool": "OpenAI built-in image generation",
+      "intent": "An original letterpress workbench adapted from the commission art study. The player’s live proof is drawn separately.",
+      "bytes": 133058,
+      "sha256": "ac3ce48d64eedec00a01a8a116f97fd443bc3fa6d257d4adbe2e65a4677ff68d"
     }
   ]
 }

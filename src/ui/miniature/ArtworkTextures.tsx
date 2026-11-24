@@ -1,4 +1,4 @@
-import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'react';
+import { useEffect, useImperativeHandle, useRef, useState, type ComponentProps, type Ref } from 'react';
 import { CanvasTexture, SRGBColorSpace } from 'three';
 import type { AuthoredBrief } from '../game/portfolio';
 import { CampaignArtwork } from '../portfolio/Artwork';
@@ -7,7 +7,9 @@ import type { CarriedPiece } from '../../engine/types';
 import youngSerif from '@fontsource/young-serif/files/young-serif-latin-400-normal.woff2?url';
 import atkinson from '@fontsource/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2?url';
 
-export type PrintSource = { key: string; brief: AuthoredBrief; launch?: number; launches?: number } | { key: string; carried: CarriedPiece };
+export type PrintSource = { key: string; brief: AuthoredBrief; launch?: number; launches?: number }
+  | { key: string; carried: CarriedPiece }
+  | ({ key: string; design: ComponentProps<typeof DesignedPrint>['piece'] } & Pick<ComponentProps<typeof DesignedPrint>, 'copy' | 'label'>);
 export type PrintTextures = ReadonlyMap<string, CanvasTexture>;
 export interface TextureOwner { committed: (textures: PrintTextures) => void }
 async function dataURL(url: string): Promise<string> {
@@ -118,5 +120,5 @@ export function ArtworkTextures({ sources, onReady, onFailure, ref, active = tru
     }).catch(() => { if (!abort.signal.aborted) { abort.abort(); onFailure(); } });
     return () => abort.abort();
   }, [sources, onReady, onFailure, active]);
-  return <div className="miniature-art-sources" ref={root} aria-hidden="true" data-art-ready={ready}>{sources.map(source => <div key={source.key} data-print-key={source.key}>{'carried' in source ? <DesignedPrint piece={source.carried.design} copy={source.carried.copy} label={source.carried.title} /> : <CampaignArtwork brief={source.brief} launch={source.launch} launches={source.launches} />}</div>)}</div>;
+  return <div className="miniature-art-sources" ref={root} aria-hidden="true" data-art-ready={ready}>{sources.map(source => <div key={source.key} data-print-key={source.key}>{'carried' in source ? <DesignedPrint piece={source.carried.design} copy={source.carried.copy} label={source.carried.title} /> : 'design' in source ? <DesignedPrint piece={source.design} copy={source.copy} label={source.label} /> : <CampaignArtwork brief={source.brief} launch={source.launch} launches={source.launches} />}</div>)}</div>;
 }

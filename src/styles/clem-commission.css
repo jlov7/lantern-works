@@ -1,0 +1,162 @@
+.clem-commission {
+  --clem-ink: #f4e8d3;
+  --clem-muted: #c9c5b5;
+  --clem-gold: #f3c578;
+  --clem-edge: #5d695c;
+  min-height: 100svh;
+  color: var(--clem-ink);
+  background: radial-gradient(ellipse at 20% 15%, #263a31, #15211f 62%);
+  padding: env(safe-area-inset-top) max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+
+.clem-top, .clem-story { max-width: 1280px; margin-inline: auto; }
+.clem-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .25rem .85rem; min-height: 52px; border-bottom: 1px solid var(--clem-edge); }
+.clem-top a { display: inline-flex; align-items: center; min-height: 44px; color: var(--clem-gold); font: 1.14rem var(--font-sign); text-decoration: none; }
+.clem-top ol { display: flex; flex-wrap: wrap; gap: .8rem; padding: 0; margin: 0; list-style: none; color: var(--clem-muted); font-size: .9rem; }
+.clem-top li[aria-current] { color: var(--clem-gold); font-weight: 700; text-decoration: underline; text-underline-offset: .25em; }
+.clem-story { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(265px, 1fr); gap: .9rem 1.4rem; align-items: start; }
+.clem-intro { grid-column: 1 / -1; margin-top: clamp(.7rem, 2vw, 1.65rem); }
+.clem-intro p { margin: 0 0 .3rem; color: var(--clem-gold); font-size: .92rem; }
+.clem-intro h1 { margin: 0; color: var(--clem-ink); font: clamp(2rem, 5vw, 4.1rem)/1.08 var(--font-sign); }
+.clem-intro h1:focus { outline: none; }
+
+.clem-bench, .clem-window { position: relative; isolation: isolate; margin: 0; overflow: hidden; border: 1px solid #b68c55; border-radius: 6px; background-color: #59402d; box-shadow: 0 12px 40px #080d0c6e; }
+.clem-bench { display: grid; place-items: end center; padding: 0 1rem 4%; aspect-ratio: 1.52; background-image: var(--clem-backplate); background-size: cover; background-position: center; }
+.clem-proof { width: min(49%, 380px); margin: 0 6% 1% 0; transform: perspective(780px) rotateX(15deg) rotateZ(-5deg); box-shadow: 4px 9px 15px #1b100dcc, 1px 1px 0 2px #d1b887; }
+.clem-proof svg, .clem-window-print svg, .clem-close-look svg { display: block; width: 100%; height: auto; }
+.clem-bench .print-lift { width: min(60%, 430px); background: none; margin-right: 5%; }
+.clem-bench .print-lift__press { display: none; }
+.clem-bench .print-lift__sheet { width: min(86%, 375px); margin-block: 0 .1rem; }
+.clem-bench .print-lift__control { padding-top: 0; }
+.clem-bench .print-lift__instruction { background: #1c2925; }
+
+/* Keep the print registered to the photographed glass as the composite scales. */
+.clem-window { aspect-ratio: 1.46; }
+.clem-window__stage {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  aspect-ratio: 1440 / 811;
+  transform-origin: 0 0;
+  transform: translate(var(--tx), var(--ty)) scale(var(--s));
+}
+.clem-window__stage > img { display: block; width: 100%; height: auto; }
+.clem-window__stage[data-framing='read'] > img { filter: blur(1.5px); }
+.clem-window[data-world='true'] { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.clem-window__stage .clem-window-print { position: absolute; top: 39.30%; left: 73.32%; width: 5.83%; padding: .3%; background: #dfcea7; transform: perspective(550px) rotateY(-9deg) rotateZ(2deg); box-shadow: 3px 4px 8px #17110ebf; }
+.clem-window-print::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(128deg, transparent 25%, #fff5d53a 45%, transparent 60%); }
+.clem-window[data-backdrop='pending'] {
+  background: linear-gradient(90deg, transparent 48%, #34291f 48% 52%, transparent 52%),
+    linear-gradient(0deg, #241f1a 9%, transparent 9%),
+    radial-gradient(ellipse at 50% 15%, #b38455, #4e372b 58%, #30261d);
+}
+.clem-window[data-backdrop='pending'] .clem-window__stage { --s: 1; --tx: 0%; --ty: 0%; }
+.clem-window[data-backdrop='pending'] img { opacity: 0; }
+.clem-window[data-backdrop='pending'] .clem-window-print { top: 10%; left: 23%; width: 54%; }
+.clem-window[data-hang='waiting'][data-backdrop='ready'] .clem-window-print { opacity: 0; }
+
+/* The bench's blue panes need a cooler correction than the shared grade provides. */
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *) { background-image: none; }
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--clem-backplate);
+  background-size: inherit;
+  background-position: inherit;
+  filter: hue-rotate(-42deg);
+}
+
+/* A transformed window stage is its own stacking context. Grade between its image and print. */
+.first-order-street:not([data-world='true'])::after,
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *)::after,
+.first-order .clem-window:not([data-world='true'])[data-backdrop='pending']::after,
+.first-order .clem-window:not([data-world='true'])[data-backdrop='ready'] .clem-window__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg, #1c342b2e 0%, transparent 45%, #f4b94214 100%);
+  mix-blend-mode: soft-light;
+}
+
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *) > :is(.clem-proof, .print-lift, .press-pull) { z-index: 2; }
+.first-order :is(.clem-window__stage .clem-window-print, .clem-window[data-backdrop='pending'] .clem-window__stage) { z-index: 2; }
+
+.clem-panel { display: grid; gap: .8rem; min-width: 0; padding: clamp(.8rem, 2vw, 1.3rem); background: #1d2e28; border: 1px solid var(--clem-edge); border-radius: 6px; }
+.clem-panel p, .clem-panel h2 { margin: 0; }
+.clem-panel h2 { font: 1.4rem/1.2 var(--font-sign); }
+.clem-panel p { color: var(--clem-muted); }
+.clem-customer { display: grid; grid-template-columns: 52px minmax(0, 1fr); align-items: center; gap: .7rem; }
+.clem-customer img { width: 52px; height: 52px; object-fit: cover; object-position: center 20%; background: #3d4737; border-radius: 50%; }
+.clem-customer blockquote { margin: 0; font: 1rem/1.45 var(--font-sign); }
+.clem-panel fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.clem-panel legend { margin-bottom: .4rem; font-weight: 700; }
+.clem-directions label { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .58rem; align-items: center; padding: .5rem .65rem; margin-bottom: .3rem; border: 1px solid var(--clem-edge); border-radius: 4px; cursor: pointer; }
+.clem-directions label:has(input:checked) { border-color: var(--clem-gold); background: #314238; }
+.clem-directions small { display: block; color: var(--clem-muted); line-height: 1.3; }
+.clem-directions input { margin: 0; accent-color: var(--clem-gold); }
+.clem-ink > div, .clem-actions { display: flex; flex-wrap: wrap; gap: .35rem; }
+.clem-panel button, .clem-close-look summary {
+  min-height: 44px;
+  padding: .4rem .6rem;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid var(--clem-edge);
+  color: var(--clem-ink);
+  font: inherit;
+  cursor: pointer;
+}
+.clem-panel :is(button, input, summary):focus-visible, .clem-top a:focus-visible { outline: 2px solid var(--clem-gold); outline-offset: 3px; }
+.clem-ink button { display: inline-flex; align-items: center; gap: .35rem; font-size: .85rem; }
+.clem-ink button[aria-pressed='true'] { border-color: var(--clem-gold); background: #314238; }
+.clem-ink button span { display: inline-block; width: .8rem; height: 1rem; border: 1px solid #c9ba97; border-radius: 2px; background: linear-gradient(115deg, var(--paper) 49%, var(--ink) 50%); }
+.clem-panel .clem-primary { padding-inline: 1.05rem; color: #1d211e; background: var(--clem-gold); border-color: var(--clem-gold); font-weight: 700; }
+.clem-panel .clem-primary:hover { background: #ffe0a4; }
+.clem-panel .clem-quiet { justify-self: start; text-underline-offset: .2em; text-decoration: underline; }
+.clem-headline { display: block; font-weight: 700; }
+.clem-headline small { margin-left: .3rem; color: var(--clem-muted); font-weight: 400; }
+.clem-headline input { display: block; width: 100%; min-height: 44px; margin-top: .34rem; padding: .45rem .6rem; background: #16231e; border: 1px solid #819381; border-radius: 4px; color: var(--clem-ink); font: inherit; font-size: max(1rem, 16px); }
+.clem-terms { display: grid; grid-template-columns: repeat(2,minmax(0, 1fr)); gap: .7rem; margin: 0; padding: .8rem 0; border-block: 1px solid var(--clem-edge); }
+.clem-terms dt { color: var(--clem-muted); font-size: .9rem; }
+.clem-terms dd { margin: .18rem 0 0; font-weight: 700; }
+.clem-close-look summary { display: list-item; }
+.clem-close-look svg { width: min(100%, 320px); margin-top: .6rem; }
+.clem-error { padding: .6rem; border: 1px solid #dfaa87; }
+.clem-error p { color: #ffd6b5; margin-bottom: .5rem; }
+
+@media (max-width: 700px) {
+  .clem-story { grid-template-columns: minmax(0, 1fr); gap: .65rem; }
+  .clem-bench { aspect-ratio: 1.55; }
+  .clem-proof { width: min(56%, 295px); }
+  .clem-bench .print-lift { width: min(68%, 325px); }
+}
+
+@media (min-width: 701px) and (max-height: 620px) {
+  .clem-intro { margin-top: .5rem; }
+  .clem-intro h1 { font-size: clamp(2rem, 4.4vw, 3.3rem); }
+  .clem-panel { padding: .8rem; gap: .62rem; }
+}
+
+@media (540px <= width <= 700px) and (max-height: 450px) {
+  .clem-story { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .clem-intro { margin-top: .5rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-motion='reduce']) .clem-window[data-animate='true'] .clem-window__stage {
+    transition: transform var(--dur-moment) var(--ease-out);
+  }
+  html:not([data-motion='reduce']) .clem-window[data-animate='true'] .clem-window__stage > img {
+    transition: filter var(--dur-moment) var(--ease-out);
+  }
+  html:not([data-motion='reduce']) .clem-window:not([data-hang]) .clem-window-print {
+    animation: clem-hangs .48s ease-out both;
+  }
+  html:not([data-motion='reduce']) .clem-window[data-hang='after-push'] .clem-window-print {
+    animation: clem-hangs .48s ease-out var(--dur-moment) both;
+  }
+}
+@keyframes clem-hangs { from { opacity: 0; translate: 0 -.45rem; } to { opacity: 1; translate: 0 0; } }

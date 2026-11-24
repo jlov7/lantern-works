@@ -1,6 +1,7 @@
 // The hero miniature: Lantern Works as a cut-away model on a street through one working day. Pure presentation of a
 // WorldFrame. The static layers are memoised on a quantised clock; per frame only people, folders and beats change.
-import { memo, useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type KeyboardEvent, type PointerEvent } from 'react';
+import { observeLayout } from '../observeLayout';
+import { memo, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type KeyboardEvent, type PointerEvent } from 'react';
 import { CAST_BY_ID } from '../../engine/rules';
 import type { CompanyState } from '../../engine/types';
 import type { FolderFrame, WorldFrame } from '../timeline';
@@ -36,12 +37,12 @@ const SURFACE_Z: Record<string, number> = { brief: BRIEF_TABLE.h, tray: TRAY.h, 
 
 function useWidth(ref: React.RefObject<SVGSVGElement | null>): number {
   const [w, setW] = useState(0);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el || typeof ResizeObserver === 'undefined') return;
-    const ro = new ResizeObserver((es) => setW(Math.round(es[0]!.contentRect.width)));
-    ro.observe(el);
-    return () => ro.disconnect();
+    const measure = () => setW(Math.round(el.getBoundingClientRect().width));
+    measure();
+    return observeLayout([el], measure);
   }, [ref]);
   return w;
 }
