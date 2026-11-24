@@ -22,7 +22,7 @@
 /* Screen changes: a short cross-fade with a slight rise. View transitions only run without reduced motion. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 420ms;
+  animation-duration: var(--dur-slow);
   animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 ::view-transition-new(root) {
@@ -31,6 +31,8 @@
 ::view-transition-old(root) {
   animation-name: lw-screen-out;
 }
+::view-transition-group(first-order-proof) { animation-duration: var(--dur-slow); }
+html:has(.first-order[data-step='design'])::view-transition-group(first-order-proof) { animation-duration: 520ms; }
 @keyframes lw-screen-in {
   from {
     opacity: 0;
@@ -97,8 +99,8 @@
 .first-kicker,
 .street-kicker {
   font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--lamp-soft);
   margin: 0 0 0.2rem;
 }

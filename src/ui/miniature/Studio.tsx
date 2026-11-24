@@ -1,11 +1,13 @@
 import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { CanvasTexture, InstancedMesh, Object3D, SRGBColorSpace } from 'three';
+import { useFrame, useThree } from '@react-three/fiber';
+import { CanvasTexture, Group, InstancedMesh, Object3D, SRGBColorSpace } from 'three';
 import youngSerifFont from '@fontsource/young-serif/files/young-serif-latin-400-normal.woff2?url';
-import { Solid, type MaterialName } from './materials';
+import { FIGURE_HIP, Solid, type MaterialName } from './materials';
 import { useMaterials } from './material-context';
 import type { miniatureScene, Point } from './adapter';
 import type { PrintTextures } from './ArtworkTextures';
 import type { PersonLook } from './appearance';
+import { CLEM_FRONT, PRESS_ORIGIN } from '../game/signatureTargets';
 
 type Scene = ReturnType<typeof miniatureScene>;
 const PI = Math.PI;
@@ -40,7 +42,7 @@ function PaperStack({ at, count = 6, width = .58, depth = .42 }: { at: Point; co
 function Ink({ at }: { at: Point }) {
   return <group position={at}><Solid shape="cylinder" at={[0, .07, 0]} size={[.065, .14, .065]} material="iron" /><Solid shape="cylinder" at={[0, .15, 0]} size={[.058, .03, .058]} material="brass" /><Solid at={[.14, .025, .05]} size={[.17, .04, .1]} material="terra" /><Solid shape="cylinder" at={[.21, .09, -.15]} size={[.07, .18, .07]} material="green" />{[0, 1, 2].map(i => <Solid key={i} shape="cylinder" at={[.2 + i * .025, .27, -.16]} size={[.008, .3, .008]} material={i === 1 ? 'brass' : 'timber'} rotation={[0, 0, -.2 + i * .2]} />)}</group>;
 }
-function Lamp({ at, pendant = false, cutaway = false }: { at: Point; pendant?: boolean; cutaway?: boolean }) {
+export function Lamp({ at, pendant = false, cutaway = false }: { at: Point; pendant?: boolean; cutaway?: boolean }) {
   return <group position={at}>
     {!cutaway && <>{pendant ? <Solid shape="cylinder" at={[0, .55, 0]} size={[.018, 1.05, .018]} material="iron" /> : <><Solid shape="cylinder" at={[.22, -.81, 0]} size={[.16, .05, .16]} material="iron" /><Solid shape="cylinder" at={[.22, -.48, 0]} size={[.023, .64, .023]} material="brass" /><Solid shape="cylinder" at={[.1, -.12, 0]} size={[.018, .36, .018]} material="iron" rotation={[0, 0, -.6]} /></>}
     <mesh position={[0, 0, 0]} castShadow><coneGeometry args={[.27, .2, 24, 1, true]} /><meshStandardMaterial color="#234638" side={2} roughness={.5} /></mesh>
@@ -48,22 +50,22 @@ function Lamp({ at, pendant = false, cutaway = false }: { at: Point; pendant?: b
     <pointLight position={[0, -.19, 0]} color="#ffcb82" intensity={7} distance={4.3} decay={2} />
   </group>;
 }
-function Plant({ at, scale = 1 }: { at: Point; scale?: number }) {
+export function Plant({ at, scale = 1 }: { at: Point; scale?: number }) {
   return <group position={at} scale={scale}><Solid shape="cylinder" at={[0, .21, 0]} size={[.2, .42, .2]} material="terra" /><Solid shape="cylinder" at={[0, .42, 0]} size={[.23, .07, .23]} material="edge" />{Array.from({ length: 9 }, (_, i) => <group key={i} rotation={[0, i * 2.4, 0]}><Solid shape="cylinder" at={[.07, .69 + i % 3 * .1, 0]} size={[.013, .55 + i % 3 * .14, .013]} material="edge" rotation={[0, 0, -.22]} /><Solid shape="sphere" at={[.19, .78 + i % 3 * .17, 0]} size={[.23, .065, .1]} material={i % 2 ? 'leaf' : 'greenLight'} rotation={[0, 0, .6]} /></group>)}</group>;
 }
-function PrintingPress() {
-  return <group position={[1.45, 0, -2.2]}>
+function PrintingPress({ interactive }: { interactive: boolean }) {
+  return <group position={PRESS_ORIGIN}>
     <Solid at={[0, .15, 0]} size={[1.45, .23, .8]} material="iron" />
     {[-.52, .52].map(x => <group key={x}><Solid at={[x, .64, 0]} size={[.14, 1.0, .16]} material="iron" rotation={[0, 0, x * .1]} /><Solid at={[x, 1.3, -.22]} size={[.13, 1.05, .15]} material="iron" /><Solid at={[x, 1.81, -.2]} size={[.27, .1, .25]} material="brass" /></group>)}
     <Solid at={[0, .96, .13]} size={[1.65, .12, .95]} material="iron" />
-    <Solid at={[0, 1.18, -.12]} size={[1.2, .12, .65]} material="brass" />
+    {!interactive && <Solid at={[0, 1.18, -.12]} size={[1.2, .12, .65]} material="brass" />}
     <Solid at={[0, 1.72, -.2]} size={[1.2, .18, .22]} material="iron" />
     <Solid shape="cylinder" at={[0, 1.55, -.2]} size={[.07, .8, .07]} material="brass" />
-    <Solid shape="torus" at={[.84, 1.12, -.05]} size={[.6, .6, .6]} material="iron" rotation={[0, PI / 2, 0]} />
+    {!interactive && <><Solid shape="torus" at={[.84, 1.12, -.05]} size={[.6, .6, .6]} material="iron" rotation={[0, PI / 2, 0]} />
     {[0, 1, 2, 3, 4, 5].map(i => <Solid key={i} shape="cylinder" at={[.84, 1.12, -.05]} size={[.023, 1.08, .023]} material="iron" rotation={[i * PI / 3, 0, 0]} />)}
-    <Solid shape="sphere" at={[.86, 1.12, -.05]} size={[.14, .14, .14]} material="brass" />
+    <Solid shape="sphere" at={[.86, 1.12, -.05]} size={[.14, .14, .14]} material="brass" /></>}
     <Solid shape="cylinder" at={[0, 1.96, -.2]} size={[.027, .85, .027]} material="iron" rotation={[0, 0, PI / 2]} />
-    <PaperStack at={[0, 1.04, .3]} count={2} width={.75} depth={.55} />
+    {!interactive && <PaperStack at={[0, 1.04, .3]} count={2} width={.75} depth={.55} />}
   </group>;
 }
 function DryingRack() {
@@ -92,7 +94,7 @@ function Counter({ cutaway }: { cutaway: boolean }) {
     <Ink at={[-1.3, 1.22, 0]} /><PaperStack at={[1.25, 1.22, 0]} count={6} width={.45} depth={.5} />
   </group>;
 }
-export const Studio = memo(function Studio({ scene, textures, cutaway }: { scene: Scene; textures: PrintTextures; cutaway: boolean }) {
+export const Studio = memo(function Studio({ scene, textures, cutaway, firstOrder = false, reducedMotion }: { scene: Scene; textures: PrintTextures; cutaway: boolean; firstOrder?: boolean; reducedMotion?: boolean }) {
   const wallPieces = scene.wall;
   const nailItems = useMemo(() => Array.from({ length: 42 }, (_, i) => ({ at: [-4.6 + i % 7 * 1.5, .032, -2.9 + Math.floor(i / 7) * 1.02] as Point, size: [.027, .008, .027] as Point })), []);
   return <>
@@ -106,7 +108,7 @@ export const Studio = memo(function Studio({ scene, textures, cutaway }: { scene
     <Timber at={[0, .13, -3.12]} size={[9.8, .21, .1]} />
     <Solid at={[0, .036, .9]} size={[3.3, .018, 1.25]} material="rug" />
     {Array.from({ length: 13 }, (_, i) => <Solid key={i} at={[-1.5 + i * .25, .05, .9]} size={[.045, .008, 1.15]} material={i % 2 ? 'cream' : 'edge'} />)}
-    <Cabinet /><Counter cutaway={cutaway} /><PrintingPress /><DryingRack /><NeighbourFront /><KitBoard status={scene.kit} /><StreetDressing scenario={scene.scenarioId} />
+    <Cabinet /><Counter cutaway={cutaway} /><PrintingPress interactive={firstOrder} /><DryingRack /><NeighbourFront /><KitBoard status={scene.kit} /><StreetDressing scenario={scene.scenarioId} />
     <Table at={[-2.55, 1.15]} width={1.8} depth={1.05} /><Table at={[-.45, -.8]} /><Table at={[1.15, -.8]} /><Table at={[3.2, -.8]} />
     <Table at={[-.8, 1.55]} width={.9} depth={.68} height={.8} />
     <PaperStack at={[-.82, .88, 1.55]} count={5} />
@@ -123,8 +125,9 @@ export const Studio = memo(function Studio({ scene, textures, cutaway }: { scene
     {scene.surfaces.filter(art => art.visible).map(art => <Print key={art.key} at={art.at} texture={textures.get(art.key)} width={.72} height={art.piece.brief.proof ? .72 : .96} rotation={art.standing ? [-.35, 0, 0] : [-PI / 2, 0, -.12]} />)}
     {scene.preview && <Print at={[-2.65, 1.215, 2.73]} width={.65} height={.87} texture={textures.get('preview')} />}
     {scene.learning && <><PaperStack at={[-3.05, 1.05, 1.15]} count={2} width={.7} depth={.7} /><Print at={[-3.05, 1.09, 1.15]} width={.66} height={.66} texture={textures.get('studio-pattern')} /><Solid shape="cylinder" at={[-3.43, 1.08, 1.15]} size={[.012, .4, .012]} material="brass" rotation={[0, .2, PI / 2]} /></>}
-    {scene.people.map(person => <Person key={person.worker.id} at={person.at} working={person.worker.working} look={person.look} />)}
-    {scene.neighbours.map(person => <Person key={person.n.requestId} at={person.at} customer look={person.look} clem={person.n.castId === 'clem'} />)}
+    {scene.people.map(person => <Person key={person.worker.id} at={person.at} working={person.worker.working} look={person.look} reducedMotion={reducedMotion} />)}
+    {firstOrder && <ClemJazzFrontStatic />}
+    {!firstOrder && scene.neighbours.map(person => <Person key={person.n.requestId} at={person.at} customer look={person.look} clem={person.n.castId === 'clem'} />)}
     <StreetLamp at={[-5.1, 0, 4.3]} /><StreetLamp at={[5.2, 0, 4.3]} />
     <Solid at={[-3.9, .17, 4.9]} size={[.09, .35, .09]} material="iron" /><Solid at={[3.9, .17, 4.9]} size={[.09, .35, .09]} material="iron" />
   </>;
@@ -133,36 +136,70 @@ function StreetLamp({ at }: { at: Point }) {
   return <group position={at}><Solid shape="cylinder" at={[0, .08, 0]} size={[.18, .16, .18]} material="iron" /><Solid shape="cylinder" at={[0, 1.18, 0]} size={[.035, 2.3, .035]} material="iron" /><Solid at={[0, 2.42, 0]} size={[.3, .4, .3]} material="brass" /><mesh position={[0, 2.43, 0]}><boxGeometry args={[.22, .32, .22]} /><meshStandardMaterial color="#ffc46c" emissive="#ffb351" emissiveIntensity={1.3} /></mesh><mesh position={[0, 2.7, 0]}><coneGeometry args={[.26, .21, 4]} /><meshStandardMaterial color="#263b33" /></mesh><pointLight position={[0, 2.3, .2]} color="#ffbd6e" intensity={4} distance={3.8} /></group>;
 }
 
-/** Adult proportions and quiet, legible gestures. The pose changes only with the recorded activity. */
-function Person({ at, look, working = false, customer = false, clem = false }: { at: Point; look: PersonLook; working?: boolean; customer?: boolean; clem?: boolean }) {
-  const { shirt, skin } = look;
-  const turn = customer ? 0 : working ? 0 : PI;
-  return <group position={at} rotation={[0, turn, 0]}>
-    {[-1, 1].map(side => <group key={side}><Solid shape="cylinder" at={[side * .115, .37, .015]} size={[.085, .68, .085]} material="blue" rotation={[0, 0, side * -.025]} /><Solid shape="sphere" at={[side * .12, .055, -.045]} size={[.105, .07, .19]} material="edge" /></group>)}
-    <Solid shape="torso" at={[0, 0, working ? -.04 : 0]} size={[look.broad ? 1.12 : 1, 1, .7]} material={shirt} /><Solid shape="sphere" at={[0, .77, 0]} size={[.18, .14, .13]} material="blue" />
-    {look.apron && <><Solid at={[0, .98, -.151]} size={[.34, .56, .025]} material={customer && shirt === 'cream' ? 'green' : 'cream'} rotation={[working ? -.13 : 0, 0, 0]} /><Solid at={[0, .94, -.17]} size={[.24, .15, .025]} material={customer && shirt === 'cream' ? 'greenLight' : 'timber'} /></>}
-    {look.scarf && <Solid at={[0, 1.29, -.12]} size={[.26, .12, .075]} material="terra" />}
-    <Solid shape="cylinder" at={[0, 1.37, -.02]} size={[.075, .12, .075]} material={skin} />
-    <group position={[0, 1.55, working ? -.065 : 0]} rotation={[working ? -.21 : .04, 0, 0]}>
-      <Solid shape="head" at={[0, 0, 0]} size={[1, 1, .91]} material={skin} />
-      <Solid shape="hair" at={[0, .01, .015]} size={[.133, .17, .128]} material={look.hair} />
-      <Solid shape="sphere" at={[0, -.02, -.116]} size={[.022, .033, .029]} material={skin} />
-      <Solid at={[0, -.072, -.12]} size={[.04, .007, .01]} material="edge" />
-      {[-.13, .13].map(x => <Solid key={x} shape="sphere" at={[x, -.02, 0]} size={[.018, .033, .025]} material={skin} />)}
-      {[-.055, .055].map(x => <Solid key={x} shape="sphere" at={[x, .015, -.118]} size={[.012, .009, .008]} material="iron" />)}
-      {look.style === 'long' && <Solid shape="sphere" at={[0, -.045, .08]} size={[.14, .23, .08]} material={look.hair} />}
-      {look.style === 'bun' && <Solid shape="sphere" at={[0, .15, .1]} size={[.09, .08, .09]} material={look.hair} />}
-      {look.beard && <Solid shape="sphere" at={[0, -.1, -.05]} size={[.103, .085, .085]} material={look.beard} />}
-      {look.style === 'cap' && <><Solid shape="cylinder" at={[0, .17, 0]} size={[.23, .035, .21]} material="edge" /><Solid shape="cylinder" at={[0, .25, 0]} size={[.145, .16, .135]} material="timber" /><Solid shape="cylinder" at={[0, .2, 0]} size={[.15, .045, .14]} material="blue" /></>}
-      {look.glasses && <>{[-.057, .057].map(x => <Solid key={x} shape="torus" at={[x, .015, -.132]} size={[.046, .042, .046]} material="brass" shadow={false} />)}<Solid at={[0, .015, -.135]} size={[.025, .008, .008]} material="brass" shadow={false} /></>}
+export type PersonParts = { legs: [Group, Group]; arms: [Group, Group]; update: () => void };
+
+export function Person({ at, look, working = false, customer = false, clem = false, turn, parts, reducedMotion }: {
+  at: Point; look: PersonLook; working?: boolean; customer?: boolean; clem?: boolean; turn?: number;
+  parts?: (parts: PersonParts) => void; reducedMotion?: boolean;
+}) {
+  const resources = useMaterials();
+  const { core, sleeve } = resources.getFigure(look, working, customer, clem);
+  const invalidate = useThree(state => state.invalidate);
+  const upperBody = useRef<Group>(null);
+  const armMesh = useRef<InstancedMesh>(null);
+  const legMesh = useRef<InstancedMesh>(null);
+  const wasWorking = useRef(working);
+  const settleAt = useRef<number | null>(null);
+
+  useLayoutEffect(() => {
+    const arms: [Group, Group] = [new Group(), new Group()];
+    const legs: [Group, Group] = [new Group(), new Group()];
+    const shoulder = look.broad ? .252 : .23;
+    const reaching = working || clem;
+    for (const side of [-1, 1]) {
+      const index = side < 0 ? 0 : 1;
+      arms[index].position.set(side * shoulder, .422, 0);
+      arms[index].rotation.z = side * (reaching ? PI / 30 : PI / 12);
+      legs[index].position.set(side * .106, FIGURE_HIP, .014);
+      legs[index].rotation.z = side * .025;
+    }
+    const arm = armMesh.current!;
+    const leg = legMesh.current!;
+    const update = () => {
+      arms.forEach((pivot, index) => { pivot.updateMatrix(); arm.setMatrixAt(index, pivot.matrix); });
+      legs.forEach((pivot, index) => { pivot.updateMatrix(); leg.setMatrixAt(index, pivot.matrix); });
+      arm.instanceMatrix.needsUpdate = true;
+      leg.instanceMatrix.needsUpdate = true;
+    };
+    update();
+    parts?.({ legs, arms, update });
+  }, [sleeve, resources.figureTrouser, look.broad, working, clem, parts]);
+
+  useLayoutEffect(() => {
+    if (wasWorking.current && !working && !reducedMotion) {
+      settleAt.current = performance.now();
+      invalidate();
+    } else if (working || reducedMotion) {
+      settleAt.current = null;
+      if (upperBody.current) upperBody.current.rotation.z = 0;
+    }
+    wasWorking.current = working;
+  }, [working, reducedMotion, invalidate]);
+  // Work's demand render loop only stays awake for the weight shift as a worker stops.
+  useFrame(() => {
+    if (settleAt.current === null || !upperBody.current) return;
+    const progress = Math.min(1, (performance.now() - settleAt.current) / 700);
+    upperBody.current.rotation.z = Math.sin(progress * 2 * PI) * .025 * (1 - progress);
+    if (progress < 1) invalidate();
+    else settleAt.current = null;
+  });
+
+  return <group position={at} rotation={[0, turn ?? (customer || working ? 0 : PI), 0]}>
+    <group ref={upperBody} position={[0, FIGURE_HIP, 0]} rotation={[working ? -8 * PI / 180 : 0, 0, 0]}>
+      <instancedMesh args={[core, resources.figureMaterial, 1]} castShadow receiveShadow />
+      <instancedMesh ref={armMesh} args={[sleeve, resources.figureMaterial, 2]} castShadow receiveShadow frustumCulled={false} />
     </group>
-    {[-1, 1].map(side => <group key={side}>
-      <Solid shape="limb" at={[side * .245, working || clem ? 1.17 : 1.08, working || clem ? -.08 : 0]} size={[.078, .14, .078]} material={shirt} rotation={[working || clem ? -.65 : -.12, 0, side * -.2]} />
-      <Solid shape="limb" at={[side * .24, clem ? 1.19 : working ? 1.08 : .94, working || clem ? -.3 : -.015]} size={[.06, .118, .06]} material={shirt} rotation={[working || clem ? -1.45 : -.18, 0, side * .13]} />
-      <Solid shape="sphere" at={[side * .23, clem ? 1.18 : working ? 1.06 : .94, working || clem ? -.48 : -.04]} size={[.064, .04, .08]} material={skin} />
-    </group>)}
-    {clem && <><Solid at={[-.08, 1.05, -.16]} size={[.065, .4, .025]} material="edge" rotation={[0, 0, -.22]} /><Solid at={[.08, 1.05, -.16]} size={[.065, .4, .025]} material="edge" rotation={[0, 0, .22]} /></>}
-    {customer && clem && <Solid at={[.18, 1.16, -.43]} size={[.4, .04, .3]} material="edge" rotation={[.3, 0, .1]} />}
+    <instancedMesh ref={legMesh} args={[resources.figureTrouser, resources.figureMaterial, 2]} castShadow receiveShadow frustumCulled={false} />
   </group>;
 }
 
@@ -185,7 +222,7 @@ function signTexture(text: string): CanvasTexture<HTMLCanvasElement | OffscreenC
   texture.colorSpace = SRGBColorSpace;
   return texture;
 }
-function Sign({ text, at, width, height }: { text: string; at: Point; width: number; height: number }) {
+export function Sign({ text, at, width, height }: { text: string; at: Point; width: number; height: number }) {
   const [texture, setTexture] = useState<CanvasTexture<HTMLCanvasElement | OffscreenCanvas> | undefined>(() => typeof document === 'undefined' ? signTexture(text) : undefined);
   const workerOwned = useRef(texture);
   useEffect(() => {
@@ -201,6 +238,27 @@ function Sign({ text, at, width, height }: { text: string; at: Point; width: num
     return () => { cancelled = true; owned?.dispose(); };
   }, [text]);
   return texture ? <mesh position={at}><planeGeometry args={[width, height]} /><meshStandardMaterial map={texture} roughness={1} /></mesh> : null;
+}
+function ClemJazzFrontStatic() {
+  return <>
+    <Solid at={[.45, -.45, 6.2]} size={[5.6, .58, 1.9]} material="edge" />
+    <Solid at={[.45, -.13, 6.2]} size={[5.6, .3, 1.9]} material="cobble" />
+    <group position={CLEM_FRONT.position} rotation={[0, CLEM_FRONT.rotationY, 0]}>
+      <Solid at={[0, 1.7, 0]} size={[3.6, 3.4, .9]} material="plaster" />
+      <Solid at={[0, .565, .47]} size={[3.5, 1.13, .06]} material="green" />
+      <Solid at={[0, 2.835, .47]} size={[3.5, .53, .06]} material="green" />
+      <Solid at={[0, 1.85, .47]} size={[.56, 1.44, .06]} material="green" />
+      {[-1.685, 1.685].map(x => <Solid key={x} at={[x, 1.85, .47]} size={[.13, 1.44, .06]} material="green" />)}
+      <Solid at={[0, .95, .52]} size={[.62, 1.9, .05]} material="edge" />
+      <Solid shape="sphere" at={[.22, .95, .56]} size={[.05, .05, .05]} material="brass" />
+      <Solid at={[0, 2.95, .5]} size={[3, .44, .14]} material="edge" />
+      <Sign text="CLEM JAZZ BAR" at={[0, 2.95, .58]} width={2.7} height={.3} />
+      {[-.95, .95].map(x => <Solid key={x} at={[x, 1.16, .55]} size={[1.3, .08, .16]} material="plank" />)}
+      <Solid at={[0, 3.45, .3]} size={[3.8, .14, .5]} material="green" />
+      <Plant at={[-1.75, 0, .75]} scale={.7} />
+      <Plant at={[1.75, 0, .75]} scale={.7} />
+    </group>
+  </>;
 }
 function NeighbourFront() {
   return <group position={[-6.05, 0, .5]}>

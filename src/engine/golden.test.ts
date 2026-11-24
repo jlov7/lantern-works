@@ -37,6 +37,11 @@ describe('golden replays', () => {
     expect(saved.rulesVersion).toBe('lantern-6.1.0');
     expect(corpus(saved.rulesVersion)).toEqual(saved.runs);
   });
+  it('preserves the original 7.1 policy goldens', () => {
+    const saved = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'golden-7.1.0.json'), 'utf8')) as { rulesVersion: string; runs: Record<string, string> };
+    expect(saved.rulesVersion).toBe('lantern-7.1.0');
+    expect(corpus(saved.rulesVersion)).toEqual(saved.runs);
+  });
   it('outcomes only change together with RULES.version', () => {
     const now = { rulesVersion: RULES.version, tapeVersion: RULES.tapeVersion, runs: corpus() };
     if (process.env.UPDATE_GOLDEN || !existsSync(FILE)) {

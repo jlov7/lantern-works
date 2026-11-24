@@ -66,6 +66,10 @@ test('the build plays from a subpath, and offline after the first visit', async 
 
     await page.reload();
     await expect(page.getByRole('heading', { name: 'Make something for your neighbours.' })).toBeVisible();
+    expect(await page.evaluate(() => Promise.all([
+      fetch('manifest.webmanifest').then(response => response.status),
+      fetch('apple-touch-icon.png').then(response => response.status),
+    ]))).toEqual([200, 200]);
     await expect(page.locator('.title-scene__proof > svg')).toBeVisible();
     await page.locator('.how > summary').click();
     await page.getByRole('button', { name: 'Studio handbook', exact: true }).click();

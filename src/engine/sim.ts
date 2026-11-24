@@ -4,7 +4,7 @@ import { allocate, counterOffer, react, validateOffer, type Reaction } from './d
 import { NEWS, type Effect, type NewsOption } from './news';
 import { drawBp, drawInt } from './rng';
 import { CAST, CAST_BY_ID, PRESETS, RULES, SEGMENTS, phaseFor, scenarioById } from './rules';
-import { hasAuthorshipRules, hasCareerRules, hasCreativePromiseRules, hasStudioRules, supportsRulesVersion } from './versions';
+import { hasAuthorshipRules, hasCareerRules, hasCreativePromiseRules, hasFirstOrderRules, hasStudioRules, supportsRulesVersion } from './versions';
 import { nightCalendar, profileBriefMinutes, projectBlocked, projectBrief, projectIntroductions, projectQuote, type ProjectQuote } from './projects';
 import { validateDesign, type ApprovedProof, type CreativeIntention } from './design';
 import { approveOrdinaryProof, creativePromise, ordinaryBrief, stampOrdinaryBrief } from './ordinary';
@@ -238,7 +238,16 @@ function drawNews(s: CompanyState, day: number): void {
 }
 
 function morning(s: CompanyState): void {
-  s.requests.push(...arrivalsFor(s, s.day));
+  const arrivals = arrivalsFor(s, s.day);
+  if (s.day === 1 && s.config.opening === 'clem-first-order' && hasFirstOrderRules(s.rulesVersion)) {
+    const held = s.requests.find(req => req.day === 0 && req.castId === 'yara' && req.status === 'deferred');
+    if (held) {
+      const slot = arrivals.findIndex(req => req.castId === held.castId);
+      const index = slot === -1 ? arrivals.length : slot;
+      arrivals[index] = { ...held, id: arrivals[index]?.id ?? `d1-r${index}`, day: 1, index, status: 'waiting' };
+    }
+  }
+  s.requests.push(...arrivals);
   drawNews(s, s.day);
 }
 
@@ -251,6 +260,10 @@ function lead(id: string, name: string): Resource {
 export function createRun(config: RunConfig, rulesVersion: string = RULES.version): CompanyState {
   if (!supportsRulesVersion(rulesVersion)) throw new Error(`Unsupported rules version: ${rulesVersion}`);
   getScenario(config.scenarioId);
+  if (config.opening === 'clem-first-order' && (!hasFirstOrderRules(rulesVersion)
+      || config.scenarioId !== 'main-street' || config.seed !== 'first-season' || config.continuation)) {
+    throw new Error('Clem’s first order requires the dedicated Main Street opening.');
+  }
   if (config.continuation && !hasAuthorshipRules(rulesVersion)) throw new Error('Continuations require authored studio rules.');
   const continuation = config.continuation ? validateContinuation(config.continuation) : undefined;
   if (continuation?.version === 2 && !hasCreativePromiseRules(rulesVersion)) throw new Error('This continuing studio requires creative promise rules.');
@@ -1079,6 +1092,14 @@ function loseRegular(s: CompanyState, req: Request): void {
   if (isRegular(s, req.castId) && !s.lostCast.includes(req.castId)) s.lostCast.push(req.castId);
 }
 
+/** The opening's waiting dance-school order follows the musicians' edition. */
+export function holdsFirstOrderRequest(s: CompanyState, req: Request): boolean {
+  return req.castId === 'yara' && req.day === 0 && req.status === 'waiting' && s.day === 0
+    && s.config.opening === 'clem-first-order'
+    && s.contracts.some(contract => contract.castId === 'clem' && contract.acceptedDay === 0 && contract.intention === 'clem-band')
+    && reactionFor(s, req).kind === 'buy';
+}
+
 /** The morning's bills, absences and shifts: everything that happens once, as the shop opens. */
 function beginDay(s: CompanyState): void {
   const d = s.day;
@@ -1086,6 +1107,11 @@ function beginDay(s: CompanyState): void {
   for (const n of s.news) if (n.day === d && n.choice === null) choose(s, n, 0);
   for (const req of s.requests) {
     if (req.day === d && req.status === 'waiting') {
+      if (holdsFirstOrderRequest(s, req)) {
+        req.status = 'deferred';
+        emit(s, { minute: start, type: 'deferred', requestId: req.id });
+        continue;
+      }
       if (reactionFor(s, req).kind === 'buy' && req.source !== 'amends') {
         addRep(s, req.segment, RULES.rep.ignoredBuyer);
         loseRegular(s, req);

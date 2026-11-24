@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState, type JSX } from 'react';
-import { flushSync } from 'react-dom';
+import { withViewTransition } from './ui/viewTransition';
 import { RULES, scenarioById } from './engine/rules';
 import { supportsRulesVersion } from './engine/versions';
 import type { CompanyState, RunConfig } from './engine/types';
@@ -46,9 +46,14 @@ function screenTitle(screen: Screen): string {
 
 const ClemCommission = lazy(() => import('./ui/clem/ClemCommission'));
 const FirstOrder = lazy(() => import('./ui/clem/FirstOrder'));
+const DecisionPractice = lazy(() => import('./ui/screens/DecisionPractice'));
 
 export function App(): JSX.Element | null {
-  if (new URLSearchParams(location.search).get('commission') === 'clem') {
+  const route = new URLSearchParams(location.search);
+  if (!location.hash && route.get('practice') === 'decision') {
+    return <Suspense fallback={<main className="title" aria-busy="true"><p role="status">Opening decision practice…</p></main>}><DecisionPractice /></Suspense>;
+  }
+  if (route.get('commission') === 'clem') {
     return <Suspense fallback={<main className="title" aria-busy="true"><p role="status">Opening the printshop…</p></main>}><ClemCommission /></Suspense>;
   }
   return <SeasonApp />;
@@ -75,15 +80,9 @@ function SeasonApp(): JSX.Element | null {
     if (next.kind === 'game' && !gameModule) return void loadGame().then(() => seq === navSeq && go(next));
     // A prefetch only: if it fails (offline), the real load on reaching the end screen tries again.
     if (next.kind === 'game') setTimeout(() => void loadEnd().catch(() => undefined), 4000);
-    const doc = document as Document & { startViewTransition?: (cb: () => void) => { ready: Promise<void>; finished: Promise<void> } };
-    if (typeof doc.startViewTransition !== 'function' || reduceMotion()) return setScreenNow(next);
-    // The browser skips the animation (and rejects these) when the tab is hidden or another transition starts.
-    // The screen still changes, so the rejection is not an error.
-    const t = doc.startViewTransition(() => {
-      if (mounted.current && seq === navSeq) flushSync(() => setScreenNow(next));
-    });
-    t.ready.catch(() => undefined);
-    t.finished.catch(() => undefined);
+    withViewTransition(() => {
+      if (mounted.current && seq === navSeq) setScreenNow(next);
+    }, reduceMotion());
   }, [cancelNavigation]);
 
   useEffect(() => {

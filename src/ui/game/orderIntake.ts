@@ -23,6 +23,7 @@ export function newsOrder(state: CompanyState, news: News, option: number) {
     accepted: 'taken at the window',
     declined: 'turned away at the window',
     walked: 'left unanswered when you opened',
+    deferred: 'held until tomorrow',
   }[request.status] : null;
   return {
     name: effect.offer.name,

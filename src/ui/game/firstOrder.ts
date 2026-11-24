@@ -1,6 +1,7 @@
 import { designSchema, fitMotif, validateDesign } from '../../engine/design';
 import { ordinaryBrief, ordinaryIntentions } from '../../engine/ordinary';
 import { RULES } from '../../engine/rules';
+import { FIRST_ORDER_RULES_VERSION, PRESS_CHOICE_RULES_VERSION } from '../../engine/versions';
 import { reactionTo } from '../../engine/selectors';
 import { applyCommand, createRun, stageEffort } from '../../engine/sim';
 import { z } from 'zod/mini';
@@ -8,7 +9,9 @@ import { castName } from '../format';
 import { FIRST_SEASON } from '../screens/firstSeason';
 import { portfolioAt } from './portfolio';
 
-const morning = createRun(FIRST_SEASON);
+const legacyMorning = createRun(FIRST_SEASON, PRESS_CHOICE_RULES_VERSION);
+const morning = createRun({ ...FIRST_SEASON, opening: 'clem-first-order' }, FIRST_ORDER_RULES_VERSION);
+export const firstOrderMorning = morning;
 const request = morning.requests.find(item => item.castId === 'clem')!;
 const reaction = reactionTo(morning, request);
 if (reaction.kind !== 'buy') throw new Error('Clem must have a first-morning offer.');
@@ -24,6 +27,7 @@ const editions = {
 const editionIds = ['room', 'band'] as const;
 
 const orderSession = z.strictObject({
+  rules: z.optional(z.enum([PRESS_CHOICE_RULES_VERSION, FIRST_ORDER_RULES_VERSION])),
   step: z.enum(['street', 'design', 'press', 'lift', 'window']),
   edition: z.enum(editionIds),
   design: designSchema,
@@ -46,7 +50,7 @@ export function selectFirstEdition(draft: FirstOrder, edition: FirstOrder['editi
 }
 
 export function freshFirstOrder(): FirstOrder {
-  return { step: 'street', edition: 'room', design: firstOrderBrief.defaultDesign };
+  return { rules: FIRST_ORDER_RULES_VERSION, step: 'street', edition: 'room', design: firstOrderBrief.defaultDesign };
 }
 
 export function loadFirstOrder(): FirstOrder {
@@ -67,7 +71,7 @@ export function clearFirstOrder() {
 
 export function bookFirstOrder(draft: FirstOrder) {
   const { maker, intention } = editions[draft.edition];
-  return applyCommand(morning, { type: 'accept', requestId: request.id, maker, intention, design: draft.design });
+  return applyCommand(draft.rules === FIRST_ORDER_RULES_VERSION ? morning : legacyMorning, { type: 'accept', requestId: request.id, maker, intention, design: draft.design });
 }
 
 export function deliverFirstOrder(draft: FirstOrder) {
@@ -78,6 +82,12 @@ export function deliverFirstOrder(draft: FirstOrder) {
   const piece = portfolioAt(day.state).find(item => item.requestId === request.id && item.complete);
   if (!piece?.brief.proof || piece.deliveredAt === null) return null;
   const reaction = ordinaryIntentions(request.castId, request.briefId).find(item => item.id === editions[draft.edition].intention)!;
-  const turnedAway = waitingBuyers.filter(buyer => day.state.requests.find(item => item.id === buyer.id)?.status === 'walked').map(buyer => castName(buyer.castId));
-  return { state: day.state, piece, response: reaction.response, turnedAway };
+  const departures = waitingBuyers.filter(buyer => day.state.requests.find(item => item.id === buyer.id)?.status === 'walked');
+  const turnedAway = departures.map(buyer => castName(buyer.castId));
+  const turnedAwayIds = departures.map(buyer => buyer.id);
+  const heldOrders = waitingBuyers.filter(buyer => day.state.requests.some(item =>
+    item.id === buyer.id && item.status === 'deferred') && day.state.requests.some(item =>
+    item.castId === buyer.castId && item.day === day.state.day && item.status === 'waiting'))
+    .map(buyer => castName(buyer.castId));
+  return { state: day.state, piece, response: reaction.response, turnedAway, turnedAwayIds, heldOrders };
 }

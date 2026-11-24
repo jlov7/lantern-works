@@ -1,5 +1,6 @@
 .window-tools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: .65rem; margin-bottom: .75rem; align-items: stretch; }
 .window-tools .due-link { padding: .4rem; }
+.window-tools > :only-child { grid-column: 1 / -1; }
 .project-notice { width: 100%; min-height: 60px; display: grid; align-content: center; gap: .2rem; padding: .55rem .7rem; border: 1px solid var(--ui-edge); border-radius: 5px; background: var(--ui-surface); color: var(--ui-text); text-align: left; cursor: pointer; }
 .project-notice strong { color: var(--lamp-soft); }
 .project-notice > span { font-size: .875rem; }

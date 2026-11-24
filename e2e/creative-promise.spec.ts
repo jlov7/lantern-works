@@ -110,7 +110,7 @@ test('a first creative promise survives Undo and reload, then becomes a remember
   expect((await saved(page)).commands).toEqual(accepted.commands);
   await page.reload();
   await page.getByRole('button', { name: 'Continue the season', exact: true }).click();
-  await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).click();
+  await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).click();
   await page.getByRole('dialog', { name: 'Compare all neighbours' }).locator(`[data-request-id="${native.state.contracts[0]!.requestId}"]`).click();
   await expect(page.getByRole('region', { name: 'Customer reply' })).toContainText('Clem has your answer');
   await expect(page.locator('.atelier-artwork svg[data-palette]')).toHaveAttribute('data-palette', 'river');

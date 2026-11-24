@@ -2,6 +2,7 @@ import { useId, useRef, useState, type CSSProperties, type PointerEvent } from '
 import { artifactLabel, type WorkPiece } from '../game/portfolio';
 import { describePrint } from '../creative/describePrint';
 import { DesignedPrint } from '../creative/DesignedArtwork';
+import { haptic } from '../haptics';
 import '../../styles/print-lift.css';
 
 /** Each hinged band reveals a different third of one approved print. */
@@ -43,7 +44,9 @@ export function PrintLift({ piece, reducedMotion, onPlacementEnd }: { piece: Wor
     if (ignoreDragClick.current || Math.abs(distance) > 8) {
       ignoreDragClick.current = true;
       if (!event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.setPointerCapture(event.pointerId);
-      setDragLift(Math.max(0, Math.min(1, Number(lifted) + distance / 105)));
+      const next = Math.max(0, Math.min(1, Number(lifted) + distance / 105));
+      if (event.nativeEvent.isTrusted && progress < .5 && next >= .5) haptic('tick');
+      setDragLift(next);
     }
   };
   const finish = (event: PointerEvent<HTMLButtonElement>) => {

@@ -24,7 +24,7 @@ test('the first-order opening keeps the approved print through comparison and th
   await expect(page.getByRole('heading', { name: 'One morning, two editions' })).toBeFocused();
   await expect(page.getByText('Delivered 333 minutes into the day')).toBeVisible();
   await expect(page.getByText('Delivered 288 minutes into the day')).toBeVisible();
-  await expect(page.getByText('Finn, Sam, and Yara left without booking either way.')).toBeVisible();
+  await expect(page.getByText('Finn and Sam left without booking either way.')).toBeVisible();
   await page.getByRole('button', { name: 'Hang the other edition' }).click();
   await expect(poster).toHaveAttribute('data-layout', 'headline');
   await expect(poster).toHaveAccessibleName(/An hour of brass/);

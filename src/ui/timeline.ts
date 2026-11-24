@@ -215,6 +215,9 @@ export function frameAt(before: CompanyState, after: CompanyState, minute: numbe
     folders.push(f);
   }
 
+  const held = animating && day === 0 && before.config.opening
+    ? after.requests.find(request => request.day === day && request.status === 'deferred')?.id
+    : undefined;
   const neighbours: NeighbourFrame[] = before.requests
     .filter((r) => r.day === day && r.source !== 'project')
     .map((r) => {
@@ -227,7 +230,7 @@ export function frameAt(before: CompanyState, after: CompanyState, minute: numbe
         if (re.kind === 'walk') reason = re.reason;
         mood = r.status === 'walked' ? 'leaving' : re.kind === 'buy' ? 'buying' : 'waiting';
       }
-      if (animating && (mood === 'buying' || mood === 'waiting')) mood = 'leaving';
+      if (animating && (mood === 'buying' || mood === 'waiting')) mood = r.id === held ? 'waiting' : 'leaving';
       const n: NeighbourFrame = { requestId: r.id, castId: r.castId, segment: r.segment, mood };
       if (reason) n.reason = reason;
       return n;

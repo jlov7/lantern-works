@@ -1,5 +1,5 @@
 {
-  "rulesVersion": "lantern-7.1.0",
+  "rulesVersion": "lantern-7.2.0",
   "tapeVersion": "lantern-tape-3",
   "runs": {
     "main-street/old": "e08af85de20de59a",

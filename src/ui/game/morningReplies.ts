@@ -1,9 +1,14 @@
 import { RULES } from '../../engine/rules';
 import { applyCommand, isRegular, nextEligibleVisit } from '../../engine/sim';
-import { windowRequests } from '../../engine/selectors';
+import { counterFor, reactionTo, windowRequests } from '../../engine/selectors';
 import { hasAuthorshipRules } from '../../engine/versions';
 import type { CompanyState, Request } from '../../engine/types';
 import { dayLabel } from '../format';
+
+/** Neighbours at the window who named their own price and have no answer yet. */
+export function haggling(state: CompanyState): Request[] {
+  return windowRequests(state).filter(request => request.status === 'waiting' && reactionTo(state, request).kind !== 'buy' && counterFor(state, request));
+}
 
 export function routineReplies(state: CompanyState): Request[] {
   return windowRequests(state).filter(request => request.status === 'waiting' && request.source !== 'project' && request.source !== 'amends');

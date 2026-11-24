@@ -37,7 +37,8 @@ export default memo(function WorkerMiniatureCanvas(props: Props) {
       roomWorker.postMessage({
         type: 'frame', serial: frameSerial, scene: snapshot.scene, view: snapshot.view,
         phone: snapshot.phone, pan: snapshot.pan, focusedJob: snapshot.focusedJob,
-        keys: [...snapshot.textures.keys()], images,
+        keys: [...snapshot.textures.keys()], images, warmupReady: snapshot.warmupReady,
+        stage: snapshot.stage, overlayWidth: snapshot.overlayWidth, reducedMotion: snapshot.reducedMotion,
       }, images.map(item => item.bitmap));
     } catch {
       images.forEach(item => item.bitmap.close());
@@ -78,7 +79,7 @@ export default memo(function WorkerMiniatureCanvas(props: Props) {
     let closeTimeout: ReturnType<typeof setTimeout> | undefined;
     resize.observe(mount);
     roomWorker.onmessage = event => {
-      const message = event.data as { type: string; reason?: string; serial?: number; metrics?: Parameters<MiniatureCanvasProps['onMetrics']>[0]; contextLost?: boolean; geometries?: number; textures?: number; value?: boolean };
+      const message = event.data as { type: string; reason?: string; serial?: number; metrics?: Parameters<MiniatureCanvasProps['onMetrics']>[0]; contextLost?: boolean; geometries?: number; textures?: number; value?: boolean; ms?: number; seq?: number };
       if (message.type === 'closed') {
         canvas.dataset.contextLost = String(message.contextLost);
         canvas.dataset.disposedGeometries = String(message.geometries);
@@ -92,8 +93,14 @@ export default memo(function WorkerMiniatureCanvas(props: Props) {
         ready.current = true;
         roomWorker.postMessage({ type: 'visible', value: current.current.visible });
         void sendFrame(roomWorker);
+        if (current.current.signature) roomWorker.postMessage({ type: 'signature', value: current.current.signature.read() });
       }
       if (message.type === 'painted') canvas.dataset.painted = 'true';
+      if (message.type === 'warmed' && message.ms !== undefined) {
+        canvas.dataset.warmupMs = String(message.ms);
+        current.current.onWarmed?.(message.ms);
+      }
+      if (message.type === 'signature-ack' && message.seq !== undefined) current.current.onSignatureAck?.(message.seq);
       if (message.type === 'metrics' && message.metrics) current.current.onMetrics(message.metrics);
       if (message.type === 'suspended') canvas.dataset.suspended = String(message.value);
       if (message.type === 'committed' && message.serial !== undefined) {
@@ -128,6 +135,20 @@ export default memo(function WorkerMiniatureCanvas(props: Props) {
     if (!props.visible) { ++generation.current; pending.current.clear(); }
     if (ready.current) worker.current?.postMessage({ type: 'visible', value: props.visible });
   }, [props.visible]);
-  useEffect(() => { if (ready.current && worker.current) void sendFrame(worker.current); }, [props.scene, props.textures, props.view, props.phone, props.pan, props.focusedJob, props.visible, sendFrame]);
+  useEffect(() => { if (ready.current && worker.current) void sendFrame(worker.current); }, [props.scene, props.textures, props.warmupReady, props.view, props.phone, props.pan, props.focusedJob, props.visible, props.stage, props.overlayWidth, props.reducedMotion, sendFrame]);
+  useEffect(() => {
+    if (!props.signature || !props.visible) return;
+    let pending = 0;
+    const post = () => {
+      if (pending) return;
+      pending = requestAnimationFrame(() => {
+        pending = 0;
+        if (ready.current && current.current.signature) worker.current?.postMessage({ type: 'signature', value: current.current.signature.read() });
+      });
+    };
+    const remove = props.signature.listen(post);
+    post();
+    return () => { cancelAnimationFrame(pending); remove(); };
+  }, [props.signature, props.visible]);
   return <div ref={host} className="worker-miniature-canvas" aria-hidden="true" />;
 });

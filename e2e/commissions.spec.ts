@@ -61,7 +61,8 @@ for (const width of [320, 390, 1280]) test(`commission quote, acceptance and Und
   await expect(page.locator('.project-progress')).toContainText('0/1 launches delivered');
   await goPlace(page, 'Window');
   await page.getByRole('button', { name: /^Return to / }).click();
-  await expect(page.locator('.window-status')).toContainText(`${takeableInTurn(accepted.state).length} fit together`);
+  const takeable = takeableInTurn(accepted.state).length;
+  await expect(page.locator('.window-status')).toContainText(`${takeable} ${takeable === 1 ? 'fits' : 'fit'} in queue order`);
   await page.getByRole('button', { name: 'Undo', exact: true }).click();
   expect(await saved(page)).toEqual(opening);
   await expect(page.locator('#project-quote-h')).toBeFocused();

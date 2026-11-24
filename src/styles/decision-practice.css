@@ -1,0 +1,29 @@
+.decision-practice { display: grid; gap: clamp(.85rem, 3vw, 1.5rem); width: min(100%, 56rem); }
+.decision-practice > a { justify-self: start; min-height: 44px; }
+.decision-practice header { padding-block: .5rem; }
+.decision-practice h1 { font-size: clamp(2rem, 7vw, 3.35rem); line-height: 1.1; margin-block: .2rem .5rem; }
+.decision-practice header > p { margin: 0; }
+.practice-street { color: var(--lamp-soft); font-weight: 700; }
+.practice-settings { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: .7rem; align-items: end; }
+.practice-settings label { font-weight: 700; display: grid; gap: .25rem; }
+.practice-settings label.practice-help { display: flex; align-items: center; min-height: 44px; cursor: pointer; }
+.practice-help input { accent-color: var(--lamp); width: 1.1rem; height: 1.1rem; margin: 0 .2rem 0 0; }
+.practice-settings select { width: 100%; min-height: 44px; font: inherit; padding-inline: .55rem; color: var(--ui-text); background: var(--ui-surface); border: 1px solid var(--ui-edge); border-radius: 5px; }
+.practice-settings button, .practice-card a, .practice-compare button { min-height: 44px; }
+.practice-card, .practice-compare { padding: clamp(.85rem, 3vw, 1.5rem); border: 1px solid var(--ui-edge); border-radius: 8px; }
+.practice-card { background: var(--ui-surface); border-top: 2px solid var(--lamp); }
+.practice-card p, .practice-compare p { margin-block: .4rem .75rem; }
+.practice-plans { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-block: .7rem; }
+.practice-plan { background: var(--ui-deep); padding: .9rem; border-radius: 5px; }
+.practice-plan h3 { color: var(--lamp-soft); margin: 0; }
+.practice-plan p:last-child { margin-bottom: 0; }
+.practice-results { width: 100%; margin-block: .8rem; text-align: start; border-collapse: collapse; }
+.practice-results caption { color: var(--lamp-soft); font-weight: 700; text-align: start; }
+.practice-results :is(th, td) { text-align: start; padding: .5rem .3rem; border-bottom: 1px solid var(--ui-edge); }
+.decision-practice :is(a, button, select, input):focus-visible { outline: 2px solid var(--lamp); outline-offset: 2px; }
+@media (max-width: 570px) {
+  .practice-settings { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+  .practice-settings > :first-child, .practice-settings > button { grid-column: 1 / -1; }
+  .practice-plan { padding: .65rem; }
+  .decision-practice .practice-results { font-size: .9rem; }
+}

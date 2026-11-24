@@ -12,7 +12,7 @@ export async function selectCustomer(page: Page, requestId: string) {
   await goPlace(page, 'Window');
   const ticket = page.locator(`#ticket-${requestId}`);
   if (!(await ticket.isVisible())) {
-    await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).click();
+    await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).click();
     await page.getByRole('dialog', { name: 'Compare all neighbours' }).locator(`[data-request-id="${requestId}"]`).click();
   }
   await expect(ticket).toBeVisible();
@@ -37,7 +37,7 @@ export async function reviewWindow(page: Page) {
 
 export async function openComparison(page: Page, options = false) {
   await reviewWindow(page);
-  await page.getByRole('button', { name: /^Compare \/ All neighbours/ }).click();
+  await page.getByRole('button', { name: /^See all \d+ neighbours$/ }).click();
   const comparison = page.getByRole('dialog', { name: 'Compare all neighbours' });
   if (options) await comparison.locator('.compare-options > summary').click();
   return comparison;

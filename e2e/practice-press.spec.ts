@@ -2,12 +2,12 @@ import { expect, test, type Page } from '@playwright/test';
 import fixture from '../src/engine/fixtures/career-7.0.0.json' with { type: 'json' };
 import { replay } from '../src/engine/sim';
 import type { Command, RunConfig } from '../src/engine/types';
-import { CAREER_RULES_VERSION, CURRENT_RULES_VERSION } from '../src/engine/versions';
+import { CAREER_RULES_VERSION, PRESS_CHOICE_RULES_VERSION } from '../src/engine/versions';
 
 const route = fixture.routes.find(item => item.id === 'prosperous')!;
 const practice = route.seasons[1]!;
 const commands = practice.commands.slice(0, 24) as Command[];
-const run = { v: 1, id: 'shared-press', label: 'Shared press', savedAt: '2026-11-21T12:00:00.000Z', rules: CURRENT_RULES_VERSION, config: practice.config as RunConfig, commands };
+const run = { v: 1, id: 'shared-press', label: 'Shared press', savedAt: '2026-11-21T12:00:00.000Z', rules: PRESS_CHOICE_RULES_VERSION, config: practice.config as RunConfig, commands };
 
 async function open(page: Page, save = run) {
   await page.goto('/');
@@ -70,7 +70,7 @@ test('a finished 7.0 opening studio can choose the new press rule for season two
   await expect(page.getByRole('navigation', { name: 'Game places' })).toBeVisible();
   const saves = await page.evaluate(() => JSON.parse(localStorage.getItem('lantern.runs.v1')!));
   expect(saves.find((save: typeof run) => save.id === 'original')?.rules).toBe(CAREER_RULES_VERSION);
-  expect(saves.find((save: typeof run) => save.id !== 'original')?.rules).toBe(CURRENT_RULES_VERSION);
+  expect(saves.find((save: typeof run) => save.id !== 'original')?.rules).toBe(PRESS_CHOICE_RULES_VERSION);
 });
 
 test('desktop shows both press options beside the commission roster', async ({ page }) => {

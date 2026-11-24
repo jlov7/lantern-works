@@ -600,8 +600,8 @@ h2[tabindex='-1']:focus-visible {
 .phase-banner {
   margin: 0;
   padding: 0.5rem 0.75rem;
-  border-left: 4px solid var(--lamp);
-  border-radius: 8px;
+  border: 1px solid var(--ui-edge);
+  border-radius: 6px;
   background: var(--ui-deep);
   color: var(--ui-paper);
   animation: rise-in var(--dur-slow) var(--ease-out);
@@ -609,8 +609,8 @@ h2[tabindex='-1']:focus-visible {
 
 .overnight {
   padding: 0.5rem 0.75rem;
-  border-left: 4px solid var(--moss-soft);
-  border-radius: 8px;
+  border: 1px solid var(--ui-edge);
+  border-radius: 6px;
   background: var(--ui-deep);
   color: var(--ui-paper);
 }
@@ -676,8 +676,8 @@ h2[tabindex='-1']:focus-visible {
 }
 .news-kicker {
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   font-weight: 700;
   color: var(--ui-ink-soft);
   margin: 0 0 0.15rem;
@@ -1047,8 +1047,8 @@ h2[tabindex='-1']:focus-visible {
 .stamp {
   margin-left: auto;
   font-family: var(--font-sign);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  text-transform: none;
+  letter-spacing: normal;
   font-size: 0.8rem;
   color: #2d5a3e;
   border: 2px solid #2d5a3e;
@@ -1185,8 +1185,8 @@ details.more[open] > summary::before {
 .coach-step {
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   margin: 0;
 }
 .coach .coach-title {
@@ -1354,12 +1354,16 @@ details.more[open] > summary::before {
   font-size: 0.8rem;
 }
 .race-bar {
+  --fill: 0;
+  width: 100%;
   height: 8px;
   border-radius: 4px;
   background: var(--ui-ink-soft);
   min-width: 2px;
   justify-self: start;
-  transition: width var(--dur-slow) var(--ease-out);
+  transform-origin: left center;
+  transform: scaleX(var(--fill));
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 .race-bars .is-you .race-bar {
   background: var(--lamp);
@@ -1732,9 +1736,13 @@ fieldset:disabled .seg-opt.is-on span {
   margin: 0.3rem 0 0.4rem;
 }
 .gauge-fill {
+  --fill: 0;
+  width: 100%;
   height: 100%;
   background: var(--moss);
-  transition: width var(--dur-base) var(--ease-out);
+  transform-origin: left center;
+  transform: scaleX(var(--fill));
+  transition: transform var(--dur-base) var(--ease-out);
 }
 .gauge-fill.tight {
   background: var(--lamp);

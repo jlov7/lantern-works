@@ -6,7 +6,7 @@
   min-height: 100svh;
   color: var(--clem-ink);
   background: radial-gradient(ellipse at 20% 15%, #263a31, #15211f 62%);
-  padding: 0 max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  padding: env(safe-area-inset-top) max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
 }
 
 .clem-top, .clem-story { max-width: 1280px; margin-inline: auto; }
@@ -32,16 +32,58 @@
 
 /* Keep the print registered to the photographed glass as the composite scales. */
 .clem-window { aspect-ratio: 1.46; }
-.clem-window > img { display: block; position: absolute; width: 223%; max-width: none; height: auto; left: -111%; top: -32%; }
-.clem-window-print { position: absolute; top: 40%; left: 52.5%; width: 13%; padding: .3%; background: #dfcea7; transform: perspective(550px) rotateY(-9deg) rotateZ(2deg); box-shadow: 3px 4px 8px #17110ebf; }
+.clem-window__stage {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  aspect-ratio: 1440 / 811;
+  transform-origin: 0 0;
+  transform: translate(var(--tx), var(--ty)) scale(var(--s));
+}
+.clem-window__stage > img { display: block; width: 100%; height: auto; }
+.clem-window__stage[data-framing='read'] > img { filter: blur(1.5px); }
+.clem-window[data-world='true'] { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.clem-window__stage .clem-window-print { position: absolute; top: 39.30%; left: 73.32%; width: 5.83%; padding: .3%; background: #dfcea7; transform: perspective(550px) rotateY(-9deg) rotateZ(2deg); box-shadow: 3px 4px 8px #17110ebf; }
 .clem-window-print::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(128deg, transparent 25%, #fff5d53a 45%, transparent 60%); }
 .clem-window[data-backdrop='pending'] {
   background: linear-gradient(90deg, transparent 48%, #34291f 48% 52%, transparent 52%),
     linear-gradient(0deg, #241f1a 9%, transparent 9%),
     radial-gradient(ellipse at 50% 15%, #b38455, #4e372b 58%, #30261d);
 }
-.clem-window[data-backdrop='pending'] > img { opacity: 0; }
+.clem-window[data-backdrop='pending'] .clem-window__stage { --s: 1; --tx: 0%; --ty: 0%; }
+.clem-window[data-backdrop='pending'] img { opacity: 0; }
 .clem-window[data-backdrop='pending'] .clem-window-print { top: 10%; left: 23%; width: 54%; }
+.clem-window[data-hang='waiting'][data-backdrop='ready'] .clem-window-print { opacity: 0; }
+
+/* The bench's blue panes need a cooler correction than the shared grade provides. */
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *) { background-image: none; }
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--clem-backplate);
+  background-size: inherit;
+  background-position: inherit;
+  filter: hue-rotate(-42deg);
+}
+
+/* A transformed window stage is its own stacking context. Grade between its image and print. */
+.first-order-street:not([data-world='true'])::after,
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *)::after,
+.first-order .clem-window:not([data-world='true'])[data-backdrop='pending']::after,
+.first-order .clem-window:not([data-world='true'])[data-backdrop='ready'] .clem-window__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg, #1c342b2e 0%, transparent 45%, #f4b94214 100%);
+  mix-blend-mode: soft-light;
+}
+
+.first-order .clem-bench:not(.first-order-world[data-world-painted='true'] *) > :is(.clem-proof, .print-lift, .press-pull) { z-index: 2; }
+.first-order :is(.clem-window__stage .clem-window-print, .clem-window[data-backdrop='pending'] .clem-window__stage) { z-index: 2; }
 
 .clem-panel { display: grid; gap: .8rem; min-width: 0; padding: clamp(.8rem, 2vw, 1.3rem); background: #1d2e28; border: 1px solid var(--clem-edge); border-radius: 6px; }
 .clem-panel p, .clem-panel h2 { margin: 0; }
@@ -104,6 +146,17 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html:not([data-motion='reduce']) .clem-window-print { animation: clem-hangs .48s ease-out both; }
+  html:not([data-motion='reduce']) .clem-window[data-animate='true'] .clem-window__stage {
+    transition: transform var(--dur-moment) var(--ease-out);
+  }
+  html:not([data-motion='reduce']) .clem-window[data-animate='true'] .clem-window__stage > img {
+    transition: filter var(--dur-moment) var(--ease-out);
+  }
+  html:not([data-motion='reduce']) .clem-window:not([data-hang]) .clem-window-print {
+    animation: clem-hangs .48s ease-out both;
+  }
+  html:not([data-motion='reduce']) .clem-window[data-hang='after-push'] .clem-window-print {
+    animation: clem-hangs .48s ease-out var(--dur-moment) both;
+  }
 }
 @keyframes clem-hangs { from { opacity: 0; translate: 0 -.45rem; } to { opacity: 1; translate: 0 0; } }

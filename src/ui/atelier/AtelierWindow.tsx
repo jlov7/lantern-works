@@ -55,6 +55,6 @@ export function AtelierWindow({ state, request, artwork, onInspect, reducedMotio
     {cast && request && <div key={request.id} className="atelier-customer" aria-hidden="true"><CustomerPortrait castId={request.castId} /></div>}
     {artwork && <div className="atelier-artwork">{artwork}</div>}
     {cast && <div className="atelier-caption"><strong>{cast.name}</strong><span>{cast.business}</span></div>}
-    {cast && onInspect && <button className="atelier-inspect" type="button" onClick={onInspect}>Meet {cast.name}<span aria-hidden="true"> ↗</span></button>}
+    {cast && onInspect && <button className="atelier-inspect" type="button" onClick={onInspect}>Meet {cast.name}</button>}
   </section>;
 }
